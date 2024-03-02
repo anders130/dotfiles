@@ -8,6 +8,13 @@ if status is-interactive
     # colors
     set fish_color_command green
 
-    # zoxide
+    alias ls lsd
+    alias cat bat
+
+    # zoxide fuzzy find cd with z
     zoxide init fish | source
+    # use starship prompt
+    starship init fish | source
+
+    direnv hook fish | source
 end
