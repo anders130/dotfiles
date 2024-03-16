@@ -53,20 +53,11 @@ in {
         username = "${username}";
         homeDirectory = "/home/${username}";
 
-        # sessionVariables.EDITOR = "nvim";
-
         packages =
             stable-packages
             ++ unstable-packages
             ++ [];
     };
-
-    # xdg.configFile = {
-    #     nvim = {
-    #         source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.dotfiles/nvim";
-    #         recursive = true;
-    #     };
-    # };
 
     programs = {
         home-manager.enable = true;
@@ -100,7 +91,5 @@ in {
                 };
             };
         };
-
-        # neovim.defaultEditor = true;
     };
 }

@@ -79,7 +79,7 @@
             username = "jesse";
             modules = [
                 nixos-wsl.nixosModules.wsl
-                    ./common.nix
+                    ./system.nix
                     ./wsl
             ];
         };
