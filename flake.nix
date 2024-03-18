@@ -68,20 +68,28 @@
             modules = [
                 (configurationDefaults specialArgs)
                     home-manager.nixosModules.home-manager
+                    ./system.nix
             ]
             ++ modules;
         };
     in {
-        formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.alejandra;
-
-        nixosConfigurations.nixos = mkNixosConfiguration {
-            hostname = "nixos";
-            username = "jesse";
-            modules = [
-                nixos-wsl.nixosModules.wsl
-                    ./system.nix
-                    ./wsl
-            ];
+        nixosConfigurations = {
+            wsl = mkNixosConfiguration {
+                hostname = "nixos-wsl";
+                username = "jesse";
+                modules = [
+                    nixos-wsl.nixosModules.wsl
+                    ./hosts/wsl
+                ];
+            };
+            linux = mkNixosConfiguration {
+                hostname = "nixos";
+                username = "jesse";
+                modules = [
+                    nixos-wsl.nixosModules.wsl
+                    ./hosts/linux
+                ];
+            };
         };
     };
 }
