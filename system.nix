@@ -7,6 +7,7 @@
 }: {
     imports = [
         ./fish
+        ./tmux
     ];
 
     time.timeZone = "Europe/Berlin";

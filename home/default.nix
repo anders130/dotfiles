@@ -44,7 +44,6 @@
 in {
     imports = [
         ./neovim.nix
-        ../tmux
         nix-index-database.hmModules.nix-index
     ];
 
