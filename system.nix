@@ -30,7 +30,7 @@
         ];
     };
 
-    system.stateVersion = "22.05";
+    system.stateVersion = "22.11";
 
     virtualisation.docker = {
         enable = true;
@@ -62,4 +62,11 @@
             options = "--delete-older-than 7d";
         };
     };
+
+    environment.systemPackages = with pkgs; [
+        git-credential-manager
+    ];
+
+    # for secret storing stuff
+    services.gnome.gnome-keyring.enable = true;
 }
