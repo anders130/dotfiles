@@ -1,10 +1,12 @@
 {
     username,
     pkgs,
-    lib,
-    config,
     ... 
 }: {
+    imports = [
+        ./docker.nix
+    ];
+
     wsl = {
         enable = true;
         wslConf = {
@@ -15,25 +17,10 @@
         };
         defaultUser = username;
         startMenuLaunchers = true;
-
-        docker-desktop.enable = false;
-
-    	extraBin = with pkgs; [
-            # Binaries for Docker Desktop wsl-distro-proxy
-            { src = "${coreutils}/bin/mkdir"; }
-            { src = "${coreutils}/bin/cat"; }
-            { src = "${coreutils}/bin/whoami"; }
-            { src = "${coreutils}/bin/ls"; }
-            { src = "${busybox}/bin/addgroup"; }
-            { src = "${su}/bin/groupadd"; }
-            { src = "${su}/bin/usermod"; }
-        ];
     };
 
     networking.nameservers = [ "8.8.4.4" "8.8.8.8" ]; # business internet fix
     # networking.nameservers = [ "195.37.105.57" ];   # bbs
-
-    systemd.services.docker-desktop-proxy.script = lib.mkForce ''${config.wsl.wslConf.automount.root}/wsl/docker-desktop/docker-desktop-user-distro proxy --docker-desktop-root ${config.wsl.wslConf.automount.root}/wsl/docker-desktop "C:\Program Files\Docker\Docker\resources"'';
 
     programs.fish.shellAliases = {
         explorer = "/mnt/c/Windows/explorer.exe";
