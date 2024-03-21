@@ -30,7 +30,7 @@
         ];
     };
 
-    system.stateVersion = "22.11";
+    system.stateVersion = "23.11";
 
     virtualisation.docker = {
         enable = true;
@@ -47,12 +47,6 @@
         };
 
         registry.nixpkgs.flake = inputs.nixpkgs;
-
-        nixPath = [
-            "nixpkgs=${inputs.nixpkgs.outPath}"
-            "nixos-config=/etc/nixos/configuration.nix"
-            "/nis/var/nix/profiles/per-user/root/channels"
-        ];
 
         package = pkgs.nixFlakes;
         extraOptions = ''experimental-features = nix-command flakes'';

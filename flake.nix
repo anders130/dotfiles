@@ -86,7 +86,6 @@
                 hostname = "nixos";
                 username = "jesse";
                 modules = [
-                    nixos-wsl.nixosModules.wsl
                     ./hosts/linux
                 ];
             };
