@@ -3,7 +3,7 @@ function fish_greeting
 end
 
 function flake-rebuild
-    sudo nixos-rebuild switch --flake ~/.dotfiles\#$argv
+    sudo nixos-rebuild switch --flake ~/.dotfiles\?submodules=1\#$argv
 end
 
 if status is-interactive
