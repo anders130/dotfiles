@@ -10,7 +10,6 @@
     ];
 
     stable-packages = with pkgs; [
-        git-credential-manager
     ];
 in {
     imports = [
@@ -74,7 +73,7 @@ in {
 
     fonts.packages = with pkgs; [
         (nerdfonts.override { fonts = [
-            "FiraMono"
+            "CascadiaCode"
         ]; })
     ];
 

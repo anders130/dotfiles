@@ -43,7 +43,7 @@
     ];
 in {
     imports = [
-        ./neovim.nix
+        ../nvim
         nix-index-database.hmModules.nix-index
     ];
 
