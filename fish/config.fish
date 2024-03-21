@@ -2,13 +2,18 @@ function fish_greeting
     fastfetch -c ~/.dotfiles/fastfetch/shell-greeting.jsonc
 end
 
-function flake-rebuild
+# usage: flake-rebuild HOST [--impure]
+function flake-rebuild -w nixos-rebuild
     if test "x$argv" = "x"
-        echo "Please provide a host"
-        exit
+        echo "Please provide a host: flake-rebuild HOST"
+        return
     end
-    sudo nixos-rebuild switch --flake ~/.dotfiles\?submodules=1\#$argv
+    eval "sudo nixos-rebuild switch --flake ~/.dotfiles\?submodules=1#$argv"
 end
+
+complete -c flake-rebuild -l impure -k
+complete -e -c flake-rebuild -l flake -k
+complete -c flake-rebuild -xa "linux wsl" -k -f
 
 if status is-interactive
     # Commands to run in interactive sessions can go here
