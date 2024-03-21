@@ -2,8 +2,8 @@ function fish_greeting
     fastfetch -c ~/.dotfiles/fastfetch/shell-greeting.jsonc
 end
 
-function start_tmux
-    tmux new-session
+function flake-rebuild
+    sudo nixos-rebuild switch --flake ~/.dotfiles\#$argv
 end
 
 if status is-interactive
