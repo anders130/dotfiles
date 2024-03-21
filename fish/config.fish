@@ -3,6 +3,10 @@ function fish_greeting
 end
 
 function flake-rebuild
+    if test "x$argv" = "x"
+        echo "Please provide a host"
+        exit
+    end
     sudo nixos-rebuild switch --flake ~/.dotfiles\?submodules=1\#$argv
 end
 
