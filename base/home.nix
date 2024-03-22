@@ -1,61 +1,19 @@
 {
     secrets,
     username,
-    config,
     pkgs,
-    nix-index-database,
     ...
-}: let
-    unstable-packages = with pkgs.unstable; [
-        curl
-        git
-        neovim
-        wget
-        zip
-        unzip
-        ripgrep
-        bat # better cat
-        fastfetch
-        fzf
-        zoxide # better cd
-        broot # better tree
-        starship # shell prompt
-
-        # fun stuff
-        cbonsai
-        asciiquarium
-        cmatrix
-        pipes
-        lolcat
-        cowsay
-        sl
-        fortune
-    ];
-
-    stable-packages = with pkgs; [
-        rustup
-        lua
-        python3
-        dotnet-sdk_8
-        gcc
-        gnumake
-        nodejs_21
-    ];
-in {
+}: {
     imports = [
         ../nvim
-        nix-index-database.hmModules.nix-index
     ];
 
     home = {
-        stateVersion = "22.11";
+        stateVersion = "23.11";
         username = "${username}";
         homeDirectory = "/home/${username}";
 
-        packages =
-            stable-packages
-            ++ unstable-packages
-            ++ [];
+        packages = [];
     };
 
     programs = {

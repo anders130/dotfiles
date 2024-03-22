@@ -14,9 +14,6 @@
 
         nixos-wsl.url = "github:nix-community/NixOS-WSL";
         nixos-wsl.inputs.nixpkgs.follows = "nixpkgs";
-
-        nix-index-database.url = "github:Mic92/nix-index-database";
-        nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
     };
 
     outputs = inputs:
@@ -48,7 +45,7 @@
     };
 
     argDefaults = {
-        inherit secrets inputs self nix-index-database;
+        inherit secrets inputs self;
         channels = {
             inherit nixpkgs nixpkgs-unstable;
         };
@@ -68,7 +65,7 @@
             modules = [
                 (configurationDefaults specialArgs)
                     home-manager.nixosModules.home-manager
-                    ./system.nix
+                    ./base
             ]
             ++ modules;
         };
@@ -86,6 +83,7 @@
                 hostname = "nixos";
                 username = "jesse";
                 modules = [
+                    ./base/desktop
                     ./hosts/linux
                 ];
             };

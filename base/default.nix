@@ -6,8 +6,10 @@
     ...
 }: {
     imports = [
-        ./fish
-        ./tmux
+        ../fish
+        ../tmux
+
+        ./packages.nix
     ];
 
     time.timeZone = "Europe/Berlin";
@@ -26,7 +28,7 @@
     
     home-manager.users.${username} = {
         imports = [
-            ./home
+            ./home.nix
         ];
     };
 
@@ -56,10 +58,6 @@
             options = "--delete-older-than 7d";
         };
     };
-
-    environment.systemPackages = with pkgs; [
-        git-credential-manager
-    ];
 
     # for secret storing stuff
     services.gnome.gnome-keyring.enable = true;

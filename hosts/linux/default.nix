@@ -3,15 +3,7 @@
     username,
     pkgs,
     ...
-}: let
-    unstable-packages = with pkgs.unstable; [
-        firefox
-        bitwarden
-    ];
-
-    stable-packages = with pkgs; [
-    ];
-in {
+}: {
     imports = [
         ./hardware-configuration.nix
     ];
@@ -66,30 +58,9 @@ in {
         pulse.enable = true;
     };
 
-
-    environment.systemPackages = 
-        stable-packages
-        ++ unstable-packages;
-
     fonts.packages = with pkgs; [
         (nerdfonts.override { fonts = [
             "CascadiaCode"
         ]; })
     ];
-
-    # environment.sessionVariables = {
-    #     GCM_CREDENTIAL_STORE = "secretservice";
-    # };
-    # home-manager.users.${username} = { config, ... }: {
-    #     home.file.".gitconfig".text = ''
-    #     [user]
-    #         name = ${secrets.git_credentials.username}
-    #         email = ${secrets.git_credentials.email}
-    #     [init]
-    #         defaultBranch = master
-    #     [credentials]
-    #         credentialStore = secretservice
-    #         helper = ${pkgs.git-credential-manager}/bin/git-credential-manager
-    # '';
-    # };
 }
