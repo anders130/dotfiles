@@ -10,9 +10,9 @@
         ../tmux
 
         ./packages.nix
+        ./localization.nix
     ];
 
-    time.timeZone = "Europe/Berlin";
     networking.hostName = "${hostname}";
 
     # SSH
