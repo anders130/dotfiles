@@ -8,6 +8,8 @@
     ];
 
     stable-packages = with pkgs; [
+        alacritty
+        kitty
     ];
 in {
     environment.systemPackages = 

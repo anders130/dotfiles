@@ -4,6 +4,7 @@
 }: {
     imports = [
         ./packages.nix
+        ../../hyprland
     ];
 
     # make system bootable
