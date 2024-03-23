@@ -9,7 +9,7 @@
 
     stable-packages = with pkgs; [
         alacritty
-        kitty
+        gnome.nautilus
     ];
 in {
     environment.systemPackages = 
