@@ -1,4 +1,5 @@
 {
+    username,
     pkgs,
     ...
 }: {
@@ -19,7 +20,7 @@
             enable = true;
             wayland = true;
         };
-        desktopManager.gnome.enable = true;
+
         # keyboard layout
         layout = "de";
         xkbVariant = "";
@@ -44,4 +45,17 @@
             "CascadiaCode"
         ]; })
     ];
+    
+    home-manager.users.${username} = {
+        imports = [
+            ./home.nix
+        ];
+    };
+
+    # use gtk desktop portal
+    # (recommended for usage alongside hyprland desktop portal)
+    xdg.portal = {
+        enable = true;
+        extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+    };
 }
