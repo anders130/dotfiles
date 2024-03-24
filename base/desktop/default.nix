@@ -6,6 +6,7 @@
     imports = [
         ./packages.nix
         ../../hyprland
+        ../../rofi
     ];
 
     # make system bootable

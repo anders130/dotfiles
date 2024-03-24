@@ -5,6 +5,8 @@
     unstable-packages = with pkgs.unstable; [
         firefox
         bitwarden
+
+        swww
     ];
 
     stable-packages = with pkgs; [
