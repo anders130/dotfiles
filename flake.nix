@@ -14,6 +14,8 @@
 
         nixos-wsl.url = "github:nix-community/NixOS-WSL";
         nixos-wsl.inputs.nixpkgs.follows = "nixpkgs";
+
+        ags.url = "github:Aylur/ags";
     };
 
     outputs = inputs:

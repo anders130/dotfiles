@@ -7,6 +7,7 @@
         ./packages.nix
         ../../hyprland
         ../../rofi
+        ../../ags
     ];
 
     # make system bootable
