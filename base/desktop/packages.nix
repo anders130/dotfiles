@@ -25,4 +25,8 @@ in {
     environment.systemPackages = 
         stable-packages
         ++ unstable-packages;
+
+    services.xserver.excludePackages = [
+        pkgs.xterm
+    ];
 }
