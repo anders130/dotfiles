@@ -5,6 +5,7 @@
     unstable-packages = with pkgs.unstable; [
         firefox
         bitwarden
+        obsidian
 
         swww
     ];
