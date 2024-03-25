@@ -6,6 +6,7 @@
         firefox
         bitwarden
         obsidian
+        vesktop
 
         swww
     ];
