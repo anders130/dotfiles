@@ -3,6 +3,8 @@
     pkgs,
     ... 
 }: {
+    environment.variables.NIX_FLAKE_DEFAULT_HOST = "wsl";
+
     imports = [
         ./docker.nix
     ];

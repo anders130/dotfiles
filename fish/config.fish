@@ -5,14 +5,19 @@ end
 # usage: flake-rebuild HOST [--impure]
 function flake-rebuild -w nixos-rebuild
     if test "x$argv" = "x"
-        echo "Please provide a host: flake-rebuild HOST"
-        return
+        if test "x$NIX_FLAKE_DEFAULT_HOST" = "x"
+            set_color red
+            echo -n "error: "
+            set_color normal
+            echo '$NIX_FLAKE_DEFAULT_HOST is not set!'
+            return
+        end
+        set argv $NIX_FLAKE_DEFAULT_HOST
     end
     eval "sudo nixos-rebuild switch --flake ~/.dotfiles\?submodules=1#$argv"
 end
 
 complete -c flake-rebuild -l impure -k
-complete -e -c flake-rebuild -l flake -k
 complete -c flake-rebuild -xa "linux wsl" -k -f
 
 if status is-interactive
