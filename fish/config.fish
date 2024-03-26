@@ -23,6 +23,7 @@ complete -c flake-rebuild -xa "linux wsl" -k -f
 if status is-interactive
     # Commands to run in interactive sessions can go here
     fish_vi_key_bindings
+    set -g fish_vi_force_cursor
     set fish_cursor_default block
     set fish_cursor_insert line
     set fish_cursor_replace_one underscore

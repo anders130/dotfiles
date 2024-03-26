@@ -8,6 +8,7 @@
         ../../hyprland
         ../../rofi
         ../../ags
+        ../../alacritty
     ];
 
     # make system bootable
