@@ -7,6 +7,7 @@
 
     imports = [
         ./docker.nix
+        ./vpn.nix
     ];
 
     wsl = {
@@ -24,7 +25,7 @@
     networking.nameservers = [ "8.8.4.4" "8.8.8.8" ]; # business internet fix
     # networking.nameservers = [ "195.37.105.57" ];   # bbs
 
-    programs.fish.shellAliases = {
+    environment.shellAliases = {
         explorer = "/mnt/c/Windows/explorer.exe";
     	docker = "/run/current-system/sw/bin/docker";
     };
