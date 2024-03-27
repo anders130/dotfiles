@@ -1,6 +1,7 @@
 {
     username,
     pkgs,
+    home-symlink,
     ...
 }: {
     home-manager.users.${username} = { config, ... }: {
@@ -11,6 +12,6 @@
             terminal = "${pkgs.unstable.alacritty}/bin/alacritty";
         };
 
-        xdg.configFile."./rofi/custom.rasi".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.dotfiles/rofi/custom.rasi";
+        xdg.configFile."rofi/custom.rasi" = home-symlink { config = config; source = "rofi/custom.rasi"; };
     };
 }

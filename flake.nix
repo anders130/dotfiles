@@ -46,8 +46,13 @@
         home-manager.extraSpecialArgs = args;
     };
 
+    home-symlink = { config, source, recursive ? false, ... }: {
+        source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.dotfiles/${source}";
+        recursive = recursive;
+    };
+
     argDefaults = {
-        inherit secrets inputs self;
+        inherit secrets inputs self home-symlink;
         channels = {
             inherit nixpkgs nixpkgs-unstable;
         };

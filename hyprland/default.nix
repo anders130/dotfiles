@@ -1,6 +1,7 @@
 {
     username,
     pkgs,
+    home-symlink,
     ...
 }: {
     programs.hyprland = {
@@ -12,9 +13,6 @@
     services.xserver.displayManager.defaultSession = "hyprland";
 
     home-manager.users.${username} = { config, ... }: {
-        xdg.configFile.hypr = {
-            source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.dotfiles/hyprland";
-            recursive = true;
-        };
+        xdg.configFile.hypr = home-symlink { config = config; source = "hyprland"; recursive = true; };
     };
 }

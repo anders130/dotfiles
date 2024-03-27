@@ -1,6 +1,7 @@
 {
     username,
     pkgs,
+    home-symlink,
     ...
 }: {
     programs.fish.enable = true;
@@ -12,6 +13,6 @@
     home-manager.users.${username} = { config, ... }: {
         home.sessionVariables.SHELL = "etc/profiles/per-user/${username}/bin/fish";
 
-        xdg.configFile."fish/config.fish".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.dotfiles/fish/config.fish";
+        xdg.configFile."fish/config.fish" = home-symlink { source = "fish/config.fish"; config = config; };
     };
 }

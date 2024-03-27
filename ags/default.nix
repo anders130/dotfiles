@@ -2,6 +2,7 @@
     username,
     inputs,
     pkgs,
+    home-symlink,
     ...
 }: {
     home-manager.users.${username} = { config, ... }: {
@@ -29,6 +30,6 @@
             ];
         };
 
-        xdg.configFile."./ags/config.js".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.dotfiles/ags/config.js";
+        xdg.configFile."ags/config.js" = home-symlink { config = config; source = "ags/config.js"; };
     };
 }
