@@ -6,9 +6,9 @@
     color2: #FFFFFF1A;
     color3: #F7F1FF;
 
-    font: "CaskaydiaCove Nerd Font Mono 12";
+    font: "CaskaydiaCove Nerd Font Mono SemiBold 14";
     text-color: @color3;
-    background-color: @color1;
+    background-color: transparent;
 
     margin:  0px;
     padding: 0px;
