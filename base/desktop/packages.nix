@@ -3,8 +3,9 @@
     ...
 }: let
     unstable-packages = with pkgs.unstable; [
-        firefox
+        alacritty # terminal
         bitwarden
+        firefox
         obsidian
         vesktop
 
@@ -12,7 +13,6 @@
     ];
 
     stable-packages = with pkgs; [
-        alacritty # terminal
         gnome.nautilus # file explorer
 
         fluent-gtk-theme

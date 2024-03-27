@@ -1,0 +1,53 @@
+[colors.bright]
+black = "#99979B"
+blue = "#2180DE"
+cyan = "#37CBE1"
+green = "#4ECA69"
+magenta = "#7C6FDC"
+red = "#FB376F"
+white = "#FFFFFF"
+yellow = "#FD721C"
+
+[colors.normal]
+black = "#262527"
+blue = "#5AA0E6"
+cyan = "#5AD4E6"
+green = "#7BD88F"
+magenta = "#948AE3"
+red = "#FC618D"
+white = "#F7F1FF"
+yellow = "#FD9353"
+
+[colors.primary]
+background = "#262527"
+foreground = "#F7F1FF"
+
+[cursor.style]
+shape = "Block"
+
+[env]
+TERM = "xterm-256color"
+
+[font]
+size = 14.0
+
+[font.bold]
+style = "Bold"
+
+[font.bold_italic]
+style = "Bold Italic"
+
+[font.italic]
+style = "Italic"
+
+[font.normal]
+family = "CaskaydiaCove Nerd Font"
+style = "Regular"
+
+[window]
+dynamic_title = true
+opacity = 1.0
+
+[window.padding]
+x = 10
+y = 8
