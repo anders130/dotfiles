@@ -5,6 +5,7 @@
 }: {
     imports = [
         ./packages.nix
+        ./gaming.nix
         ../../hyprland
         ../../rofi
         ../../ags
@@ -61,4 +62,6 @@
         enable = true;
         extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
     };
+
+    programs.noisetorch.enable = true;
 }

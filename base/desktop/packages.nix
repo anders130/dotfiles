@@ -8,8 +8,11 @@
         firefox
         obsidian
         vesktop
+        google-chrome
+        protonup-qt # easy ge-proton setup for steam
 
         swww
+        swaylock
     ];
 
     stable-packages = with pkgs; [
@@ -31,4 +34,6 @@ in {
     services.xserver.excludePackages = [
         pkgs.xterm
     ];
+
+    security.pam.services.swaylock = {};
 }
