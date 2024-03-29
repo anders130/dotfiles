@@ -12,7 +12,7 @@
         protonup-qt # easy ge-proton setup for steam
 
         swww
-        swaylock
+        hyprlock # lock screen
     ];
 
     stable-packages = with pkgs; [
