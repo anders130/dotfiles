@@ -13,6 +13,7 @@
 
         swww
         hyprlock # lock screen
+        pavucontrol # sound control
     ];
 
     stable-packages = with pkgs; [

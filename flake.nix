@@ -16,6 +16,8 @@
         nixos-wsl.inputs.nixpkgs.follows = "nixpkgs";
 
         ags.url = "github:Aylur/ags";
+        #
+        # hyprlock.url = "github:hyprwm/Hyprlock";
     };
 
     outputs = inputs:
@@ -72,6 +74,13 @@
             modules = [
                 (configurationDefaults specialArgs)
                     home-manager.nixosModules.home-manager
+                    # {
+                    #     home-manager.users.${username} = {
+                    #         imports = [
+                    #             hyprlock.homeManagerModules.hyprlock
+                    #         ];
+                    #     };
+                    # }
                     ./base
             ]
             ++ modules;
