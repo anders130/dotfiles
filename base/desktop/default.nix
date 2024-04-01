@@ -6,7 +6,7 @@
     imports = [
         ./packages.nix
         ./gaming.nix
-        ../../hyprland
+        ../../hypr
         ../../rofi
         ../../ags
         ../../alacritty
