@@ -15,7 +15,6 @@
             theme.name = "Orchis-Dark";
         };
 
-
         programs.ags = {
             enable = true;
 
@@ -31,5 +30,7 @@
         };
 
         xdg.configFile."ags/config.js" = home-symlink { config = config; source = "ags/config.js"; };
+        xdg.configFile."ags/style.css" = home-symlink { config = config; source = "ags/style.css"; };
+        xdg.configFile."ags/components" = home-symlink { config = config; source = "ags/components"; recursive = true; };
     };
 }

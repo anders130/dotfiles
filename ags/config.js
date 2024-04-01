@@ -1,16 +1,7 @@
-const date = Variable('', {
-    poll: [1000, 'date'],
-})
-
-const Bar = (monitor = 0) => Widget.Window({
-    monitor,
-    name: `bar${monitor}`,
-    anchor: ['top', 'left', 'right'],
-    exclusivity: 'exclusive',
-    child: Widget.Label({ label: date.bind() })
-})
+import { Bar } from './components/MainBar/index.js'
 
 App.config({
+    style: './style.css',
     windows: [
         Bar(0),
         Bar(1),
