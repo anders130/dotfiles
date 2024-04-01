@@ -9,6 +9,10 @@
         obsidian
         vesktop
         google-chrome
+
+        prismlauncher
+        jdk17
+        jdk8
         protonup-qt # easy ge-proton setup for steam
 
         swww
