@@ -1,3 +1,5 @@
+import { Stream } from "resource:///com/github/Aylur/ags/service/audio.js"
+
 const hyprland = await Service.import("hyprland")
 const notifications = await Service.import("notifications")
 const mpris = await Service.import("mpris")
@@ -102,14 +104,21 @@ function Volume() {
         return `audio-volume-${icons[icon]}-symbolic`
     }
 
-    const icon = Widget.Icon({
-        icon: Utils.watch(getIcon(), audio.speaker, getIcon),
+    const icon = Widget.Button({
+        child: Widget.Icon({
+            icon: Utils.watch(getIcon(), audio.speaker, getIcon),
+        }),
+        onClicked: () => audio.speaker.is_muted = !audio.speaker.is_muted
     })
 
     const slider = Widget.Slider({
         hexpand: true,
         draw_value: false,
-        on_change: ({ value }) => audio.speaker.volume = value,
+        on_change: ({ value }) => {
+            if (audio.speaker.is_muted && value != 0)
+                audio.speaker.is_muted = false
+            audio.speaker.volume = value
+        },
         setup: self => self.hook(audio.speaker, () => {
             self.value = audio.speaker.volume || 0
         }),
@@ -139,6 +148,31 @@ function BatteryLabel() {
                 value,
             }),
         ],
+    })
+}
+
+function Speaker() {
+    /**
+     * @param {Stream} stream
+     * @returns {string}
+     */
+    const getSpeakerName = (stream) => {
+        return stream.id == 1 ? "Headphones" : "Speakers"
+    }
+
+    const activeSpeaker = () => Widget.Label()
+        .hook(audio.speaker, self => {
+            self.set_text(getSpeakerName(audio.speaker))
+        })
+
+    return Widget.Button({
+        child: activeSpeaker(),
+        onClicked: () => {
+            if (audio.speaker.id == 1)
+                audio.speaker = audio.speakers[2 - 1]
+            else
+                audio.speaker = audio.speakers[1 - 1]
+        }
     })
 }
 
@@ -184,6 +218,7 @@ function Right() {
         hpack: "end",
         spacing: 8,
         children: [
+            Speaker(),
             Volume(),
             Clock(),
             SysTray(),
