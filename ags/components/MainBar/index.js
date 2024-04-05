@@ -154,24 +154,33 @@ function BatteryLabel() {
 function Speaker() {
     /**
      * @param {Stream} stream
+     * @returns {boolean}
+     */
+    const isHeadPhone = (stream) => stream.name?.includes("Alesis_iO_2") ?? false;
+
+    /**
+     * @param {Stream} stream
      * @returns {string}
      */
     const getSpeakerName = (stream) => {
-        return stream.id == 1 ? "Headphones" : "Speakers"
+        print("getSpeakerName", stream.id, stream.name)
+        return isHeadPhone(stream) ? "Headphones" : "Speakers"
     }
 
     const activeSpeaker = () => Widget.Label()
         .hook(audio.speaker, self => {
+            print("activeSpeaker", audio.speaker.id, audio.speaker.name)
             self.set_text(getSpeakerName(audio.speaker))
         })
 
     return Widget.Button({
         child: activeSpeaker(),
         onClicked: () => {
-            if (audio.speaker.id == 1)
-                audio.speaker = audio.speakers[2 - 1]
+            print("clicked", audio.speaker.id, audio.speaker.name, audio.speakers.length)
+            if (audio.speaker.id == audio.speakers[0].id)
+                audio.speaker = audio.speakers[1]
             else
-                audio.speaker = audio.speakers[1 - 1]
+                audio.speaker = audio.speakers[0]
         }
     })
 }
