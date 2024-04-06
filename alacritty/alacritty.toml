@@ -1,26 +1,6 @@
-[colors.bright]
-black = "#99979B"
-blue = "#2180DE"
-cyan = "#37CBE1"
-green = "#4ECA69"
-magenta = "#7C6FDC"
-red = "#FB376F"
-white = "#FFFFFF"
-yellow = "#FD721C"
-
-[colors.normal]
-black = "#262527"
-blue = "#5AA0E6"
-cyan = "#5AD4E6"
-green = "#7BD88F"
-magenta = "#948AE3"
-red = "#FC618D"
-white = "#F7F1FF"
-yellow = "#FD9353"
-
-[colors.primary]
-background = "#262527"
-foreground = "#F7F1FF"
+import = [
+    "~/.config/alacritty/catppuccin-macchiato.toml"
+]
 
 [cursor.style]
 shape = "Block"

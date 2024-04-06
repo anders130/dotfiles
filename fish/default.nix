@@ -14,5 +14,6 @@
         home.sessionVariables.SHELL = "etc/profiles/per-user/${username}/bin/fish";
 
         xdg.configFile."fish/config.fish" = home-symlink { source = "fish/config.fish"; config = config; };
+        xdg.configFile."fish/themes" = home-symlink { source = "fish/themes"; recursive = true; config = config; };
     };
 }

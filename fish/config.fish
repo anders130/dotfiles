@@ -1,3 +1,5 @@
+fish_config theme choose "Catppuccin Macchiato"
+
 function fish_greeting
     fastfetch -c ~/.dotfiles/fastfetch/shell-greeting.jsonc
 end
@@ -27,11 +29,6 @@ if status is-interactive
     set fish_cursor_default block
     set fish_cursor_insert line
     set fish_cursor_replace_one underscore
-
-    # colors
-    set fish_color_command "blue"
-    set fish_color_quote "green"
-    set fish_color_option "gray"
 
     alias ls lsd
     alias cat bat
