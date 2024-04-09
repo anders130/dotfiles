@@ -163,20 +163,17 @@ function Speaker() {
      * @returns {string}
      */
     const getSpeakerName = (stream) => {
-        print("getSpeakerName", stream.id, stream.name)
         return isHeadPhone(stream) ? "Headphones" : "Speakers"
     }
 
     const activeSpeaker = () => Widget.Label()
         .hook(audio.speaker, self => {
-            print("activeSpeaker", audio.speaker.id, audio.speaker.name)
             self.set_text(getSpeakerName(audio.speaker))
         })
 
     return Widget.Button({
         child: activeSpeaker(),
         onClicked: () => {
-            print("clicked", audio.speaker.id, audio.speaker.name, audio.speakers.length)
             if (audio.speaker.id == audio.speakers[0].id)
                 audio.speaker = audio.speakers[1]
             else
@@ -205,6 +202,7 @@ function SysTray() {
 function Left() {
     return Widget.Box({
         spacing: 8,
+        hpack: "start",
         children: [
             Workspaces(),
             ClientTitle(),

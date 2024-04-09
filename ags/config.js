@@ -8,3 +8,19 @@ App.config({
         Bar(2),
     ]
 })
+
+// Utils.monitorFile(
+//     // directory that contains the scss files
+//     `${App.configDir}/components/MainBar`,
+//
+//     // reload function
+//     function() {
+//         // main scss file
+//         const css = `${App.configDir}/components/MainBar/style.css`
+//
+//         // compile, reset, apply
+//         App.resetCss()
+//         App.applyCss(css)
+//     },
+// )
+//
