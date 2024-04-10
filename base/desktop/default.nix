@@ -10,6 +10,7 @@
         ../../rofi
         ../../ags
         ../../alacritty
+        ../../firefox
     ];
 
     # make system bootable

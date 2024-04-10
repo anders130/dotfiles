@@ -64,10 +64,11 @@
         system ? "x86_64-linux",
         hostname,
         username,
+        firefoxProfiles,
         args ? {},
         modules,
     }: let
-    specialArgs = argDefaults // {inherit hostname username;} // args;
+    specialArgs = argDefaults // {inherit hostname username firefoxProfiles;} // args;
     in
         nixpkgs.lib.nixosSystem {
             inherit system specialArgs;
@@ -101,6 +102,10 @@
                 modules = [
                     ./base/desktop
                     ./hosts/linux
+                ];
+                firefoxProfiles = [
+                    "oogn6p3n.default"
+                    "75nrrokj.Work"
                 ];
             };
         };
