@@ -10,11 +10,6 @@
             inputs.ags.homeManagerModules.default
         ];
 
-        gtk = {
-            enable = true;
-            theme.name = "Orchis-Dark";
-        };
-
         programs.ags = {
             enable = true;
 
