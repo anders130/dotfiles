@@ -16,6 +16,7 @@
         zoxide # better cd
         broot # better tree
         starship # shell prompt
+        ffmpeg # video downloader
 
         # fun stuff
         cbonsai
@@ -39,6 +40,7 @@
         gcc
         gnumake
         nodejs_21
+        go
     ];
 in {
     environment.systemPackages = 

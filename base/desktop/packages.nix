@@ -9,6 +9,7 @@
         obsidian
         vesktop
         google-chrome
+        gnome.totem
 
         prismlauncher
         jdk17
