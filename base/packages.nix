@@ -30,8 +30,6 @@
     ];
 
     stable-packages = with pkgs; [
-        git-credential-manager
-
         # compilers etc
         rustup
         lua

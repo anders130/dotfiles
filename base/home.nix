@@ -5,7 +5,7 @@
     ...
 }: {
     imports = [
-        ../nvim
+        ../neovim
     ];
 
     home = {
@@ -45,10 +45,6 @@
                 };
                 diff = {
                     colorMoved = "default";
-                };
-                credential = {
-                    credentialStore = "secretservice";
-                    helper = "${pkgs.git-credential-manager}/bin/git-credential-manager";
                 };
             };
         };
