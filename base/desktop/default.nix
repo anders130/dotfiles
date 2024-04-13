@@ -18,7 +18,7 @@
         systemd-boot.enable = true;
         efi.canTouchEfiVariables = true;
     };
-    
+
     services.xserver = {
         enable = true;
         displayManager.gdm = {

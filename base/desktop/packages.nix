@@ -9,7 +9,9 @@
         obsidian
         vesktop
         google-chrome
-        gnome.totem
+        gnome.totem # video player
+        signal-desktop # oss messenger
+        whatsapp-for-linux # bad messenger
 
         prismlauncher
         jdk17
