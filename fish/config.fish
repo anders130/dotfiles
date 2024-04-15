@@ -30,9 +30,17 @@ if status is-interactive
     set fish_cursor_insert line
     set fish_cursor_replace_one underscore
 
+    # ctrl+p to go to previous command
+    bind \cp up-or-search
+    bind -M insert \cp up-or-search
+
+    # ctrl+n to go to next command
+    bind \cn down-or-search
+    bind -M insert \cn down-or-search
+
     alias ls lsd
     alias cat bat
-    
+
     set -gx EDITOR nvim 
 
     # bind -M insert -k nul 'start_tmux'
