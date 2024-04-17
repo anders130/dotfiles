@@ -24,6 +24,7 @@
     ];
 
     stable-packages = with pkgs; [
+        anki
         gnome.nautilus # file explorer
 
         fluent-gtk-theme
