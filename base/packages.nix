@@ -17,10 +17,11 @@
         broot # better tree
         starship # shell prompt
         ffmpeg # video downloader
+        librespeed-cli
 
         # fun stuff
         cbonsai
-        asciiquarium
+        asciiquarium-transparent
         cmatrix
         pipes
         lolcat

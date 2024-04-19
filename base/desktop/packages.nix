@@ -12,6 +12,7 @@
         gnome.totem # video player
         signal-desktop # oss messenger
         whatsapp-for-linux # bad messenger
+        insomnia
 
         prismlauncher
         jdk17
@@ -26,6 +27,7 @@
     stable-packages = with pkgs; [
         anki
         gnome.nautilus # file explorer
+        gnome.cheese # camera
 
         fluent-gtk-theme
         orchis-theme
