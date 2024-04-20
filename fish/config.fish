@@ -43,6 +43,8 @@ if status is-interactive
     alias ls lsd
     alias cat bat
 
+    alias aquarium "asciiquarium -s -t"
+
     # alias nix commands to nom
     function nix
         if begin test "$argv[1]" = "shell";
