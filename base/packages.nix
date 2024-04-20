@@ -17,7 +17,8 @@
         broot # better tree
         starship # shell prompt
         ffmpeg # video downloader
-        librespeed-cli
+        librespeed-cli # speedtest-cli
+        nix-output-monitor # prettier nix command outputs
 
         # fun stuff
         cbonsai

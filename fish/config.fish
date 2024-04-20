@@ -4,23 +4,25 @@ function fish_greeting
     fastfetch -c ~/.dotfiles/fastfetch/shell-greeting.jsonc
 end
 
-# usage: flake-rebuild HOST [--impure]
+# usage: flake-rebuild [--impure]
 function flake-rebuild -w nixos-rebuild
-    if test "x$argv" = "x"
-        if test "x$NIX_FLAKE_DEFAULT_HOST" = "x"
-            set_color red
-            echo -n "error: "
-            set_color normal
-            echo '$NIX_FLAKE_DEFAULT_HOST is not set!'
-            return
-        end
-        set argv $NIX_FLAKE_DEFAULT_HOST
+    if test "x$NIX_FLAKE_DEFAULT_HOST" = "x"
+        set_color red
+        echo -n "error: "
+        set_color normal
+        echo '$NIX_FLAKE_DEFAULT_HOST is not set!'
+        return
     end
-    eval "sudo nixos-rebuild switch --flake ~/.dotfiles\?submodules=1#$argv"
+    # require users password to continue
+    # (to avoid nom not showing password prompt for nixos-rebuild)
+    sudo true # require password to do nothing
+    if test $status -ne 0; return; end # exit if unsuccessful
+
+    # use default host and nom
+    eval "sudo nixos-rebuild switch --flake ~/.dotfiles\?submodules=1#$NIX_FLAKE_DEFAULT_HOST $argv &| nom"
 end
 
 complete -c flake-rebuild -l impure -k
-complete -c flake-rebuild -xa "linux wsl" -k -f
 
 if status is-interactive
     # Commands to run in interactive sessions can go here
@@ -40,6 +42,18 @@ if status is-interactive
 
     alias ls lsd
     alias cat bat
+
+    # alias nix commands to nom
+    function nix
+        if begin test "$argv[1]" = "shell";
+              or test "$argv[1]" = "develop";
+              or test "$argv[1]" = "build";
+            end
+            nom $argv
+        else
+            command nix $argv
+        end
+    end
 
     set -gx EDITOR nvim 
 
