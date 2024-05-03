@@ -49,7 +49,4 @@ in {
         config = config;
         source = "anki-theme.json";
     };
-
-    #
-    # programs.hyprlock.enable = true;
 }

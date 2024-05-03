@@ -65,4 +65,6 @@
     };
 
     programs.noisetorch.enable = true;
+
+    location.provider = "geoclue2";
 }

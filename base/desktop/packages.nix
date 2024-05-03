@@ -12,7 +12,9 @@
         gnome.totem # video player
         signal-desktop # oss messenger
         whatsapp-for-linux # bad messenger
-        insomnia
+        insomnia # postman-alternative
+        grim # whole screen screenshot
+        grimblast # region screenshot
 
         prismlauncher
         jdk17
