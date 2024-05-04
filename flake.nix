@@ -64,7 +64,7 @@
         system ? "x86_64-linux",
         hostname,
         username,
-        firefoxProfiles,
+        firefoxProfiles ? [],
         args ? {},
         modules,
     }: let
