@@ -13,7 +13,10 @@
         ./localization.nix
     ];
 
-    networking.hostName = "${hostname}";
+    networking = {
+        hostName = "${hostname}";
+        networkmanager.enable = true;
+    };
 
     # SSH
     services.openssh.enable = true;
@@ -23,9 +26,10 @@
         extraGroups = [
             "wheel"
             "docker"
+            "networkmanager"
         ];
     };
-    
+
     home-manager.users.${username} = {
         imports = [
             ./home.nix

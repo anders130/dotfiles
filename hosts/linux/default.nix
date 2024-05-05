@@ -10,8 +10,6 @@
     ];
     boot.supportedFilesystems = [ "ntfs" "exfat" ];
 
-    networking.networkmanager.enable = true;
-
     # Nvidia gpu
     services.xserver.videoDrivers = [ "nvidia" ];
     hardware.nvidia = {

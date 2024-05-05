@@ -19,6 +19,8 @@
         efi.canTouchEfiVariables = true;
     };
 
+    networking.firewall.enable = true;
+
     services.xserver = {
         enable = true;
         displayManager.gdm = {
@@ -73,4 +75,7 @@
     programs.noisetorch.enable = true;
 
     location.provider = "geoclue2";
+
+    # needed for trash to work in nautilus
+    services.gvfs.enable = true;
 }
