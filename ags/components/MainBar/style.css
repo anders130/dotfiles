@@ -4,7 +4,7 @@ window.bar {
     font-size: 14px;
 }
 
-window.bar > * > * {
+window.bar>*>* {
     background-color: rgba(36, 39, 58, 0.8);
     border: 3px solid rgba(73, 77, 100, 0.7);
     border-radius: 12px;

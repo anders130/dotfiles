@@ -1,3 +1,4 @@
+import { MyClock, MyDate } from "../Bar/config.js"
 import { Stream } from "resource:///com/github/Aylur/ags/service/audio.js"
 
 const hyprland = await Service.import("hyprland")
@@ -20,11 +21,14 @@ App.applyCss(`${App.configDir}/components/MainBar/style.css`)
 function Workspaces() {
     const activeId = hyprland.active.workspace.bind("id")
     const workspaces = hyprland.bind("workspaces")
-        .as(ws => ws.map(({ id }) => Widget.Button({
-            on_clicked: () => hyprland.messageAsync(`dispatch workspace ${id}`),
-            child: Widget.Label(`${id}`),
-            class_name: activeId.as(i => `${i === id ? "focused" : ""}`),
-        })))
+        .as(ws => ws.sort((a, b) => {
+            return Math.abs(a.id) - Math.abs(b.id)
+        })
+            .map(({ id }) => Widget.Button({
+                on_clicked: () => hyprland.messageAsync(`dispatch workspace ${id}`),
+                child: Widget.Label(`${id}`),
+                class_name: activeId.as(i => `${i === id ? "focused" : ""}`),
+            })))
 
     return Widget.Box({
         class_name: "workspaces",
@@ -205,7 +209,7 @@ function Left() {
         hpack: "start",
         children: [
             Workspaces(),
-            ClientTitle(),
+            // ClientTitle(),
         ],
     })
 }
@@ -227,7 +231,9 @@ function Right() {
         children: [
             Speaker(),
             Volume(),
-            Clock(),
+            MyClock(),
+            MyDate(),
+            //Clock(),
             SysTray(),
         ],
     })
