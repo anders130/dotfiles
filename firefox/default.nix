@@ -1,20 +1,32 @@
 {
     username,
-    firefoxProfiles,
-    home-symlink,
+    pkgs,
     ...
-}: {
-    home-manager.users.${username} = { config, ... }: {
-        home.file.".mozilla/firefox/${builtins.elemAt firefoxProfiles 0}/chrome" = home-symlink {
-            config = config;
-            source = "firefox/chrome";
-            recursive = true;
+}: let 
+    profileBaseConfig = {
+        settings = {
+            "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
+            "browser.toolbars.bookmarks.visibility" = "always";
         };
-
-        home.file.".mozilla/firefox/${builtins.elemAt firefoxProfiles 1}/chrome" = home-symlink {
-            config = config;
-            source = "firefox/chrome";
-            recursive = true;
+        userChrome = builtins.readFile(./chrome/userChrome.css);
+    };
+in {
+    home-manager.users.${username} = { config, ... }: {
+        programs.firefox = {
+            enable = true;
+            package = pkgs.unstable.firefox;
+            profiles = {
+                private = profileBaseConfig // {
+                    id = 0;
+                    isDefault = true;
+                    settings = {
+                        "browser.uiCustomization.state" = builtins.readFile(./settings/browser.uiCustomization.state.json);
+                    };
+                };
+                work = profileBaseConfig // {
+                    id = 1;
+                };
+            };
         };
     };
 }

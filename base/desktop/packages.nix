@@ -5,7 +5,6 @@
     unstable-packages = with pkgs.unstable; [
         alacritty # terminal
         bitwarden
-        firefox
         obsidian
         vesktop
         google-chrome
