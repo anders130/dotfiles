@@ -47,6 +47,6 @@ in {
 
     home.file.".local/share/Anki2/addons21/${recolorAddonCode}/config.json" = home-symlink {
         config = config;
-        source = "anki-theme.json";
+        source = "other/anki-theme.json";
     };
 }

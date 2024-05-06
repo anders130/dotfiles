@@ -6,7 +6,7 @@
 }: {
     programs.fish.enable = true;
     environment.shells = [pkgs.fish];
-    environment.sessionVariables.STARSHIP_CONFIG = "/home/${username}/.dotfiles/starship.toml";
+    environment.sessionVariables.STARSHIP_CONFIG = "/home/${username}/.dotfiles/other/starship.toml";
 
     users.users.${username}.shell = pkgs.fish;
 

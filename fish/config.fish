@@ -1,7 +1,7 @@
 fish_config theme choose "Catppuccin Macchiato"
 
 function fish_greeting
-    fastfetch -c ~/.dotfiles/fastfetch/shell-greeting.jsonc
+    fastfetch -c ~/.dotfiles/other/shell-greeting.jsonc
 end
 
 # usage: flake-rebuild [--impure]
