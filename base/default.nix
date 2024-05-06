@@ -1,6 +1,8 @@
 {
     username,
     hostname,
+    host,
+    variables,
     pkgs,
     inputs,
     ...
@@ -36,7 +38,8 @@
         ];
     };
 
-    system.stateVersion = "23.11";
+    system.stateVersion = variables.version;
+    environment.variables.NIX_FLAKE_DEFAULT_HOST = host.name;
 
     virtualisation.docker = {
         enable = true;

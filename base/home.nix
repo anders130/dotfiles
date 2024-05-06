@@ -1,6 +1,7 @@
 {
     secrets,
     username,
+    variables,
     pkgs,
     ...
 }: {
@@ -9,7 +10,7 @@
     ];
 
     home = {
-        stateVersion = "23.11";
+        stateVersion = variables.version;
         username = "${username}";
         homeDirectory = "/home/${username}";
 

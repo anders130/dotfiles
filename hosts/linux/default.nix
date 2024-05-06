@@ -3,8 +3,6 @@
     config,
     ...
 }: {
-    environment.variables.NIX_FLAKE_DEFAULT_HOST = "linux";
-
     imports = [
         ./hardware-configuration.nix
     ];
