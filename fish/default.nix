@@ -9,7 +9,7 @@
     environment.sessionVariables.STARSHIP_CONFIG = "/home/${username}/.dotfiles/starship.toml";
 
     users.users.${username}.shell = pkgs.fish;
-    
+
     home-manager.users.${username} = { config, ... }: {
         home.sessionVariables.SHELL = "etc/profiles/per-user/${username}/bin/fish";
 
