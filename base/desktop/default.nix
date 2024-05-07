@@ -75,6 +75,7 @@
     programs.noisetorch.enable = true;
 
     location.provider = "geoclue2";
+    services.gnome.tracker-miners.enable = true;
 
     # needed for trash to work in nautilus
     services.gvfs.enable = true;
