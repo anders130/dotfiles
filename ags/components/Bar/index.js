@@ -29,4 +29,4 @@ export function Bar({
     })
 }
 
-App.applyCss(`${App.configDir}/components/MainBar/style.css`)
+App.applyCss(`${App.configDir}/components/Bar/style.css`)
