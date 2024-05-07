@@ -3,12 +3,11 @@
 
     nixosConfigs = { mkNixosConfigs, inputs }: mkNixosConfigs [
         {
-            name = "linux";
+            name = "desktop";
             hostname = "nixos";
             username = "jesse";
             modules = [
                 ./base/desktop
-                ./hosts/linux
             ];
         }
         {
@@ -17,7 +16,6 @@
             username = "jesse";
             modules = [
                 inputs.nixos-wsl.nixosModules.wsl
-                ./hosts/wsl
             ];
         }
     ];

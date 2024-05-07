@@ -74,6 +74,7 @@
                 inherit system specialArgs;
                 modules = modules ++ [
                     ./base
+                    ./hosts/${name}
                     home-manager.nixosModules.home-manager
                     (configurationDefaults specialArgs)
                 ];
