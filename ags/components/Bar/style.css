@@ -1,0 +1,49 @@
+window.bar {
+    background-color: transparent;
+    color: @theme_fg_color;
+    font-size: 14px;
+}
+
+window.bar>*>* {
+    background-color: rgba(36, 39, 58, 0.8);
+    border: 3px solid rgba(73, 77, 100, 0.7);
+    border-radius: 12px;
+    margin: 5px 5px 0px 5px;
+}
+
+button {
+    min-width: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    background-color: transparent;
+}
+
+button:active {
+    background-color: @theme_selected_bg_color;
+}
+
+button:hover {
+    border-bottom: 3px solid @theme_fg_color;
+}
+
+label {
+    font-weight: bold;
+}
+
+.workspaces button.focused {
+    border-bottom: 3px solid @theme_selected_bg_color;
+}
+
+.client-title {
+    color: @theme_selected_bg_color;
+    padding-right: 10px;
+}
+
+.notification {
+    color: yellow;
+}
+
+levelbar block,
+highlight {
+    min-height: 0px;
+}
