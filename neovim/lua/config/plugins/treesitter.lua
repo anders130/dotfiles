@@ -1,9 +1,13 @@
+vim.filetype.add(
+    { pattern = { [".*/hypr/.*%.conf"] = "hyprlang" }, }
+)
+
 return {
     -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
     opts = {
-        ensure_installed = { 'bash', 'c', 'html', 'lua', 'luadoc', 'markdown', 'vim', 'vimdoc', "c_sharp", "typescript", "javascript", "css" },
+        ensure_installed = { 'bash', 'c', 'html', 'lua', 'luadoc', 'markdown', 'vim', 'vimdoc', "c_sharp", "typescript", "javascript", "css", "fish", "nix", "rasi", "hyprlang" },
         -- Autoinstall languages that are not installed
         auto_install = true,
         highlight = {
