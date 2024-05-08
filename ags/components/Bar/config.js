@@ -1,15 +1,15 @@
 import { Bar } from "./index.js"
-import { Volume, Speaker, Workspaces, Media, Notification, SysTray, Clock, Date } from "./components.js"
+import { Volume, Speaker, Workspaces, Media, Notification, SysTray, SimpleTime } from "./components.js"
 
 export function MainScreenBar({ monitor = 0 }) {
     return Bar({
         monitor: monitor,
         left: [
-            Workspaces(),
+            Workspaces({ monitor: monitor }),
         ],
         center: [
-            Clock(),
-            Date(),
+            Notification(),
+            SimpleTime(),
             SysTray(),
         ],
         right: [
@@ -23,11 +23,11 @@ export function SecondaryScreenBar({ monitor = 0 }) {
     return Bar({
         monitor: monitor,
         left: [
-            Workspaces(),
+            Workspaces({ monitor: monitor }),
         ],
         center: [
-            Clock(),
-            Date(),
+            Notification(),
+            SimpleTime(),
             SysTray(),
         ],
         right: [
