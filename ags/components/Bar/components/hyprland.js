@@ -7,11 +7,14 @@ export function Workspaces({ monitor = 0 }) {
             return Math.abs(a.id) - Math.abs(b.id)
         })
             .filter(ws => {
+                if (ws.id < 0) return true;
                 const workspaceMonitor = Math.floor((ws.id - 1) / 10)
                 return workspaceMonitor === monitor
             })
             .map(({ id }) => {
-                const adjustedId = id % 10 || 10;
+                const adjustedId = id < 0
+                    ? id
+                    : id % 10 || 10;
                 return Widget.Button({
                     on_clicked: () => hyprland.messageAsync(`dispatch workspace ${id}`),
                     child: Widget.Label(`${adjustedId}`),
