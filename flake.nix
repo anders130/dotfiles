@@ -35,6 +35,13 @@
                         inherit (prev) system;
                         inherit config;
                      };
+                     local = import ./pkgs {
+                        inherit (prev) system;
+                        pkgs = import nixpkgs {
+                           inherit (prev) system;
+                           inherit config;
+                        };
+                     };
                 })
             ];
         };

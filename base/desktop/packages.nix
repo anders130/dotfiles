@@ -39,9 +39,14 @@
 
         gnome.dconf-editor # needed for home-manager gtk theming
     ];
+
+    local-packages = with pkgs.local; [
+        hyprsome
+    ];
 in {
     environment.systemPackages = 
-        stable-packages
+        local-packages
+        ++ stable-packages
         ++ unstable-packages;
 
     services.xserver.excludePackages = [
