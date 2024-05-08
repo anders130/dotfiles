@@ -2,17 +2,25 @@
     username,
     pkgs,
     home-symlink,
+    inputs,
     ...
 }: {
-    programs.hyprland = {
-        enable = true;
-        xwayland.enable = true;
-        package = pkgs.unstable.hyprland;
-    };
-
-    services.xserver.displayManager.defaultSession = "hyprland";
-
     home-manager.users.${username} = { config, ... }: {
         xdg.configFile.hypr = home-symlink { config = config; source = "hypr"; recursive = true; };
+
+        wayland.windowManager.hyprland = {
+            enable = true;
+            package = inputs.hyprland.packages.${pkgs.system}.hyprland;
+            plugins = [
+                inputs.split-monitor-workspaces.packages.${pkgs.system}.split-monitor-workspaces
+            ];
+            extraConfig = ''
+                plugin {
+                    split-monitor-workspaces {
+                        count = 5
+                    }
+                }
+            '';
+        };
     };
 }
