@@ -1,3 +1,4 @@
+const { query } = await Service.import("applications")
 const hyprland = await Service.import("hyprland")
 
 export function Workspaces({ monitor = 0 }) {
@@ -17,7 +18,14 @@ export function Workspaces({ monitor = 0 }) {
                     : id % 10 || 10;
                 return Widget.Button({
                     on_clicked: () => hyprland.messageAsync(`dispatch workspace ${id}`),
-                    child: Widget.Label(`${adjustedId}`),
+                    child: Widget.Box({
+                        children: [
+                            Widget.Label(`${adjustedId}`),
+                            Clients(id)
+                        ],
+                        spacing: 16
+                    })
+                    ,
                     class_name: activeId.as(i => `${i === id ? "focused" : ""}`),
                 })
             }))
@@ -25,6 +33,32 @@ export function Workspaces({ monitor = 0 }) {
     return Widget.Box({
         class_name: "workspaces",
         children: workspaces,
+    })
+}
+
+const AppIcon = app => Widget.Icon({
+    icon: app.icon_name || "",
+    size: 16,
+})
+
+const getIcons = (client) => {
+    const likelyApps = query(client.class)
+    if (likelyApps.length == 1) return likelyApps.at(0)
+    return likelyApps.filter(app => client.initialTitle.includes(app.name.trim())).at(0)
+}
+
+export function Clients(workspaceId) {
+    const clients = hyprland.bind("clients").as(cs => cs
+        .filter(c => c.workspace.id == workspaceId)
+        .map(c => {
+            return Widget.Box({
+                children: [AppIcon(getIcons(c))]
+            })
+        }))
+    return Widget.Box({
+        class_name: "clients",
+        children: clients,
+        spacing: 8
     })
 }
 
