@@ -6,12 +6,12 @@ window.bar {
 }
 
 button {
-    min-width: 0;
+    min-width: unset;
     padding-top: 0;
-    padding-bottom: 0;
     background-color: transparent;
     border-radius: 0px;
     border-color: transparent;
+    border-bottom: 3px solid rgba(73, 77, 100, 0.7);
 }
 
 button:active {
@@ -24,8 +24,6 @@ label {
 
 .workspaces button.focused {
     background-color: rgb(54, 58, 79);
-    border-bottom: 3px solid rgba(73, 77, 100, 0.7);
-    padding-bottom: 3px;
 }
 
 .client-title {
