@@ -8,10 +8,10 @@
         programs.rofi = {
             enable = true;
             package = pkgs.rofi-wayland;
-            theme = "custom";
+            theme = "catppuccin-macchiato";
             terminal = "${pkgs.unstable.alacritty}/bin/alacritty";
         };
 
-        xdg.configFile."rofi/custom.rasi" = home-symlink { config = config; source = "rofi/custom.rasi"; };
+        xdg.configFile."rofi/catppuccin-macchiato.rasi" = home-symlink { config = config; source = "rofi/catppuccin-macchiato.rasi"; };
     };
 }
