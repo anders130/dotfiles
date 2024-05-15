@@ -48,6 +48,18 @@
                     colorMoved = "default";
                 };
             };
+            aliases = {
+                s = "status -s";
+                st = "status";
+                ci = "commit";
+                ciam = "commit --amend --no-edit";
+                co = "checkout";
+                d = "diff";
+                ds = "diff --staged";
+                a = "add";
+                aa = "add --all";
+                lg = "log --pretty=oneline --decorate --graph --abbrev-commit -30";
+            };
         };
     };
 }
