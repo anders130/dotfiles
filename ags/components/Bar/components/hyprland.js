@@ -47,7 +47,13 @@ const AppIcon = app => Widget.Icon({
 export function Clients(workspaceId) {
     const clients = hyprland.bind("clients").as(cs => cs
         .filter(c => c.workspace.id == workspaceId)
+        .filter(c => c.class !== "steam" || c.title === "Steam")
+        .filter(c => (c.class !== "Google-chrome" || c.initialTitle.includes("Chrome")
+            || c.initialTitle === "Microsoft Teams"
+            || c.initialTitle === "YouTube Music")
+            && c.initialTitle.trim() !== "")
         .map(c => {
+            print(workspaceId, c.initialTitle)
             return Widget.Box({
                 children: [AppIcon(getIcons(c))],
             })
