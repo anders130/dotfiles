@@ -14,6 +14,7 @@
         insomnia # postman-alternative
         grim # whole screen screenshot
         grimblast # region screenshot
+        rofimoji
 
         prismlauncher
         jdk17

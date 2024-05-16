@@ -13,5 +13,11 @@
         };
 
         xdg.configFile."rofi/catppuccin-macchiato.rasi" = home-symlink { config = config; source = "rofi/catppuccin-macchiato.rasi"; };
+
+        xdg.configFile."rofimoji.rc".text = ''
+            action = copy
+            skin-tone = neutral
+            max-recent = 0
+        '';
     };
 }
