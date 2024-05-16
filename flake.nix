@@ -20,9 +20,10 @@
     };
 
     outputs = inputs:
-        with inputs; let 
+        with inputs; let
         secrets = builtins.fromJSON (builtins.readFile "${self}/secrets.json");
         variables = import ./variables.nix;
+        home-symlink = import ./lib/home-symlink.nix;
 
         nixpkgsWithOverlays = with inputs; rec {
             config = {
@@ -54,14 +55,9 @@
             home-manager.extraSpecialArgs = args;
         };
 
-        home-symlink = { config, source, recursive ? false, ... }: {
-            source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.dotfiles/${source}";
-            recursive = recursive;
-        };
-
         argDefaults = {
-            inherit secrets variables;
-            inherit inputs self home-symlink;
+            inherit secrets variables home-symlink;
+            inherit inputs self;
             channels = {
                 inherit nixpkgs nixpkgs-unstable;
             };
