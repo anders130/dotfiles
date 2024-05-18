@@ -15,6 +15,8 @@
             inputs.nixpkgs.follows = "nixpkgs";
         };
 
+        nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+
         nur.url = "github:nix-community/NUR";
         ags.url = "github:Aylur/ags";
     };
@@ -28,6 +30,7 @@
         nixpkgsWithOverlays = with inputs; rec {
             config = {
                 allowUnfree = true;
+                allowUnsupportedSystem = true;
                 permittedInsecurePackages = [];
             };
             overlays = [

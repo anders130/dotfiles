@@ -18,5 +18,14 @@
                 inputs.nixos-wsl.nixosModules.wsl
             ];
         }
+        {
+            name = "nix-pi";
+            hostname = "nix-pi";
+            username = "jesse";
+            system = "aarch64-linux";
+            modules = [
+                inputs.nixos-hardware.nixosModules.raspberry-pi-4
+            ];
+        }
     ];
 }
