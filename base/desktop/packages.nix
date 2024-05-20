@@ -24,11 +24,6 @@
         swww
         hyprlock # lock screen
         pavucontrol # sound control
-        (catppuccin-sddm.override {
-            flavor = "macchiato";
-            font  = "CaskaydiaCove Nerd Font Mono SemiBold";
-            fontSize = "14";
-        })
     ];
 
     stable-packages = with pkgs; [

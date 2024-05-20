@@ -23,14 +23,21 @@
 
     services.xserver = {
         enable = true;
-        displayManager.sddm = {
-            enable = true;
-            theme = "catppuccin-macchiato";
-        };
 
         # keyboard layout
         layout = "de";
         xkbVariant = "";
+    };
+
+    services.greetd = {
+        enable = true;
+        settings = rec {
+            initial_session = {
+                command = "${pkgs.unstable.hyprland}/bin/Hyprland";
+                user = username;
+            };
+            default_session = initial_session;
+        };
     };
 
     # Enable CUPS to print documents.
