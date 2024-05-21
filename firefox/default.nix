@@ -28,5 +28,15 @@ in {
                 };
             };
         };
+
+        xdg.desktopEntries.firefoxWork = {
+            name = "Firefox Work";
+            genericName = "Web Browser";
+            exec = "firefox -P work";
+            icon = "firefox";
+            terminal = false;
+            categories = [ "Application" "Network" "WebBrowser" ];
+            mimeType = [ "text/html" "text/xml" ];
+        };
     };
 }
