@@ -1,6 +1,6 @@
 const mpris = await Service.import("mpris")
 
-export function Media() {
+export const Media = () => {
     const label = Utils.watch("", mpris, "player-changed", () => {
         if (mpris.players[0]) {
             const { track_artists, track_title } = mpris.players[0]

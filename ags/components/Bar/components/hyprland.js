@@ -3,32 +3,32 @@ import { getIcons } from "../../../utils/icons.js"
 
 const hyprland = await Service.import("hyprland")
 
-export function Workspaces({ monitor = 0 }) {
+export const Workspaces = ({ monitor = 0 }) => {
     const activeId = hyprland.active.workspace.bind("id")
-    const workspaces = hyprland.bind("workspaces")
-        .as(ws => ws
-            .sort((a, b) => Math.abs(a.id) - Math.abs(b.id))
-            .filter(({ id }) => {
-                if (id < 0) return true;
-                const workspaceMonitor = Math.floor((id - 1) / 10)
-                return workspaceMonitor === monitor
+    const workspaces = hyprland.bind("workspaces").as(ws => ws
+        .sort((a, b) => Math.abs(a.id) - Math.abs(b.id))
+        .filter(({ id }) => {
+            if (id < 0) return true;
+            const workspaceMonitor = Math.floor((id - 1) / 10)
+            return workspaceMonitor === monitor
+        })
+        .map(({ id }) => {
+            const adjustedId = id < 0
+                ? id
+                : id % 10
+            return Widget.Button({
+                on_clicked: () => hyprland.messageAsync(`dispatch workspace ${id}`),
+                child: Widget.Box({
+                    children: [
+                        Widget.Label(`${adjustedId}`),
+                        Clients(id)
+                    ],
+                    spacing: 16
+                }),
+                class_name: activeId.as(i => `${i === id ? "focused" : ""}`),
             })
-            .map(({ id }) => {
-                const adjustedId = id < 0
-                    ? id
-                    : id % 10
-                return Widget.Button({
-                    on_clicked: () => hyprland.messageAsync(`dispatch workspace ${id}`),
-                    child: Widget.Box({
-                        children: [
-                            Widget.Label(`${adjustedId}`),
-                            Clients(id)
-                        ],
-                        spacing: 16
-                    }),
-                    class_name: activeId.as(i => `${i === id ? "focused" : ""}`),
-                })
-            }))
+        })
+    )
 
     return Widget.Box({
         class_name: "workspaces",
@@ -44,7 +44,7 @@ const AppIcon = app => Widget.Icon({
 })
 
 /** @param {number} workspaceId */
-export function Clients(workspaceId) {
+export const Clients = workspaceId => {
     const clients = hyprland.bind("clients").as(cs => cs
         .filter(c => c.workspace.id == workspaceId)
         .filter(c => c.class !== "steam" || c.title === "Steam")
@@ -52,12 +52,9 @@ export function Clients(workspaceId) {
             || c.initialTitle === "Microsoft Teams"
             || c.initialTitle === "YouTube Music")
             && c.initialTitle.trim() !== "")
-        .map(c => {
-            print(workspaceId, c.initialTitle)
-            return Widget.Box({
-                children: [AppIcon(getIcons(c))],
-            })
-        }))
+        .map(c => Widget.Box({
+            children: [AppIcon(getIcons(c))],
+        })))
     return Widget.Box({
         class_name: "clients",
         children: clients,
@@ -65,9 +62,7 @@ export function Clients(workspaceId) {
     })
 }
 
-export function ClientTitle() {
-    return Widget.Label({
-        class_name: "client-title",
-        label: hyprland.active.client.bind("title"),
-    })
-}
+export const ClientTitle = () => Widget.Label({
+    class_name: "client-title",
+    label: hyprland.active.client.bind("title"),
+})

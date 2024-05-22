@@ -2,7 +2,7 @@ import { Stream } from "resource:///com/github/Aylur/ags/service/audio.js"
 
 const audio = await Service.import("audio")
 
-export function Volume() {
+export const Volume = () => {
     const icons = {
         101: "overamplified",
         67: "high",
@@ -11,7 +11,7 @@ export function Volume() {
         0: "muted",
     }
 
-    function getIcon() {
+    const getIcon = () => {
         const icon = audio.speaker.is_muted ? 0 : [101, 67, 34, 1, 0].find(
             threshold => threshold <= audio.speaker.volume * 100)
 
@@ -45,7 +45,7 @@ export function Volume() {
     })
 }
 
-export function Speaker() {
+export const Speaker = () => {
     /**
      * @param {Stream} stream
      * @returns {boolean}

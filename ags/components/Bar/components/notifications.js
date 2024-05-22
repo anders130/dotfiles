@@ -1,6 +1,6 @@
 const notifications = await Service.import("notifications")
 
-export function Notification() {
+export const Notification = () => {
     const popups = notifications.bind("popups")
     return Widget.Box({
         class_name: "notification",
