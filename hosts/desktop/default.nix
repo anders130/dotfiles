@@ -61,4 +61,6 @@ in {
         driSupport = true;
         driSupport32Bit = true;
     };
+
+    boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 }

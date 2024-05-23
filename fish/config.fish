@@ -22,6 +22,12 @@ function flake-rebuild -w nixos-rebuild
     eval "sudo nixos-rebuild switch --flake ~/.dotfiles\?submodules=1#$NIX_FLAKE_DEFAULT_HOST $argv &| nom"
 end
 
+function flake-remote-rebuild -w nixos-rebuild
+    eval "NIX_SSHOPTS=\"-o RequestTTY=force\" nixos-rebuild switch \
+    --flake ~/.dotfiles\?submodules=1#$argv \
+    --use-remote-sudo"
+end
+
 complete -c flake-rebuild -l impure -k
 
 if status is-interactive

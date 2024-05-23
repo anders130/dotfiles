@@ -1,9 +1,11 @@
 {
     username,
     hostname,
+    hashedPassword,
     host,
     variables,
     pkgs,
+    lib,
     inputs,
     ...
 }: {
@@ -17,7 +19,7 @@
 
     networking = {
         hostName = "${hostname}";
-        networkmanager.enable = true;
+        networkmanager.enable = lib.mkDefault true;
     };
 
     # SSH
@@ -30,6 +32,8 @@
             "docker"
             "networkmanager"
         ];
+    } // lib.optionalAttrs (hashedPassword != null) {
+        hashedPassword = hashedPassword;
     };
 
     home-manager.users.${username} = {

@@ -27,6 +27,10 @@
         variables = import ./variables.nix;
         home-symlink = import ./lib/home-symlink.nix;
 
+        overlay = final: super: {
+            makeModulesClosure = x: super.makeModulesClosure (x // { allowMissing = true; });
+        };
+
         nixpkgsWithOverlays = with inputs; rec {
             config = {
                 allowUnfree = true;
@@ -34,6 +38,7 @@
                 permittedInsecurePackages = [];
             };
             overlays = [
+                overlay
                 nur.overlay(_final: prev: {
                      unstable = import nixpkgs-unstable {
                         inherit (prev) system;
@@ -71,10 +76,11 @@
             name,
             hostname,
             username,
+            hashedPassword ? null,
             args ? {},
             modules,
         }: let
-            specialArgs = argDefaults // { inherit hostname username host; } // args;
+            specialArgs = argDefaults // { inherit hostname username hashedPassword host; } // args;
         in
             nixpkgs.lib.nixosSystem {
                 inherit system specialArgs;
