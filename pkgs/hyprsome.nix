@@ -4,13 +4,13 @@
     fetchFromGitHub
 }: rustPlatform.buildRustPackage rec {
     pname = "hyprsome";
-    version = "unstable-2023-06-08";
+    version = "0.1.13";
 
     src = fetchFromGitHub {
-        owner = "sopa0";
+        owner = "anders130";
         repo = "hyprsome";
-        rev = "9636be05ef20fbe473709cc3913b5bbf735eb4f3";
-        hash = "sha256-f4Z5gXZ74uAe770guywGIznXiI/3a/617MD2uZNQNVA=";
+        rev = "bf6c878e1bce9dd2c28200dcc0f0370e2677ea62";
+        hash = "sha256-qMO9BidVWpxGu9UIV4iol9ybsZZCtKa4vsHNB5lkX+k=";
     };
 
     cargoLock.lockFile = "${src.outPath}/Cargo.lock";
