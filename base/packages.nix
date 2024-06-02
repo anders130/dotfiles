@@ -19,6 +19,7 @@
         ffmpeg # video downloader
         librespeed-cli # speedtest-cli
         nix-output-monitor # prettier nix command outputs
+        btop # task manager
 
         # fun stuff
         cbonsai
@@ -39,7 +40,7 @@
         dotnet-sdk_8
         gcc
         gnumake
-        nodejs_21
+        nodejs_22
         go
     ];
 in {

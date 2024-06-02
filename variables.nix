@@ -1,5 +1,5 @@
 {
-    version = "23.11";
+    version = "24.05";
 
     nixosConfigs = { mkNixosConfigs, inputs }: mkNixosConfigs [
         {

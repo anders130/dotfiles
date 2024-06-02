@@ -7,7 +7,7 @@
     programs.hyprland = {
         enable = true;
         xwayland.enable = true;
-        package = pkgs.unstable.hyprland;
+        package = pkgs.hyprland;
     };
 
     services.xserver.displayManager.defaultSession = "hyprland";
