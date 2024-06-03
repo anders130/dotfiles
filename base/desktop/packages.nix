@@ -39,6 +39,7 @@
         catppuccin-cursors.macchiatoDark
 
         gnome.dconf-editor # needed for home-manager gtk theming
+        gojq
     ];
 
     local-packages = with pkgs.local; [
