@@ -10,7 +10,7 @@
         package = pkgs.hyprland;
     };
 
-    services.xserver.displayManager.defaultSession = "hyprland";
+    services.displayManager.defaultSession = "hyprland";
 
     home-manager.users.${username} = { config, ... }: {
         xdg.configFile.hypr = home-symlink { config = config; source = "hypr"; recursive = true; };

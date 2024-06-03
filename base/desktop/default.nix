@@ -6,6 +6,7 @@
     imports = [
         ./packages.nix
         ./gaming.nix
+        ./defaultApplications.nix
         ../../hypr
         ../../rofi
         ../../ags
@@ -25,8 +26,10 @@
         enable = true;
 
         # keyboard layout
-        layout = "de";
-        xkbVariant = "";
+        xkb = {
+            layout = "de";
+            variant = "";
+        };
     };
 
     services.greetd = {
@@ -45,7 +48,7 @@
     # Enable printer autodiscovery
     services.avahi = {
         enable = true;
-        nssmdns = true;
+        nssmdns4 = true;
         openFirewall = true;
     };
 
