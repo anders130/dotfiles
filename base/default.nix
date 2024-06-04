@@ -45,12 +45,6 @@
     system.stateVersion = variables.version;
     environment.variables.NIX_FLAKE_DEFAULT_HOST = host.name;
 
-    virtualisation.docker = {
-        enable = true;
-        enableOnBoot = true;
-        autoPrune.enable = true;
-    };
-
     nix = {
         settings = {
             trusted-users = [username];

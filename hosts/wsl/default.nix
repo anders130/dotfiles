@@ -1,12 +1,13 @@
 {
     username,
     pkgs,
-    ... 
+    ...
 }: {
     imports = [
-        ./docker.nix
         ./vpn.nix
     ];
+
+    modules.docker.wslIntegration = true;
 
     wsl = {
         enable = true;
