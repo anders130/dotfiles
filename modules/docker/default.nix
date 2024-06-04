@@ -1,6 +1,7 @@
 {
-    lib,
     config,
+    lib,
+    username,
     ...
 }: {
     imports = [
@@ -17,5 +18,9 @@
             enableOnBoot = true;
             autoPrune.enable = true;
         };
+
+        users.users.${username}.extraGroups = [
+            "docker"
+        ];
     };
 }
