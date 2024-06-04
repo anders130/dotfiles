@@ -4,7 +4,6 @@
 }: let
     unstable-packages = with pkgs.unstable; [
         curl
-        git
         neovim
         wget
         zip

@@ -44,6 +44,7 @@
         inherit system specialArgs;
         modules = modules ++ [
             ./base
+            ./hosts/shared
             ./hosts/${name}
             home-manager.nixosModules.home-manager
             (mkHomeManagerConfig specialArgs)
