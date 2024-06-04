@@ -21,46 +21,28 @@
         ags.url = "github:Aylur/ags";
     };
 
-    outputs = inputs:
-        with inputs; let
+    outputs = inputs: with inputs; let
         secrets = builtins.fromJSON (builtins.readFile "${self}/secrets.json");
         variables = import ./variables.nix;
         home-symlink = import ./lib/home-symlink.nix;
 
-        overlay = final: super: {
-            makeModulesClosure = x: super.makeModulesClosure (x // { allowMissing = true; });
-        };
-
-        nixpkgsWithOverlays = with inputs; rec {
+        nixpkgsWithOverlays = {
             config = {
                 allowUnfree = true;
                 allowUnsupportedSystem = true;
                 permittedInsecurePackages = [];
             };
-            overlays = [
-                overlay
-                nur.overlay(_final: prev: {
-                     unstable = import nixpkgs-unstable {
-                        inherit (prev) system;
-                        inherit config;
-                     };
-                     local = import ./pkgs {
-                        inherit (prev) system;
-                        pkgs = import nixpkgs {
-                           inherit (prev) system;
-                           inherit config;
-                        };
-                     };
-                })
-            ];
+            overlays = [(import ./overlays.nix inputs).default];
         };
 
-        configurationDefaults = args: {
+        mkHomeManagerConfig = args: {
             nixpkgs = nixpkgsWithOverlays;
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.backupFileExtension = "hm-backup";
-            home-manager.extraSpecialArgs = args;
+            home-manager = {
+                useGlobalPkgs = true;
+                useUserPackages = true;
+                backupFileExtension = "hm-backup";
+                extraSpecialArgs = args;
+            };
         };
 
         argDefaults = {
@@ -87,7 +69,7 @@
                 ./base
                 ./hosts/${name}
                 home-manager.nixosModules.home-manager
-                (configurationDefaults specialArgs)
+                (mkHomeManagerConfig specialArgs)
             ];
         };
 
@@ -101,6 +83,8 @@
                 )
             );
     in {
+        overlays = import ./overlays.nix inputs;
+
         nixosConfigurations = variables.nixosConfigs {
             inherit mkNixosConfigs inputs;
         };
