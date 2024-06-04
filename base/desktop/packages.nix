@@ -15,6 +15,8 @@
         grim # whole screen screenshot
         grimblast # region screenshot
         rofimoji
+        libreoffice
+        godot_4
 
         prismlauncher
         jdk17

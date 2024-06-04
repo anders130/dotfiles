@@ -81,26 +81,25 @@
             modules,
         }: let
             specialArgs = argDefaults // { inherit hostname username hashedPassword host; } // args;
-        in
-            nixpkgs.lib.nixosSystem {
-                inherit system specialArgs;
-                modules = modules ++ [
-                    ./base
-                    ./hosts/${name}
-                    home-manager.nixosModules.home-manager
-                    (configurationDefaults specialArgs)
-                ];
-            };
+        in nixpkgs.lib.nixosSystem {
+            inherit system specialArgs;
+            modules = modules ++ [
+                ./base
+                ./hosts/${name}
+                home-manager.nixosModules.home-manager
+                (configurationDefaults specialArgs)
+            ];
+        };
 
-            mkNixosConfigs = nixosConfigs:
-                builtins.mapAttrs (ignored: namedConfig: mkNixosConfig namedConfig) (
-                    builtins.listToAttrs(
-                        builtins.map(config: {
-                            value = config;
-                            name = config.name;
-                        }) nixosConfigs
-                    )
-                );
+        mkNixosConfigs = nixosConfigs:
+            builtins.mapAttrs (ignored: namedConfig: mkNixosConfig namedConfig) (
+                builtins.listToAttrs(
+                    builtins.map(config: {
+                        value = config;
+                        name = config.name;
+                    }) nixosConfigs
+                )
+            );
     in {
         nixosConfigurations = variables.nixosConfigs {
             inherit mkNixosConfigs inputs;

@@ -58,6 +58,8 @@ if status is-interactive
               or test "$argv[1]" = "build";
             end
             nom $argv
+        else if test "$argv[1]" = "dev"
+            command nix develop -c fish
         else
             command nix $argv
         end
