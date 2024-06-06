@@ -29,4 +29,6 @@
 
     # for secret storing stuff
     services.gnome.gnome-keyring.enable = true;
+
+    programs.direnv.enable = true;
 }

@@ -73,7 +73,7 @@ sudo fdisk -l
 ```
 The `p1` and `p2` are just partitions on the device. To now write the image onto the SD-Card, run:
 ```bash
-sudo dd if=/path/to/the/nix-pi-sd-image.img of =/dev/sdX bs=1M status=progress
+sudo dd if=/path/to/the/nix-pi-sd-image.img of=/dev/sdX bs=1M status=progress
 ```
 Setup internet connection on the Raspberry Pi with:
 ```
