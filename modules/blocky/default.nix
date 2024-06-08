@@ -8,43 +8,42 @@
     };
 
     config = lib.mkIf config.modules.blocky.enable {
-        # networking.firewall = {
-        #     allowedTCPPorts = [
-        #         8053
-        #         53
-        #     ];
-        #     allowedUDPPorts = [
-        #         53
-        #     ];
-        # };
+        networking.firewall = {
+            allowedTCPPorts = [
+                53
+            ];
+            allowedUDPPorts = [
+                53
+            ];
+        };
+
+        networking.nameservers = [ "1.1.1.1" "1.0.0.1" ];
 
         services.blocky = {
             enable = true;
+
             settings = {
-                ports.dns = 53; # Port for incoming DNS Queries.
                 upstreams.groups.default = [
-                    "https://one.one.one.one/dns-query" # Using Cloudflare's DNS over HTTPS server for resolving queries.
+                    "1.1.1.1"
+                    "1.0.0.1"
                 ];
-                # For initially solving DoH/DoT Requests when no system Resolver is available.
-                bootstrapDns = {
-                    upstream = "https://one.one.one.one/dns-query";
-                    ips = [ "1.1.1.1" "1.0.0.1" ];
-                };
-                #Enable Blocking of certian domains.
+
                 blocking = {
                     blackLists = {
-                        #Adblocking
-                        ads = ["https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts"];
-                        #Another filter for blocking adult sites
-                        adult = ["https://blocklistproject.github.io/Lists/porn.txt"];
-                        #You can add additional categories
+                        ads = [
+                            "https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts"
+                        ];
+                        slack = ["|\nwww.youtube.com\nwww.google.com"];
                     };
-                    #Configure what block categories are used
+
                     clientGroupsBlock = {
-                        default = [ "ads" ];
-                        kids-ipad = ["ads" "adult"];
+                        default = [
+                            "ads"
+                            "slack"
+                        ];
                     };
                 };
+                ports.dns = 53;
             };
         };
     };

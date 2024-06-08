@@ -7,6 +7,8 @@
         ./hardware-configuration.nix
     ];
 
+    modules.blocky.enable = true;
+
     boot = {
         kernelPackages = pkgs.linuxKernel.packages.linux_rpi4;
         loader = {
@@ -14,6 +16,8 @@
             generic-extlinux-compatible.enable = true;
         };
     };
+
+    security.pam.sshAgentAuth.enable = true;
 
     hardware.enableRedistributableFirmware = true;
 
