@@ -1,3 +1,4 @@
+import { QuickSettings } from "./components/QuickSettings/index.js"
 import { MainScreenBar, SecondaryScreenBar } from "./components/Bar/config.js"
 
 App.config({
@@ -11,6 +12,7 @@ App.config({
         }),
         SecondaryScreenBar({
             monitor: 2
-        })
+        }),
+        QuickSettings,
     ]
 })
