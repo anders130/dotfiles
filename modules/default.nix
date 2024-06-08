@@ -3,5 +3,6 @@
         ./blocky
         ./docker
         ./git
+        ./virt-manager
     ];
 }

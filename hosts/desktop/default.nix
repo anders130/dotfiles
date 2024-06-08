@@ -10,6 +10,9 @@ in {
     imports = [
         ./hardware-configuration.nix
     ];
+
+    modules.virt-manager.enable = true;
+
     boot.supportedFilesystems = [ "ntfs" "exfat" ];
 
     fileSystems = {
