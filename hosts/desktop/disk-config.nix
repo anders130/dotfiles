@@ -38,28 +38,33 @@
             device = "/dev/disk/by-id/ata-SanDisk_SSD_PLUS_1000GB_210204448305";
             content = {
                 type = "gpt";
-                partitions.luks = {
+                partitions.root = {
                     size = "100%";
                     content = {
-                        type = "luks";
-                        name = "encrypted";
-                        askPassword = true;
-                        initrdUnlock = false;
-                        settings.allowDiscards = true;
-                        content = {
-                            type = "btrfs";
-                            extraArgs = [ "-f" ];
-                        };
+                        type = "filesystem";
+                        format = "btrfs";
+                        mountpoint = "/mnt/data";
                     };
                 };
             };
         };
 
-        # games = {
-        #     type = "disk";
-        #     device = "/dev/disk/by-id/nvme-CT2000P3SSD8_2247E68A613E";
-        # };
-        #
+        games = {
+            type = "disk";
+            device = "/dev/disk/by-id/nvme-CT2000P3SSD8_2247E68A613E";
+            content = {
+                type = "gpt";
+                partitions.root = {
+                    size = "100%";
+                    content = {
+                        type = "filesystem";
+                        format = "ext4";
+                        mountpoint = "/mnt/games";
+                    };
+                };
+            };
+        };
+
         # videos = {
         #     type = "disk";
         #     device = "/dev/disk/by-id/ata-ST4000DM004-2CV104_ZTT3K27G";
