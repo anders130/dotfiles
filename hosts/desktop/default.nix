@@ -2,52 +2,13 @@
     config,
     lib,
     ...
-}: let
-    mountOptions = [
-        "users" "nofail" "x-gvfs-show" "rw" "uid=1000"
-    ];
-in {
+}: {
     imports = [
         ./hardware-configuration.nix
         ./disk-config.nix
     ];
 
     modules.virt-manager.enable = true;
-
-    boot.supportedFilesystems = [ "ntfs" "exfat" ];
-
-    fileSystems = {
-        # "/mnt/b" = {
-        #     device = "/dev/disk/by-uuid/72047C9F047C67CD";
-        #     fsType = "ntfs";
-        #     options = mountOptions;
-        # };
-        # "/mnt/windows" = {
-        #     device = "/dev/disk/by-uuid/12B00FF0B00FD8DD";
-        #     fsType = "ntfs";
-        #     options = mountOptions;
-        # };
-        # "/mnt/games" = {
-        #     device = "/dev/disk/by-uuid/5ABC15A6BC157E27";
-        #     fsType = "ntfs";
-        #     options = mountOptions;
-        # };
-        # "/mnt/videos" = {
-        #     device = "/dev/disk/by-uuid/301E74F51E74B606";
-        #     fsType = "ntfs";
-        #     options = mountOptions;
-        # };
-        # "/mnt/data2" = {
-        #     device = "/dev/disk/by-uuid/E8449CD1449CA3BA";
-        #     fsType = "ntfs";
-        #     options = mountOptions;
-        # };
-        # "/mnt/data" = {
-        #     device = "/dev/disk/by-uuid/8EEC21A8EC218C11";
-        #     fsType = "ntfs";
-        #     options = mountOptions;
-        # };
-    };
 
     # Nvidia gpu
     services.xserver.videoDrivers = [ "nvidia" ];
