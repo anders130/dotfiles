@@ -1,7 +1,7 @@
 {
-    username,
+    lib,
     pkgs,
-    home-symlink,
+    username,
     ...
 }: {
     programs.hyprland = {
@@ -13,6 +13,6 @@
     services.displayManager.defaultSession = "hyprland";
 
     home-manager.users.${username} = { config, ... }: {
-        xdg.configFile.hypr = home-symlink { config = config; source = "hypr"; recursive = true; };
+        xdg.configFile.hypr = lib.home-symlink { config = config; source = "hypr"; recursive = true; };
     };
 }

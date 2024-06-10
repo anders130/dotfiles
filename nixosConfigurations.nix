@@ -3,7 +3,10 @@
     variables,
     inputs
 }: with inputs; let
-    home-symlink = import ./lib/home-symlink.nix;
+    mkLib = nxipkgs:
+        nixpkgs.lib.extend (final: prev: (import ./lib final) // home-manager.lib);
+
+    lib = (mkLib nixpkgs);
 
     mkHomeManagerConfig = args: {
         nixpkgs = {
@@ -23,7 +26,7 @@
     };
 
     argDefaults = {
-        inherit secrets variables home-symlink;
+        inherit secrets variables lib;
         inherit inputs self;
         channels = {
             inherit nixpkgs nixpkgs-unstable;

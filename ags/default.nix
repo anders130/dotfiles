@@ -2,7 +2,7 @@
     username,
     inputs,
     pkgs,
-    home-symlink,
+    lib,
     ...
 }: {
     home-manager.users.${username} = { config, ... }: {
@@ -24,9 +24,9 @@
             ];
         };
 
-        xdg.configFile."ags/config.js" = home-symlink { config = config; source = "ags/config.js"; };
-        xdg.configFile."ags/style.css" = home-symlink { config = config; source = "ags/style.css"; };
-        xdg.configFile."ags/components" = home-symlink { config = config; source = "ags/components"; recursive = true; };
-        xdg.configFile."ags/utils" = home-symlink { config = config; source = "ags/utils"; recursive = true; };
+        xdg.configFile."ags/config.js" = lib.home-symlink { config = config; source = "ags/config.js"; };
+        xdg.configFile."ags/style.css" = lib.home-symlink { config = config; source = "ags/style.css"; };
+        xdg.configFile."ags/components" = lib.home-symlink { config = config; source = "ags/components"; recursive = true; };
+        xdg.configFile."ags/utils" = lib.home-symlink { config = config; source = "ags/utils"; recursive = true; };
     };
 }

@@ -1,7 +1,7 @@
 {
-    pkgs,
     config,
-    home-symlink,
+    lib,
+    pkgs,
     ...
 }: let
     recolorAddonCode = "688199788";
@@ -45,7 +45,7 @@ in {
         '';
     };
 
-    home.file.".local/share/Anki2/addons21/${recolorAddonCode}/config.json" = home-symlink {
+    home.file.".local/share/Anki2/addons21/${recolorAddonCode}/config.json" = lib.home-symlink {
         config = config;
         source = "other/anki-theme.json";
     };

@@ -1,11 +1,11 @@
 {
     config,
-    home-symlink,
+    lib,
     ...
 }: {
     home.sessionVariables.EDITOR = "nvim";
 
-    xdg.configFile.nvim = home-symlink { config = config; source = "neovim"; recursive = true; };
+    xdg.configFile.nvim = lib.home-symlink { config = config; source = "neovim"; recursive = true; };
 
     programs.neovim.defaultEditor = true;
 }
