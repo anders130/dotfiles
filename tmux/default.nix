@@ -1,6 +1,6 @@
 {
-    username,
     pkgs,
+    self,
     ...
 }: {
     programs.tmux = {
@@ -23,7 +23,7 @@
         ];
 
         extraConfigBeforePlugins = ''
-        source-file /home/${username}/.dotfiles/tmux/tmux.conf
+        source-file ${self}/tmux/tmux.conf
         '';
     };
 }
