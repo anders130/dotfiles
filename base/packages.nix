@@ -9,20 +9,13 @@
         zip
         unzip
         ripgrep
-        bat # better cat
-        fastfetch
         fzf
-        zoxide # better cd
-        broot # better tree
-        starship # shell prompt
         ffmpeg # video downloader
         librespeed-cli # speedtest-cli
-        nix-output-monitor # prettier nix command outputs
         btop # task manager
 
         # fun stuff
         cbonsai
-        asciiquarium-transparent
         cmatrix
         pipes
         lolcat
@@ -43,7 +36,7 @@
         go
     ];
 in {
-    environment.systemPackages = 
+    environment.systemPackages =
         stable-packages
         ++ unstable-packages;
 }

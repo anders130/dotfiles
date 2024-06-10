@@ -21,6 +21,7 @@
 
     # enable custom modules
     modules.docker.enable = true;
+    modules.fish.enable = true;
     modules.git.enable = true;
 
     environment.variables.NIX_FLAKE_DEFAULT_HOST = host.name;

@@ -4,7 +4,6 @@
     ...
 }: {
     imports = [
-        ../fish
         ../tmux
 
         ./packages.nix
