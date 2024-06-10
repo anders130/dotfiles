@@ -13,7 +13,7 @@
     home-manager.users.${username} = { config, ... }: {
         home.sessionVariables.SHELL = "etc/profiles/per-user/${username}/bin/fish";
 
-        xdg.configFile."fish/config.fish" = lib.home-symlink { source = "fish/config.fish"; config = config; };
-        xdg.configFile."fish/themes" = lib.home-symlink { source = "fish/themes"; recursive = true; config = config; };
+        xdg.configFile."fish/config.fish" = lib.mkSymlink { source = "fish/config.fish"; config = config; };
+        xdg.configFile."fish/themes" = lib.mkSymlink { source = "fish/themes"; recursive = true; config = config; };
     };
 }
