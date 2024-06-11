@@ -29,8 +29,8 @@
     	docker = "/run/current-system/sw/bin/docker";
     };
 
-    environment.systemPackages = [
-        (import ./win32yank.nix {inherit pkgs;})
+    environment.systemPackages = with pkgs; [
+        local.win32yank
     ];
 
     # fileSystems."/mnt/y" = {

@@ -1,9 +1,10 @@
-{pkgs ? import <nixpkgs>}: let
+{
+    pkgs
+}: let
     pname = "win32yank";
     version = "0.1.1";
     bin = "win32yank.exe";
-in 
-pkgs.stdenv.mkDerivation {
+in pkgs.stdenv.mkDerivation {
     inherit pname version;
 
     src = pkgs.fetchzip {
