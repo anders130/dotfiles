@@ -36,6 +36,7 @@ if status is-interactive
 
     set -gx EDITOR nvim
 
+    zoxide init fish | source
     # use starship prompt
     starship init fish | source
 end
