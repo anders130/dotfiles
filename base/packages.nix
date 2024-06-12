@@ -13,6 +13,7 @@
         ffmpeg # video downloader
         librespeed-cli # speedtest-cli
         btop # task manager
+        nixd
 
         # fun stuff
         cbonsai

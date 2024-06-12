@@ -35,6 +35,7 @@ if status is-interactive
     end
 
     set -gx EDITOR nvim
+    set -x DIRENV_LOG_FORMAT ""
 
     zoxide init fish | source
     # use starship prompt

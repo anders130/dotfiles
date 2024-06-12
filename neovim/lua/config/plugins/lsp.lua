@@ -116,7 +116,7 @@ return {
             tsserver = {},
             cssls = {},
             omnisharp = {},
-            nil_ls = {},
+            -- nil_ls = {},
             --
 
             lua_ls = {
@@ -141,6 +141,12 @@ return {
         --
         --  You can press `g?` for help in this menu.
         require('mason').setup()
+
+        require('lspconfig').nixd.setup {
+            cmd = { "nixd" },
+            filetypes = { 'nix' },
+            single_file_support = true,
+        }
 
         -- You can add other tools here that you want Mason to install
         -- for you, so that they are available from within Neovim.
