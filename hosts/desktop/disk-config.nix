@@ -25,6 +25,17 @@ in {
             fsType = "ext4";
             options = mountOptions;
         };
+
+        "/mnt/bigdata" = {
+            device = "/dev/disk/by-uuid/EEFE-FA74";
+            fsType = "exfat";
+            options = mountOptions ++ [
+                "nodev"
+                "nosuid"
+                "uid=1000"
+                "gid=1000"
+            ];
+        };
     };
 
     disko.devices.disk = {
