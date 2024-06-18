@@ -50,14 +50,17 @@ in {
                 source = "modules/fish/config.fish";
                 config = config;
             };
-            xdg.configFile."fish/themes" = lib.mkSymlink {
-                source = "modules/fish/themes";
-                recursive = true;
-                config = config;
-            };
             xdg.configFile."fish/functions" = lib.mkSymlink {
                 source = "modules/fish/functions";
                 recursive = true;
+                config = config;
+            };
+            xdg.configFile."fish/themes/fish.theme" = lib.mkSymlink {
+                source = "modules/fish/themes/fish.theme";
+                config = config;
+            };
+            xdg.configFile."bat/themes/bat.tmTheme" = lib.mkSymlink {
+                source = "modules/fish/themes/bat.tmTheme";
                 config = config;
             };
         };

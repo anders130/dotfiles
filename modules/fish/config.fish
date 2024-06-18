@@ -1,4 +1,4 @@
-fish_config theme choose "Catppuccin Macchiato"
+fish_config theme choose "fish"
 
 function fish_greeting
     fastfetch -c ~/.dotfiles/other/shell-greeting.jsonc
@@ -36,6 +36,13 @@ if status is-interactive
 
     set -gx EDITOR nvim
     set -x DIRENV_LOG_FORMAT ""
+
+    # colorize man pages with bat
+    set -x MANPAGER "sh -c 'col -bx | bat -l man -p'"
+    set -x MANROFFOPT "-c"
+
+    # set bat theme
+    set -x BAT_THEME "bat"
 
     zoxide init fish | source
     # use starship prompt
