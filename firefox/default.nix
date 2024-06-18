@@ -8,10 +8,10 @@
             "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
             "browser.toolbars.bookmarks.visibility" = "always";
         };
-        userChrome = builtins.readFile(./chrome/userChrome.css);
+        userChrome = builtins.readFile ./chrome/userChrome.css;
     };
 in {
-    home-manager.users.${username} = { config, ... }: {
+    home-manager.users.${username} = {
         programs.firefox = {
             enable = true;
             package = pkgs.unstable.firefox;
@@ -20,7 +20,7 @@ in {
                     id = 0;
                     isDefault = true;
                     settings = {
-                        "browser.uiCustomization.state" = builtins.readFile(./settings/browser.uiCustomization.state.json);
+                        "browser.uiCustomization.state" = builtins.readFile ./settings/browser.uiCustomization.state.json;
                     };
                 };
                 work = profileBaseConfig // {

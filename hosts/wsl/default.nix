@@ -32,9 +32,4 @@
     environment.systemPackages = with pkgs; [
         local.win32yank
     ];
-
-    # fileSystems."/mnt/y" = {
-    #     device = "Y:"; 
-    #     fsType = "drvfs";
-    # };
 }

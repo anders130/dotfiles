@@ -1,11 +1,8 @@
 {
     pkgs
-}: let
+}: pkgs.stdenv.mkDerivation rec {
     pname = "win32yank";
     version = "0.1.1";
-    bin = "win32yank.exe";
-in pkgs.stdenv.mkDerivation {
-    inherit pname version;
 
     src = pkgs.fetchzip {
         url = "https://github.com/equalsraf/win32yank/releases/download/v${version}/win32yank-x64.zip";
@@ -13,7 +10,7 @@ in pkgs.stdenv.mkDerivation {
         stripRoot = false;
     };
 
-    inherit bin;
+    bin = "win32yank.exe";
 
     installPhase = ''
         mkdir -p $out/bin
