@@ -24,9 +24,23 @@
             ];
         };
 
-        xdg.configFile."ags/config.js" = lib.mkSymlink { config = config; source = "ags/config.js"; };
-        xdg.configFile."ags/style.css" = lib.mkSymlink { config = config; source = "ags/style.css"; };
-        xdg.configFile."ags/components" = lib.mkSymlink { config = config; source = "ags/components"; recursive = true; };
-        xdg.configFile."ags/utils" = lib.mkSymlink { config = config; source = "ags/utils"; recursive = true; };
+        xdg.configFile."ags/config.js" = lib.mkSymlink {
+            config = config;
+            source = "ags/config.js";
+        };
+        xdg.configFile."ags/style.css" = lib.mkSymlink {
+            config = config;
+            source = "ags/style.css";
+        };
+        xdg.configFile."ags/components" = lib.mkSymlink {
+            config = config;
+            source = "ags/components";
+            recursive = true;
+        };
+        xdg.configFile."ags/utils" = lib.mkSymlink {
+            config = config;
+            source = "ags/utils";
+            recursive = true;
+        };
     };
 }

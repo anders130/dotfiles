@@ -13,6 +13,10 @@
     services.displayManager.defaultSession = "hyprland";
 
     home-manager.users.${username} = { config, ... }: {
-        xdg.configFile.hypr = lib.mkSymlink { config = config; source = "hypr"; recursive = true; };
+        xdg.configFile.hypr = lib.mkSymlink {
+            config = config;
+            source = "hypr";
+            recursive = true;
+        };
     };
 }

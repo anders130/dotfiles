@@ -4,7 +4,10 @@
     inputs
 }: with inputs; let
     mkLib = nxipkgs:
-        nixpkgs.lib.extend (final: prev: (import ./lib final) // home-manager.lib);
+        nixpkgs.lib.extend (final: prev: (import ./lib {
+            lib = final;
+            inputs = inputs;
+        }) // home-manager.lib);
 
     lib = (mkLib nixpkgs);
 

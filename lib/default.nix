@@ -1,3 +1,6 @@
-lib: {
-    mkSymlink = import ./mkSymlink.nix lib;
+{
+    inputs,
+    lib,
+}: {
+    mkSymlink = import ./mkSymlink.nix { inherit inputs lib; };
 }
