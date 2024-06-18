@@ -1,7 +1,7 @@
 fish_config theme choose "fish"
 
 function fish_greeting
-    fastfetch -c ~/.dotfiles/other/shell-greeting.jsonc
+    fastfetch -c $HOME/.config/fastfetch/shell-greeting.jsonc
 end
 
 if status is-interactive

@@ -63,6 +63,10 @@ in {
                 source = "modules/fish/themes/bat.tmTheme";
                 config = config;
             };
+            xdg.configFile."fastfetch/shell-greeting.jsonc" = lib.mkSymlink {
+                source = "modules/fish/shell-greeting.jsonc";
+                config = config;
+            };
         };
 
         environment.systemPackages = dependencies ++ fishPlugins;
