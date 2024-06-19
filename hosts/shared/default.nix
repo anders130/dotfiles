@@ -24,7 +24,10 @@
     modules.fish.enable = true;
     modules.git.enable = true;
 
-    environment.variables.NIX_FLAKE_DEFAULT_HOST = host.name;
+    environment.variables = {
+        NIX_FLAKE_DEFAULT_HOST = host.name;
+        FLAKE = "/home/${username}/.dotfiles";
+    };
 
     networking.hostName = "${hostname}";
 

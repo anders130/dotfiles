@@ -13,7 +13,7 @@ function flake-rebuild -w nixos-rebuild
     if test $status -ne 0; return; end # exit if unsuccessful
 
     # use default host and nom
-    eval "sudo nixos-rebuild switch --flake ~/.dotfiles\?submodules=1#$NIX_FLAKE_DEFAULT_HOST $argv &| nom"
+    eval "sudo nixos-rebuild switch --flake $FLAKE\?submodules=1#$NIX_FLAKE_DEFAULT_HOST $argv &| nom"
 end
 
 complete -c flake-rebuild -l impure -k
