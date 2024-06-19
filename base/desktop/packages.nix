@@ -42,6 +42,11 @@
 
         gnome.dconf-editor # needed for home-manager gtk theming
         gojq
+
+        youtube-music
+
+        # work
+        teams-for-linux
     ];
 
     local-packages = with pkgs.local; [
