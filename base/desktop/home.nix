@@ -55,4 +55,6 @@ in {
         config = config;
         source = "other/anki-theme.json";
     };
+
+    xdg.userDirs.enable = true;
 }

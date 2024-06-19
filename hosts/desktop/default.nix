@@ -1,12 +1,19 @@
 {
     config,
     lib,
+    username,
     ...
 }: {
     imports = [
         ./hardware-configuration.nix
         ./disk-config.nix
     ];
+
+    home-manager.users.${username} = {
+        imports = [
+            ./home.nix
+        ];
+    };
 
     modules.virt-manager.enable = true;
 
