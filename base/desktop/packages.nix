@@ -6,7 +6,6 @@
         alacritty # terminal
         bitwarden
         obsidian
-        vesktop
         google-chrome
         gnome.totem # video player
         signal-desktop # oss messenger
@@ -63,4 +62,6 @@ in {
     ];
 
     security.pam.services.swaylock = {};
+
+    modules.discord.enable = true;
 }
