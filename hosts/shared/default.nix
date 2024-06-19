@@ -30,6 +30,8 @@
 
     services.openssh.enable = true;
 
+    programs.ssh.startAgent = true;
+
     users.users.${username} = {
         isNormalUser = true;
         extraGroups = [
