@@ -1,7 +1,6 @@
 {
-    inputs,
     ...
 }: { config, source, recursive ? false, ... }: {
-    source = config.lib.file.mkOutOfStoreSymlink "${inputs.self}/${source}";
+    source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.dotfiles/${source}";
     recursive = recursive;
 }
