@@ -7,6 +7,7 @@
         settings = {
             "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
             "browser.toolbars.bookmarks.visibility" = "always";
+            "devtools.toolbox.host" = "right";
         };
         userChrome = builtins.readFile ./chrome/userChrome.css;
     };
@@ -19,9 +20,6 @@ in {
                 private = profileBaseConfig // {
                     id = 0;
                     isDefault = true;
-                    settings = {
-                        "browser.uiCustomization.state" = builtins.readFile ./settings/browser.uiCustomization.state.json; # only works after login, comment this out before
-                    };
                 };
                 work = profileBaseConfig // {
                     id = 1;

@@ -2,12 +2,16 @@
 #identity-icon-label {
     display: none !important;
 }
+
 /* hide close and all tabs button */
-.titlebar-buttonbox-container, #alltabs-button, .titlebar-spacer[type="post-tabs"] {
+.titlebar-buttonbox-container,
+#alltabs-button,
+.titlebar-spacer[type="post-tabs"] {
     display: none !important;
 }
 
-#tabbrowser-tabs {
+#tabbrowser-tabs,
+#nav-bar {
     border: none !important;
 }
 
@@ -19,7 +23,8 @@
     background: rgba(36, 39, 58, 0.99) !important;
 }
 
-#nav-bar, #PersonalToolbar {
+#nav-bar,
+#PersonalToolbar {
     background: transparent !important;
     box-shadow: none !important;
 }
