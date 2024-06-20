@@ -5,6 +5,7 @@
         ./docker
         ./fish
         ./git
+        ./nvidia
         ./virt-manager
     ];
 }
