@@ -23,7 +23,7 @@ in {
         "/mnt/games" = {
             device = "/dev/disk/by-uuid/33b4f5fb-1bdc-4f36-aa00-c5f04daeff67";
             fsType = "ext4";
-            options = mountOptions;
+            options = mountOptions ++ [ "defaults" "exec" ];
         };
 
         "/mnt/bigdata" = {
