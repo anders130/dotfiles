@@ -10,3 +10,6 @@ if [ "$(wpctl status | grep -c 'NoiseTorch Microphone')" -le 1 ]; then
 fi
 
 pkill tmux
+
+# hardware stuff
+xrandr --output DP-2 --primary
