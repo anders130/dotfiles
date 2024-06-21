@@ -14,16 +14,12 @@ button {
     border-bottom: 3px solid rgba(73, 77, 100, 0.7);
 }
 
-button:active {
-    background-color: rgb(138, 173, 244);
-}
-
 label {
     font-weight: bold;
 }
 
 .workspaces button.focused {
-    background-color: rgb(54, 58, 79);
+    background-color: rgba(110, 115, 141, 0.5);
 }
 
 .client-title {
