@@ -7,7 +7,7 @@
     ...
 }: let
     dependencies = with pkgs; [
-        asciiquarium-transparent
+        asciiquarium-transparent # ascii art aquarium
         bat # better cat
         broot # better tree
         fastfetch # system info
@@ -15,6 +15,7 @@
         librespeed-cli # speedtest-cli
         nix-output-monitor # prettier nix command outputs
         starship # shell prompt
+        unimatrix # ascii art matrix
         zoxide # better cd
     ];
 
@@ -35,6 +36,7 @@ in {
                 ls = "lsd";
                 cat = "bat";
                 aquarium = "asciiquarium -s -t";
+                matrix = "unimatrix -as 98";
             };
         };
 

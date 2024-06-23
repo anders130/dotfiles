@@ -17,7 +17,6 @@
 
         # fun stuff
         cbonsai
-        cmatrix
         pipes
         lolcat
         cowsay
