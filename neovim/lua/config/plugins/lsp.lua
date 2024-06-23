@@ -116,7 +116,7 @@ return {
             tsserver = {},
             cssls = {},
             omnisharp = {},
-            -- nil_ls = {},
+            nil_ls = {},
             --
 
             lua_ls = {
