@@ -21,7 +21,6 @@
     ];
 
     stable-packages = with pkgs; [
-        # compilers etc
         python3
         dotnet-sdk_8
     ];

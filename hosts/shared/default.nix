@@ -11,6 +11,7 @@
 }: {
     imports = [
         ../../modules
+        ./localization.nix
     ];
 
     home-manager.users.${username} = {
@@ -31,6 +32,10 @@
 
     networking.hostName = "${hostname}";
 
+    networking = {
+        networkmanager.enable = lib.mkDefault true;
+    };
+
     services.openssh.enable = true;
 
     programs.ssh.startAgent = true;
@@ -39,6 +44,7 @@
         isNormalUser = true;
         extraGroups = [
             "wheel"
+            "networkmanager"
         ];
     } // lib.optionalAttrs (hashedPassword != null) {
         hashedPassword = hashedPassword;

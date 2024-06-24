@@ -7,10 +7,10 @@
         ./packages.nix
         ./gaming.nix
         ./defaultApplications.nix
-        ../../hypr
-        ../../ags
-        ../../alacritty
-        ../../firefox
+        ../../../hypr
+        ../../../ags
+        ../../../alacritty
+        ../../../firefox
     ];
 
     modules.rofi.enable = true;
