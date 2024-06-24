@@ -18,7 +18,7 @@
             catppuccin
         ];
 
-        extraConfigBeforePlugins = ''
+        extraConfigBeforePlugins = /*tmux*/''
             source-file $FLAKE/tmux/tmux.conf
         '';
     };
