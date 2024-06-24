@@ -2,7 +2,6 @@
     config,
     lib,
     pkgs,
-    self,
     username,
     ...
 }: let
@@ -13,6 +12,7 @@
         fastfetch # system info
         fzf # fuzzy finder
         librespeed-cli # speedtest-cli
+        lsd # better ls
         nix-output-monitor # prettier nix command outputs
         starship # shell prompt
         unimatrix # ascii art matrix
@@ -41,7 +41,7 @@ in {
         };
 
         environment.shells = [pkgs.fish];
-        environment.sessionVariables.STARSHIP_CONFIG = "${self}/other/starship.toml";
+        environment.sessionVariables.STARSHIP_CONFIG = "$FLAKE/other/starship.toml";
 
         users.users.${username}.shell = pkgs.fish;
 
