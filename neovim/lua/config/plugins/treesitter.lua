@@ -21,10 +21,10 @@ return {
     },
     config = function(_, opts)
         -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
-    
+
         ---@diagnostic disable-next-line: missing-fields
         require('nvim-treesitter.configs').setup(opts)
-    
+
         -- There are additional nvim-treesitter modules that you can use to interact
         -- with nvim-treesitter. You should go explore a few and see what interests you:
         --
