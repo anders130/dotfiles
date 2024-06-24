@@ -4,6 +4,7 @@
     ...
 }: {
     imports = [
+        ../neovim
         ../tmux
 
         ./packages.nix
@@ -17,12 +18,6 @@
     users.users.${username} = {
         extraGroups = [
             "networkmanager"
-        ];
-    };
-
-    home-manager.users.${username} = {
-        imports = [
-            ./home.nix
         ];
     };
 
