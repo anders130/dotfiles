@@ -1,6 +1,5 @@
 {
     pkgs,
-    self,
     ...
 }: {
     programs.tmux = {
@@ -13,17 +12,14 @@
         keyMode = "vi";
         shortcut = "Space"; # Ctrl+Space
         baseIndex = 1; # window and pane index
-        newSession = true; # if failing tmux a, create new session
 
         plugins = with pkgs.unstable.tmuxPlugins; [
-            # sensible
             vim-tmux-navigator
             catppuccin
-            # yank
         ];
 
         extraConfigBeforePlugins = ''
-        source-file ${self}/tmux/tmux.conf
+            source-file $FLAKE/tmux/tmux.conf
         '';
     };
 }
