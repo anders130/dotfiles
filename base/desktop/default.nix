@@ -8,11 +8,12 @@
         ./gaming.nix
         ./defaultApplications.nix
         ../../hypr
-        ../../rofi
         ../../ags
         ../../alacritty
         ../../firefox
     ];
+
+    modules.rofi.enable = true;
 
     # make system bootable
     boot.loader = {

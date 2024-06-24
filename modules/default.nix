@@ -6,6 +6,7 @@
         ./fish
         ./git
         ./nvidia
+        ./rofi
         ./virt-manager
     ];
 }
