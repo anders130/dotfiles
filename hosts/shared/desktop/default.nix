@@ -80,7 +80,7 @@
     # (recommended for usage alongside hyprland desktop portal)
     xdg.portal = {
         enable = true;
-        extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+        extraPortals = [pkgs.xdg-desktop-portal-gtk];
     };
 
     programs.noisetorch.enable = true;

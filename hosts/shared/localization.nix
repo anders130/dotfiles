@@ -1,6 +1,4 @@
 {
-    ...
-}: {
     time.timeZone = "Europe/Berlin";
 
     # console keyboard layout

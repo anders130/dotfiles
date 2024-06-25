@@ -1,6 +1,6 @@
 {
     system,
-    pkgs
+    pkgs,
 }: let
     callPackage = pkgs.callPackage;
 in {

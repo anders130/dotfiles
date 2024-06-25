@@ -1,6 +1,5 @@
-{
-    pkgs
-}: pkgs.stdenv.mkDerivation rec {
+{pkgs}:
+pkgs.stdenv.mkDerivation rec {
     pname = "win32yank";
     version = "0.1.1";
 

@@ -23,18 +23,20 @@ in {
         "/mnt/games" = {
             device = "/dev/disk/by-uuid/33b4f5fb-1bdc-4f36-aa00-c5f04daeff67";
             fsType = "ext4";
-            options = mountOptions ++ [ "defaults" "exec" ];
+            options = mountOptions ++ ["defaults" "exec"];
         };
 
         "/mnt/bigdata" = {
             device = "/dev/disk/by-uuid/EEFE-FA74";
             fsType = "exfat";
-            options = mountOptions ++ [
-                "nodev"
-                "nosuid"
-                "uid=1000"
-                "gid=1000"
-            ];
+            options =
+                mountOptions
+                ++ [
+                    "nodev"
+                    "nosuid"
+                    "uid=1000"
+                    "gid=1000"
+                ];
         };
     };
 

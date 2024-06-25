@@ -17,13 +17,17 @@ in {
             enable = true;
             package = pkgs.unstable.firefox;
             profiles = {
-                private = profileBaseConfig // {
-                    id = 0;
-                    isDefault = true;
-                };
-                work = profileBaseConfig // {
-                    id = 1;
-                };
+                private =
+                    profileBaseConfig
+                    // {
+                        id = 0;
+                        isDefault = true;
+                    };
+                work =
+                    profileBaseConfig
+                    // {
+                        id = 1;
+                    };
             };
         };
 
@@ -33,8 +37,8 @@ in {
             exec = "firefox -P work";
             icon = "firefox";
             terminal = false;
-            categories = [ "Application" "Network" "WebBrowser" ];
-            mimeType = [ "text/html" "text/xml" ];
+            categories = ["Application" "Network" "WebBrowser"];
+            mimeType = ["text/html" "text/xml"];
         };
     };
 }

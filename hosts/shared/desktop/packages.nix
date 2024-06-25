@@ -1,7 +1,4 @@
-{
-    pkgs,
-    ...
-}: let
+{pkgs, ...}: let
     unstable-packages = with pkgs.unstable; [
         alacritty # terminal
         bitwarden
@@ -51,7 +48,7 @@
         hyprsome
     ];
 in {
-    environment.systemPackages = 
+    environment.systemPackages =
         local-packages
         ++ stable-packages
         ++ unstable-packages;

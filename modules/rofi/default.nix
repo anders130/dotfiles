@@ -14,7 +14,7 @@
             rofimoji
         ];
 
-        home-manager.users.${username} = { config, ... }: {
+        home-manager.users.${username} = {config, ...}: {
             programs.rofi = {
                 enable = true;
                 package = pkgs.rofi-wayland;

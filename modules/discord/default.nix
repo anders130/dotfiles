@@ -13,7 +13,7 @@
         environment.systemPackages = [
             (pkgs.unstable.vesktop.overrideAttrs (finalAttrs: previousAttrs: {
                 desktopItems = [
-                    ((builtins.elemAt previousAttrs.desktopItems 0).override { icon = "discord"; })
+                    ((builtins.elemAt previousAttrs.desktopItems 0).override {icon = "discord";})
                 ];
             }))
             pkgs.discord

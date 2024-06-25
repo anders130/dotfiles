@@ -1,4 +1,4 @@
-{ ... }: {
+{
     imports = [
         ./blocky
         ./discord

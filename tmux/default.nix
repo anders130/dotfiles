@@ -1,7 +1,4 @@
-{
-    pkgs,
-    ...
-}: {
+{pkgs, ...}: {
     programs.tmux = {
         enable = true;
         # Stop tmux+escape craziness.

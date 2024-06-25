@@ -1,8 +1,9 @@
 # https://github.com/sopa0/hyprsome
 {
     rustPlatform,
-    fetchFromGitHub
-}: rustPlatform.buildRustPackage rec {
+    fetchFromGitHub,
+}:
+rustPlatform.buildRustPackage rec {
     pname = "hyprsome";
     version = "0.1.13";
 

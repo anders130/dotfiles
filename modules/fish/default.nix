@@ -45,7 +45,7 @@ in {
 
         users.users.${username}.shell = pkgs.fish;
 
-        home-manager.users.${username} = { config, ... }: {
+        home-manager.users.${username} = {config, ...}: {
             home.sessionVariables.SHELL = "etc/profiles/per-user/${username}/bin/fish";
 
             xdg.configFile."fish/config.fish" = lib.mkSymlink {

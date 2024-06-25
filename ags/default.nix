@@ -5,7 +5,7 @@
     lib,
     ...
 }: {
-    home-manager.users.${username} = { config, ... }: {
+    home-manager.users.${username} = {config, ...}: {
         imports = [
             inputs.ags.homeManagerModules.default
         ];

@@ -49,10 +49,12 @@
                     aa = "add --all";
                     lg = "log --pretty=oneline --decorate --graph --abbrev-commit -30";
                 };
-                includes = [{
-                    path = "~/Projects/Work/.gitconfig";
-                    condition = "gitdir:~/Projects/Work/";
-                }];
+                includes = [
+                    {
+                        path = "~/Projects/Work/.gitconfig";
+                        condition = "gitdir:~/Projects/Work/";
+                    }
+                ];
             };
         };
     };

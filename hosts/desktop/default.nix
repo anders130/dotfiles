@@ -1,7 +1,4 @@
-{
-    username,
-    ...
-}: {
+{username, ...}: {
     imports = [
         ./hardware-configuration.nix
         ./disk-config.nix
@@ -18,5 +15,5 @@
         nvidia.enable = true;
     };
 
-    boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
+    boot.binfmt.emulatedSystems = ["aarch64-linux"];
 }

@@ -1,15 +1,17 @@
 {
     secrets,
     variables,
-    inputs
+    inputs,
 }: with inputs; let
     mkLib = nxipkgs:
-        nixpkgs.lib.extend (final: prev: (import ./lib {
-            lib = final;
-            inputs = inputs;
-        }) // home-manager.lib);
+        nixpkgs.lib.extend (final: prev:
+            (import ./lib {
+                lib = final;
+                inputs = inputs;
+            })
+            // home-manager.lib);
 
-    lib = (mkLib nixpkgs);
+    lib = mkLib nixpkgs;
 
     mkHomeManagerConfig = args: {
         nixpkgs = {
@@ -36,7 +38,7 @@
         };
     };
 
-    mkNixosConfig = host@{
+    mkNixosConfig = host @ {
         system ? "x86_64-linux",
         name,
         hostname,
@@ -45,24 +47,26 @@
         args ? {},
         modules,
     }: let
-        specialArgs = argDefaults // { inherit hostname username hashedPassword host; } // args;
-    in nixpkgs.lib.nixosSystem {
-        inherit system specialArgs;
-        modules = modules ++ [
-            ./hosts/shared
-            ./hosts/${name}
-            home-manager.nixosModules.home-manager
-            (mkHomeManagerConfig specialArgs)
-        ];
-    };
+        specialArgs = argDefaults // {inherit hostname username hashedPassword host;} // args;
+    in
+        nixpkgs.lib.nixosSystem {
+            inherit system specialArgs;
+            modules = modules ++ [
+                ./hosts/shared
+                ./hosts/${name}
+                home-manager.nixosModules.home-manager
+                (mkHomeManagerConfig specialArgs)
+            ];
+        };
 
     mkNixosConfigs = nixosConfigs:
         builtins.mapAttrs (ignored: namedConfig: mkNixosConfig namedConfig) (
-            builtins.listToAttrs(
-                builtins.map(config: {
+            builtins.listToAttrs (
+                builtins.map (config: {
                     value = config;
                     name = config.name;
-                }) nixosConfigs
+                })
+                nixosConfigs
             )
         );
 in variables.nixosConfigs {

@@ -1,7 +1,10 @@
 {
     version = "24.05";
 
-    nixosConfigs = { mkNixosConfigs, inputs }: mkNixosConfigs [
+    nixosConfigs = {
+        mkNixosConfigs,
+        inputs,
+    }: mkNixosConfigs [
         {
             name = "desktop";
             hostname = "nixos";

@@ -1,9 +1,6 @@
-{
-    config,
-    ...
-}: let
+{config, ...}: let
     symlink = config.lib.file.mkOutOfStoreSymlink;
-in{
+in {
     home.file = {
         Documents.source = symlink "/mnt/data/Documents";
         Downloads.source = symlink "/mnt/data/Downloads";
