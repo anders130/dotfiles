@@ -1,5 +1,6 @@
 {
     config,
+    inputs,
     lib,
     pkgs,
     username,
@@ -24,6 +25,10 @@
         z # autosuggestions
     ];
 in {
+    imports = [
+        inputs.nix-index-database.nixosModules.nix-index
+    ];
+
     options = {
         modules.fish.enable = lib.mkEnableOption "fish";
     };
@@ -39,6 +44,10 @@ in {
                 matrix = "unimatrix -as 98";
             };
         };
+
+        programs.nix-index.enable = true;
+        programs.nix-index-database.comma.enable = true;
+        programs.command-not-found.enable = false; # nix-index handles this
 
         environment.shells = [pkgs.fish];
         environment.sessionVariables.STARSHIP_CONFIG = "$FLAKE/other/starship.toml";
