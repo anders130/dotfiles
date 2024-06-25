@@ -18,6 +18,11 @@ return {
             -- Disable "format_on_save lsp_fallback" for languages that don't
             -- have a well standardized coding style. You can add additional
             -- languages here or re-enable it for the disabled ones.
+            local ignore_filetypes = { "nix" }
+            if vim.tbl_contains(ignore_filetypes, vim.bo[bufnr].filetype) then
+                print(vim.bo[bufnr].filetype)
+                return
+            end
             local disable_filetypes = { c = true, cpp = true }
             return {
                 timeout_ms = 500,
@@ -26,6 +31,7 @@ return {
         end,
         formatters_by_ft = {
             lua = { 'stylua' },
+            nix = { 'alejandra', 'convert_indentation' },
             -- Conform can also run multiple formatters sequentially
             python = { "isort", "black" },
             --
@@ -33,5 +39,13 @@ return {
             -- is found.
             -- javascript = { { "prettierd", "prettier" } },
         },
+        formatters = {
+            convert_indentation = {
+                command = "sed",
+                args = { "-i", "-E", "s/^([ \t]+)/\\1\\1/", "$FILENAME" },
+                stdin = false,
+                cwd = function() return vim.fn.expand('%:p:h') end,
+            },
+        }
     },
 }

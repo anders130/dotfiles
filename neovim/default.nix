@@ -12,6 +12,7 @@
     };
 
     environment.systemPackages = with pkgs.unstable; [
+        alejandra
         gcc
         gnumake
         go
@@ -22,7 +23,7 @@
         rustup
     ];
 
-    home-manager.users.${username} = { config, ... }: {
+    home-manager.users.${username} = {config, ...}: {
         home.sessionVariables.EDITOR = "nvim";
 
         xdg.configFile.nvim = lib.mkSymlink {
