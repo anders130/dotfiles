@@ -4,6 +4,7 @@
     lib,
     pkgs,
     username,
+    variables,
     ...
 }: let
     dependencies = with pkgs; [
@@ -43,6 +44,9 @@ in {
                 aquarium = "asciiquarium -s -t";
                 matrix = "unimatrix -as 98";
             };
+            interactiveShellInit = /*fish*/''
+                source $FLAKE/modules/fish/config.fish
+            '';
         };
 
         programs.nix-index.enable = true;
@@ -50,17 +54,13 @@ in {
         programs.command-not-found.enable = false; # nix-index handles this
 
         environment.shells = [pkgs.fish];
-        environment.sessionVariables.STARSHIP_CONFIG = "$FLAKE/other/starship.toml";
+        environment.sessionVariables.STARSHIP_CONFIG = "$FLAKE/modules/fish/starship.toml";
 
         users.users.${username}.shell = pkgs.fish;
 
         home-manager.users.${username} = {config, ...}: {
             home.sessionVariables.SHELL = "etc/profiles/per-user/${username}/bin/fish";
 
-            xdg.configFile."fish/config.fish" = lib.mkSymlink {
-                source = "modules/fish/config.fish";
-                config = config;
-            };
             xdg.configFile."fish/functions" = lib.mkSymlink {
                 source = "modules/fish/functions";
                 recursive = true;
@@ -72,10 +72,6 @@ in {
             };
             xdg.configFile."bat/themes/bat.tmTheme" = lib.mkSymlink {
                 source = "modules/fish/themes/bat.tmTheme";
-                config = config;
-            };
-            xdg.configFile."fastfetch/shell-greeting.jsonc" = lib.mkSymlink {
-                source = "modules/fish/shell-greeting.jsonc";
                 config = config;
             };
         };
