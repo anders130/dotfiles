@@ -1,6 +1,7 @@
 {
     config,
     lib,
+    pkgs,
     ...
 }: {
     options = {
@@ -21,8 +22,9 @@
                 sha256_aarch64 = "sha256-rtDxQjClJ+gyrCLvdZlT56YyHQ4sbaL+d5tL4L4VfkA=";
                 openSha256 = "sha256-rtDxQjClJ+gyrCLvdZlT56YyHQ4sbaL+d5tL4L4VfkA=";
                 settingsSha256 = "sha256-rtDxQjClJ+gyrCLvdZlT56YyHQ4sbaL+d5tL4L4VfkA=";
-                persistencedSha256 = lib.fakeSha256;
+                persistencedSha256 = "sha256-3ae31/egyMKpqtGEqgtikWcwMwfcqMv2K4MVFa70Bqs=";
             };
+            nvidiaPersistenced = true;
         };
 
         hardware.opengl = {
@@ -30,5 +32,9 @@
             driSupport = true;
             driSupport32Bit = true;
         };
+
+        environment.systemPackages = [
+            (pkgs.writeScriptBin "set-fan-speed" ''${builtins.readFile ./set_fan_speed.sh}'')
+        ];
     };
 }
