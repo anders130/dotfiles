@@ -10,10 +10,12 @@
         ../../../hypr
         ../../../ags
         ../../../alacritty
-        ../../../firefox
     ];
 
-    modules.rofi.enable = true;
+    modules = {
+        firefox.enable = true;
+        rofi.enable = true;
+    };
 
     # make system bootable
     boot.loader = {

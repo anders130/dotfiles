@@ -3,6 +3,7 @@
         ./blocky
         ./discord
         ./docker
+        ./firefox
         ./fish
         ./git
         ./nvidia

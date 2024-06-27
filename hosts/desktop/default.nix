@@ -11,8 +11,8 @@
     };
 
     modules = {
-        virt-manager.enable = true;
         nvidia.enable = true;
+        virt-manager.enable = true;
     };
 
     boot.binfmt.emulatedSystems = ["aarch64-linux"];
