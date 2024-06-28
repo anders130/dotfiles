@@ -26,7 +26,7 @@
         ags.url = "github:Aylur/ags";
 
         nix-index-database = {
-            url = "github:nix-community/nix-index-database?rev=4ac3639cebb6286f1a68d015b80e9e0c6c869ce6";
+            url = "github:nix-community/nix-index-database";
             inputs.nixpkgs.follows = "nixpkgs";
         };
     };
