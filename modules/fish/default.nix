@@ -4,7 +4,6 @@
     lib,
     pkgs,
     username,
-    variables,
     ...
 }: let
     dependencies = with pkgs; [
