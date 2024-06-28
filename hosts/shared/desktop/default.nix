@@ -13,6 +13,7 @@
     ];
 
     modules = {
+        anki.enable = true;
         firefox.enable = true;
         rofi.enable = true;
     };

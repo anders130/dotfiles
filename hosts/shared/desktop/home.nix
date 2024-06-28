@@ -1,11 +1,8 @@
 {
     config,
-    lib,
     pkgs,
     ...
-}: let
-    recolorAddonCode = "688199788";
-in {
+}: {
     gtk = {
         enable = true;
         theme = {
@@ -49,11 +46,6 @@ in {
 
             @import url("https://catppuccin.github.io/discord/dist/catppuccin-macchiato.theme.css");
         '';
-    };
-
-    home.file.".local/share/Anki2/addons21/${recolorAddonCode}/config.json" = lib.mkSymlink {
-        config = config;
-        source = "other/anki-theme.json";
     };
 
     xdg.userDirs.enable = true;

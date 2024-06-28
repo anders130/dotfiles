@@ -1,5 +1,6 @@
 {
     imports = [
+        ./anki
         ./blocky
         ./discord
         ./docker

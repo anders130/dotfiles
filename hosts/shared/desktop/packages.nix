@@ -24,7 +24,6 @@
     ];
 
     stable-packages = with pkgs; [
-        anki
         gnome.nautilus # file explorer
         gnome.cheese # camera
 
