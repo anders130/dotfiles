@@ -21,18 +21,19 @@
     };
 
     # enable custom modules
-    modules.docker.enable = true;
-    modules.fish.enable = true;
-    modules.git.enable = true;
+    modules = {
+        docker.enable = true;
+        fish.enable = true;
+        git.enable = true;
+    };
 
     environment.variables = {
         NIX_FLAKE_DEFAULT_HOST = host.name;
         FLAKE = "/home/${username}/.dotfiles";
     };
 
-    networking.hostName = "${hostname}";
-
     networking = {
+        hostName = "${hostname}";
         networkmanager.enable = lib.mkDefault true;
     };
 

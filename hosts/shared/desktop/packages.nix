@@ -1,6 +1,5 @@
 {pkgs, ...}: let
     unstable-packages = with pkgs.unstable; [
-        alacritty # terminal
         bitwarden
         obsidian
         google-chrome
@@ -12,11 +11,6 @@
         grimblast # region screenshot
         libreoffice
         godot_4
-
-        prismlauncher
-        jdk17
-        jdk8
-        protonup-qt # easy ge-proton setup for steam
 
         swww
         pavucontrol # sound control
@@ -49,4 +43,6 @@ in {
     services.xserver.excludePackages = [
         pkgs.xterm
     ];
+
+    programs.noisetorch.enable = true;
 }

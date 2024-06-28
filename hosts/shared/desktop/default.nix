@@ -76,8 +76,6 @@
         extraPortals = [pkgs.xdg-desktop-portal-gtk];
     };
 
-    programs.noisetorch.enable = true;
-
     location.provider = "geoclue2";
     services.gnome.tracker-miners.enable = true;
 
