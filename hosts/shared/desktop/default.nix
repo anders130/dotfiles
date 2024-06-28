@@ -14,6 +14,7 @@
 
     modules = {
         anki.enable = true;
+        discord.enable = true;
         firefox.enable = true;
         rofi.enable = true;
     };
@@ -33,17 +34,6 @@
         xkb = {
             layout = "de";
             variant = "";
-        };
-    };
-
-    services.greetd = {
-        enable = true;
-        settings = rec {
-            initial_session = {
-                command = "${pkgs.unstable.hyprland}/bin/Hyprland";
-                user = username;
-            };
-            default_session = initial_session;
         };
     };
 

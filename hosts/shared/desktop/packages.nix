@@ -19,7 +19,6 @@
         protonup-qt # easy ge-proton setup for steam
 
         swww
-        hyprlock # lock screen
         pavucontrol # sound control
     ];
 
@@ -42,21 +41,12 @@
         # work
         teams-for-linux
     ];
-
-    local-packages = with pkgs.local; [
-        hyprsome
-    ];
 in {
     environment.systemPackages =
-        local-packages
-        ++ stable-packages
+        stable-packages
         ++ unstable-packages;
 
     services.xserver.excludePackages = [
         pkgs.xterm
     ];
-
-    security.pam.services.swaylock = {};
-
-    modules.discord.enable = true;
 }
