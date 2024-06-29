@@ -24,6 +24,7 @@
 
         nur.url = "github:nix-community/NUR";
         ags.url = "github:Aylur/ags";
+        stylix.url = "github:danth/stylix";
 
         nix-index-database = {
             url = "github:nix-community/nix-index-database";

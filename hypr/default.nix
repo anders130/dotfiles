@@ -34,5 +34,10 @@
             source = "hypr";
             recursive = true;
         };
+
+        stylix.targets = {
+            hyprland.enable = false;
+            hyprpaper.enable = false;
+        };
     };
 }

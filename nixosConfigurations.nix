@@ -56,6 +56,7 @@
                 ./hosts/shared
                 ./hosts/${name}
                 inputs.home-manager.nixosModules.home-manager
+                inputs.stylix.nixosModules.stylix
                 (mkHomeManagerConfig specialArgs)
             ];
         };

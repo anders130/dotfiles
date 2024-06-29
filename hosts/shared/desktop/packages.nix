@@ -25,7 +25,6 @@
 
         # icon themes
         gnome.adwaita-icon-theme # just having this installed fixes issues with some apps
-        catppuccin-cursors.macchiatoDark
 
         gnome.dconf-editor # needed for home-manager gtk theming
         gojq

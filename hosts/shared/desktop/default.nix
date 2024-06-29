@@ -57,11 +57,24 @@
         pulse.enable = true;
     };
 
-    fonts.packages = with pkgs; [
-        (nerdfonts.override { fonts = [
-            "CascadiaCode"
-        ]; })
-    ];
+    stylix = {
+        enable = true;
+        base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-macchiato.yaml";
+        image = ../../../other/wallpaper.png;
+        cursor = {
+            name = "Catppuccin-Macchiato-Dark-Cursors";
+            package = pkgs.catppuccin-cursors.macchiatoDark;
+            size = 16;
+        };
+        fonts = {
+            monospace = {
+                package = pkgs.nerdfonts.override {fonts = ["CascadiaCode"];};
+                name = "CaskaydiaCove Nerd Font Mono";
+            };
+        };
+        polarity = "dark";
+    };
+
 
     home-manager.users.${username} = {
         imports = [

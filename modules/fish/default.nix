@@ -48,6 +48,8 @@ in {
             '';
         };
 
+        stylix.targets.fish.enable = false;
+
         programs.nix-index.enable = true;
         programs.nix-index-database.comma.enable = true;
         programs.command-not-found.enable = false; # nix-index handles this
@@ -58,6 +60,7 @@ in {
         users.users.${username}.shell = pkgs.fish;
 
         home-manager.users.${username} = {config, ...}: {
+            stylix.targets.bat.enable = false;
             home.sessionVariables.SHELL = "etc/profiles/per-user/${username}/bin/fish";
 
             xdg.configFile."fish/functions" = lib.mkSymlink {

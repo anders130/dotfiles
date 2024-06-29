@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+    pkgs,
+    username,
+    ...
+}: {
     programs.tmux = {
         enable = true;
         # Stop tmux+escape craziness.
@@ -18,5 +22,9 @@
         extraConfigBeforePlugins = /*tmux*/''
             source-file $FLAKE/tmux/tmux.conf
         '';
+    };
+
+    home-manager.users.${username} = {
+        stylix.targets.tmux.enable = false;
     };
 }
