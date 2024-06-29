@@ -7,7 +7,7 @@
         ./firefox
         ./fish
         ./git
-        ./nvidia
+        ./hardware
         ./rofi
         ./virt-manager
     ];

@@ -11,7 +11,7 @@
     };
 
     modules = {
-        nvidia.enable = true;
+        hardware.nvidia.enable = true;
         virt-manager.enable = true;
     };
 
