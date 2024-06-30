@@ -127,7 +127,6 @@
 
             extraConfig = ''
                 source = ./visuals/default.conf
-                source = ./hardware.conf
                 plugin {
                     split-monitor-workspaces {
                         count = 10
