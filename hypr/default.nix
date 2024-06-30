@@ -50,6 +50,12 @@
             ];
 
             settings = {
+                exec-once = [
+                    "swww init & ags"
+                    "~/.config/hypr/autostart.sh"
+                    "hyprlock"
+                ];
+
                 input = {
                     kb_layout = "de";
                     kb_variant = "";
@@ -88,7 +94,7 @@
                     "$mod, Period, exec, rofi -modi emoji:rofimoji -show emoji" # emoji picker
                     "$mod SHIFT, L, exec, hyprlock" # lock screen
                     "$mod SHIFT, S, exec, grimblast --freeze copy area" # select area to copy
-                    "$mod, T, exec, ~/.dotfiles/other/screen-shader.sh" # switch screen-shader
+                    "$mod, T, exec, ~/.config/hypr/shaders/switch-shader.sh" # switch screen-shader
                     # workspaces
                 ] ++ (builtins.concatLists (builtins.genList (
                     x: let
@@ -110,6 +116,13 @@
                     "$mod, mouse:272, movewindow"
                     "$mod, mouse:273, resizewindow"
                 ];
+
+                general = {
+                    layout = "dwindle";
+                    allow_tearing = false;
+                };
+                dwindle.preserve_split = "yes";
+                gestures.workspace_swipe = "off";
             };
 
             extraConfig = ''
@@ -139,6 +152,14 @@
             "hypr/hardware.conf" = lib.mkSymlink {
                 config = config;
                 source = "hypr/hardware.conf";
+            };
+            "hypr/autostart.sh" = lib.mkSymlink {
+                config = config;
+                source = "hypr/autostart.sh";
+            };
+            "hypr/hyprlock.conf" = lib.mkSymlink {
+                config = config;
+                source = "hypr/hyprlock.conf";
             };
         };
 

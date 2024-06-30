@@ -1,8 +1,4 @@
-# # fix hyprsome monitor workspaces
-# hyprctl dispatch movefocus r
-# hyprctl dispatch movefocus r
-# hyprsome workspace 1
-# hyprctl dispatch movefocus l
+hyprctl dispatch movefocus r
 
 # only execute if noisetorch is not yet active (grep finds <= 1 results)
 if [ "$(wpctl status | grep -c 'NoiseTorch Microphone')" -le 1 ]; then
@@ -20,5 +16,5 @@ if ssh-add -l | grep -q "The agent has no identities."; then
         fi
     done
 else
-  echo "SSH agent already has identities loaded."
+    echo "SSH agent already has identities loaded."
 fi
