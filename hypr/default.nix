@@ -5,24 +5,16 @@
     username,
     ...
 }: {
-    # environment.systemPackages = with pkgs; [
-    #     unstable.hyprlock # lock screen
-    #     local.hyprsome # awesome-like workspaces
-    # ];
-    #
-    # programs.hyprland = {
-    #     enable = true;
-    #     xwayland.enable = true;
-    #     package = pkgs.hyprland;
-    # };
-    #
-    # services.displayManager.defaultSession = "hyprland";
+    environment.systemPackages = [
+        pkgs.unstable.hyprlock # lock screen
+    ];
 
+    # boot into hyprland
     services.greetd = {
         enable = true;
         settings = rec {
             initial_session = {
-                command = "${pkgs.hyprland}/bin/Hyprland";
+                command = "${inputs.hyprland.packages.${pkgs.system}.hyprland}/bin/Hyprland";
                 user = username;
             };
             default_session = initial_session;
@@ -44,7 +36,12 @@
 
         wayland.windowManager.hyprland = {
             enable = true;
-            package = pkgs.hyprland;
+            package = inputs.hyprland.packages.${pkgs.system}.hyprland;
+            xwayland.enable = true;
+
+            plugins = [
+                inputs.split-monitor-workspaces.packages.${pkgs.system}.split-monitor-workspaces
+            ];
 
             settings = {
                 input = {
@@ -91,8 +88,8 @@
                     x: let
                         ws = let c = (x + 1) / 10; in builtins.toString (x + 1 - (c * 10));
                     in [
-                        "$mod, ${ws}, workspace, ${toString (x + 1)}"
-                        "$mod Shift, ${ws}, movetoworkspace, ${toString (x + 1)}"
+                        "$mod, ${ws}, split-workspace, ${toString (x + 1)}"
+                        "$mod Shift, ${ws}, split-movetoworkspace, ${toString (x + 1)}"
                     ]
                 )10)) ++ [
                     # special workspaces
@@ -112,6 +109,13 @@
             extraConfig = ''
                 source = ./visuals/default.conf
                 source = ./hardware.conf
+                plugin {
+                    split-monitor-workspaces {
+                        count = 10
+                        keep_focused = 0
+                        enable_notifications = 0
+                    }
+                }
             '';
         };
 

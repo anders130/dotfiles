@@ -25,7 +25,12 @@
         nur.url = "github:nix-community/NUR";
         ags.url = "github:Aylur/ags";
         stylix.url = "github:danth/stylix";
-        hyprland.url = "github:hyprwm/Hyprland";
+        hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
+
+        split-monitor-workspaces = {
+            url = "github:Duckonaut/split-monitor-workspaces";
+            inputs.hyprland.follows = "hyprland";
+        };
 
         nix-index-database = {
             url = "github:nix-community/nix-index-database";
