@@ -64,7 +64,7 @@
         cursor = {
             name = "Catppuccin-Macchiato-Dark-Cursors";
             package = pkgs.catppuccin-cursors.macchiatoDark;
-            size = 16;
+            size = 24;
         };
         fonts = {
             monospace = {

@@ -9,6 +9,12 @@
         pkgs.unstable.hyprlock # lock screen
     ];
 
+    programs.hyprland = {
+        enable = true;
+        package = inputs.hyprland.packages.${pkgs.system}.hyprland;
+        xwayland.enable = true;
+    };
+
     # boot into hyprland
     services.greetd = {
         enable = true;
@@ -26,7 +32,7 @@
     xdg.portal = {
         enable = true;
         extraPortals = [pkgs.xdg-desktop-portal-gtk];
-        config.common.default = "*"; # disable warning
+        config.commmon.default = "*";
     };
 
     home-manager.users.${username} = {config, ...}: {
