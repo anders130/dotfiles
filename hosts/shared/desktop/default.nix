@@ -82,13 +82,6 @@
         ];
     };
 
-    # use gtk desktop portal
-    # (recommended for usage alongside hyprland desktop portal)
-    xdg.portal = {
-        enable = true;
-        extraPortals = [pkgs.xdg-desktop-portal-gtk];
-    };
-
     location.provider = "geoclue2";
     services.gnome.tracker-miners.enable = true;
 

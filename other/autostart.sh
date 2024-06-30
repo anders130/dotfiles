@@ -10,7 +10,7 @@ if [ "$(wpctl status | grep -c 'NoiseTorch Microphone')" -le 1 ]; then
 fi
 
 # hardware stuff
-xrandr --output DP-2 --primary
+xrandr --output DP-1 --primary
 
 # fix ssh agent
 if ssh-add -l | grep -q "The agent has no identities."; then
