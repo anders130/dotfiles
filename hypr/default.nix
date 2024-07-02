@@ -4,27 +4,30 @@
     pkgs,
     username,
     ...
-}: {
+}: let
+    hyprlandPackage = inputs.hyprland.packages.${pkgs.system}.hyprland;
+in {
     environment.systemPackages = [
         pkgs.unstable.hyprlock # lock screen
     ];
 
     programs.hyprland = {
         enable = true;
-        package = inputs.hyprland.packages.${pkgs.system}.hyprland;
+        package = hyprlandPackage;
         xwayland.enable = true;
     };
 
     # boot into hyprland
-    services.greetd = {
-        enable = true;
-        settings = rec {
-            initial_session = {
-                command = "${inputs.hyprland.packages.${pkgs.system}.hyprland}/bin/Hyprland";
-                user = username;
-            };
-            default_session = initial_session;
+    services.xserver = {
+        displayManager.lightdm = {
+            enable = true;
+            greeter.package = hyprlandPackage;
         };
+    };
+
+    services.displayManager.autoLogin = {
+        enable = true;
+        user = username;
     };
 
     # use gtk desktop portal
@@ -42,7 +45,7 @@
 
         wayland.windowManager.hyprland = {
             enable = true;
-            package = inputs.hyprland.packages.${pkgs.system}.hyprland;
+            package = hyprlandPackage;
             xwayland.enable = true;
 
             plugins = [

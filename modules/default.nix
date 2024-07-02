@@ -8,6 +8,7 @@
         ./fish
         ./git
         ./hardware
+        ./plymouth
         ./rofi
         ./stylix
         ./virt-manager
