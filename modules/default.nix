@@ -9,6 +9,7 @@
         ./git
         ./hardware
         ./rofi
+        ./stylix
         ./virt-manager
     ];
 }

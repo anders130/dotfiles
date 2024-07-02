@@ -1,6 +1,5 @@
 {
     username,
-    pkgs,
     ...
 }: {
     imports = [
@@ -17,6 +16,10 @@
         discord.enable = true;
         firefox.enable = true;
         rofi.enable = true;
+        stylix = {
+            enable = true;
+            desktop.enable = true;
+        };
     };
 
     # make system bootable
@@ -56,25 +59,6 @@
         alsa.support32Bit = true;
         pulse.enable = true;
     };
-
-    stylix = {
-        enable = true;
-        base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-macchiato.yaml";
-        image = ../../../other/wallpaper.png;
-        cursor = {
-            name = "Catppuccin-Macchiato-Dark-Cursors";
-            package = pkgs.catppuccin-cursors.macchiatoDark;
-            size = 24;
-        };
-        fonts = {
-            monospace = {
-                package = pkgs.nerdfonts.override {fonts = ["CascadiaCode"];};
-                name = "CaskaydiaCove Nerd Font Mono";
-            };
-        };
-        polarity = "dark";
-    };
-
 
     home-manager.users.${username} = {
         imports = [

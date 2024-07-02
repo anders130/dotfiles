@@ -5,6 +5,8 @@
         ../../../tmux
     ];
 
+    modules.stylix.enable = true;
+
     # for secret storing stuff
     services.gnome.gnome-keyring.enable = true;
 
