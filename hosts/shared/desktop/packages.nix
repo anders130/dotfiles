@@ -11,6 +11,7 @@
         grimblast # region screenshot
         libreoffice
         godot_4
+        protonmail-desktop
 
         swww
         pavucontrol # sound control
