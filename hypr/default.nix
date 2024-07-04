@@ -98,6 +98,7 @@ in {
                     "$mod SHIFT, L, exec, hyprlock" # lock screen
                     "$mod SHIFT, S, exec, grimblast --freeze copy area" # select area to copy
                     "$mod, T, exec, ~/.config/hypr/shaders/switch-shader.sh" # switch screen-shader
+                    "$mod, 34, exec, forceMouseToGame" # SUPER + Ü
                     # workspaces
                 ] ++ (builtins.concatLists (builtins.genList (
                     x: let
