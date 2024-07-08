@@ -79,23 +79,27 @@ in {
                 bind = [
                     # essential keybinds
                     "$mod, C, killactive"
-                    "$mod, M, exit"
                     "$mod, V, togglefloating"
                     "$mod, F, fullscreen"
                     "$mod, S, togglesplit"
                     "$mod, P, pin"
-                    # # Move focus with vim-like keybinds
+                    # move focus with vim-like keybinds
                     "$mod, h, movefocus, l"
                     "$mod, l, movefocus, r"
                     "$mod, k, movefocus, u"
                     "$mod, j, movefocus, d"
+                    # move clients with vim-like keybinds
+                    "$mod SHIFT, h, movewindow, l"
+                    "$mod SHIFT, l, movewindow, r"
+                    "$mod SHIFT, k, movewindow, u"
+                    "$mod SHIFT, j, movewindow, d"
                     # programs
                     "$mod, return, exec, alacritty" # terminal
                     "$mod, E, exec, nautilus" # file manager
                     "$mod, B, exec, firefox" # browser
                     "$mod, Space, exec, pgrep rofi && pkill rofi || rofi -show drun -show-icons -matching fuzzy -sort -sorting-method fzf" # application launcher
                     "$mod, Period, exec, rofi -modi emoji:rofimoji -show emoji" # emoji picker
-                    "$mod SHIFT, L, exec, hyprlock" # lock screen
+                    "$mod, BACKSPACE, exec, hyprlock" # lock screen
                     "$mod SHIFT, S, exec, grimblast --freeze copy area" # select area to copy
                     "$mod, T, exec, ~/.config/hypr/shaders/switch-shader.sh" # switch screen-shader
                     "$mod, 34, exec, forceMouseToGame" # SUPER + Ü
