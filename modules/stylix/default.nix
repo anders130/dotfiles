@@ -28,6 +28,8 @@
                 };
             };
             polarity = "dark";
+
+            targets.console.enable = false; # deactivate tty styling
         };
     };
 }
