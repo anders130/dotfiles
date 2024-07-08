@@ -2,10 +2,12 @@
     imports = [
         ./packages.nix
         ../../../neovim
-        ../../../tmux
     ];
 
-    modules.stylix.enable = true;
+    modules = {
+        stylix.enable = true;
+        tmux.enable = true;
+    };
 
     # for secret storing stuff
     services.gnome.gnome-keyring.enable = true;

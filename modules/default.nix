@@ -11,6 +11,7 @@
         ./plymouth
         ./rofi
         ./stylix
+        ./tmux
         ./virt-manager
     ];
 }
