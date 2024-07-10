@@ -1,4 +1,9 @@
-{pkgs, ...}: let
+{
+    config,
+    lib,
+    pkgs,
+    ...
+}: let
     unstable-packages = with pkgs.unstable; [
         curl
         wget
@@ -22,7 +27,9 @@
         dotnet-sdk_8
     ];
 in {
-    environment.systemPackages =
-        stable-packages
-        ++ unstable-packages;
+    config = lib.mkIf config.bundles.cli.enable {
+        environment.systemPackages =
+            stable-packages
+            ++ unstable-packages;
+    };
 }

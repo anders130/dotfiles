@@ -2,6 +2,7 @@
     imports = [
         ./anki
         ./blocky
+        ./bundles
         ./discord
         ./docker
         ./firefox
