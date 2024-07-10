@@ -10,6 +10,8 @@
         ];
     };
 
+    bundles.cli.enable = true;
+
     modules = {
         hardware.amdgpu.enable = true;
         virt-manager.enable = true;

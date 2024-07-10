@@ -9,6 +9,7 @@
         ./fish
         ./git
         ./hardware
+        ./neovim
         ./plymouth
         ./rofi
         ./stylix

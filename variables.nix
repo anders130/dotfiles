@@ -11,7 +11,6 @@
             username = "jesse";
             modules = [
                 inputs.disko.nixosModules.disko
-                ./hosts/shared/cli
                 ./hosts/shared/desktop
             ];
         }
@@ -21,7 +20,6 @@
             username = "jesse";
             modules = [
                 inputs.nixos-wsl.nixosModules.wsl
-                ./hosts/shared/cli
             ];
         }
         {

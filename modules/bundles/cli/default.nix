@@ -13,6 +13,7 @@
 
     config = lib.mkIf config.bundles.cli.enable {
         modules = {
+            neovim.enable = lib.mkDefault true;
             stylix.enable = lib.mkDefault true;
             tmux.enable = lib.mkDefault true;
         };
