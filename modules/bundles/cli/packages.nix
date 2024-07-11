@@ -11,7 +11,6 @@
         unzip
         ffmpeg # video downloader
         librespeed-cli # speedtest-cli
-        btop # task manager
 
         # fun stuff
         cbonsai
