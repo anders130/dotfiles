@@ -1,4 +1,8 @@
-{username, ...}: {
+{
+    pkgs,
+    username,
+    ...
+}: {
     imports = [
         ./hardware-configuration.nix
         ./disk-config.nix
@@ -24,4 +28,6 @@
     ];
 
     boot.binfmt.emulatedSystems = ["aarch64-linux"];
+
+    services.printing.drivers = [ pkgs.hplip ];
 }
