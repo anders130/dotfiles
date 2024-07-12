@@ -5,6 +5,9 @@ vim.filetype.add(
 return {
     -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
+    dependencies = {
+        "nvim-treesitter/nvim-treesitter-context", -- pins context to the top of the buffer
+    },
     build = ':TSUpdate',
     opts = {
         ensure_installed = { 'bash', 'c', 'html', 'lua', 'luadoc', 'markdown', 'vim', 'vimdoc', "c_sharp", "typescript", "javascript", "css", "fish", "nix", "rasi", "hyprlang" },
