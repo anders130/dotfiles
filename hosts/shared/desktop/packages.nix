@@ -2,8 +2,6 @@
     unstable-packages = with pkgs.unstable; [
         bitwarden
         obsidian
-        google-chrome
-        gnome.totem # video player
         signal-desktop # oss messenger
         whatsapp-for-linux # bad messenger
         insomnia # postman-alternative
@@ -20,6 +18,8 @@
     stable-packages = with pkgs; [
         gnome.nautilus # file explorer
         gnome.cheese # camera
+        gnome.totem # video player
+        loupe # gnome image viewer
 
         fluent-gtk-theme
         orchis-theme
