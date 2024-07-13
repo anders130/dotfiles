@@ -26,7 +26,7 @@
             nixd
             nodejs_22
             ripgrep
-            rustup
+            cargo # for rust
         ];
 
         home-manager.users.${username} = {config, ...}: {
