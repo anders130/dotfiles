@@ -10,6 +10,7 @@
         ./fish
         ./git
         ./hardware
+        ./nautilus
         ./neovim
         ./plymouth
         ./rofi

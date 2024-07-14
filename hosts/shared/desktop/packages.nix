@@ -16,10 +16,11 @@
     ];
 
     stable-packages = with pkgs; [
-        gnome.nautilus # file explorer
         gnome.cheese # camera
         gnome.totem # video player
         loupe # gnome image viewer
+        gnome.gnome-calculator
+        gnome.gnome-music # music player
 
         fluent-gtk-theme
         orchis-theme

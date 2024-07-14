@@ -15,6 +15,7 @@
         anki.enable = true;
         discord.enable = true;
         firefox.enable = true;
+        nautilus.enable = true;
         plymouth.enable = true;
         rofi.enable = true;
         stylix = {
@@ -69,7 +70,4 @@
 
     location.provider = "geoclue2";
     services.gnome.tracker-miners.enable = true;
-
-    # needed for trash to work in nautilus
-    services.gvfs.enable = true;
 }
