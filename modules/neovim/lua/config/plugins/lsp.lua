@@ -147,6 +147,9 @@ return {
             filetypes = { 'nix' },
             single_file_support = true,
         }
+        require('lspconfig').gdscript.setup {
+            filetypes = { "gd", "gdscript", "gdscript3" },
+        }
 
         -- You can add other tools here that you want Mason to install
         -- for you, so that they are available from within Neovim.
