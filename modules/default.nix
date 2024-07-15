@@ -12,6 +12,7 @@
         ./hardware
         ./nautilus
         ./neovim
+        ./plex
         ./plymouth
         ./rofi
         ./stylix

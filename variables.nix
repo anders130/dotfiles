@@ -32,5 +32,11 @@
                 inputs.nixos-hardware.nixosModules.raspberry-pi-4
             ];
         }
+        {
+            name = "nebulon";
+            hostname = "nebulon";
+            username = "admin";
+            hashedPassword = "$y$j9T$5HydBWHhlLVkjEEm/WZI01$N79QR3IDbB0wSfLkpmeL4O7pckifOwGWeIwYXnpgj09";
+        }
     ];
 }

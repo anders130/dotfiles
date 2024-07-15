@@ -46,7 +46,7 @@
         username,
         hashedPassword ? null,
         args ? {},
-        modules,
+        modules ? [],
     }: let
         specialArgs = argDefaults // {inherit hostname username hashedPassword host;} // args;
     in
