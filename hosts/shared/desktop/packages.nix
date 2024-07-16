@@ -21,6 +21,7 @@
         loupe # gnome image viewer
         gnome.gnome-calculator
         gnome.gnome-music # music player
+        bottles # windows programs
 
         fluent-gtk-theme
         orchis-theme
