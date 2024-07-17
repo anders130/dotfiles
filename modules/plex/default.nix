@@ -1,6 +1,7 @@
 {
     config,
     lib,
+    username,
     ...
 }: {
     options.modules.plex = {
@@ -12,8 +13,8 @@
             enable = true;
             dataDir = "/var/lib/plex";
             openFirewall = true;
-            user = "plex";
-            group = "plex";
+            user = username;
+            group = "users";
         };
     };
 }
