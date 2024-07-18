@@ -3,13 +3,19 @@ return {
     event = 'VimEnter',
     config = function()
         vim.o.buftype = 'nofile' -- set buffer type to hide indent-blankline
-        require('dashboard').setup({
+        local dashboard = require('dashboard')
+
+        dashboard.setup({
             theme = 'hyper',
             config = {
                 project = {
                     enable = true,
-                    -- go to the projects root directory and open neotree
-                    action = 'Neotree current dir='
+                    -- action = 'Neotree current dir='
+                    action = function(project_path)
+                        vim.cmd('cd ' .. project_path)
+                        vim.cmd('Neotree')
+                        vim.api.nvim_buf_delete(dashboard.bufnr, { force = true })
+                    end,
                 },
                 footer = {},
             },
