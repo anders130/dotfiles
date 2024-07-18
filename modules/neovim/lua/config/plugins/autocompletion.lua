@@ -86,6 +86,7 @@ return {
                 { name = 'luasnip' },
                 { name = 'path' },
                 { name = 'otter' },
+                { name = 'supermaven' },
             },
         }
     end,
