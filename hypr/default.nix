@@ -7,8 +7,9 @@
 }: let
     hyprlandPackage = inputs.hyprland.packages.${pkgs.system}.hyprland;
 in {
-    environment.systemPackages = [
-        pkgs.unstable.hyprlock # lock screen
+    environment.systemPackages = with pkgs.unstable; [
+        hyprlock # lock screen
+        swww # wallpaper utility
     ];
 
     programs.hyprland = {
@@ -54,9 +55,9 @@ in {
 
             settings = {
                 exec-once = [
-                    "swww init & ags"
+                    "${pkgs.unstable.swww}/bin/swww-daemon & ags"
                     "~/.config/hypr/autostart.sh"
-                    "hyprlock"
+                    "${pkgs.unstable.hyprlock}/bin/hyprlock"
                 ];
 
                 input = {
