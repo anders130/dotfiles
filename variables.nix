@@ -38,5 +38,15 @@
             username = "admin";
             hashedPassword = "$y$j9T$5HydBWHhlLVkjEEm/WZI01$N79QR3IDbB0wSfLkpmeL4O7pckifOwGWeIwYXnpgj09";
         }
+        {
+            name = "orbit-station";
+            hostname = "orbit-station";
+            username = "admin";
+            hashedPassword = "$y$j9T$cWy2dB86.mJtVDAlZ683p/$Tf2aTkLcbRraG5a1u4qHNJGDSqd0Q10drnfZ.FX2590";
+            system = "aarch64-linux";
+            modules = [
+                inputs.nixos-hardware.nixosModules.raspberry-pi-4
+            ];
+        }
     ];
 }
