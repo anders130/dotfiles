@@ -21,6 +21,8 @@
         gnome.gnome-calculator
         gnome.gnome-music # music player
         bottles # windows programs
+        rpi-imager
+        lxqt.lxqt-policykit
 
         fluent-gtk-theme
         orchis-theme

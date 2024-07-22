@@ -26,5 +26,8 @@
                 echo "Game is on top"
             fi
         '')
+
+        space-cadet-pinball
+        superTuxKart
     ];
 }
