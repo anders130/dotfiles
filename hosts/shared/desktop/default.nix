@@ -8,10 +8,10 @@
         ./defaultApplications.nix
         ../../../hypr
         ../../../ags
-        ../../../alacritty
     ];
 
     modules = {
+        alacritty.enable = true;
         anki.enable = true;
         discord.enable = true;
         firefox.enable = true;

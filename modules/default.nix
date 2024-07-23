@@ -1,5 +1,6 @@
 {
     imports = [
+        ./alacritty
         ./anki
         ./blocky
         ./btop
