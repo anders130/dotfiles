@@ -26,6 +26,7 @@
                     package = pkgs.nerdfonts.override {fonts = ["CascadiaCode"];};
                     name = "CaskaydiaCove Nerd Font Mono";
                 };
+                sizes.terminal = 14;
             };
             polarity = "dark";
 

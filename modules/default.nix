@@ -11,6 +11,7 @@
         ./fish
         ./git
         ./hardware
+        ./kitty
         ./nautilus
         ./neovim
         ./plex

@@ -15,6 +15,7 @@
         anki.enable = true;
         discord.enable = true;
         firefox.enable = true;
+        kitty.enable = true;
         nautilus.enable = true;
         plymouth.enable = true;
         rofi.enable = true;
