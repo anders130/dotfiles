@@ -23,8 +23,11 @@
             };
             fonts = lib.mkIf config.modules.stylix.desktop.enable {
                 monospace = {
-                    package = pkgs.nerdfonts.override {fonts = ["CascadiaCode"];};
-                    name = "CaskaydiaCove Nerd Font Mono";
+                    package = pkgs.nerdfonts.override {fonts = [
+                        "CascadiaCode"
+                        "CascadiaMono"
+                    ];};
+                    name = "CaskaydiaCove NF"; # important, because the mono version has tiny symbols
                 };
                 sizes.terminal = 14;
             };

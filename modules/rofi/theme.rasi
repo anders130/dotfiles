@@ -10,7 +10,7 @@
     grey: #6e738d;
 
     width: 650;
-    font: "CaskaydiaCove Nerd Font Mono SemiBold 14";
+    font: "CaskaydiaMono NFM SemiBold 14";
 }
 
 element-text, element-icon , mode-switcher {

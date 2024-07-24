@@ -26,7 +26,13 @@
                     # disable bell
                     bell_path = "none";
                     enable_audio_bell = "no";
+
+                    disable_ligatures = "always";
                 };
+                extraConfig = /*bash*/''
+                    # for better faster configuration iteration
+                    include $FLAKE/modules/kitty/kitty.conf
+                '';
             };
         };
     };

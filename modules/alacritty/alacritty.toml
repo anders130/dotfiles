@@ -21,7 +21,7 @@ style = "Bold Italic"
 style = "Italic"
 
 [font.normal]
-family = "CaskaydiaCove Nerd Font"
+family = "CaskaydiaMono Nerd Font"
 style = "Regular"
 
 [window]
