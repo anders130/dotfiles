@@ -1,6 +1,14 @@
-vim.filetype.add(
-    { pattern = { [".*/hypr/.*%.conf"] = "hyprlang" }, }
-)
+vim.filetype.add {
+    pattern = {
+        [".*/hypr/.*%.conf"] = "hyprlang",
+    },
+}
+
+vim.filetype.add {
+    extension = {
+        rasi = "rasi"
+    }
+}
 
 return {
     -- Highlight, edit, and navigate code
@@ -10,7 +18,24 @@ return {
     },
     build = ':TSUpdate',
     opts = {
-        ensure_installed = { 'bash', 'c', 'html', 'lua', 'luadoc', 'markdown', 'vim', 'vimdoc', "c_sharp", "typescript", "javascript", "css", "fish", "nix", "rasi", "hyprlang" },
+        ensure_installed = {
+            'bash',
+            'c',
+            'html',
+            'lua',
+            'luadoc',
+            'markdown',
+            'vim',
+            'vimdoc',
+            "c_sharp",
+            "typescript",
+            "javascript",
+            "css",
+            "fish",
+            "nix",
+            "rasi",
+            "hyprlang",
+        },
         -- Autoinstall languages that are not installed
         auto_install = true,
         highlight = {
