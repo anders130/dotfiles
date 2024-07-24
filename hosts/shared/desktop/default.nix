@@ -6,7 +6,6 @@
         ./packages.nix
         ./gaming.nix
         ./defaultApplications.nix
-        ../../../hypr
         ../../../ags
     ];
 
@@ -15,6 +14,7 @@
         anki.enable = true;
         discord.enable = true;
         firefox.enable = true;
+        hypr.enable = true;
         kitty.enable = true;
         nautilus.enable = true;
         plymouth.enable = true;

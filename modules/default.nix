@@ -11,6 +11,7 @@
         ./fish
         ./git
         ./hardware
+        ./hypr
         ./kitty
         ./nautilus
         ./neovim
