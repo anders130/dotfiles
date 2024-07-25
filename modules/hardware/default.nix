@@ -1,6 +1,7 @@
 {
     imports = [
         ./amdgpu
+        ./kanata
         ./nvidia
     ];
 }

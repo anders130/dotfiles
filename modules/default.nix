@@ -1,25 +1,12 @@
 {
     imports = [
-        ./alacritty
-        ./anki
-        ./btop
+        ./applications
         ./bundles
-        ./discord
-        ./docker
-        ./firefox
-        ./fish
-        ./git
+        ./console
         ./hardware
         ./hypr
-        ./kanata
-        ./kitty
-        ./nautilus
         ./neovim
-        ./plymouth
-        ./rofi
         ./services
-        ./stylix
-        ./tmux
-        ./virt-manager
+        ./theming
     ];
 }

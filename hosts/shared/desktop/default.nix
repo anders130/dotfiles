@@ -10,19 +10,23 @@
     ];
 
     modules = {
-        alacritty.enable = true;
-        anki.enable = true;
-        discord.enable = true;
-        firefox.enable = true;
+        applications = {
+            alacritty.enable = true;
+            anki.enable = true;
+            discord.enable = true;
+            firefox.enable = true;
+            kitty.enable = true;
+            nautilus.enable = true;
+            rofi.enable = true;
+        };
+        hardware.kanata.enable = true;
         hypr.enable = true;
-        kanata.enable = true;
-        kitty.enable = true;
-        nautilus.enable = true;
-        plymouth.enable = true;
-        rofi.enable = true;
-        stylix = {
-            enable = true;
-            desktop.enable = true;
+        theming = {
+            plymouth.enable = true;
+            stylix = {
+                enable = true;
+                desktop.enable = true;
+            };
         };
     };
 

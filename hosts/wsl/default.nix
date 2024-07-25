@@ -9,7 +9,7 @@
 
     bundles.cli.enable = true;
 
-    modules.docker.wslIntegration = true;
+    modules.services.docker.wslIntegration = true;
 
     wsl = {
         enable = true;

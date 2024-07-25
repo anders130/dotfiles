@@ -22,9 +22,11 @@
 
     # enable custom modules
     modules = {
-        docker.enable = true;
-        fish.enable = true;
-        git.enable = true;
+        console = {
+            fish.enable = true;
+            git.enable = true;
+        };
+        services.docker.enable = true;
     };
 
     environment.variables = {

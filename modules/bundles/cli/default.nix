@@ -13,10 +13,14 @@
 
     config = lib.mkIf config.bundles.cli.enable {
         modules = {
-            btop.enable = lib.mkDefault true;
+            console = {
+                btop.enable = lib.mkDefault true;
+                fish.enable = lib.mkDefault true;
+                git.enable = lib.mkDefault true;
+                tmux.enable = lib.mkDefault true;
+            };
             neovim.enable = lib.mkDefault true;
-            stylix.enable = lib.mkDefault true;
-            tmux.enable = lib.mkDefault true;
+            theming.stylix.enable = lib.mkDefault true;
         };
 
         # for secret storing stuff

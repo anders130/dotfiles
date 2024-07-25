@@ -17,8 +17,8 @@
     bundles.cli.enable = true;
 
     modules = {
+        applications.virt-manager.enable = true;
         hardware.amdgpu.enable = true;
-        virt-manager.enable = true;
     };
 
     boot.kernelParams = [

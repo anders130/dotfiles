@@ -1,6 +1,7 @@
 {
     imports = [
         ./blocky
+        ./docker
         ./plex
     ];
 }
