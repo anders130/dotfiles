@@ -2,7 +2,6 @@
     imports = [
         ./alacritty
         ./anki
-        ./blocky
         ./btop
         ./bundles
         ./discord
@@ -16,9 +15,9 @@
         ./kitty
         ./nautilus
         ./neovim
-        ./plex
         ./plymouth
         ./rofi
+        ./services
         ./stylix
         ./tmux
         ./virt-manager

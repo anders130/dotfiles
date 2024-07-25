@@ -6,7 +6,7 @@
         ./hardware-configuration.nix
     ];
 
-    modules = {
+    modules.services = {
         blocky.enable = true;
         plex.enable = true;
     };

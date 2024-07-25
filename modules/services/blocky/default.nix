@@ -3,11 +3,11 @@
     lib,
     ...
 }: {
-    options = {
-        modules.blocky.enable = lib.mkEnableOption "blocky";
+    options.modules.services.blocky = {
+        enable = lib.mkEnableOption "blocky";
     };
 
-    config = lib.mkIf config.modules.blocky.enable {
+    config = lib.mkIf config.modules.services.blocky.enable {
         networking.firewall = {
             allowedTCPPorts = [
                 53
