@@ -12,6 +12,7 @@
         ./git
         ./hardware
         ./hypr
+        ./kanata
         ./kitty
         ./nautilus
         ./neovim

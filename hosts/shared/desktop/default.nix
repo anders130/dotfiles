@@ -15,6 +15,7 @@
         discord.enable = true;
         firefox.enable = true;
         hypr.enable = true;
+        kanata.enable = true;
         kitty.enable = true;
         nautilus.enable = true;
         plymouth.enable = true;
