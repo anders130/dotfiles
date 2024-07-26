@@ -1,5 +1,6 @@
 {
     imports = [
+        ./ags
         ./applications
         ./bundles
         ./console

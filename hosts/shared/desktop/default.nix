@@ -6,10 +6,10 @@
         ./packages.nix
         ./gaming.nix
         ./defaultApplications.nix
-        ../../../ags
     ];
 
     modules = {
+        ags.enable = true;
         applications = {
             alacritty.enable = true;
             anki.enable = true;
