@@ -1,4 +1,9 @@
-{pkgs, ...}: let
+{
+    config,
+    lib,
+    pkgs,
+    ...
+}: let
     unstable-packages = with pkgs.unstable; [
         bitwarden
         obsidian
@@ -39,13 +44,15 @@
         teams-for-linux
     ];
 in {
-    environment.systemPackages =
-        stable-packages
-        ++ unstable-packages;
+    config = lib.mkIf config.bundles.cli.enable {
+        environment.systemPackages =
+            stable-packages
+            ++ unstable-packages;
 
-    services.xserver.excludePackages = [
-        pkgs.xterm
-    ];
+        services.xserver.excludePackages = [
+            pkgs.xterm
+        ];
 
-    programs.noisetorch.enable = true;
+        programs.noisetorch.enable = true;
+    };
 }

@@ -14,7 +14,13 @@
         ];
     };
 
-    bundles.cli.enable = true;
+    bundles = {
+        cli.enable = true;
+        desktop = {
+            enable = true;
+            gaming.enable = true;
+        };
+    };
 
     modules = {
         applications.virt-manager.enable = true;

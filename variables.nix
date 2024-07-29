@@ -11,7 +11,6 @@
             username = "jesse";
             modules = [
                 inputs.disko.nixosModules.disko
-                ./hosts/shared/desktop
             ];
         }
         {
