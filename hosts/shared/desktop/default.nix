@@ -16,7 +16,10 @@
             discord.enable = true;
             firefox.enable = true;
             kitty.enable = true;
-            nautilus.enable = true;
+            nautilus = {
+                enable = true;
+                terminal = "kitty";
+            };
             rofi.enable = true;
         };
         hardware.kanata.enable = true;
