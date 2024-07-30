@@ -34,6 +34,20 @@ if status is-interactive
         end
     end
 
+    function ls
+        if test -f .hidden
+            set hidden_args (cat .hidden | xargs -I{} echo --ignore-glob={})
+        end
+
+        # only hide hidden files if the current command is ls
+        switch (basename (status current-command))
+            case 'ls'
+                command lsd $hidden_args $argv
+            case '*'
+                command lsd $argv
+        end
+    end
+
     set -gx EDITOR nvim
     set -x DIRENV_LOG_FORMAT ""
 
