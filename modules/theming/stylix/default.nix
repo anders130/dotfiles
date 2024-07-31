@@ -17,7 +17,7 @@ in {
             base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-macchiato.yaml";
             image = ../../../other/wallpaper.png;
             cursor = lib.mkIf cfg.desktop.enable {
-                name = "Catppuccin-Macchiato-Dark-Cursors";
+                name = "catppuccin-macchiato-dark-cursors";
                 package = pkgs.catppuccin-cursors.macchiatoDark;
                 size = 24;
             };
