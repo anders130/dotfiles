@@ -8,6 +8,9 @@
 }: let
     hyprlandPackage = inputs.hyprland.packages.${pkgs.system}.hyprland;
     cfg = config.modules.hypr;
+
+    autostart = "~/.config/hypr/autostart.sh";
+    greeter = "hyprlock";
 in {
     options.modules.hypr = {
         enable = lib.mkEnableOption "hypr";
@@ -34,11 +37,9 @@ in {
         };
 
         # boot into hyprland
-        services.xserver = {
-            displayManager.lightdm = {
-                enable = true;
-                greeter.package = hyprlandPackage;
-            };
+        services.xserver.displayManager.lightdm = {
+            enable = true;
+            greeter.package = hyprlandPackage;
         };
 
         services.displayManager.autoLogin = {
@@ -70,9 +71,10 @@ in {
 
                 settings = {
                     exec-once = [
-                        "${pkgs.unstable.swww}/bin/swww-daemon & ags"
-                        "~/.config/hypr/autostart.sh"
-                        "${pkgs.unstable.hyprlock}/bin/hyprlock"
+                        "swww-daemon"
+                        "ags -b hypr"
+                        autostart
+                        greeter
                     ];
 
                     input = {
@@ -91,54 +93,57 @@ in {
                         sensitivity = 0;
                     };
 
-                    "$mod" = "SUPER";
-                    bind = [
+                    bind = let
+                        e = "ags -b hypr";
+                    in [
+                        # ags stuff
+                        "SUPER CTRL SHIFT, R, exec, ${e} quit; ${e}"
                         # essential keybinds
-                        "$mod, C, killactive"
-                        "$mod, V, togglefloating"
-                        "$mod, F, fullscreen"
-                        "$mod, S, togglesplit"
-                        "$mod, P, pin"
+                        "SUPER, C, killactive"
+                        "SUPER, V, togglefloating"
+                        "SUPER, F, fullscreen"
+                        "SUPER, S, togglesplit"
+                        "SUPER, P, pin"
                         # move focus with vim-like keybinds
-                        "$mod, h, movefocus, l"
-                        "$mod, l, movefocus, r"
-                        "$mod, k, movefocus, u"
-                        "$mod, j, movefocus, d"
+                        "SUPER, h, movefocus, l"
+                        "SUPER, l, movefocus, r"
+                        "SUPER, k, movefocus, u"
+                        "SUPER, j, movefocus, d"
                         # move clients with vim-like keybinds
-                        "$mod SHIFT, h, movewindow, l"
-                        "$mod SHIFT, l, movewindow, r"
-                        "$mod SHIFT, k, movewindow, u"
-                        "$mod SHIFT, j, movewindow, d"
+                        "SUPER SHIFT, h, movewindow, l"
+                        "SUPER SHIFT, l, movewindow, r"
+                        "SUPER SHIFT, k, movewindow, u"
+                        "SUPER SHIFT, j, movewindow, d"
                         # programs
-                        "$mod, return, exec, ${cfg.terminal}" # terminal
-                        "$mod, E, exec, nautilus" # file manager
-                        "$mod, B, exec, firefox" # browser
-                        "$mod, Space, exec, ${cfg.appLauncher}"
-                        "$mod, Period, exec, rofi -modi emoji:rofimoji -show emoji" # emoji picker
-                        "$mod, BACKSPACE, exec, hyprlock" # lock screen
-                        "$mod SHIFT, S, exec, grimblast --freeze copy area" # select area to copy
-                        "$mod, T, exec, ~/.config/hypr/shaders/switch-shader.sh" # switch screen-shader
-                        "$mod, 34, exec, forceMouseToGame" # SUPER + Ü
+                        "SUPER, return, exec, ${cfg.terminal}" # terminal
+                        "SUPER, E, exec, nautilus" # file manager
+                        "SUPER, B, exec, firefox" # browser
+                        "SUPER, Space, exec, ${cfg.appLauncher}"
+                        "SUPER, Period, exec, rofi -modi emoji:rofimoji -show emoji" # emoji picker
+                        "SUPER, BACKSPACE, exec, hyprlock" # lock screen
+                        "SUPER SHIFT, S, exec, grimblast --freeze copy area" # select area to copy
+                        "SUPER, T, exec, ~/.config/hypr/shaders/switch-shader.sh" # switch screen-shader
+                        "SUPER, 34, exec, forceMouseToGame" # SUPER + Ü
                         # workspaces
                     ] ++ (builtins.concatLists (builtins.genList (
                         x: let
                             ws = let c = (x + 1) / 10; in builtins.toString (x + 1 - (c * 10));
                         in [
-                            "$mod, ${ws}, split-workspace, ${toString (x + 1)}"
-                            "$mod Shift, ${ws}, split-movetoworkspace, ${toString (x + 1)}"
+                            "SUPER, ${ws}, split-workspace, ${toString (x + 1)}"
+                            "SUPER Shift, ${ws}, split-movetoworkspace, ${toString (x + 1)}"
                         ]
                     )10)) ++ [
                         # special workspaces
-                        "$mod, D, togglespecialworkspace, magic"
-                        "$mod SHIFT, D, movetoworkspace, special:magic"
-                        "$mod, G, togglespecialworkspace, other"
-                        "$mod SHIFT, G, movetoworkspace, special:other"
+                        "SUPER, D, togglespecialworkspace, magic"
+                        "SUPER SHIFT, D, movetoworkspace, special:magic"
+                        "SUPER, G, togglespecialworkspace, other"
+                        "SUPER SHIFT, G, movetoworkspace, special:other"
                     ];
 
                     bindm = [
                         # Move/resize windows with mainMod + LMB/RMB and dragging
-                        "$mod, mouse:272, movewindow"
-                        "$mod, mouse:273, resizewindow"
+                        "SUPER, mouse:272, movewindow"
+                        "SUPER, mouse:273, resizewindow"
                     ];
 
                     general = {
