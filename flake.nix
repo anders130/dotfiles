@@ -2,6 +2,7 @@
     description = "My NixOS Configuration";
 
     inputs = {
+        # essentials
         nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
         nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
@@ -10,6 +11,24 @@
             inputs.nixpkgs.follows = "nixpkgs";
         };
 
+        nur.url = "github:nix-community/NUR";
+        stylix.url = "github:danth/stylix";
+
+        nix-index-database = {
+            url = "github:nix-community/nix-index-database";
+            inputs.nixpkgs.follows = "nixpkgs";
+        };
+
+        # gui
+        ags.url = "github:Aylur/ags";
+        hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
+
+        split-monitor-workspaces = {
+            url = "github:Duckonaut/split-monitor-workspaces";
+            inputs.hyprland.follows = "hyprland";
+        };
+
+        # host specific
         disko = {
             url = "github:nix-community/disko";
             inputs.nixpkgs.follows = "nixpkgs";
@@ -21,21 +40,6 @@
         };
 
         nixos-hardware.url = "github:NixOS/nixos-hardware/master";
-
-        nur.url = "github:nix-community/NUR";
-        ags.url = "github:Aylur/ags";
-        stylix.url = "github:danth/stylix";
-        hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
-
-        split-monitor-workspaces = {
-            url = "github:Duckonaut/split-monitor-workspaces";
-            inputs.hyprland.follows = "hyprland";
-        };
-
-        nix-index-database = {
-            url = "github:nix-community/nix-index-database";
-            inputs.nixpkgs.follows = "nixpkgs";
-        };
     };
 
     outputs = inputs: let
