@@ -1,4 +1,4 @@
-const date = Variable("", {
+export const date = Variable("", {
     poll: [1000, 'date "+%H:%M:%S  -  %e. %b"'],
 })
 
