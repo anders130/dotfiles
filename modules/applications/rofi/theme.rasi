@@ -9,7 +9,7 @@
     dark-fg-color: #24273a;
     grey: #6e738d;
 
-    width: 650;
+    width: 600;
     font: "CaskaydiaMono NFM SemiBold 14";
 }
 
@@ -19,12 +19,16 @@ element-text, element-icon , mode-switcher {
 }
 
 window {
-    height: 360px;
+    height: 400px;
     border: 3px;
     border-color: @blue;
     border-radius:  15px;
-    border:         3px;
+    border: 3px;
     background-color: @bg-col;
+    location: center;
+    anchor: center;
+    x-offset: 0px;
+    y-offset: 0px;
 }
 
 mainbox {

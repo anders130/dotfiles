@@ -4,12 +4,18 @@
     pkgs,
     username,
     ...
-}: {
+}: let
+    cfg = config.modules.applications.rofi;
+in {
     options.modules.applications.rofi = {
         enable = lib.mkEnableOption "rofi";
+        terminal = lib.mkOption {
+            type = lib.types.str;
+            default = "alacritty";
+        };
     };
 
-    config = lib.mkIf config.modules.applications.rofi.enable {
+    config = lib.mkIf cfg.enable {
         environment.systemPackages = with pkgs; [
             rofimoji
         ];
@@ -21,19 +27,22 @@
                 enable = true;
                 package = pkgs.rofi-wayland;
                 theme = "theme";
-                terminal = "${pkgs.unstable.alacritty}/bin/alacritty"; # TODO: make this configurable
+                terminal = cfg.terminal;
+                extraConfig.display-drun = " Apps ";
             };
 
-            xdg.configFile."rofi/theme.rasi" = lib.mkSymlink {
-                config = config;
-                source = "modules/applications/rofi/theme.rasi";
-            };
+            xdg.configFile = {
+                "rofi/theme.rasi" = lib.mkSymlink {
+                    inherit config;
+                    source = "modules/applications/rofi/theme.rasi";
+                };
 
-            xdg.configFile."rofimoji.rc".text = ''
-                action = copy
-                skin-tone = neutral
-                max-recent = 0
-            '';
+                "rofimoji.rc".text = ''
+                    action = copy
+                    skin-tone = neutral
+                    max-recent = 0
+                '';
+            };
         };
     };
 }
