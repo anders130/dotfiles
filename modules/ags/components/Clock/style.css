@@ -8,6 +8,7 @@
     border: 3pt solid rgba(73, 77, 100, 0.1);
     margin: 320px 760px 560px 760px;
     font-size: 100px;
+    padding: 20px;
 }
 
 .clock-widescreen {

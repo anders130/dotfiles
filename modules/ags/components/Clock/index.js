@@ -12,7 +12,6 @@ export const Clock = ({ monitor = 0 }) => {
         keymode: "none",
         sensitive: false,
         layer: "background",
-        anchor: ["top", "left", "right", "bottom"],
         className: "clock-window",
         child: Widget.CenterBox({
             className: `clock ${monitorWidth > 1920
