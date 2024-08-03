@@ -8,7 +8,7 @@
     border: 3pt solid rgba(73, 77, 100, 0.1);
     margin: 320px 760px 560px 760px;
     font-size: 100px;
-    padding: 20px;
+    padding: 30px 40px;
 }
 
 .clock-widescreen {
@@ -18,5 +18,5 @@
 
 .clock-label {
     font-family: "CaskaydiaMono NFM Light";
-    color: @theme_fg_color;
+    color: #cad3f5;
 }
