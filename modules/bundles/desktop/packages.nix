@@ -7,8 +7,6 @@
     unstable-packages = with pkgs.unstable; [
         bitwarden
         obsidian
-        signal-desktop # oss messenger
-        whatsapp-for-linux # bad messenger
         insomnia # postman-alternative
         grim # whole screen screenshot
         grimblast # region screenshot
@@ -27,7 +25,6 @@
         gnome.gnome-music # music player
         bottles # windows programs
         rpi-imager
-        lxqt.lxqt-policykit
 
         fluent-gtk-theme
         orchis-theme

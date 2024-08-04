@@ -28,6 +28,10 @@ in {
         environment.systemPackages = with pkgs.unstable; [
             hyprlock # lock screen
             swww # wallpaper utility
+
+            # apps
+            signal-desktop # oss messenger
+            whatsapp-for-linux # bad messenger
         ];
 
         programs.hyprland = {
@@ -75,6 +79,10 @@ in {
                         "ags -b hypr"
                         autostart
                         greeter
+                        "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1"
+                        # apps
+                        "whatsapp-for-linux"
+                        "signal-desktop"
                     ];
 
                     input = {
