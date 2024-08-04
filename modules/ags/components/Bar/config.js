@@ -7,7 +7,6 @@ export const MainScreenBar = ({ monitor = 0 }) => Bar({
         Workspaces({ monitor: monitor }),
     ],
     center: [
-        Notification(),
         SimpleTime(),
     ],
     right: [
@@ -23,7 +22,6 @@ export const SecondaryScreenBar = ({ monitor = 0 }) => Bar({
         Workspaces({ monitor: monitor }),
     ],
     center: [
-        Notification(),
         SimpleTime(),
     ],
     right: [

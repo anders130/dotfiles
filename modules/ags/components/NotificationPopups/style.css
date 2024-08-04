@@ -1,0 +1,67 @@
+window.notification-popups box.notifications {
+    padding: .5em;
+}
+
+.icon {
+    min-width: 68px;
+    min-height: 68px;
+    margin-right: 1em;
+}
+
+.icon image {
+    font-size: 58px;
+    /* to center the icon */
+    margin: 5px;
+    color: @theme_fg_color;
+}
+
+.icon box {
+    min-width: 68px;
+    min-height: 68px;
+    border-radius: 7px;
+}
+
+.notification {
+    min-width: 450px;
+    border-radius: 10px;
+    padding: 1em;
+    margin: .5em;
+    border: 3px solid @theme_selected_color;
+    background-color: rgba(36, 39, 58, 0.7);
+}
+
+.notification.critical {
+    border-color: rgb(237, 135, 150);
+}
+
+.title {
+    color: @theme_fg_color;
+    font-size: 1.4em;
+}
+
+.body {
+    color: @theme_unfocused_fg_color;
+}
+
+.action-button {
+    background-color: rgba(30, 32, 48, 0.5);
+    padding: 0.2em;
+    border-radius: 10px;
+}
+
+.action-button:hover {
+    background-color: rgba(73, 77, 100, 0.6);
+}
+
+.actions .action-button {
+    margin: 0 .4em;
+    margin-top: .8em;
+}
+
+.actions .action-button:first-child {
+    margin-left: 0;
+}
+
+.actions .action-button:last-child {
+    margin-right: 0;
+}

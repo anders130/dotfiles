@@ -9,7 +9,12 @@
     options.modules.ags = {
         enable = lib.mkEnableOption "ags";
     };
+
     config = lib.mkIf config.modules.ags.enable {
+        environment.systemPackages = [
+            pkgs.pulseaudio
+        ];
+
         home-manager.users.${username} = {config, ...}: {
             imports = [
                 inputs.ags.homeManagerModules.default
