@@ -19,6 +19,8 @@
             inputs.nixpkgs.follows = "nixpkgs";
         };
 
+        nixvim.url = "path:./modules/nixvim";
+
         # gui
         ags.url = "github:Aylur/ags";
         hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1&rev=918d8340afd652b011b937d29d5eea0be08467f5";

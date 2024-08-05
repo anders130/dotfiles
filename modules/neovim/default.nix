@@ -15,6 +15,7 @@
             package = pkgs.unstable.neovim-unwrapped;
             viAlias = true;
             vimAlias = true;
+            defaultEditor = true;
         };
 
         environment.systemPackages = with pkgs.unstable; [
@@ -30,8 +31,6 @@
         ];
 
         home-manager.users.${username} = {config, ...}: {
-            home.sessionVariables.EDITOR = "nvim";
-
             xdg.configFile.nvim = lib.mkSymlink {
                 config = config;
                 source = "modules/neovim";

@@ -7,6 +7,7 @@
         ./hardware
         ./hypr
         ./neovim
+        ./nixvim
         ./services
         ./theming
     ];
