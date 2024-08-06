@@ -4,11 +4,16 @@
         pattern.".*/hypr/.*%.conf" = "hyprlang";
     };
 
+    extraConfigLua = /*lua*/''
+        require("nvim-treesitter.install").prefer_git = true
+    '';
+
     plugins.treesitter = {
         enable = true;
         settings = {
-            ensure_installed = "all";
             auto_install = false;
+            ensure_installed = "all";
+            prefer_git = true;
             highlight = {
                 enable = true;
                 # Some languages depend on vim's regex highlighting system (such as Ruby) for indent rules.
@@ -19,9 +24,6 @@
             indent = {
                 enable = true;
                 disable = [ "ruby" ];
-            };
-            rainbow = {
-                enable = true;
             };
         };
     };
