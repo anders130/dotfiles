@@ -19,7 +19,7 @@
                 git.enable = lib.mkDefault true;
                 tmux.enable = lib.mkDefault true;
             };
-            neovim.enable = lib.mkDefault true;
+            nixvim.enable = lib.mkDefault true;
             theming.stylix.enable = lib.mkDefault true;
         };
 
