@@ -2,15 +2,42 @@
     plugins.lsp = {
         enable = true;
         inlayHints = true;
+        keymaps.extra = [
+            {
+                key = "gd";
+                action.__raw = "require('telescope.builtin').lsp_definitions";
+                options.desc = "[G]oto [D]efinition";
+            }
+            {
+                key = "gr";
+                action.__raw = "require('telescope.builtin').lsp_references";
+                options.desc = "[G]oto [R]eferences";
+            }
+            {
+                key = "gI";
+                action.__raw = "require('telescope.builtin').lsp_implementations";
+                options.desc = "[G]oto [I]mplementations";
+            }
+            {
+                key = "<leader>D";
+                action.__raw = "require('telescope.builtin').lsp_type_definitions";
+                options.desc = "Type [D]efinition";
+            }
+            {
+                key = "<leader>ds";
+                action.__raw = "require('telescope.builtin').lsp_document_symbols";
+                options.desc = "[D]ocument [S]ymbols";
+            }
+            {
+                key = "<leader>ws";
+                action.__raw = "require('telescope.builtin').lsp_dynamic_workspace_symbols";
+                options.desc = "[W]orkspace [S]ymbols";
+            }
+        ];
         keymaps.lspBuf = {
             gd = "definition";
-            gr = "references";
-            gI = "implemtations";
-            "<leader>D" = "type_definitions";
-            "<leader>ds" = "document_symbols";
-            "<leader>ws" = "dynamic_workspace_symbols";
-            "<leader>rn" = "rename";
-            "<leader>ca" = "code_action";
+            rn = "rename";
+            ca = "code_action";
             K = "hover";
             gD = "declaration";
         };
