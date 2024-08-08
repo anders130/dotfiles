@@ -1,5 +1,6 @@
 {
     imports = [
+        ./cellular-automaton.nix
         ./cmp.nix
         ./conform.nix
         ./dashboard.nix
