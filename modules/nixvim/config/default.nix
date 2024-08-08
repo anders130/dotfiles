@@ -13,4 +13,14 @@
             transparent_background = true;
         };
     };
+
+    autoCmd = [
+        {
+            desc = "Highlight when yanking text";
+            event = ["TextYankPost"];
+            callback.__raw = /*lua*/''function()
+                vim.highlight.on_yank()
+            end'';
+        }
+    ];
 }
