@@ -1,15 +1,12 @@
 {
     plugins.nvim-colorizer = {
         enable = true;
+        userDefaultOptions.names = false;
         fileTypes = [
             "*"
             {
-                language = "html";
-                names = false;
-            }
-            {
-                language = "nix";
-                names = false;
+                language = "css";
+                names = true;
             }
         ];
     };
