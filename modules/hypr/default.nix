@@ -93,6 +93,8 @@ in {
                         kb_rules = "";
 
                         numlock_by_default = true;
+                        repeat_delay = 250;
+                        repeat_rate = 25;
 
                         follow_mouse = 1;
                         mouse_refocus = 0;
