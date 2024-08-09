@@ -2,6 +2,7 @@
     imports = [
         ./cellular-automaton.nix
         ./cmp.nix
+        ./colorizer.nix
         ./conform.nix
         ./dashboard.nix
         ./lsp.nix
@@ -46,15 +47,5 @@
         godot.enable = true;
         markdown-preview.enable = true;
         neo-tree.enable = true;
-        nvim-colorizer = {
-            enable = true;
-            fileTypes = [
-                "*"
-                {
-                    language = "html";
-                    names = false;
-                }
-            ];
-        };
     };
 }
