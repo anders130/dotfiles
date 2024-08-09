@@ -1,8 +1,10 @@
-{
+{pkgs, ...}: {
     keymaps = [{
-        mode = "n";
+        mode = ["n" "v"];
         key = "<leader>f";
-        action = "require('conform').format { async = true, lsp_fallback = true }";
+        action.__raw = /*lua*/''function()
+            require('conform').format { async = true, lsp_fallback = true }
+        end'';
         options.desc = "[F]ormat buffer";
     }];
 
@@ -34,29 +36,15 @@
             # javascript = ["prettierd" "prettier"];
         };
         formatters = {
+            alejandra.command = "${pkgs.alejandra}/bin/alejandra";
             convert_indentation = {
-                command = "sed";
+                command = "${pkgs.gnused}/bin/sed";
                 args = ["-i" "-E" "s/^([ \t]+)/\\1\\1/" "$FILENAME"];
                 stdin = false;
-                cwd = /*lua*/''
+                cwd.__raw = /*lua*/''
                     function() return vim.fn.expand('%:p:h') end
                 '';
             };
         };
     };
-# return {
-#     -- Autoformat
-#     'stevearc/conform.nvim',
-#     lazy = false,
-#     keys = {
-#         {
-#           '<leader>f',
-#             function()
-#                 require('conform').format { async = true, lsp_fallback = true }
-#             end,
-#             mode = '',
-#             desc = '[F]ormat buffer',
-#         },
-#     },
-# }
 }
