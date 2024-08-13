@@ -1,4 +1,6 @@
-{
+{pkgs, ...}: {
+    extraPackages = [pkgs.ripgrep];
+
     plugins.telescope = {
         enable = true;
         extensions = {
