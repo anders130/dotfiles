@@ -20,6 +20,7 @@
         };
 
         nixvim.url = "path:./modules/nixvim";
+        nix-minecraft.url = "github:Infinidoge/nix-minecraft";
 
         # gui
         ags.url = "github:Aylur/ags";

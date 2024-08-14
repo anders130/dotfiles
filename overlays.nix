@@ -22,5 +22,6 @@ inputs: rec {
     default = inputs.nixpkgs.lib.composeManyExtensions [
         allowMissingOverlay
         all-channels
+        inputs.nix-minecraft.overlay
     ];
 }
