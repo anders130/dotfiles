@@ -19,6 +19,15 @@
         indent-blankline.enable = true;
         lualine = {
             enable = true;
+            theme = "catppuccin";
+            sectionSeparators = {
+                left = "";
+                right = "";
+            };
+            componentSeparators = {
+                left = "";
+                right = "";
+            };
         };
         otter.enable = true; # completion for embedded code
         surround.enable = true;
