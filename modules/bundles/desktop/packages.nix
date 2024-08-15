@@ -41,7 +41,7 @@
         teams-for-linux
     ];
 in {
-    config = lib.mkIf config.bundles.cli.enable {
+    config = lib.mkIf config.bundles.desktop.enable {
         environment.systemPackages =
             stable-packages
             ++ unstable-packages;
