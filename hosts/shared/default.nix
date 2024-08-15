@@ -54,22 +54,30 @@
     };
 
     nix = {
-        settings = {
-            trusted-users = [username];
-
-            accept-flake-config = true;
-            auto-optimise-store = true;
-        };
-
-        registry.nixpkgs.flake = inputs.nixpkgs;
-
-        package = pkgs.nixFlakes;
-        extraOptions = ''experimental-features = nix-command flakes'';
-
         gc = {
             automatic = true;
             options = "--delete-older-than 7d";
         };
+
+        package = pkgs.nixFlakes;
+
+        registry.nixpkgs.flake = inputs.nixpkgs;
+
+        settings = {
+            accept-flake-config = true;
+            auto-optimise-store = true;
+
+            experimental-features = [
+                "nix-command"
+                "flakes"
+            ];
+
+            trusted-users = [username];
+        };
+
+        extraOptions = ''
+            !include /home/${username}/.nix.conf
+        '';
     };
 
     system.stateVersion = variables.version;

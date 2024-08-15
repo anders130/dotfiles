@@ -11,6 +11,12 @@ If you want, you can also specify some options from the `nixos-rebuild` command 
 flake-rebuild --fast --impure
 ```
 
+If you encounter rate limiting while updating flake inputs, you can add your github token via `~/.config/nix/nix.conf`:
+```
+access-tokens = github.com=ghp_***
+```
+To create a new token, go to [github.com/settings/tokens](https://github.com/settings/tokens) and click on `Generate new token`.
+
 ## Installation (Desktop)
 Install NixOS and follow the next steps:
 
