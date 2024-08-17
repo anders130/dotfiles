@@ -43,6 +43,7 @@
         };
 
         nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+        raspberry-pi-nix.url = "github:nix-community/raspberry-pi-nix";
     };
 
     outputs = inputs: let
