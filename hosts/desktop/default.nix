@@ -35,5 +35,16 @@
 
     boot.binfmt.emulatedSystems = ["aarch64-linux"];
 
+    systemd = {
+        slices."nix-daemon".sliceConfig = {
+            ManagedOOMMemoryPressure = "kill";
+            ManagedOOMMemoryPressureLimit = "50%";
+        };
+        services."nix-daemon".serviceConfig = {
+            Slice = "nix-daemon.slice";
+            OOMScoreAdjust = 1000;
+        };
+    };
+
     services.printing.drivers = [ pkgs.hplip ];
 }
