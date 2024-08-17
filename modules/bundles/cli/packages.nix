@@ -22,6 +22,7 @@
     ];
 
     stable-packages = with pkgs; [
+        cachix
         python3
         dotnet-sdk_8
     ];
