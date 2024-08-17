@@ -2,5 +2,6 @@
     imports = [
         ./cli
         ./desktop
+        ./rpi
     ];
 }
