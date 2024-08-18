@@ -12,7 +12,6 @@
     };
 
     config = lib.mkIf config.modules.services.minecraft.enable {
-
         services.minecraft-servers = {
             enable = true;
             eula = true;
@@ -24,5 +23,7 @@
                 package = pkgs.minecraftServers.vanilla-1_20_4;
             };
         };
+
+        networking.firewall.allowedTCPPorts = [25565];
     };
 }

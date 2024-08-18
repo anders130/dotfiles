@@ -8,6 +8,7 @@
 
     modules.services = {
         blocky.enable = true;
+        minecraft.enable = true;
         plex.enable = true;
     };
 
