@@ -21,6 +21,7 @@
 
         nixvim.url = "path:./modules/nixvim";
         nix-minecraft.url = "github:Infinidoge/nix-minecraft";
+        lumehub.url = "git+https://github.com/LumeHub/LumeHub.Server?branch=dev&submodules=1";
 
         # gui
         ags.url = "github:Aylur/ags";
