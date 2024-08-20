@@ -48,6 +48,8 @@
                     a = "add";
                     aa = "add --all";
                     lg = "log --pretty=oneline --decorate --graph --abbrev-commit -30";
+                    rt = "restore";
+                    rts = "restore --staged";
                 };
                 includes = [
                     {
