@@ -703,11 +703,11 @@
         "nixpkgs": "nixpkgs_3"
       },
       "locked": {
-        "lastModified": 1724098264,
-        "narHash": "sha256-A56SwSCRk+4kt4KXLw5TjoQYRkVFzikWZzFkn8lr4BU=",
+        "lastModified": 1724188432,
+        "narHash": "sha256-3rIjKRZ973MYZKvESZF1dPC9Mm/oZn0idfY3J1pnP30=",
         "ref": "refs/heads/dev",
-        "rev": "794b2154bec966c691e69cb001718ba0f80a0abb",
-        "revCount": 30,
+        "rev": "8f643d3940fdc96ce2e22d56a62a9de3c175f17c",
+        "revCount": 31,
         "submodules": true,
         "type": "git",
         "url": "https://github.com/LumeHub/LumeHub.Server?branch=dev"

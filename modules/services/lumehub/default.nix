@@ -15,23 +15,10 @@
     config = lib.mkIf config.modules.services.lumehub.enable {
         services.lumehub = {
             enable = true;
+            openFirewall = true;
             settings = {
-                Logging.LogLevel = {
-                    Default = "Information";
-                    Microsoft.AspNetCore = "Warning";
-                };
-                AllowedHosts = "*";
-                ConnectionStrings.DatabaseFileName = "LumeHub.Server.db";
-                ApiKeySettings = {
-                    ApiKey = "MySecretApiKey";
-                    ApiKeyHeaderName = "x-api-key";
-                    ApiKeySchemeName = "ApiKey";
-                };
-                LedControllerSettings = {
-                    PixelCount = 100;
-                    BusId = 0;
-                    ClockFrequency = 2000000;
-                };
+                ApiKeySettings.ApiKey = "MySecretApiKey";
+                LedControllerSettings.PixelCount = 200;
             };
         };
     };
