@@ -2,7 +2,7 @@
     time.timeZone = "Europe/Berlin";
 
     # console keyboard layout
-    console.keyMap = "de";
+    console.keyMap = "us";
 
     # Select internationalisation properties.
     i18n.defaultLocale = "en_US.UTF-8";

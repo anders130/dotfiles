@@ -53,7 +53,7 @@
 
             # keyboard layout
             xkb = {
-                layout = "de";
+                layout = "us";
                 variant = "";
             };
         };

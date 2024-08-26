@@ -14,10 +14,10 @@
             package = pkgs.kanata;
             keyboards.default.config = ''
                 (defsrc
-                    caps
+                    caps z y
                 )
                 (deflayer default
-                    esc
+                    esc y z
                 )
             '';
         };
