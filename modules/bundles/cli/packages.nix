@@ -23,8 +23,6 @@
 
     stable-packages = with pkgs; [
         cachix
-        python3
-        dotnet-sdk_8
     ];
 in {
     config = lib.mkIf config.bundles.cli.enable {
