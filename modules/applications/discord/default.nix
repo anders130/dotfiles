@@ -11,10 +11,6 @@
     };
 
     config = lib.mkIf config.modules.applications.discord.enable {
-        environment.systemPackages = [
-            pkgs.discord
-        ];
-
         home-manager.sharedModules = [
             inputs.nixcord.homeManagerModules.nixcord
         ];
@@ -38,14 +34,9 @@
                 vesktop.enable = true;
                 vesktopPackage = pkgs.unstable.vesktop.overrideAttrs (finalAttrs: previousAttrs: {
                     desktopItems = [
-                        ((builtins.elemAt previousAttrs.desktopItems 0).override {icon = "discord";})
+                        ((builtins.elemAt previousAttrs.desktopItems 0).override {icon = "${pkgs.discord}/share/icons/hicolor/256x256/apps/discord.png";})
                     ];
                 });
-            };
-
-            xdg.desktopEntries.discord = {
-                name = "Discord";
-                noDisplay = true;
             };
         };
     };
