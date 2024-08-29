@@ -23,7 +23,9 @@ in {
         programs.steam = {
             enable = true;
             remotePlay.openFirewall = true;
-            package = pkgs.unstable.steam;
+            package = pkgs.unstable.steam.override {
+                extraPkgs = pkgs: [pkgs.attr];
+            };
         };
 
         environment.systemPackages =
