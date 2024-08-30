@@ -6,6 +6,7 @@
         ./conform.nix
         ./dashboard.nix
         ./lsp.nix
+        ./none-ls.nix
         ./supermaven.nix
         ./telescope.nix
         ./treesitter.nix

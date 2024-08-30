@@ -54,6 +54,7 @@
             omnisharp.enable = true;
             pyright.enable = true;
             tsserver.enable = true;
+            eslint.enable = true;
         };
     };
 }
