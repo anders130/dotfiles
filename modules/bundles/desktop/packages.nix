@@ -33,7 +33,6 @@
         gnome.adwaita-icon-theme # just having this installed fixes issues with some apps
 
         gnome.dconf-editor # needed for home-manager gtk theming
-        gojq
 
         youtube-music
 
