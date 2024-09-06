@@ -5,6 +5,7 @@
         ./colorizer.nix
         ./conform.nix
         ./dashboard.nix
+        ./highlight-undo.nix
         ./lsp.nix
         ./none-ls.nix
         ./supermaven.nix
