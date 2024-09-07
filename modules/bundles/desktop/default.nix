@@ -12,6 +12,11 @@
     options.bundles.desktop = {
         enable = lib.mkEnableOption "Enable desktop bundle";
         gaming.enable = lib.mkEnableOption "Enable gaming stuff";
+        mainMonitor = lib.mkOption {
+            type = lib.types.str;
+            default = "DP-1";
+            description = "The main monitor";
+        };
     };
 
     config = lib.mkIf config.bundles.desktop.enable {
@@ -30,7 +35,10 @@
                 rofi.enable = lib.mkDefault true;
             };
             hardware.kanata.enable = lib.mkDefault true;
-            hypr.enable = lib.mkDefault true;
+            hypr = {
+                enable = lib.mkDefault true;
+                mainMonitor = lib.mkDefault config.bundles.desktop.mainMonitor;
+            };
             theming = {
                 plymouth.enable = lib.mkDefault true;
                 stylix = {

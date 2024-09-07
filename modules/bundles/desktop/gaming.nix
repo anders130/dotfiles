@@ -5,7 +5,7 @@
     ...
 }: let
     forceMouseToGame = pkgs.writeShellScriptBin "forceMouseToGame" /*bash*/''
-        monitor=DP-1 # TODO set the main monitor
+        monitor=${config.bundles.desktop.mainMonitor}
         expect_y=0
         curr_y=$(hyprctl -j monitors | ${pkgs.jq}/bin/jq '.[0].y')
         if [ $curr_y -ne $expect_y ]
