@@ -52,10 +52,12 @@
         secrets = builtins.fromJSON (builtins.readFile "${inputs.self}/secrets.json");
         variables = import ./variables.nix;
     in {
-        overlays = import ./overlays.nix inputs;
-
         nixosConfigurations = import ./nixosConfigurations.nix {
             inherit secrets variables inputs;
         };
+
+        overlays = import ./overlays.nix inputs;
+
+        templates = import ./templates;
     };
 }

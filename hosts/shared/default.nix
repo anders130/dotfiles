@@ -61,7 +61,11 @@
 
         package = pkgs.nixFlakes;
 
-        registry.nixpkgs.flake = inputs.nixpkgs;
+        registry = {
+            custom.flake = inputs.self;
+            nixpkgs.flake = inputs.nixpkgs;
+            nixpkgs-unstable.flake = inputs.nixpkgs-unstable;
+        };
 
         settings = {
             accept-flake-config = true;
