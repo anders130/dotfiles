@@ -3,15 +3,13 @@
     secrets,
     variables,
 }: let
-    mkLib = nxipkgs:
+    mkLib = system:
         inputs.nixpkgs.lib.extend (final: prev:
             (import ./lib {
+                inherit inputs system;
                 lib = final;
-                inputs = inputs;
             })
             // inputs.home-manager.lib);
-
-    lib = mkLib inputs.nixpkgs;
 
     mkHomeManagerConfig = args: {
         nixpkgs = {
@@ -31,7 +29,7 @@
     };
 
     argDefaults = {
-        inherit inputs lib secrets variables;
+        inherit inputs secrets variables;
         self = inputs.self;
         channels = {
             nixpkgs = inputs.nixpkgs;
@@ -48,7 +46,8 @@
         args ? {},
         modules ? [],
     }: let
-        specialArgs = argDefaults // {inherit hostname username hashedPassword host;} // args;
+        lib = mkLib system;
+        specialArgs = argDefaults // {inherit hostname username hashedPassword host lib;} // args;
     in
         inputs.nixpkgs.lib.nixosSystem {
             inherit system specialArgs;

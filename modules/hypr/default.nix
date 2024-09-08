@@ -7,7 +7,7 @@
     ...
 }: let
     cfg = config.modules.hypr;
-    hyprlandPackage = inputs.hyprland.packages.${pkgs.system}.hyprland;
+    package = (lib.getPkgs "hyprland").hyprland;
 in {
     imports = [
         ./hyprlock
@@ -22,8 +22,8 @@ in {
 
     config = lib.mkIf cfg.enable {
         programs.hyprland = {
+            inherit package;
             enable = true;
-            package = hyprlandPackage;
             xwayland.enable = true;
         };
 
@@ -41,8 +41,8 @@ in {
             ];
 
             wayland.windowManager.hyprland = {
+                inherit package;
                 enable = true;
-                package = hyprlandPackage;
                 xwayland.enable = true;
 
                 settings = {
@@ -59,12 +59,10 @@ in {
                 '';
             };
 
-            xdg.configFile = {
-                "hypr/visuals" = lib.mkSymlink {
-                    config = config;
-                    source = "modules/hypr/visuals";
-                    recursive = true;
-                };
+            xdg.configFile."hypr/visuals" = lib.mkSymlink {
+                inherit config;
+                source = "modules/hypr/visuals";
+                recursive = true;
             };
 
             stylix.targets = {

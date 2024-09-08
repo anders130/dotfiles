@@ -1,8 +1,6 @@
 {
     config,
-    inputs,
     lib,
-    pkgs,
     username,
     ...
 }: let
@@ -11,7 +9,7 @@ in {
     home-manager.users.${username} = lib.mkIf cfg.enable {
         wayland.windowManager.hyprland = {
             plugins = [
-                inputs.split-monitor-workspaces.packages.${pkgs.system}.split-monitor-workspaces
+                (lib.getPkgs "split-monitor-workspaces").split-monitor-workspaces
             ];
 
             extraConfig = /*hyprlang*/ ''

@@ -15,7 +15,9 @@
             pkgs.pulseaudio
         ];
 
-        home-manager.users.${username} = {config, ...}: {
+        home-manager.users.${username} = {config, ...}: let
+            mkSymlink = args: lib.mkSymlink (args // {inherit config;});
+        in {
             imports = [
                 inputs.ags.homeManagerModules.default
             ];
@@ -33,21 +35,13 @@
             };
 
             xdg.configFile = {
-                "ags/config.js" = lib.mkSymlink {
-                    config = config;
-                    source = "modules/ags/config.js";
-                };
-                "ags/style.css" = lib.mkSymlink {
-                    config = config;
-                    source = "modules/ags/style.css";
-                };
-                "ags/components" = lib.mkSymlink {
-                    config = config;
+                "ags/config.js" = mkSymlink {source = "modules/ags/config.js";};
+                "ags/style.css" = mkSymlink {source = "modules/ags/style.css";};
+                "ags/components" = mkSymlink {
                     source = "modules/ags/components";
                     recursive = true;
                 };
-                "ags/utils" = lib.mkSymlink {
-                    config = config;
+                "ags/utils" = mkSymlink {
                     source = "modules/ags/utils";
                     recursive = true;
                 };

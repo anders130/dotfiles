@@ -1,7 +1,11 @@
 {
     inputs,
     lib,
-}: {
-    mkSymlink = import ./mkSymlink.nix {inherit inputs lib;};
-    hexToRgb = import ./hexToRgb.nix {inherit inputs lib;};
+    system
+}: let
+    mkImport = path: import path {inherit inputs lib system;};
+in {
+    getPkgs = mkImport ./getPkgs.nix;
+    hexToRgb = mkImport ./hexToRgb.nix;
+    mkSymlink = mkImport ./mkSymlink.nix;
 }

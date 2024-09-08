@@ -8,6 +8,8 @@
     cfg = config.modules.hypr;
     stylixColors = config.lib.stylix.colors;
 
+    package = pkgs.unstable.hyprlock;
+
     font = config.stylix.fonts.monospace.name;
 
     colors = {
@@ -26,8 +28,8 @@
 in {
     home-manager.users.${username} = lib.mkIf cfg.enable {
         programs.hyprlock = {
+            inherit package;
             enable = true;
-            package = pkgs.unstable.hyprlock;
             settings = {
                 general = {
                     disable_loading_bar = true;
