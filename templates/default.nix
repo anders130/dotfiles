@@ -8,7 +8,7 @@
     };
 
     simple = {
-        path = ./dev/simple;
+        path = ./simple;
         description = "simple dev environment with no pre-installed packages";
         welcomeText = ''
             This template is a basic dev environment with no pre-installed packages.
