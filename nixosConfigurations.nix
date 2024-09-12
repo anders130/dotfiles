@@ -11,43 +11,21 @@
             })
             // inputs.home-manager.lib);
 
-    mkHomeManagerConfig = args: {
-        nixpkgs = {
-            config = {
-                allowUnfree = true;
-                allowUnsupportedSystem = true;
-                permittedInsecurePackages = [];
-            };
-            overlays = [(import ./overlays.nix inputs).default];
-        };
-        home-manager = {
-            useGlobalPkgs = true;
-            useUserPackages = true;
-            backupFileExtension = "hm-backup";
-            extraSpecialArgs = args;
-        };
-    };
-
-    argDefaults = {
-        inherit inputs secrets variables;
-        self = inputs.self;
-        channels = {
-            nixpkgs = inputs.nixpkgs;
-            nixpkgs-unstable = inputs.nixpkgs-unstable;
-        };
-    };
-
     mkNixosConfig = host @ {
-        system ? "x86_64-linux",
         name,
         hostname,
         username,
+        system ? "x86_64-linux",
         hashedPassword ? null,
-        args ? {},
         modules ? [],
+        args ? {},
     }: let
         lib = mkLib system;
-        specialArgs = argDefaults // {inherit hostname username hashedPassword host lib;} // args;
+        specialArgs = {
+            inherit inputs secrets variables;
+            inherit hashedPassword hostname username;
+            inherit host lib;
+        } // args;
     in
         inputs.nixpkgs.lib.nixosSystem {
             inherit system specialArgs;
@@ -56,7 +34,9 @@
                 ./hosts/${name}
                 inputs.home-manager.nixosModules.home-manager
                 inputs.stylix.nixosModules.stylix
-                (mkHomeManagerConfig specialArgs)
+                {
+                    home-manager.extraSpecialArgs = specialArgs;
+                }
             ];
         };
 

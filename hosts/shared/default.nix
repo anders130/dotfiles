@@ -14,8 +14,19 @@
         ./localization.nix
     ];
 
-    home-manager.users.${username} = {
-        imports = [
+    nixpkgs = {
+        config = {
+            allowUnfree = true;
+            allowUnsupportedSystem = true;
+            permittedInsecurePackages = [];
+        };
+        overlays = [inputs.self.outputs.overlays.default];
+    };
+    home-manager = {
+        useGlobalPkgs = true;
+        useUserPackages = true;
+        backupFileExtension = "hm-backup";
+        users.${username}.imports = [
             ./home.nix
         ];
     };
@@ -23,10 +34,10 @@
     # enable custom modules
     modules = {
         console = {
-            fish.enable = true;
-            git.enable = true;
+            fish.enable = lib.mkDefault true;
+            git.enable = lib.mkDefault true;
         };
-        services.docker.enable = true;
+        services.docker.enable = lib.mkDefault true;
     };
 
     environment.variables = {
@@ -39,9 +50,9 @@
         networkmanager.enable = lib.mkDefault true;
     };
 
-    services.openssh.enable = true;
+    services.openssh.enable = lib.mkDefault true;
 
-    programs.ssh.startAgent = true;
+    programs.ssh.startAgent = lib.mkDefault true;
 
     users.users.${username} = {
         isNormalUser = true;
