@@ -61,20 +61,18 @@ in {
 
         users.users.${username}.shell = pkgs.fish;
 
-        home-manager.users.${username} = {config, ...}: let
-            mkSymlink = args: lib.mkSymlink (args // {inherit config;});
-        in {
+        home-manager.users.${username} = {config, ...}: {
             stylix.targets.bat.enable = false;
             home.sessionVariables.SHELL = "etc/profiles/per-user/${username}/bin/fish";
 
-            xdg.configFile."fish/functions" = mkSymlink {
+            xdg.configFile."fish/functions" = lib.mkSymlink config {
                 source = "${modulePath}/functions";
                 recursive = true;
             };
-            xdg.configFile."fish/themes/fish.theme" = mkSymlink {
+            xdg.configFile."fish/themes/fish.theme" = lib.mkSymlink config {
                 source = "${modulePath}/themes/fish.theme";
             };
-            xdg.configFile."bat/themes/bat.tmTheme" = mkSymlink {
+            xdg.configFile."bat/themes/bat.tmTheme" = lib.mkSymlink config {
                 source = "${modulePath}/themes/bat.tmTheme";
             };
         };

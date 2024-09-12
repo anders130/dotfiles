@@ -3,10 +3,10 @@
     secrets,
     variables,
 }: let
-    mkLib = system:
+    mkLib = {system, isThinClient}:
         inputs.nixpkgs.lib.extend (final: prev:
             (import ./lib {
-                inherit inputs system;
+                inherit inputs system isThinClient;
                 lib = final;
             })
             // inputs.home-manager.lib);
@@ -17,10 +17,11 @@
         username,
         system ? "x86_64-linux",
         hashedPassword ? null,
+        isThinClient ? false,
         modules ? [],
         args ? {},
     }: let
-        lib = mkLib system;
+        lib = mkLib {inherit system isThinClient;};
         specialArgs = {
             inherit inputs secrets variables;
             inherit hashedPassword hostname username;

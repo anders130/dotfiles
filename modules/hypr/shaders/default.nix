@@ -32,8 +32,7 @@ in {
         ];
 
         home-manager.users.${username} = {config, ...}: {
-            xdg.configFile."hypr/shaders" = lib.mkSymlink {
-                inherit config;
+            xdg.configFile."hypr/shaders" = lib.mkSymlink config {
                 source = "modules/hypr/shaders";
                 recursive = true;
             };

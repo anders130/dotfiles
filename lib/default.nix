@@ -1,9 +1,10 @@
 {
     inputs,
     lib,
-    system
+    system,
+    isThinClient,
 }: let
-    mkImport = path: import path {inherit inputs lib system;};
+    mkImport = path: import path {inherit inputs lib system isThinClient;};
 in {
     getPkgs = mkImport ./getPkgs.nix;
     hexToRgb = mkImport ./hexToRgb.nix;

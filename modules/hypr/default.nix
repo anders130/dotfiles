@@ -59,8 +59,7 @@ in {
                 '';
             };
 
-            xdg.configFile."hypr/visuals" = lib.mkSymlink {
-                inherit config;
+            xdg.configFile."hypr/visuals" = lib.mkSymlink config {
                 source = "modules/hypr/visuals";
                 recursive = true;
             };

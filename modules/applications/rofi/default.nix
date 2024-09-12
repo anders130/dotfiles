@@ -32,8 +32,7 @@ in {
             };
 
             xdg.configFile = {
-                "rofi/theme.rasi" = lib.mkSymlink {
-                    inherit config;
+                "rofi/theme.rasi" = lib.mkSymlink config {
                     source = "modules/applications/rofi/theme.rasi";
                 };
 
