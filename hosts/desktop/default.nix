@@ -35,6 +35,31 @@
 
     boot.binfmt.emulatedSystems = ["aarch64-linux"];
 
+    boot.kernelModules = ["sg"];
+
+    environment.systemPackages = let
+        libbluray = pkgs.libbluray.override {
+            withAACS = true;
+            withBDplus = true;
+            withJava = true;
+            libaacs = pkgs.libaacs;
+            libbdplus = pkgs.libbdplus;
+        };
+        vlc = pkgs.vlc.override {
+            inherit libbluray;
+        };
+    in [
+        vlc
+        pkgs.openjdk
+    ];
+    environment.variables.BDJ_LD_LIBRARY_PATH = "${pkgs.openjdk}/lib/server";
+    # environment.systemPackages = with pkgs; [
+    #     vlc
+    #     libaacs
+    #     libbdplus
+    #     openjdk
+    # ];
+
     systemd = {
         slices."nix-daemon".sliceConfig = {
             ManagedOOMMemoryPressure = "kill";
