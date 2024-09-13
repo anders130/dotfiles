@@ -45,8 +45,13 @@ in {
                 aquarium = "asciiquarium -s -t";
                 matrix = "unimatrix -as 98";
             };
+            shellInit = /*fish*/''
+                if status is-interactive
+                    fastfetch -c $HOME/.config/fastfetch/shell-greeting.jsonc
+                end
+            '';
             interactiveShellInit = /*fish*/''
-                source $FLAKE/${modulePath}/config.fish
+                source $HOME/.config/fish/extraConfig.fish
             '';
         };
 
@@ -57,7 +62,7 @@ in {
         programs.command-not-found.enable = false; # nix-index handles this
 
         environment.shells = [pkgs.fish];
-        environment.sessionVariables.STARSHIP_CONFIG = "$FLAKE/${modulePath}/starship.toml";
+        environment.sessionVariables.STARSHIP_CONFIG = "$HOME/.config/starship/starship.toml";
 
         users.users.${username}.shell = pkgs.fish;
 
@@ -65,6 +70,9 @@ in {
             stylix.targets.bat.enable = false;
             home.sessionVariables.SHELL = "etc/profiles/per-user/${username}/bin/fish";
 
+            xdg.configFile."fish/extraConfig.fish" = lib.mkSymlink config {
+                source = "${modulePath}/config.fish";
+            };
             xdg.configFile."fish/functions" = lib.mkSymlink config {
                 source = "${modulePath}/functions";
                 recursive = true;
@@ -74,6 +82,12 @@ in {
             };
             xdg.configFile."bat/themes/bat.tmTheme" = lib.mkSymlink config {
                 source = "${modulePath}/themes/bat.tmTheme";
+            };
+            xdg.configFile."starship/starship.toml" = lib.mkSymlink config {
+                source = "${modulePath}/starship.toml";
+            };
+            xdg.configFile."fastfetch/shell-greeting.jsonc" = lib.mkSymlink config {
+                source = "${modulePath}/shell-greeting.jsonc";
             };
         };
 

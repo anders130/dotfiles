@@ -1,10 +1,7 @@
 fish_config theme choose "fish"
 
-function fish_greeting
-    fastfetch -c $FLAKE/modules/console/fish/shell-greeting.jsonc
-end
-
 if status is-interactive
+    set -U fish_greeting ""
     # Commands to run in interactive sessions can go here
     fish_vi_key_bindings
     set -g fish_vi_force_cursor
