@@ -28,15 +28,19 @@
                     };
                 };
 
-                discord.enable = false;
-                vencord.enable = false;
+                discord = {
+                    enable = false;
+                    vencord.enable = false;
+                };
 
-                vesktop.enable = true;
-                vesktopPackage = pkgs.unstable.vesktop.overrideAttrs (finalAttrs: previousAttrs: {
-                    desktopItems = [
-                        ((builtins.elemAt previousAttrs.desktopItems 0).override {icon = "${pkgs.discord}/share/icons/hicolor/256x256/apps/discord.png";})
-                    ];
-                });
+                vesktop = {
+                    enable = true;
+                    package = pkgs.unstable.vesktop.overrideAttrs (finalAttrs: previousAttrs: {
+                        desktopItems = [
+                            ((builtins.elemAt previousAttrs.desktopItems 0).override {icon = "${pkgs.discord}/share/icons/hicolor/256x256/apps/discord.png";})
+                        ];
+                    });
+                };
             };
         };
     };
