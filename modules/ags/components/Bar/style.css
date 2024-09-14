@@ -1,37 +1,30 @@
 window.bar {
-    background-color: rgba(36, 39, 58, 0.8);
-    border-bottom: 3px solid rgba(73, 77, 100, 0.7);
     font-size: 14px;
-    color: @theme_fg_color;
-}
-
-button {
-    min-width: unset;
-    padding-top: 0;
-    background-color: transparent;
-    border-radius: 0px;
-    border-color: transparent;
-    border-bottom: 3px solid rgba(73, 77, 100, 0.7);
-}
-
-label {
     font-weight: bold;
+    background-color: rgba(36, 39, 58, 0.2);
+    color: @theme_fg_color;
+
+    border-radius: 10px;
+    border: 3px solid rgba(73, 77, 100, 0.2);
+    transition: border 0.2s ease-in-out;
 }
 
-.workspaces button.focused {
-    background-color: rgba(110, 115, 141, 0.5);
+window.bar.active {
+    border: 3px solid rgba(138, 173, 244, 0.8);
 }
 
-.client-title {
-    padding-right: 10px;
-    color: @theme_selected_bg_color;
+window.bar button {
+    background-color: transparent;
+    border-radius: 10px;
+    border: 3px solid transparent;
 }
 
-.notification {
-    color: @theme_selected_bg_color;
+window.bar button.focused {
+    background-color: rgba(138, 173, 244, 0.3);
+    border: 3px solid rgba(138, 173, 244, 0.8);
 }
 
-levelbar block,
-highlight {
-    min-height: 0px;
+window.bar button.active {
+    background-color: rgba(36, 39, 58, 0.1);
+    border: 3px solid rgba(138, 173, 244, 0.8);
 }
