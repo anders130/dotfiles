@@ -17,6 +17,7 @@
 }
 
 .clock-label {
-    font-family: "CaskaydiaMono NFM Light";
+    font-family: 'CaskaydiaMono NFM Light';
     color: #cad3f5;
+    font-weight: bold;
 }
