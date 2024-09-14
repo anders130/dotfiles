@@ -52,8 +52,8 @@ const AppIcon = (app) =>
 
 /** @param {number} workspaceId */
 export const Clients = (workspaceId) => {
-    const clients = hyprland.bind('clients').as((cs) =>
-        cs
+    const clients = hyprland.bind('clients').as((cs) => {
+        const appCounts = cs
             .filter((c) => c.workspace.id == workspaceId)
             .filter((c) => c.class !== 'steam' || c.title === 'Steam')
             .filter(
@@ -64,12 +64,30 @@ export const Clients = (workspaceId) => {
                         c.initialTitle === 'YouTube Music') &&
                     c.initialTitle.trim() !== ''
             )
-            .map((c) =>
-                Widget.Box({
-                    children: [AppIcon(getIcons(c))]
-                })
-            )
-    )
+            // Group clients by application class (or another property if desired)
+            .reduce((acc, client) => {
+                const key = client.class || client.title
+                if (!acc[key]) {
+                    acc[key] = { client, count: 0 }
+                }
+                acc[key].count++
+                return acc
+            }, {})
+
+        // Create widgets for each unique application with a count
+        return Object.values(appCounts).map(({ client, count }) =>
+            Widget.Box({
+                children: [
+                    AppIcon(getIcons(client)),
+                    Widget.Label({
+                        label: count > 1 ? `${count}` : '',
+                        class_name: `app-count ${count > 1 ? 'active' : ''}`
+                    })
+                ]
+            })
+        )
+    })
+
     return Widget.Box({
         class_name: 'clients',
         children: clients,

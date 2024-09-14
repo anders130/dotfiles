@@ -28,3 +28,17 @@ window.bar button.active {
     background-color: rgba(36, 39, 58, 0.1);
     border: 3px solid rgba(138, 173, 244, 0.8);
 }
+
+window.bar .app-count {
+    font-size: 11px;
+    margin-left: -5px;
+    margin-top: 10px;
+    min-width: 14px;
+    border-radius: 50%;
+    background-color: transparent;
+}
+
+window.bar .app-count.active {
+    background-color: rgba(36, 39, 58, 0.2);
+    color: @theme_fg_color;
+}
