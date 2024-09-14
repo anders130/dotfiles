@@ -14,9 +14,12 @@ in {
             enable = true;
         };
 
-        services.displayManager.autoLogin = {
-            enable = true;
-            user = username;
+        services.displayManager = {
+            autoLogin = {
+                enable = true;
+                user = username;
+            };
+            defaultSession = lib.mkDefault "hyprland";
         };
     };
 }

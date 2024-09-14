@@ -565,6 +565,7 @@
       "locked": {
         "lastModified": 1719317162,
         "narHash": "sha256-JmfnYz+9a4TjNl3mAus1VpoWtTI9d1xkW9MHbkcV0Po=",
+        "ref": "refs/tags/v0.41.2",
         "rev": "918d8340afd652b011b937d29d5eea0be08467f5",
         "revCount": 4886,
         "submodules": true,
@@ -572,7 +573,7 @@
         "url": "https://github.com/hyprwm/Hyprland"
       },
       "original": {
-        "rev": "918d8340afd652b011b937d29d5eea0be08467f5",
+        "ref": "refs/tags/v0.41.2",
         "submodules": true,
         "type": "git",
         "url": "https://github.com/hyprwm/Hyprland"
@@ -1270,16 +1271,16 @@
       "locked": {
         "lastModified": 1721499557,
         "narHash": "sha256-AqMo60XkIBssn71yN19GiunV8Nr7RqWjfCuXLAr96eg=",
-        "owner": "Duckonaut",
-        "repo": "split-monitor-workspaces",
+        "ref": "refs/heads/main",
         "rev": "d6b4d18ed4a54d336b7fea71c2d3f476a41fbd96",
-        "type": "github"
+        "revCount": 77,
+        "type": "git",
+        "url": "https://github.com/Duckonaut/split-monitor-workspaces"
       },
       "original": {
-        "owner": "Duckonaut",
-        "repo": "split-monitor-workspaces",
         "rev": "d6b4d18ed4a54d336b7fea71c2d3f476a41fbd96",
-        "type": "github"
+        "type": "git",
+        "url": "https://github.com/Duckonaut/split-monitor-workspaces"
       }
     },
     "stylix": {

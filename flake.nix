@@ -26,10 +26,17 @@
 
         # gui
         ags.url = "github:Aylur/ags";
-        hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1&rev=918d8340afd652b011b937d29d5eea0be08467f5";
+        hyprland = {
+            type = "git";
+            url = "https://github.com/hyprwm/Hyprland";
+            ref = "refs/tags/v0.41.2";
+            submodules = true;
+        };
 
         split-monitor-workspaces = {
-            url = "github:Duckonaut/split-monitor-workspaces?rev=d6b4d18ed4a54d336b7fea71c2d3f476a41fbd96";
+            type = "git";
+            url = "https://github.com/Duckonaut/split-monitor-workspaces";
+            rev = "d6b4d18ed4a54d336b7fea71c2d3f476a41fbd96";
             inputs.hyprland.follows = "hyprland";
         };
 

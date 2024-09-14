@@ -27,6 +27,12 @@ in {
             xwayland.enable = true;
         };
 
+        # use cached hyprland flake builds
+        nix.settings = {
+            substituters = ["https://hyprland.cachix.org"];
+            trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
+        };
+
         # use gtk desktop portal
         # (recommended for usage alongside hyprland desktop portal)
         xdg.portal = {
@@ -34,6 +40,11 @@ in {
             extraPortals = [pkgs.xdg-desktop-portal-gtk];
             config.commmon.default = "*";
         };
+
+        environment.systemPackages = with pkgs; [
+            libsForQt5.qt5.qtwayland
+            qt6.qtwayland
+        ];
 
         home-manager.users.${username} = {config, ...}: {
             imports = [
@@ -57,6 +68,9 @@ in {
                 extraConfig = /*hyprlang*/''
                     source = ./visuals/default.conf
                 '';
+
+                # tell systemd to import environment by default (fixes screenshare)
+                systemd.variables = ["--all"];
             };
 
             xdg.configFile."hypr/visuals" = lib.mkSymlink config {
