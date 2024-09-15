@@ -1,5 +1,5 @@
 window.notification-popups box.notifications {
-    padding: .5em;
+    padding: 0.5em;
 }
 
 .icon {
@@ -12,7 +12,7 @@ window.notification-popups box.notifications {
     font-size: 58px;
     /* to center the icon */
     margin: 5px;
-    color: @theme_fg_color;
+    color: rgb(202, 211, 245);
 }
 
 .icon box {
@@ -25,8 +25,8 @@ window.notification-popups box.notifications {
     min-width: 450px;
     border-radius: 10px;
     padding: 1em;
-    margin: .5em;
-    border: 3px solid @theme_selected_color;
+    margin: 0.5em;
+    border: 3px solid rgb(138, 173, 244);
     background-color: rgba(36, 39, 58, 0.7);
 }
 
@@ -35,12 +35,12 @@ window.notification-popups box.notifications {
 }
 
 .title {
-    color: @theme_fg_color;
+    color: rgb(202, 211, 245);
     font-size: 1.4em;
 }
 
 .body {
-    color: @theme_unfocused_fg_color;
+    color: rgb(128, 135, 162);
 }
 
 .action-button {
@@ -54,8 +54,8 @@ window.notification-popups box.notifications {
 }
 
 .actions .action-button {
-    margin: 0 .4em;
-    margin-top: .8em;
+    margin: 0 0.4em;
+    margin-top: 0.8em;
 }
 
 .actions .action-button:first-child {
