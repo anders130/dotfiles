@@ -28,6 +28,23 @@
         else
             echo "SSH agent already has identities loaded."
         fi
+
+        # apps
+        sleep 2 && (
+            ${lib.concatMapStringsSep "\n" (app: ''
+                ${app.cmd} &
+                ${
+                    if app.minimize && app.windowName != ""
+                    then /*bash*/''
+                        sleep 3 &&
+                        hyprctl clients | grep -q "${app.windowName or app.name}" &&
+                        hyprctl dispatch closewindow ${app.windowName or app.name} &
+                    ''
+                    else ""
+                }
+            '')
+            cfg.autostartApps}
+        )
     '';
 
     greeter = "hyprlock";
@@ -38,10 +55,6 @@ in {
             autostart
         ] ++ (with pkgs.unstable; [
             swww # wallpaper utility
-
-            # apps
-            signal-desktop # oss messenger
-            whatsapp-for-linux # bad messenger
         ]);
 
         home-manager.users.${username} = {
@@ -52,9 +65,6 @@ in {
                     "${autostart}/bin/autostart"
                     greeter
                     polkit
-                    # apps
-                    "whatsapp-for-linux"
-                    "signal-desktop"
                 ];
             };
         };

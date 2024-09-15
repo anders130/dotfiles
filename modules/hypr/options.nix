@@ -17,5 +17,27 @@
             type = lib.types.str;
             default = "DP-1";
         };
+        autostartApps = lib.mkOption {
+            type = lib.types.listOf (lib.types.submodule {
+                options = {
+                    cmd = lib.mkOption {
+                        type = lib.types.str;
+                        description = "Command to execute";
+                    };
+                    windowName = lib.mkOption {
+                        type = lib.types.str;
+                        description = "Window name to close";
+                        default = "";
+                    };
+                    minimize = lib.mkOption {
+                        type = lib.types.bool;
+                        description = "Minimize window with hyprctl";
+                        default = false;
+                    };
+                };
+            });
+            default = [];
+            description = "List of apps to autostart";
+        };
     };
 }

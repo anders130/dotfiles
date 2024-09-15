@@ -13,6 +13,8 @@
         libreoffice
         godot_4
         protonmail-desktop
+        signal-desktop # oss messenger
+        zapzap # whatsapp messenger
 
         pavucontrol # sound control
     ];
