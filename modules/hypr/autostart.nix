@@ -30,21 +30,19 @@
         fi
 
         # apps
-        sleep 2 && (
-            ${lib.concatMapStringsSep "\n" (app: ''
-                ${app.cmd} &
-                ${
-                    if app.minimize && app.windowName != ""
-                    then /*bash*/''
-                        sleep 3 &&
-                        hyprctl clients | grep -q "${app.windowName or app.name}" &&
-                        hyprctl dispatch closewindow ${app.windowName or app.name} &
-                    ''
-                    else ""
-                }
-            '')
-            cfg.autostartApps}
-        )
+        ${lib.concatMapStringsSep "\n" (app: ''
+            ${app.cmd} &
+            ${
+                if app.minimize && app.windowName != ""
+                then /*bash*/''
+                    sleep 3 &&
+                    hyprctl clients | grep -q "${app.windowName or app.name}" &&
+                    hyprctl dispatch closewindow ${app.windowName or app.name} &
+                ''
+                else ""
+            }
+        '')
+        cfg.autostartApps}
     '';
 
     greeter = "hyprlock";

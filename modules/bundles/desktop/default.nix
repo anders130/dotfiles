@@ -39,20 +39,9 @@
                 enable = lib.mkDefault true;
                 mainMonitor = lib.mkDefault config.bundles.desktop.mainMonitor;
                 autostartApps = [
-                    {
-                        cmd = "signal-desktop -t";
-                        minimize = true;
-                    }
-                    {
-                        cmd = "zapzap";
-                        minimize = true;
-                        windowName = "com.rtosta.zapzap";
-                    }
-                    {
-                        cmd = "vesktop";
-                        minimize = true;
-                        windowName = "vesktop";
-                    }
+                    { cmd = "signal-desktop --start-in-tray"; }
+                    { cmd = "sleep 2 && zapzap --hideStart"; }
+                    { cmd = "sleep 2 && vesktop --start-minimized"; }
                 ];
             };
             theming = {
