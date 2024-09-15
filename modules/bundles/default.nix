@@ -3,5 +3,6 @@
         ./cli
         ./desktop
         ./rpi
+        ./server
     ];
 }

@@ -1,7 +1,6 @@
 {
     config,
     lib,
-    username,
     ...
 }: {
     options.bundles.rpi = {
@@ -9,6 +8,8 @@
     };
 
     config = lib.mkIf config.bundles.rpi.enable {
+        bundles.server.enable = true;
+
         networking = {
             networkmanager.enable = lib.mkForce false;
             useDHCP = false;
@@ -17,12 +18,5 @@
                 eth0.useDHCP = true;
             };
         };
-
-        security.pam.sshAgentAuth.enable = true;
-        # this allows you to run `nixos-rebuild --target-host admin@this-machine` from
-        # a different host. not used in this tutorial, but handy later.
-        nix.settings.trusted-users = [username];
-
-        services.openssh.enable = true;
     };
 }

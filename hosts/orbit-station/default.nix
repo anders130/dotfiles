@@ -1,11 +1,9 @@
-{
-    pkgs,
-    username,
-    ...
-}: {
+{pkgs, ...}: {
     imports = [
         ./hardware-configuration.nix
     ];
+
+    bundles.rpi.enable = true;
 
     modules.services.blocky.enable = true;
 
@@ -16,14 +14,4 @@
             generic-extlinux-compatible.enable = true;
         };
     };
-
-    security.pam.sshAgentAuth.enable = true;
-
-    hardware.enableRedistributableFirmware = true;
-
-    # this allows you to run `nixos-rebuild --target-host admin@this-machine` from
-    # a different host. not used in this tutorial, but handy later.
-    nix.settings.trusted-users = [username];
-
-    services.openssh.enable = true;
 }
