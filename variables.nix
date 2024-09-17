@@ -50,5 +50,13 @@
             ];
             isThinClient = true;
         }
+        {
+            name = "workstation";
+            hostname = "nix-workstation";
+            username = "jesse";
+            modules = [
+                inputs.disko.nixosModules.disko
+            ];
+        }
     ];
 }
