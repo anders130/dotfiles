@@ -25,6 +25,7 @@
                     plugins = {
                         fakeNitro.enable = true;
                         pinDMs.enable = true;
+                        volumeBooster.enable = true;
                     };
                 };
 
