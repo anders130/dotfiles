@@ -17,4 +17,9 @@
         cli.enable = true;
         desktop.enable = true;
     };
+
+    modules.hardware = {
+        amdgpu.enable = true;
+        displaylink.enable = true;
+    };
 }
