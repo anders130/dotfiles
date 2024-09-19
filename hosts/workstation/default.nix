@@ -1,4 +1,5 @@
 {
+    pkgs,
     username,
     ...
 }: {
@@ -25,4 +26,8 @@
         amdgpu.enable = true;
         displaylink.enable = true;
     };
+
+    environment.systemPackages = with pkgs; [
+        xwaylandvideobridge # could be helpful for some things
+    ];
 }
