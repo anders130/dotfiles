@@ -1,6 +1,7 @@
 {
     config,
     lib,
+    pkgs,
     username,
     ...
 }: {
@@ -58,6 +59,8 @@
             systemd-boot.enable = true;
             efi.canTouchEfiVariables = true;
         };
+
+        boot.kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;
 
         networking.firewall.enable = lib.mkDefault true;
 
