@@ -11,6 +11,8 @@
     };
 
     config = lib.mkIf config.modules.ags.enable {
+        services.upower.enable = true;
+
         environment.systemPackages = [
             pkgs.pulseaudio
         ];
