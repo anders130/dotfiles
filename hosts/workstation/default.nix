@@ -1,4 +1,5 @@
 {
+    lib,
     pkgs,
     username,
     ...
@@ -25,6 +26,24 @@
     modules.hardware = {
         amdgpu.enable = true;
         displaylink.enable = true;
+    };
+
+    boot = {
+        bootspec.enable = true;
+
+        initrd.systemd.enable = true;
+        loader.systemd-boot.enable = lib.mkForce false;
+
+        lanzaboote = {
+            enable = true;
+            pkiBundle = "/etc/secureboot";
+
+            settings = {
+                console-mode = "auto";
+                editor = false;
+                timeout = 0;
+            };
+        };
     };
 
     environment.systemPackages = with pkgs; [
