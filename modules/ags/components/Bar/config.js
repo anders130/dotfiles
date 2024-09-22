@@ -3,7 +3,7 @@ import {
     Volume,
     Speaker,
     Workspaces,
-    Notification,
+    Battery,
     SysTray,
     SimpleTime
 } from './components.js'
@@ -13,7 +13,7 @@ export const MainScreenBar = (monitor = 0) =>
         monitor: monitor,
         left: [Workspaces({ monitor: monitor })],
         center: [SimpleTime()],
-        right: [SysTray(), Speaker(), Volume()]
+        right: [SysTray(), Battery, Speaker(), Volume()]
     })
 
 export const SecondaryScreenBar = (monitor = 0) =>
