@@ -28,6 +28,8 @@
         displaylink.enable = true;
     };
 
+    services.tailscale.enable = true;
+
     boot = {
         bootspec.enable = true;
 
@@ -41,7 +43,6 @@
             settings = {
                 console-mode = "auto";
                 editor = false;
-                timeout = 0;
             };
         };
     };
