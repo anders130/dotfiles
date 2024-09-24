@@ -33,5 +33,6 @@
    environment.systemPackages = with pkgs; [
         local.win32yank
         jetbrains.rider
+        jetbrains.idea-community
     ];
 }

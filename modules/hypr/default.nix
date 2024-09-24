@@ -7,7 +7,8 @@
     ...
 }: let
     cfg = config.modules.hypr;
-    package = (lib.getPkgs "hyprland").hyprland;
+    package = pkgs.hyprland-displaylink;
+    portalPackage = pkgs.xdg-desktop-portal-hyprland-displaylink;
 in {
     imports = [
         ./hyprlock
@@ -22,7 +23,7 @@ in {
 
     config = lib.mkIf cfg.enable {
         programs.hyprland = {
-            inherit package;
+            inherit package portalPackage;
             enable = true;
             xwayland.enable = true;
         };

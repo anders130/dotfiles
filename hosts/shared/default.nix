@@ -20,7 +20,10 @@
             allowUnsupportedSystem = true;
             permittedInsecurePackages = [];
         };
-        overlays = [inputs.self.outputs.overlays.default];
+        overlays = [
+            inputs.self.outputs.overlays.default
+            (import ../../overlays/displaylink.nix {inherit pkgs inputs lib;})
+        ];
     };
     home-manager = {
         useGlobalPkgs = true;
