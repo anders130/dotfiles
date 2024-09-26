@@ -29,14 +29,16 @@
         hyprland = {
             type = "git";
             url = "https://github.com/hyprwm/Hyprland";
-            ref = "refs/tags/v0.41.2";
+            # ref = "refs/tags/v0.41.2";
+            ref = "refs/tags/v0.43.0";
             submodules = true;
         };
 
         split-monitor-workspaces = {
             type = "git";
             url = "https://github.com/Duckonaut/split-monitor-workspaces";
-            rev = "d6b4d18ed4a54d336b7fea71c2d3f476a41fbd96";
+            # rev = "d6b4d18ed4a54d336b7fea71c2d3f476a41fbd96";
+            rev = "212b2e0a4d94bb05ebf32dadca8e9e5ce528735e";
             inputs.hyprland.follows = "hyprland";
         };
 

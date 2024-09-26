@@ -15,8 +15,8 @@
             evdi
         ];
 
-        services.xserver.displayManager.sessionCommands = /*bash*/''
-            ${lib.getBin pkgs.xorg.xrandr}/bin/xrandr --setprovideroutputsource 2 0
-        '';
+        environment.systemPackages = with pkgs.unstable; [
+            displaylink
+        ];
     };
 }
