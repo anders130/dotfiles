@@ -8,6 +8,8 @@
 }: let
     cfg = config.modules.hypr;
     package = (lib.getPkgs "hyprland").hyprland;
+    portalPackage = (lib.getPkgs "hyprland").xdg-desktop-portal-hyprland;
+    hyprlandPkgs = inputs.hyprland.inputs.nixpkgs.legacyPackages.${pkgs.system};
 in {
     imports = [
         ./hyprlock
@@ -22,23 +24,28 @@ in {
 
     config = lib.mkIf cfg.enable {
         programs.hyprland = {
-            inherit package;
+            inherit package portalPackage;
             enable = true;
             xwayland.enable = true;
         };
 
-        # use cached hyprland flake builds
-        nix.settings = {
-            substituters = ["https://hyprland.cachix.org"];
-            trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
+        hardware.opengl = {
+            package = hyprlandPkgs.mesa.drivers;
+            package32 = hyprlandPkgs.pkgsi686Linux.mesa.drivers;
         };
 
         # use gtk desktop portal
         # (recommended for usage alongside hyprland desktop portal)
         xdg.portal = {
             enable = true;
-            extraPortals = [pkgs.xdg-desktop-portal-gtk];
+            extraPortals = [portalPackage];
             config.commmon.default = "*";
+        };
+
+        # use cached hyprland flake builds
+        nix.settings = {
+            substituters = ["https://hyprland.cachix.org"];
+            trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
         };
 
         environment.systemPackages = with pkgs; [
