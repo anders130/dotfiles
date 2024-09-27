@@ -20,7 +20,7 @@
     ];
 
     stable-packages = with pkgs; [
-        gnome.cheese # camera
+        snapshot # camera
         gnome.totem # video player
         loupe # gnome image viewer
         gnome.gnome-calculator
@@ -40,6 +40,7 @@
 
         # work
         teams-for-linux
+        jetbrains.idea-community
     ];
 in {
     config = lib.mkIf config.bundles.desktop.enable {
