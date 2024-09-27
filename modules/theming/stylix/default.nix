@@ -1,11 +1,16 @@
 {
     config,
+    inputs,
     lib,
     pkgs,
     ...
 }: let
     cfg = config.modules.theming.stylix;
 in {
+    imports = [
+        inputs.stylix.nixosModules.stylix
+    ];
+
     options.modules.theming.stylix = {
         enable = lib.mkEnableOption "stylix";
         desktop.enable = lib.mkEnableOption "stylix.desktop";

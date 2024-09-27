@@ -8,11 +8,9 @@
         ./disk-config.nix
     ];
 
-    home-manager.users.${username} = {
-        imports = [
-            ./home.nix
-        ];
-    };
+    home-manager.users.${username}.imports = [
+        ./home.nix
+    ];
 
     bundles = {
         cli.enable = true;
@@ -46,5 +44,5 @@
         };
     };
 
-    services.printing.drivers = [ pkgs.hplip ];
+    services.printing.drivers = [pkgs.hplip];
 }

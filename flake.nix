@@ -57,13 +57,8 @@
         lanzaboote.url = "github:nix-community/lanzaboote";
     };
 
-    outputs = inputs: let
-        secrets = builtins.fromJSON (builtins.readFile "${inputs.self}/secrets.json");
-        variables = import ./variables.nix;
-    in {
-        nixosConfigurations = import ./nixosConfigurations.nix {
-            inherit secrets variables inputs;
-        };
+    outputs = inputs: {
+        nixosConfigurations = import ./hosts inputs;
 
         overlays = import ./overlays.nix inputs;
 

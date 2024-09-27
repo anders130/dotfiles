@@ -10,7 +10,6 @@
     ...
 }: {
     imports = [
-        ../../modules
         ./localization.nix
     ];
 

@@ -1,11 +1,10 @@
-{
-    inputs,
-    secrets,
-    variables,
-}: let
+inputs: let
+    secrets = builtins.fromJSON (builtins.readFile "${inputs.self}/secrets.json");
+    variables = import ../variables.nix;
+
     mkLib = {system, isThinClient}:
         inputs.nixpkgs.lib.extend (final: prev:
-            (import ./lib {
+            (import ../lib {
                 inherit inputs system isThinClient;
                 lib = final;
             })
@@ -15,26 +14,25 @@
         name,
         hostname,
         username,
-        system ? "x86_64-linux",
         hashedPassword ? null,
+        system ? "x86_64-linux",
         isThinClient ? false,
         modules ? [],
-        args ? {},
     }: let
         lib = mkLib {inherit system isThinClient;};
         specialArgs = {
             inherit inputs secrets variables;
             inherit hashedPassword hostname username;
             inherit host lib;
-        } // args;
+        };
     in
         inputs.nixpkgs.lib.nixosSystem {
             inherit system specialArgs;
             modules = modules ++ [
-                ./hosts/shared
-                ./hosts/${name}
+                ../modules
+                ./shared
+                ./${name}
                 inputs.home-manager.nixosModules.home-manager
-                inputs.stylix.nixosModules.stylix
                 {
                     home-manager.extraSpecialArgs = specialArgs;
                 }
@@ -51,6 +49,16 @@
                 nixosConfigs
             )
         );
-in variables.nixosConfigs {
-    inherit mkNixosConfigs inputs;
-}
+
+    # get all the config.nix files in the host directories
+    hosts = let
+        configExists = name: builtins.pathExists ./${name}/config.nix;
+        importConfig = name: (import ./${name}/config.nix inputs);
+        enrichConfig = name: (importConfig name) // {inherit name;};
+
+        dirContent = builtins.attrNames (builtins.readDir ./.);
+        configDirs = builtins.filter configExists dirContent;
+    in
+        builtins.map enrichConfig configDirs;
+in
+    mkNixosConfigs hosts
