@@ -39,5 +39,9 @@
             default = [];
             description = "List of apps to autostart";
         };
+        displayManager = {
+            enable = lib.mkEnableOption "Enable lightdm display manager";
+            autoLogin.enable = lib.mkEnableOption "Enable autologin";
+        };
     };
 }

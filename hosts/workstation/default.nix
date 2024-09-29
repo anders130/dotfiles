@@ -21,9 +21,16 @@
         };
     };
 
-    modules.hardware = {
-        amdgpu.enable = true;
-        displaylink.enable = true;
+    modules = {
+        gnome.enable = true;
+        hardware = {
+            amdgpu.enable = true;
+            displaylink.enable = true;
+        };
+        hypr.displayManager = {
+            enable = false;
+            autoLogin.enable = false;
+        };
     };
 
     services.tailscale.enable = true;

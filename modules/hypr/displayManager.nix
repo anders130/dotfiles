@@ -11,12 +11,12 @@ in {
         # boot into hyprland
         services.xserver.displayManager.lightdm = {
             inherit greeter;
-            enable = true;
+            enable = cfg.displayManager.enable;
         };
 
         services.displayManager = {
             autoLogin = {
-                enable = true;
+                enable = cfg.displayManager.autoLogin.enable;
                 user = username;
             };
             defaultSession = lib.mkDefault "hyprland";

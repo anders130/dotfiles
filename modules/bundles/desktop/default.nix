@@ -44,6 +44,10 @@
                     { cmd = "sleep 2 && zapzap --hideStart"; }
                     { cmd = "sleep 2 && vesktop --start-minimized"; }
                 ];
+                displayManager = {
+                    enable = lib.mkDefault true;
+                    autoLogin.enable = lib.mkDefault true;
+                };
             };
             theming = {
                 plymouth.enable = lib.mkDefault true;

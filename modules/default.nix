@@ -4,6 +4,7 @@
         ./applications
         ./bundles
         ./console
+        ./gnome
         ./hardware
         ./hypr
         ./neovim
