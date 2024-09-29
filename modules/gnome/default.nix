@@ -2,8 +2,13 @@
     config,
     lib,
     pkgs,
+    username,
     ...
 }: {
+    imports = [
+        ./keybinds.nix
+    ];
+
     options.modules.gnome = {
         enable = lib.mkEnableOption "gnome";
     };
@@ -33,5 +38,19 @@
             totem # video player
             tali # poker game
         ]);
+
+        home-manager.users.${username}.dconf.settings = {
+            "org/gnome/desktop/interface" = {
+                clock-show-seconds = true;
+                clock-show-weekday = true;
+                show-battery-percentage = true;
+            };
+            "org/gnome/shell".app-picker-layout = "[]"; # sort apps by name
+            "org/gnome/mutter" = {
+                edge-tiling = true;
+                dynamic-workspaces = true;
+                workspaces-only-on-primary = false;
+            };
+        };
     };
 }
