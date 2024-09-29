@@ -19,19 +19,19 @@
             gnome-photos
             gnome-tour
         ]) ++ (with pkgs.gnome; [
+            atomix # puzzle game
             cheese # webcam tool
+            epiphany # web browser
+            evince # document viewer
+            geary # email reader
+            gnome-characters
             gnome-music
             gnome-terminal
-            gedit # text editor
-            epiphany # web browser
-            geary # email reader
-            evince # document viewer
-            gnome-characters
+            hitori # sudoku game
+            iagno # go game
+            nautilus
             totem # video player
             tali # poker game
-            iagno # go game
-            hitori # sudoku game
-            atomix # puzzle game
         ]);
     };
 }
