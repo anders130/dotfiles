@@ -79,10 +79,7 @@ in {
                 recursive = true;
             };
 
-            stylix.targets = {
-                hyprland.enable = false;
-                hyprpaper.enable = false;
-            };
+            stylix.targets.hyprland.enable = false;
         };
     };
 }
