@@ -16,12 +16,12 @@
     keybinds = [
         (mkKeybind {
             name = "open-terminal";
-            binding = "<Primary><Enter>";
+            binding = "<Super>Return";
             command = "kitty";
         })
         (mkKeybind {
             name = "open-file-explorer";
-            binding = "<Primary>E";
+            binding = "<Super>e";
             command = "nautilus";
         })
     ];
@@ -37,8 +37,8 @@
     }) (builtins.length keybinds));
 in {
     config.home-manager.users.${username}.dconf.settings =
-        lib.mkIf cfg.enable {
+        lib.mkIf cfg.enable ({
             "${mediaKeysPath}".custom-keybindings = customKeybindings;
         }
-        // customKeybindingsDconfSettings;
+        // customKeybindingsDconfSettings);
 }
