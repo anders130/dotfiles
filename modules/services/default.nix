@@ -4,6 +4,7 @@
         ./docker
         ./lumehub
         ./minecraft
+        ./paperless
         ./plex
     ];
 }

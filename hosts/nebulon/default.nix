@@ -8,6 +8,10 @@
     modules.services = {
         blocky.enable = true;
         minecraft.enable = true;
+        paperless = {
+            enable = true;
+            domain = "paperless.nebulon";
+        };
         plex.enable = true;
     };
 
