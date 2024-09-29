@@ -37,6 +37,7 @@
             git.enable = lib.mkDefault true;
         };
         services.docker.enable = lib.mkDefault true;
+        theming.stylix.enable = lib.mkDefault true;
     };
 
     environment.variables = {
