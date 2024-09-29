@@ -9,7 +9,6 @@
     cfg = config.modules.hypr;
     package = (lib.getPkgs "hyprland").hyprland;
     portalPackage = (lib.getPkgs "hyprland").xdg-desktop-portal-hyprland;
-    hyprlandPkgs = inputs.hyprland.inputs.nixpkgs.legacyPackages.${pkgs.system};
 in {
     imports = [
         ./hyprlock
@@ -27,11 +26,6 @@ in {
             inherit package portalPackage;
             enable = true;
             xwayland.enable = true;
-        };
-
-        hardware.opengl = {
-            package = hyprlandPkgs.mesa.drivers;
-            package32 = hyprlandPkgs.pkgsi686Linux.mesa.drivers;
         };
 
         # use gtk desktop portal
