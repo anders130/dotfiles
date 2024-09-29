@@ -40,6 +40,12 @@ in {
         lib.mkIf cfg.enable ((mkDconfSettings keybinds) // {
             "${mediaKeysPath}".custom-keybindings = mkCustomKeybindings keybinds;
 
+            "org/gnome/desktop/peripherals/keyboard" = {
+                numlock-state = true;
+                delay = "uint32 250";
+                repeat-interval = "uint32 25";
+            };
+
             "org/gnome/desktop/wm/keybindings" = {
                 close = ["<Super>c"];
                 toggle-fullscreen = ["<Super>f"];
@@ -75,6 +81,7 @@ in {
                 switch-to-application-7 = [];
                 switch-to-application-8 = [];
                 switch-to-application-9 = [];
+                toggle-message-tray = []; # this interfered with Super+v
             };
 
             "org/gnome/desktop/wm/preferences" = {
