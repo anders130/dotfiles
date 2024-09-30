@@ -38,7 +38,10 @@
 in {
     config.home-manager.users.${username}.dconf.settings =
         lib.mkIf cfg.enable ((mkDconfSettings keybinds) // {
-            "${mediaKeysPath}".custom-keybindings = mkCustomKeybindings keybinds;
+            "${mediaKeysPath}" = {
+                custom-keybindings = mkCustomKeybindings keybinds;
+                screensaver = ["<Super>BackSpace"];
+            };
 
             "org/gnome/desktop/peripherals/keyboard" = {
                 numlock-state = true;
@@ -69,6 +72,8 @@ in {
                 switch-to-workspace-7 = ["<Super>7"];
                 switch-to-workspace-8 = ["<Super>8"];
                 switch-to-workspace-9 = ["<Super>9"];
+
+                minimize = []; # unset Super+h
             };
 
             "org/gnome/shell/keybindings" = {
@@ -88,6 +93,7 @@ in {
                 mouse-button-modifier = "<Super>";
                 num-workspaces = 9;
                 resize-with-right-button = true;
+                focus-mode = "mouse";
             };
         });
 }

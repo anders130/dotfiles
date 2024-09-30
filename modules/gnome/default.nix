@@ -50,7 +50,7 @@
             "org/gnome/mutter" = {
                 edge-tiling = true;
                 dynamic-workspaces = true;
-                workspaces-only-on-primary = false;
+                workspaces-only-on-primary = true;
             };
             "org/gnome/shell/app-switcher".current-workspace-only = false;
         };

@@ -8,7 +8,10 @@
     cfg = config.modules.gnome;
 
     extensions = with pkgs.gnomeExtensions; [
+        appindicator
         blur-my-shell
+        fullscreen-avoider
+        system-monitor
     ];
 in {
     config = lib.mkIf cfg.enable {
