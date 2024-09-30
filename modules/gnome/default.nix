@@ -44,6 +44,7 @@
             "org/gnome/desktop/interface" = {
                 clock-show-seconds = true;
                 clock-show-weekday = true;
+                enable-hot-corners = false;
                 show-battery-percentage = true;
             };
             "org/gnome/shell".app-picker-layout = "[]"; # sort apps by name

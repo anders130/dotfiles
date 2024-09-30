@@ -10,6 +10,7 @@
     extensions = with pkgs.gnomeExtensions; [
         appindicator
         blur-my-shell
+        focus-changer
         fullscreen-avoider
         system-monitor
     ];
