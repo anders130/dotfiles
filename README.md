@@ -23,33 +23,13 @@ access-tokens = github.com=ghp_***
 
 To create a new token, go to [github.com/settings/tokens](https://github.com/settings/tokens) and click on `Generate new token`.
 
-## Installation (Desktop)
+Adjust the values inside `secrets.json` to fit your needs.
 
-Install NixOS and follow the next steps:
+## Installation
 
-Clone the repository into your home directory.
+You can find installation guides for the different configurations in the [hosts](./hosts) directory.
 
-```bash
-cd /home/<username>
-nix-shell -p git --run "sudo git clone --recurse-submodules https://github.com/anders130/dotfiles.git .dotfiles"
-```
-
-Adjust the values inside `secrets.json` to fit your needs. Inside `flake.nix` change the hostname and username for the specific host configuration to your liking.
-
-If you have the displaylink module enabled, you need to download the drivers first:
-
-```bash
-nix-prefetch-url --name displaylink-580.zip https://www.synaptics.com/sites/default/files/exe_files/2023-08/DisplayLink%20USB%20Graphics%20Software%20for%20Ubuntu5.8-EXE.zip
-```
-
-Now rebuild the system and restart.
-
-```bash
-nixos-rebuild switch --flake ~/.dotfiles\?submodules=1#desktop
-reboot
-```
-
-## Installation on a Raspberry-Pi
+### Installation on a Raspberry-Pi
 
 Assuming you currently use the `desktop` configuration.
 First build the Image for the SD-Card.
@@ -82,6 +62,6 @@ nmcli device wifi connect <SSID> password <SSIDPassword>
 
 ```bash
 flake-remote-build nix-pi --target-host admin@domain
+# or
+nixos-rebuild switch --flake .#nix-pi --target-host admin@domain
 ```
-
-Then you need to put in the admins password multiple times and quit the task the second time.
