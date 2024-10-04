@@ -61,6 +61,7 @@ in {
                     "swww-daemon"
                     "ags -b hypr"
                     "${autostart}/bin/autostart"
+                    "swaync"
                     greeter
                     polkit
                 ];

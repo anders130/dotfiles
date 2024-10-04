@@ -57,6 +57,7 @@ in {
                 "SUPER SHIFT, S, exec, grimblast --freeze copy area" # select area to copy
                 "SUPER, T, exec, switch-shaders" # switch screen-shader
                 "SUPER, 34, exec, forceMouseToGame" # SUPER + Ü
+                "SUPER, N, exec, swaync-client -t -sw"
                 # workspaces
             ] ++ (builtins.concatLists (builtins.genList (
                 x: let

@@ -1,0 +1,31 @@
+{
+    "$schema": "https://raw.githubusercontent.com/ErikReider/SwayNotificationCenter/4275fa3915c12ad2731ff78027188b4b7ceaad64/src/configSchema.json",
+    "cssPriority": "user",
+    "image-visibility": "when-available",
+    "positionX": "right",
+    "positionY": "top",
+    "layer": "overlay",
+    "control-center-layer": "overlay",
+    "control-center-width": 800,
+    "notification-window-width": 600,
+    "hide-on-clear": true,
+    "hide-on-action": false,
+    "timeout-critical": 10,
+    "timeout": 5,
+    "timeout-low": 2,
+    "script-fail-notify": false,
+    "widgets": [
+        "title",
+        "mpris",
+        "notifications"
+    ],
+    "widget-config": {
+        "title": {
+            "button-text": "Clear"
+        },
+        "mpris": {
+            "image-size": 64,
+            "image-radius": 10
+        }
+    }
+}

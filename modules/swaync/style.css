@@ -1,0 +1,70 @@
+* {
+    font-size: 14px;
+    font-family: "Cascadia Code NFM";
+    transition: 200ms;
+
+    border-radius: 12px;
+    border-color: rgba(73, 77, 100, 0.67);
+}
+
+.notification {
+    border-width: 2px;
+    border-style: solid;
+    background-color: rgba(54, 58, 79, 0.8);
+    box-shadow: none;
+}
+
+.notification-content {
+    padding: 5px 8px;
+}
+
+/* notification-center */
+.control-center {
+    border-style: solid;
+    border-width: 4px;
+    margin: 8px;
+    background-color: rgba(36, 39, 56, 0.8);
+    color: #cad3f5;
+    padding: 14px;
+}
+
+.notification-row:first-child {
+    margin-top: 8px;
+    margin-right: 0px;
+}
+
+.notification-group.collapsed .notification-row:not(:last-child) .notification {
+    transition: opacity 250ms;
+    opacity: 0.25;
+}
+
+.control-center-list-placeholder {
+    opacity: 0.8;
+}
+
+/* widget styles */
+.widget-title>label {
+    font-size: 1.3em;
+}
+
+.widget-title button {
+    background-color: #363a4f;
+    padding: 8px;
+}
+
+/* unset some default styles */
+.notification *,
+.notification-row:focus,
+.notification-row:hover,
+.blank-window {
+    background: transparent;
+}
+
+.notification-default-action,
+.notification-action {
+    border: none;
+}
+
+.notification-group {
+    outline: none;
+}

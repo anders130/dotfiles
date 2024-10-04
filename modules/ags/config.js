@@ -9,10 +9,6 @@ App.config({
     windows: [
         ...forMonitors(MainScreenBar),
         ...forMonitors(Clock),
-        QuickSettings,
-        NotificationPopups({
-            monitor: 0,
-            notificationSound: `${App.configDir}/components/NotificationPopups/sound.mp3`
-        })
+        QuickSettings
     ]
 })

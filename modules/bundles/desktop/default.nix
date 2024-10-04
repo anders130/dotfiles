@@ -49,6 +49,7 @@
                     autoLogin.enable = lib.mkDefault true;
                 };
             };
+            swaync.enable = lib.mkDefault true;
             theming = {
                 plymouth.enable = lib.mkDefault true;
                 stylix = {

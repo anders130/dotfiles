@@ -9,6 +9,7 @@
         ./hypr
         ./nixvim
         ./services
+        ./swaync
         ./theming
     ];
 }
