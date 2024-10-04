@@ -42,7 +42,7 @@
                 autostartApps = [
                     { cmd = "signal-desktop --start-in-tray"; }
                     { cmd = "sleep 2 && zapzap --hideStart"; }
-                    { cmd = "sleep 2 && vesktop --start-minimized"; }
+                    { cmd = "sleep 3 && vesktop --start-minimized"; }
                 ];
                 displayManager = {
                     enable = lib.mkDefault true;
