@@ -19,6 +19,11 @@
             inputs.nixpkgs.follows = "nixpkgs";
         };
 
+        sops-nix = {
+            url = "github:Mic92/sops-nix";
+            inputs.nixpkgs.follows = "nixpkgs";
+        };
+
         nixvim.url = "path:./modules/nixvim";
         nix-minecraft.url = "github:Infinidoge/nix-minecraft";
         nixcord.url = "github:kaylorben/nixcord";
