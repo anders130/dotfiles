@@ -69,4 +69,13 @@
 
         templates = import ./templates;
     };
+
+    nixConfig = {
+        extra-substituters = [
+            "https://anders130.cachix.org"
+        ];
+        extra-trusted-public-keys = [
+            "anders130.cachix.org-1:mCAq0L6Ld3lG7gxJVHGzKr2rqUZ5qs5YoERxoSjMOXs="
+        ];
+    };
 }
