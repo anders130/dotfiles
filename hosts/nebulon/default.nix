@@ -51,4 +51,7 @@
     boot.loader.efi.canTouchEfiVariables = true;
 
     hardware.enableRedistributableFirmware = true;
+
+    # prevent laptop from suspending when lid is closed
+    services.logind.lidSwitchExternalPower = "ignore";
 }
