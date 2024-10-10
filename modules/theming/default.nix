@@ -1,6 +1,3 @@
-{
-    imports = [
-        ./plymouth
-        ./stylix
-    ];
+{lib,...}: {
+    imports = lib.importFromDir ./.;
 }

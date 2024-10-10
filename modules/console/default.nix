@@ -1,8 +1,3 @@
-{
-    imports = [
-        ./btop
-        ./fish
-        ./git
-        ./tmux
-    ];
+{lib,...}: {
+    imports = lib.importFromDir ./.;
 }

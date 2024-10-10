@@ -1,8 +1,3 @@
-{
-    imports = [
-        ./cli
-        ./desktop
-        ./rpi
-        ./server
-    ];
+{lib,...}: {
+    imports = lib.importFromDir ./.;
 }

@@ -1,10 +1,3 @@
-{
-    imports = [
-        ./blocky
-        ./docker
-        ./lumehub
-        ./minecraft
-        ./paperless
-        ./plex
-    ];
+{lib,...}: {
+    imports = lib.importFromDir ./.;
 }

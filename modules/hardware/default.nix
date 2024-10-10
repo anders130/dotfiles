@@ -1,10 +1,3 @@
-{
-    imports = [
-        ./amdgpu
-        ./displaylink
-        ./kanata
-        ./nvidia
-        ./printing
-        ./sound
-    ];
+{lib,...}: {
+    imports = lib.importFromDir ./.;
 }
