@@ -1,11 +1,12 @@
 {
     username,
-    secrets,
     pkgs,
     lib,
     config,
     ...
-}: {
+}: let
+    secrets = import ./secrets.nix;
+in {
     options.modules.console.git = {
         enable = lib.mkEnableOption "git";
     };

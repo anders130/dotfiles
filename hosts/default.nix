@@ -1,5 +1,4 @@
 inputs: let
-    secrets = builtins.fromJSON (builtins.readFile "${inputs.self}/secrets.json");
     variables = import ../variables.nix;
 
     mkLib = {system, isThinClient}:
@@ -21,7 +20,7 @@ inputs: let
     }: let
         lib = mkLib {inherit system isThinClient;};
         specialArgs = {
-            inherit inputs secrets variables;
+            inherit inputs variables;
             inherit hashedPassword hostname username;
             inherit host lib;
         };
