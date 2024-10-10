@@ -25,13 +25,19 @@
         hardware.amdgpu.enable = true;
     };
 
-    boot.kernelParams = [
-        "video=DP-3:1920x1080@60"
-        "video=DP-1:3440x1440@144"
-        "video=DP-2:1920x1080@144"
-    ];
-
-    boot.binfmt.emulatedSystems = ["aarch64-linux"];
+    boot = {
+        binfmt.emulatedSystems = ["aarch64-linux"];
+        loader = {
+            systemd-boot.enable = true;
+            efi.canTouchEfiVariables = true;
+        };
+        kernelPackages = pkgs.linuxPackages_latest;
+        kernelParams = [
+            "video=DP-3:1920x1080@60"
+            "video=DP-1:3440x1440@144"
+            "video=DP-2:1920x1080@144"
+        ];
+    };
 
     systemd = {
         slices."nix-daemon".sliceConfig = {
@@ -43,6 +49,4 @@
             OOMScoreAdjust = 1000;
         };
     };
-
-    services.printing.drivers = [pkgs.hplip];
 }

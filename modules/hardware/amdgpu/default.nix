@@ -11,10 +11,7 @@
     config = lib.mkIf config.modules.hardware.amdgpu.enable {
         boot.initrd.kernelModules = ["amdgpu"];
 
-        services.xserver = {
-            enable = true;
-            videoDrivers = ["amdgpu"];
-        };
+        services.xserver.videoDrivers = ["amdgpu"];
 
         hardware.opengl = {
             enable = true;

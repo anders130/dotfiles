@@ -1,11 +1,12 @@
 {
     config,
     lib,
-    pkgs,
-    username,
     ...
-}: {
+}: let
+    cfg = config.bundles.desktop;
+in {
     imports = [
+        ./defaultApps.nix
         ./gaming.nix
         ./packages.nix
     ];
@@ -20,7 +21,7 @@
         };
     };
 
-    config = lib.mkIf config.bundles.desktop.enable {
+    config = lib.mkIf cfg.enable {
         modules = {
             ags.enable = lib.mkDefault true;
             applications = {
@@ -35,10 +36,14 @@
                 };
                 rofi.enable = lib.mkDefault true;
             };
-            hardware.kanata.enable = lib.mkDefault true;
+            hardware = {
+                kanata.enable = lib.mkDefault true;
+                printing.enable = lib.mkDefault true;
+                sound.enable = lib.mkDefault true;
+            };
             hypr = {
                 enable = lib.mkDefault true;
-                mainMonitor = lib.mkDefault config.bundles.desktop.mainMonitor;
+                mainMonitor = lib.mkDefault cfg.mainMonitor;
                 autostartApps = [
                     { cmd = "signal-desktop --start-in-tray"; }
                     { cmd = "sleep 2 && zapzap --hideStart"; }
@@ -59,16 +64,6 @@
             };
         };
 
-        # make system bootable
-        boot.loader = {
-            systemd-boot.enable = true;
-            efi.canTouchEfiVariables = true;
-        };
-
-        boot.kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;
-
-        networking.firewall.enable = lib.mkDefault true;
-
         services.xserver = {
             enable = true;
 
@@ -78,41 +73,5 @@
                 variant = "";
             };
         };
-
-        # Enable CUPS to print documents.
-        services.printing.enable = true;
-        # Enable printer autodiscovery
-        services.avahi = {
-            enable = true;
-            nssmdns4 = true;
-            openFirewall = true;
-        };
-
-        # Enable sound with pipewire.
-        sound.enable = true;
-        hardware.pulseaudio.enable = false;
-        security.rtkit.enable = true;
-        services.pipewire = {
-            enable = true;
-            alsa.enable = true;
-            alsa.support32Bit = true;
-            pulse.enable = true;
-        };
-
-        home-manager.users.${username} = {
-            gtk.enable = true;
-        };
-
-
-        xdg.mime.defaultApplications = {
-            "application/pdf" = "firefox.desktop";
-            "image/*" = "loupe.desktop";
-            "video/*" = "totem.desktop";
-            "audio/*" = "gnome-music.desktop";
-            "text/*" = "neovim.desktop";
-        };
-
-        location.provider = "geoclue2";
-        services.gnome.tracker-miners.enable = true;
     };
 }

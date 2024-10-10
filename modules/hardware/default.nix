@@ -4,5 +4,7 @@
         ./displaylink
         ./kanata
         ./nvidia
+        ./printing
+        ./sound
     ];
 }

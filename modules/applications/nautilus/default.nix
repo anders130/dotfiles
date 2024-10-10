@@ -43,5 +43,7 @@ in {
         home-manager.users.${username} = {
             xdg.userDirs.enable = true;
         };
+
+        services.gnome.tracker-miners.enable = true;
     };
 }

@@ -3,6 +3,7 @@
     inputs,
     lib,
     pkgs,
+    username,
     ...
 }: let
     cfg = config.modules.theming.stylix;
@@ -17,6 +18,10 @@ in {
     };
 
     config = lib.mkIf cfg.enable {
+        home-manager.users.${username} = lib.mkIf cfg.desktop.enable {
+            gtk.enable = true;
+        };
+
         stylix = {
             enable = true;
             base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-macchiato.yaml";
