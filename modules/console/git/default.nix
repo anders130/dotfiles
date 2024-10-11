@@ -1,28 +1,32 @@
 {
-    username,
-    pkgs,
-    lib,
     config,
+    lib,
+    pkgs,
+    username,
     ...
 }: let
     secrets = import ./secrets.nix;
+    package = pkgs.unstable.git;
 in {
     options.modules.console.git = {
         enable = lib.mkEnableOption "git";
     };
 
     config = lib.mkIf config.modules.console.git.enable {
-        environment.systemPackages = [pkgs.unstable.git];
+        environment.systemPackages = [package];
 
         home-manager.users.${username} = {
             programs.git = {
+                inherit package;
                 enable = true;
-                package = pkgs.unstable.git;
-                delta.enable = true;
-                delta.options = {
-                    line-numbers = true;
-                    side-by-side = true;
-                    navigate = true;
+                # syntax highlighting in diff view
+                delta = {
+                    enable = true;
+                    options = {
+                        line-numbers = true;
+                        side-by-side = true;
+                        navigate = true;
+                    };
                 };
                 userEmail = "${secrets.git_credentials.email}";
                 userName = "${secrets.git_credentials.username}";
@@ -31,12 +35,8 @@ in {
                         default = "current";
                         autoSetupRemote = true;
                     };
-                    merge = {
-                        conflictstyle = "diff3";
-                    };
-                    diff = {
-                        colorMoved = "default";
-                    };
+                    merge.conflictstyle = "diff3";
+                    diff.colorMoved = "default";
                 };
                 aliases = {
                     s = "status -s";
