@@ -1,6 +1,5 @@
 {
     config,
-    inputs,
     lib,
     pkgs,
     username,
@@ -26,10 +25,6 @@
 
     modulePath = "modules/console/fish";
 in {
-    imports = [
-        inputs.nix-index-database.nixosModules.nix-index
-    ];
-
     options.modules.console.fish = {
         enable = lib.mkEnableOption "fish";
     };
@@ -58,10 +53,6 @@ in {
 
         stylix.targets.fish.enable = false;
 
-        programs.nix-index.enable = true;
-        programs.nix-index-database.comma.enable = true;
-        programs.command-not-found.enable = false; # nix-index handles this
-
         environment.shells = [pkgs.fish];
 
         users.users.${username}.shell = pkgs.fish;
@@ -70,21 +61,23 @@ in {
             stylix.targets.bat.enable = false;
             home.sessionVariables.SHELL = "etc/profiles/per-user/${username}/bin/fish";
 
-            xdg.configFile."fish/extraConfig.fish" = lib.mkSymlink config {
-                source = "${modulePath}/config.fish";
-            };
-            xdg.configFile."fish/functions" = lib.mkSymlink config {
-                source = "${modulePath}/functions";
-                recursive = true;
-            };
-            xdg.configFile."fish/themes/fish.theme" = lib.mkSymlink config {
-                source = "${modulePath}/themes/fish.theme";
-            };
-            xdg.configFile."bat/themes/bat.tmTheme" = lib.mkSymlink config {
-                source = "${modulePath}/themes/bat.tmTheme";
-            };
-            xdg.configFile."fastfetch/shell-greeting.jsonc" = lib.mkSymlink config {
-                source = "${modulePath}/shell-greeting.jsonc";
+            xdg.configFile = {
+                "fish/extraConfig.fish" = lib.mkSymlink config {
+                    source = "${modulePath}/config.fish";
+                };
+                "fish/functions" = lib.mkSymlink config {
+                    source = "${modulePath}/functions";
+                    recursive = true;
+                };
+                "fish/themes/fish.theme" = lib.mkSymlink config {
+                    source = "${modulePath}/themes/fish.theme";
+                };
+                "bat/themes/bat.tmTheme" = lib.mkSymlink config {
+                    source = "${modulePath}/themes/bat.tmTheme";
+                };
+                "fastfetch/shell-greeting.jsonc" = lib.mkSymlink config {
+                    source = "${modulePath}/shell-greeting.jsonc";
+                };
             };
         };
 
