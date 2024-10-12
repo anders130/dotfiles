@@ -64,14 +64,6 @@ in {
             };
         };
 
-        services.xserver = {
-            enable = true;
-
-            # keyboard layout
-            xkb = {
-                layout = "us";
-                variant = "";
-            };
-        };
+        services.xserver.enable = true;
     };
 }

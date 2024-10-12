@@ -36,6 +36,7 @@
             fish.enable = lib.mkDefault true;
             git.enable = lib.mkDefault true;
         };
+        hardware.keyboard.enable = lib.mkDefault true;
         services.docker.enable = lib.mkDefault true;
         sops.enable = lib.mkDefault true;
         theming.stylix.enable = lib.mkDefault true;
