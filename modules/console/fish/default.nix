@@ -15,7 +15,6 @@
         librespeed-cli # speedtest-cli
         lsd # better ls
         nix-output-monitor # prettier nix command outputs
-        starship # shell prompt
         unimatrix # ascii art matrix
         zoxide # better cd
     ];
@@ -36,6 +35,8 @@ in {
     };
 
     config = lib.mkIf config.modules.console.fish.enable {
+        modules.console.starship.enable = true;
+
         programs.fish = {
             enable = true;
             package = pkgs.fish;
@@ -62,7 +63,6 @@ in {
         programs.command-not-found.enable = false; # nix-index handles this
 
         environment.shells = [pkgs.fish];
-        environment.sessionVariables.STARSHIP_CONFIG = "$HOME/.config/starship/starship.toml";
 
         users.users.${username}.shell = pkgs.fish;
 
@@ -82,9 +82,6 @@ in {
             };
             xdg.configFile."bat/themes/bat.tmTheme" = lib.mkSymlink config {
                 source = "${modulePath}/themes/bat.tmTheme";
-            };
-            xdg.configFile."starship/starship.toml" = lib.mkSymlink config {
-                source = "${modulePath}/starship.toml";
             };
             xdg.configFile."fastfetch/shell-greeting.jsonc" = lib.mkSymlink config {
                 source = "${modulePath}/shell-greeting.jsonc";
