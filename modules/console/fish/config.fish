@@ -56,6 +56,4 @@ if status is-interactive
     set -x BAT_THEME "bat"
 
     zoxide init fish | source
-    # use starship prompt
-    starship init fish | source
 end
