@@ -1,28 +1,29 @@
-import { Stream } from "resource:///com/github/Aylur/ags/service/audio.js"
-
-const audio = await Service.import("audio")
+const audio = await Service.import('audio')
 
 export const Volume = () => {
     const icons = {
-        101: "overamplified",
-        67: "high",
-        34: "medium",
-        1: "low",
-        0: "muted",
+        101: 'overamplified',
+        67: 'high',
+        34: 'medium',
+        1: 'low',
+        0: 'muted'
     }
 
     const getIcon = () => {
-        const icon = audio.speaker.is_muted ? 0 : [101, 67, 34, 1, 0].find(
-            threshold => threshold <= audio.speaker.volume * 100)
+        const icon = audio.speaker.is_muted
+            ? 0
+            : [101, 67, 34, 1, 0].find(
+                  (threshold) => threshold <= audio.speaker.volume * 100
+              )
 
         return `audio-volume-${icons[icon]}-symbolic`
     }
 
     const icon = Widget.Button({
         child: Widget.Icon({
-            icon: Utils.watch(getIcon(), audio.speaker, getIcon),
+            icon: Utils.watch(getIcon(), audio.speaker, getIcon)
         }),
-        onClicked: () => audio.speaker.is_muted = !audio.speaker.is_muted
+        onClicked: () => (audio.speaker.is_muted = !audio.speaker.is_muted)
     })
 
     const slider = Widget.Slider({
@@ -33,45 +34,56 @@ export const Volume = () => {
                 audio.speaker.is_muted = false
             audio.speaker.volume = value
         },
-        setup: self => self.hook(audio.speaker, () => {
-            self.value = audio.speaker.volume || 0
-        }),
+        setup: (self) =>
+            self.hook(audio.speaker, () => {
+                self.value = audio.speaker.volume || 0
+            })
     })
 
     return Widget.Box({
-        class_name: "volume",
-        css: "min-width: 180px",
-        children: [icon, slider],
+        class_name: 'volume',
+        css: 'min-width: 180px',
+        children: [icon, slider]
     })
 }
 
 export const Speaker = () => {
-    /**
-     * @param {Stream} stream
-     * @returns {boolean}
-     */
-    const isHeadPhone = (stream) => stream.name?.includes("Alesis_iO_2") ?? false;
+    const label = Widget.Label({ label: 'Loading...' })
 
-    /**
-     * @param {Stream} stream
-     * @returns {string}
-     */
-    const getSpeakerName = (stream) => {
-        return isHeadPhone(stream) ? "Headphones" : "Speakers"
+    const getActivePort = () => {
+        const result = Utils.exec('pactl list sinks')
+        console.log('getActivePort', result)
+        const activePortMatch = result.match(/Active Port:\s+(\S+)/) // Match the active port line
+        return activePortMatch ? activePortMatch[1] : 'Unknown'
     }
 
-    const activeSpeaker = () => Widget.Label()
-        .hook(audio.speaker, self => {
-            self.set_text(getSpeakerName(audio.speaker))
-        })
+    const updateLabel = () => {
+        const activePort = getActivePort()
+        if (activePort.includes('headphones')) {
+            label.label = 'Headphones'
+        } else if (activePort.includes('lineout')) {
+            label.label = 'Speakers'
+        } else {
+            label.label = activePort
+        }
+    }
+
+    const togglePort = () => {
+        const activePort = getActivePort()
+        console.log('activePort', activePort)
+        const command = activePort.includes('headphones')
+            ? 'pactl set-sink-port 0 analog-output-lineout' // Switch to speakers
+            : 'pactl set-sink-port 0 analog-output-headphones' // Switch to headphones
+
+        const result = Utils.exec(command)
+        console.log('result', result)
+        updateLabel()
+    }
+
+    updateLabel()
 
     return Widget.Button({
-        child: activeSpeaker(),
-        onClicked: () => {
-            if (audio.speaker.id == audio.speakers[0].id)
-                audio.speaker = audio.speakers[1]
-            else
-                audio.speaker = audio.speakers[0]
-        }
+        child: label,
+        onClicked: () => togglePort()
     })
 }
