@@ -47,40 +47,36 @@ export const Volume = () => {
     })
 }
 
+const activePort = Variable('Unknown')
+
 export const Speaker = () => {
     const label = Widget.Label({ label: 'Loading...' })
 
-    const getActivePort = () => {
+    const updateActivePort = () => {
+        // fetch new active port value
         const result = Utils.exec('pactl list sinks')
-        console.log('getActivePort', result)
         const activePortMatch = result.match(/Active Port:\s+(\S+)/) // Match the active port line
-        return activePortMatch ? activePortMatch[1] : 'Unknown'
+        const port = activePortMatch ? activePortMatch[1] : 'Unknown'
+        // update variable
+        activePort.setValue(port)
     }
 
-    const updateLabel = () => {
-        const activePort = getActivePort()
-        if (activePort.includes('headphones')) {
-            label.label = 'Headphones'
-        } else if (activePort.includes('lineout')) {
-            label.label = 'Speakers'
-        } else {
-            label.label = activePort
-        }
+    const refreshLabel = () => {
+        label.label = activePort.value.includes('headphones')
+            ? 'Headphones'
+            : 'Speakers'
     }
 
     const togglePort = () => {
-        const activePort = getActivePort()
-        console.log('activePort', activePort)
-        const command = activePort.includes('headphones')
-            ? 'pactl set-sink-port 0 analog-output-lineout' // Switch to speakers
-            : 'pactl set-sink-port 0 analog-output-headphones' // Switch to headphones
+        const isHeadPhones = activePort.value.includes('headphones')
+        const command = `pactl set-sink-port 0 analog-output-${isHeadPhones ? 'lineout' : 'headphones'}`
 
-        const result = Utils.exec(command)
-        console.log('result', result)
-        updateLabel()
+        Utils.exec(command)
+        updateActivePort()
     }
 
-    updateLabel()
+    activePort.connect('changed', refreshLabel)
+    updateActivePort()
 
     return Widget.Button({
         child: label,
