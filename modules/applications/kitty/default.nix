@@ -22,6 +22,7 @@
 
                     window_padding_width = 5;
                     placement_strategy = "top-left";
+                    hide_window_decorations  = "yes";
 
                     # disable bell
                     bell_path = "none";
