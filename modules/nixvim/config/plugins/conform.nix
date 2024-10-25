@@ -26,18 +26,7 @@
                 lsp_fallback = not disable_filetypes[vim.bo[bufnr].filetype],
             }
         end'';
-        formattersByFt = {
-            lua = ["stylua"];
-            nix = ["alejandra" "convert_indentation"];
-            # Conform can also run multiple formatters sequentially
-            python = ["isort" "black"];
-            rust = ["rustfmt"];
-            # You can use a sub-list to tell conform to run *until* a formatter
-            # is found.
-            # javascript = ["prettierd" "prettier"];
-        };
         formatters = {
-            alejandra.command = "${pkgs.alejandra}/bin/alejandra";
             convert_indentation = {
                 command = "${pkgs.gnused}/bin/sed";
                 args = ["-i" "-E" "s/^([ \t]+)/\\1\\1/" "$FILENAME"];
@@ -48,6 +37,4 @@
             };
         };
     };
-
-    extraPackages = [pkgs.rustfmt];
 }

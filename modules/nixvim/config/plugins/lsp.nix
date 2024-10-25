@@ -46,32 +46,6 @@
             html.enable = true;
             java-language-server.enable = true;
             jsonls.enable = true;
-            lua-ls = {
-                enable = true;
-                extraOptions.completion.callSnippet = "Replace";
-            };
-            nixd = {
-                enable = true;
-                settings = {
-                    nixpkgs.expr = /*nix*/''
-                        (builtins.getFlake (builtins.getEnv "FLAKE")).inputs.nixpkgs {}
-                    '';
-                    options.nixos.expr = /*nix*/''
-                        (builtins.getFlake (builtins.getEnv "FLAKE")).nixosConfigurations.desktop.options
-                    '';
-                };
-            };
-            omnisharp.enable = true;
-            pyright.enable = true;
-            tsserver.enable = true;
-            eslint.enable = true;
-            rust-analyzer = {
-                enable = true;
-                settings.cargo.features = "all";
-                # Handled by the flake.nix of the rust project
-                installCargo = false;
-                installRustc = false;
-            };
         };
     };
 }

@@ -1,5 +1,6 @@
 {
     imports = [
+        ./langs
         ./plugins
 
         ./keymaps.nix

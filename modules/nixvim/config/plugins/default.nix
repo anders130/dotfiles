@@ -1,19 +1,5 @@
-{
-    imports = [
-        ./cellular-automaton.nix
-        ./cmp.nix
-        ./colorizer.nix
-        ./conform.nix
-        ./dashboard.nix
-        ./highlight-undo.nix
-        ./lsp.nix
-        ./none-ls.nix
-        ./supermaven.nix
-        ./telescope.nix
-        ./treesitter.nix
-        ./treesj.nix
-        ./trouble.nix
-    ];
+{lib, ...}: {
+    imports = lib.importFromDir ./.;
 
     plugins = {
         # essentials
