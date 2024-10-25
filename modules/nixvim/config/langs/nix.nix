@@ -11,7 +11,10 @@
                 '';
             };
         };
-        conform-nvim.formattersByFt.nix = ["alejandra" "convert_indentation"];
+        conform-nvim = {
+            ignore_filetypes = ["nix"]; # IMPORTANT: this a custom option
+            formattersByFt.nix = ["alejandra" "convert_indentation"];
+        };
     };
 
     extraPackages = [pkgs.alejandra];
