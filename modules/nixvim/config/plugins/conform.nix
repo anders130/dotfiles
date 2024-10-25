@@ -31,6 +31,7 @@
             nix = ["alejandra" "convert_indentation"];
             # Conform can also run multiple formatters sequentially
             python = ["isort" "black"];
+            rust = ["rustfmt"];
             # You can use a sub-list to tell conform to run *until* a formatter
             # is found.
             # javascript = ["prettierd" "prettier"];
@@ -47,4 +48,6 @@
             };
         };
     };
+
+    extraPackages = [pkgs.rustfmt];
 }

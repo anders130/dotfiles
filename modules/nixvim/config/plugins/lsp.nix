@@ -65,6 +65,13 @@
             pyright.enable = true;
             tsserver.enable = true;
             eslint.enable = true;
+            rust-analyzer = {
+                enable = true;
+                settings.cargo.features = "all";
+                # Handled by the flake.nix of the rust project
+                installCargo = false;
+                installRustc = false;
+            };
         };
     };
 }
