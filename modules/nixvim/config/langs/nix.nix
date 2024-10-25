@@ -2,13 +2,20 @@
     plugins = {
         lsp.servers.nixd = {
             enable = true;
-            settings = {
+            settings = let flake = /*nix*/''
+                builtins.getFlake (builtins.toString ./.)
+            ''; in {
                 nixpkgs.expr = /*nix*/''
-                    (builtins.getFlake (builtins.getEnv "FLAKE")).inputs.nixpkgs {}
+                    (${flake}).inputs.nixpkgs {}
                 '';
-                options.nixos.expr = /*nix*/''
-                    (builtins.getFlake (builtins.getEnv "FLAKE")).nixosConfigurations.desktop.options
-                '';
+                options = {
+                    nixos.expr = /*nix*/''
+                        (${flake}).nixosConfigurations.desktop.options
+                    '';
+                    packages.expr = /*nix*/''
+                        (${flake}).packages.${pkgs.system}.default.options
+                    '';
+                };
             };
         };
         conform-nvim = {
