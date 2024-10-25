@@ -50,8 +50,17 @@
                 enable = true;
                 extraOptions.completion.callSnippet = "Replace";
             };
-            nil-ls.enable = true;
-            nixd.enable = true;
+            nixd = {
+                enable = true;
+                settings = {
+                    nixpkgs.expr = /*nix*/''
+                        (builtins.getFlake (builtins.getEnv "FLAKE")).inputs.nixpkgs {}
+                    '';
+                    options.nixos.expr = /*nix*/''
+                        (builtins.getFlake (builtins.getEnv "FLAKE")).nixosConfigurations.desktop.options
+                    '';
+                };
+            };
             omnisharp.enable = true;
             pyright.enable = true;
             tsserver.enable = true;
