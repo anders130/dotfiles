@@ -25,6 +25,7 @@ inputs: rec {
         allowMissingOverlay
         all-channels
         inputs.nix-minecraft.overlay
+        inputs.nix-xilinx.overlay
         evdiFix
     ];
 }

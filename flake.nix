@@ -28,6 +28,10 @@
         nix-minecraft.url = "github:Infinidoge/nix-minecraft";
         nixcord.url = "github:kaylorben/nixcord";
         lumehub.url = "git+https://github.com/LumeHub/LumeHub.Server?branch=dev&submodules=1";
+        nix-xilinx = {
+            url = "gitlab:doronbehar/nix-xilinx";
+            inputs.nixpkgs.follows = "nixpkgs";
+        };
 
         # gui
         ags.url = "github:Aylur/ags";

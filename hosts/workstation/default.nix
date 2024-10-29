@@ -56,6 +56,7 @@
         xwaylandvideobridge # could be helpful for some things
         local.easyroam
         local.keil-uvision
+        vivado
     ];
 
     services.displayManager.defaultSession = "gnome";
