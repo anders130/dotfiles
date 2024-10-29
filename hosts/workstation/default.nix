@@ -54,5 +54,9 @@
 
     environment.systemPackages = with pkgs; [
         xwaylandvideobridge # could be helpful for some things
+        local.easyroam
     ];
+
+    services.displayManager.defaultSession = "gnome";
+    programs.nix-ld.enable = true;
 }
