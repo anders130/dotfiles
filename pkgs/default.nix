@@ -1,8 +1,5 @@
-{
-    system,
-    pkgs,
-}: let
-    inherit (builtins) readDir filter map attrNames elemAt split match listToAttrs replaceStrings;
+{pkgs, ...}: let
+    inherit (builtins) readDir filter map attrNames listToAttrs replaceStrings;
 
     dir = filter (name: name != "default.nix") (attrNames (readDir ./.));
     stripNixSuffix = name: replaceStrings [".nix"] [""] name;
