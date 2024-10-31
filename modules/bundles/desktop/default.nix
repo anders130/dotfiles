@@ -35,6 +35,7 @@ in {
                     terminal = lib.mkDefault "kitty";
                 };
                 rofi.enable = lib.mkDefault true;
+                youtube-music.enable = lib.mkDefault true;
             };
             hardware = {
                 kanata.enable = lib.mkDefault true;

@@ -36,8 +36,6 @@
 
         gnome.dconf-editor # needed for home-manager gtk theming
 
-        youtube-music
-
         # work
         teams-for-linux
         jetbrains.idea-community
