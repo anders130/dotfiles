@@ -29,7 +29,6 @@ inputs: let
             inherit system specialArgs;
             modules = modules ++ [
                 ../modules
-                ./shared
                 ./${name}
                 inputs.home-manager.nixosModules.home-manager
                 {

@@ -14,7 +14,10 @@
         ];
 
         services.xserver = {
-            videoDrivers = ["displaylink" "modesetting"];
+            videoDrivers = [
+                "displaylink"
+                "modesetting"
+            ];
 
             displayManager.sessionCommands = /*bash*/''
                 ${lib.getBin pkgs.xorg.xrandr}/bin/xrandr --setprovideroutputsource 2 0
