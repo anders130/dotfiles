@@ -38,15 +38,4 @@
             "video=DP-2:1920x1080@144"
         ];
     };
-
-    systemd = {
-        slices."nix-daemon".sliceConfig = {
-            ManagedOOMMemoryPressure = "kill";
-            ManagedOOMMemoryPressureLimit = "50%";
-        };
-        services."nix-daemon".serviceConfig = {
-            Slice = "nix-daemon.slice";
-            OOMScoreAdjust = 1000;
-        };
-    };
 }
