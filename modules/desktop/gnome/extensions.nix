@@ -5,7 +5,7 @@
     username,
     ...
 }: let
-    cfg = config.modules.gnome;
+    cfg = config.modules.desktop.gnome;
 
     extensions = with pkgs.gnomeExtensions; [
         appindicator

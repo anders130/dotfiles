@@ -4,7 +4,7 @@
     username,
     ...
 }: let
-    cfg = config.modules.gnome;
+    cfg = config.modules.desktop.gnome;
     mediaKeysPath = "org/gnome/settings-daemon/plugins/media-keys";
 
     mkCustomKeybindings = keybinds:
