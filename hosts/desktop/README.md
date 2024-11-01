@@ -24,7 +24,7 @@ To install NixOS on this machine, follow these steps:
 4. **Apply the disk configuration**
 
    ```bash
-   sudo nix --experimental-features "nix-command flakes" run github:nix-community/disko -- --mode disko --flake .#workstation
+   sudo nix --experimental-features "nix-command flakes" run github:nix-community/disko -- --mode disko --flake .#desktop
    ```
 
 5. **Verify disk setup**
