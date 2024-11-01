@@ -33,6 +33,7 @@ inputs: let
                 inputs.home-manager.nixosModules.home-manager
                 {
                     home-manager.extraSpecialArgs = specialArgs;
+                    bundles.shared.enable = true;
                 }
             ];
         };

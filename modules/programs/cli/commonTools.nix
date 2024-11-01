@@ -3,6 +3,7 @@
     lib,
     pkgs,
     ...
+}: {
 }: let
     unstable-packages = with pkgs.unstable; [
         curl
@@ -25,9 +26,16 @@
         cachix
     ];
 in {
-    config = lib.mkIf config.bundles.cli.enable {
+    options.modules.programs.cli.commonTools = {
+        enable = lib.mkEnableOption "common tools";
+    };
+
+    config = lib.mkIf config.modules.programs.cli.commonTools.enable {
         environment.systemPackages =
-            stable-packages
-            ++ unstable-packages;
+            unstable-packages
+            ++ stable-packages;
+
+        # directory dev-environments
+        programs.direnv.enable = lib.mkDefault true;
     };
 }
