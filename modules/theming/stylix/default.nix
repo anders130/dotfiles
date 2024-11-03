@@ -25,7 +25,7 @@ in {
         stylix = {
             enable = true;
             base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-macchiato.yaml";
-            image = ../../../other/wallpaper.png;
+            image = ./wallpaper.png;
             cursor = lib.mkIf cfg.desktop.enable {
                 name = "catppuccin-macchiato-dark-cursors";
                 package = pkgs.catppuccin-cursors.macchiatoDark;
