@@ -1,26 +1,17 @@
 {
     inputs,
     isThinClient,
+    lib,
     ...
 }: config: {
     source,
     recursive ? false,
     ...
 }: let
-    mkRelativePath = path: let
-        inherit (builtins) substring stringLength;
-        p = toString path;
-        selfStrLen = stringLength inputs.self;
-    in
-        substring
-        (selfStrLen + 1)
-        (stringLength p - selfStrLen - 1)
-        p;
-
     path =
         if builtins.typeOf source == "string"
         then source
-        else mkRelativePath source;
+        else lib.mkRelativePath source;
 in {
     inherit recursive;
     source =

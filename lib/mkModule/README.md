@@ -1,0 +1,38 @@
+## Usage of `lib.mkModule`
+
+1. Just the config
+
+   ```nix
+   {
+       config,
+       lib,
+       ...
+   }: lib.mkModule config ./. {
+       yourModuleOptions = true;
+   }
+
+   ```
+
+2. Explicitly set name, imports and additional options:
+
+   ```nix
+   {
+       config,
+       lib,
+       ...
+   }: lib.mkModule config ./. {
+       name = "myModule";
+       imports = [
+           ./myModule.nix
+       ];
+       options = {
+           myModuleOption = lib.mkOption {
+               type = lib.types.bool;
+               default = false;
+           };
+       };
+       config = {
+           yourModuleOption = true;
+       };
+   }
+   ```
