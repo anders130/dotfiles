@@ -22,8 +22,6 @@
         autopair
         z # autosuggestions
     ];
-
-    modulePath = "modules/console/fish";
 in {
     options.modules.console.fish = {
         enable = lib.mkEnableOption "fish";
@@ -63,20 +61,20 @@ in {
 
             xdg.configFile = {
                 "fish/extraConfig.fish" = lib.mkSymlink config {
-                    source = "${modulePath}/config.fish";
+                    source = ./config.fish;
                 };
                 "fish/functions" = lib.mkSymlink config {
-                    source = "${modulePath}/functions";
+                    source = ./functions;
                     recursive = true;
                 };
                 "fish/themes/fish.theme" = lib.mkSymlink config {
-                    source = "${modulePath}/themes/fish.theme";
+                    source = ./themes/fish.theme;
                 };
                 "bat/themes/bat.tmTheme" = lib.mkSymlink config {
-                    source = "${modulePath}/themes/bat.tmTheme";
+                    source = ./themes/bat.tmTheme;
                 };
                 "fastfetch/shell-greeting.jsonc" = lib.mkSymlink config {
-                    source = "${modulePath}/shell-greeting.jsonc";
+                    source = ./shell-greeting.jsonc;
                 };
             };
         };

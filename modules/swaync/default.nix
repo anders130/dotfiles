@@ -17,7 +17,7 @@
 
         home-manager.users.${username} = {config, ...}: {
             xdg.configFile."swaync" = lib.mkSymlink config {
-                source = "modules/swaync";
+                source = ./.;
                 recursive = true;
             };
         };

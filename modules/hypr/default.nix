@@ -75,7 +75,7 @@ in {
             };
 
             xdg.configFile."hypr/visuals" = lib.mkSymlink config {
-                source = "modules/hypr/visuals";
+                source = ./visuals;
                 recursive = true;
             };
 

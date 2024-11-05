@@ -33,7 +33,7 @@ in {
 
             xdg.configFile = {
                 "rofi/theme.rasi" = lib.mkSymlink config {
-                    source = "modules/applications/rofi/theme.rasi";
+                    source = ./theme.rasi;
                 };
 
                 "rofimoji.rc".text = ''

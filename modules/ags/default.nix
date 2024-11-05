@@ -36,17 +36,17 @@
 
             xdg.configFile = {
                 "ags/config.js" = lib.mkSymlink config {
-                    source = "modules/ags/config.js";
+                    source = ./config.js;
                 };
                 "ags/style.css" = lib.mkSymlink config {
-                    source = "modules/ags/style.css";
+                    source = ./style.css;
                 };
                 "ags/components" = lib.mkSymlink config {
-                    source = "modules/ags/components";
+                    source = ./components;
                     recursive = true;
                 };
                 "ags/utils" = lib.mkSymlink config {
-                    source = "modules/ags/utils";
+                    source = ./utils;
                     recursive = true;
                 };
             };

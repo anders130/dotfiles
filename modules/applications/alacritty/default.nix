@@ -16,7 +16,7 @@
 
         home-manager.users.${username} = {config, ...}: {
             xdg.configFile.alacritty = lib.mkSymlink config {
-                source = "modules/applications/alacritty";
+                source = ./.;
                 recursive = true;
             };
         };
