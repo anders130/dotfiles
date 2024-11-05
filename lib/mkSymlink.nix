@@ -3,15 +3,9 @@
     isThinClient,
     lib,
     ...
-}: config: {
-    source,
-    recursive ? false,
-    ...
-}: let
-    path =
-        if builtins.typeOf source == "string"
-        then source
-        else lib.mkRelativePath source;
+}: config: path: let
+    p = lib.mkRelativePath path;
+    recursive = !lib.hasSuffix ".nix" p;
 in {
     inherit recursive;
     source =
@@ -20,5 +14,5 @@ in {
             if isThinClient
             then inputs.self
             else config.home.homeDirectory
-        }/.dotfiles/${path}";
+        }/.dotfiles/${p}";
 }

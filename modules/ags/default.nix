@@ -30,20 +30,10 @@
         };
 
         xdg.configFile = {
-            "ags/config.js" = lib.mkSymlink config {
-                source = ./config.js;
-            };
-            "ags/style.css" = lib.mkSymlink config {
-                source = ./style.css;
-            };
-            "ags/components" = lib.mkSymlink config {
-                source = ./components;
-                recursive = true;
-            };
-            "ags/utils" = lib.mkSymlink config {
-                source = ./utils;
-                recursive = true;
-            };
+            "ags/config.js" = lib.mkSymlink config ./config.js;
+            "ags/style.css" = lib.mkSymlink config ./style.css;
+            "ags/components" = lib.mkSymlink config ./components;
+            "ags/utils" = lib.mkSymlink config ./utils;
         };
     };
 }

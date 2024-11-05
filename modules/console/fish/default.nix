@@ -60,22 +60,11 @@ in {
             home.sessionVariables.SHELL = "etc/profiles/per-user/${username}/bin/fish";
 
             xdg.configFile = {
-                "fish/extraConfig.fish" = lib.mkSymlink config {
-                    source = ./config.fish;
-                };
-                "fish/functions" = lib.mkSymlink config {
-                    source = ./functions;
-                    recursive = true;
-                };
-                "fish/themes/fish.theme" = lib.mkSymlink config {
-                    source = ./themes/fish.theme;
-                };
-                "bat/themes/bat.tmTheme" = lib.mkSymlink config {
-                    source = ./themes/bat.tmTheme;
-                };
-                "fastfetch/shell-greeting.jsonc" = lib.mkSymlink config {
-                    source = ./shell-greeting.jsonc;
-                };
+                "fish/extraConfig.fish" = lib.mkSymlink config ./config.fish;
+                "fish/functions" = lib.mkSymlink config ./functions;
+                "fish/themes/fish.theme" = lib.mkSymlink config ./themes/fish.theme;
+                "bat/themes/bat.tmTheme" = lib.mkSymlink config ./themes/bat.tmTheme;
+                "fastfetch/shell-greeting.jsonc" = lib.mkSymlink config ./shell-greeting.jsonc;
             };
         };
 

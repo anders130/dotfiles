@@ -17,9 +17,7 @@ in {
         ];
 
         home-manager.users.${username} = {config, ...}: {
-            home.file.".local/share/Anki2/addons21/${recolorAddonCode}/config.json" = lib.mkSymlink config {
-                source = ./theme.json;
-            };
+            home.file.".local/share/Anki2/addons21/${recolorAddonCode}/config.json" = lib.mkSymlink config ./theme.json;
         };
     };
 }

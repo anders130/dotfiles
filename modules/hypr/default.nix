@@ -74,10 +74,7 @@ in {
                 systemd.variables = ["--all"];
             };
 
-            xdg.configFile."hypr/visuals" = lib.mkSymlink config {
-                source = ./visuals;
-                recursive = true;
-            };
+            xdg.configFile."hypr/visuals" = lib.mkSymlink config ./visuals;
 
             stylix.targets.hyprland.enable = false;
         };

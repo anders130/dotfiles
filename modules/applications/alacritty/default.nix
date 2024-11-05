@@ -15,10 +15,7 @@
         ];
 
         home-manager.users.${username} = {config, ...}: {
-            xdg.configFile.alacritty = lib.mkSymlink config {
-                source = ./.;
-                recursive = true;
-            };
+            xdg.configFile.alacritty = lib.mkSymlink config ./.;
         };
     };
 }
