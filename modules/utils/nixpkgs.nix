@@ -2,7 +2,7 @@
     config,
     inputs,
     lib,
-    variables,
+    pkgs,
     ...
 }: lib.mkModule config ./nixpkgs.nix {
     nixpkgs = {
@@ -14,5 +14,5 @@
         overlays = [inputs.self.outputs.overlays.default];
     };
 
-    system.stateVersion = variables.version;
+    system.stateVersion = pkgs.lib.trivial.release;
 }

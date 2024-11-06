@@ -12,15 +12,6 @@
         ./localization.nix
     ];
 
-    home-manager = {
-        useGlobalPkgs = true;
-        useUserPackages = true;
-        backupFileExtension = "hm-backup";
-        users.${username}.imports = [
-            ./home.nix
-        ];
-    };
-
     # enable custom modules
     modules = {
         console = {
@@ -32,6 +23,7 @@
         utils = {
             sops.enable = lib.mkDefault true;
             stylix.enable = lib.mkDefault true;
+            home-manager.enable = lib.mkDefault true;
             nixpkgs.enable = lib.mkDefault true;
         };
     };
