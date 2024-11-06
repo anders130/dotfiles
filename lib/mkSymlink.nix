@@ -5,9 +5,8 @@
     ...
 }: config: path: let
     p = lib.mkRelativePath path;
-    recursive = !lib.hasSuffix ".nix" p;
 in {
-    inherit recursive;
+    recursive = true; # important for directories but has no effect on files
     source =
         config.lib.file.mkOutOfStoreSymlink
         "${
