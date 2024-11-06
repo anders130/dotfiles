@@ -56,12 +56,10 @@ in {
                 };
             };
             swaync.enable = lib.mkDefault true;
-            theming = {
-                plymouth.enable = lib.mkDefault true;
-                stylix = {
-                    enable = lib.mkDefault true;
-                    desktop.enable = lib.mkDefault true;
-                };
+            theming.plymouth.enable = lib.mkDefault true;
+            utils.stylix = {
+                enable = lib.mkDefault true;
+                desktop.enable = lib.mkDefault true;
             };
         };
 

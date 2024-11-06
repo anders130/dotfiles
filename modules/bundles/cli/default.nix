@@ -20,7 +20,6 @@
                 tmux.enable = lib.mkDefault true;
             };
             nixvim.enable = lib.mkDefault true;
-            theming.stylix.enable = lib.mkDefault true;
         };
 
         # for secret storing stuff

@@ -5,16 +5,12 @@
     pkgs,
     username,
     ...
-}: {
+}: lib.mkModule config ./. {
     imports = [
         inputs.sops-nix.nixosModules.sops
     ];
 
-    options.modules.sops = {
-        enable = lib.mkEnableOption "sops";
-    };
-
-    config = lib.mkIf config.modules.sops.enable {
+    config = {
         environment.systemPackages = with pkgs; [
             sops
             ssh-to-age

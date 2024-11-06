@@ -6,21 +6,12 @@
     lib,
     pkgs,
     username,
-    variables,
     ...
 }: {
     imports = [
         ./localization.nix
     ];
 
-    nixpkgs = {
-        config = {
-            allowUnfree = true;
-            allowUnsupportedSystem = true;
-            permittedInsecurePackages = [];
-        };
-        overlays = [inputs.self.outputs.overlays.default];
-    };
     home-manager = {
         useGlobalPkgs = true;
         useUserPackages = true;
@@ -38,8 +29,11 @@
         };
         hardware.keyboard.enable = lib.mkDefault true;
         services.docker.enable = lib.mkDefault true;
-        sops.enable = lib.mkDefault true;
-        theming.stylix.enable = lib.mkDefault true;
+        utils = {
+            sops.enable = lib.mkDefault true;
+            stylix.enable = lib.mkDefault true;
+            nixpkgs.enable = lib.mkDefault true;
+        };
     };
 
     environment.variables = {
@@ -97,6 +91,4 @@
             !include /home/${username}/.nix.conf
         '';
     };
-
-    system.stateVersion = variables.version;
 }

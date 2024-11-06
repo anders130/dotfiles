@@ -5,19 +5,16 @@
     pkgs,
     username,
     ...
-}: let
-    cfg = config.modules.theming.stylix;
-in {
+}: lib.mkModule config ./. {
     imports = [
         inputs.stylix.nixosModules.stylix
     ];
 
-    options.modules.theming.stylix = {
-        enable = lib.mkEnableOption "stylix";
+    options = {
         desktop.enable = lib.mkEnableOption "stylix.desktop";
     };
 
-    config = lib.mkIf cfg.enable {
+    config = cfg: {
         home-manager.users.${username} = lib.mkIf cfg.desktop.enable {
             gtk.enable = true;
         };

@@ -1,14 +1,14 @@
-{lib, ...}: currentConfig: path: {
+{lib, ...}: hostConfig: path: {
     imports ? [],
     options ? {},
     config ? null,
     name ? null,
     ...
 } @ args: let
-    p = lib.mkRelativePath path;
-    n = if name != null then name
-        else let a = lib.splitString "/" p; in builtins.elemAt a (builtins.length a - 1);
-    c = if config != null then config else args;
+    relativePath = lib.removeSuffix ".nix" (lib.mkRelativePath path);
+    configName = if name != null then name
+        else let a = lib.splitString "/" relativePath; in builtins.elemAt a (builtins.length a - 1);
+    configObj = if config != null then config else args;
 
     pathToSet = path: value: let
         parts = lib.splitString "/" path;
@@ -16,19 +16,27 @@
     in
         buildSet parts value;
 
-    opts = pathToSet p ({enable = lib.mkEnableOption n;} // options);
+    definedOptions = pathToSet relativePath ({enable = lib.mkEnableOption configName;} // options);
 
-    configPath = pathStr: configObj: let
-        parts = lib.splitString "/" pathStr;
+    cfg = let
+        getFromConfig = pathStr: configObj: let
+            parts = lib.splitString "/" pathStr;
 
-        getNestedAttr = parts: obj:
-            if builtins.length parts == 0
-            then obj
-            else getNestedAttr (builtins.tail parts) (builtins.getAttr (builtins.elemAt parts 0) obj);
+            getNestedAttr = parts: obj:
+                if builtins.length parts == 0
+                then obj
+                else getNestedAttr (builtins.tail parts) (builtins.getAttr (builtins.elemAt parts 0) obj);
+        in
+            getNestedAttr parts configObj;
     in
-        getNestedAttr parts configObj;
+        getFromConfig relativePath hostConfig;
+
+    resolvedConfig =
+        if builtins.typeOf configObj == "lambda"
+        then (configObj cfg)
+        else configObj;
 in {
     inherit imports;
-    options = opts;
-    config = lib.mkIf (configPath p currentConfig).enable c;
+    options = definedOptions;
+    config = lib.mkIf cfg.enable resolvedConfig;
 }
