@@ -54,6 +54,8 @@
                 workspaces-only-on-primary = true;
             };
             "org/gnome/shell/app-switcher".current-workspace-only = false;
+            # Fix gnome touchpad right click. See [this](https://git.gnome.org/browse/gsettings-desktop-schemas/commit/?id=77ff1d91d974b2aaebbf7d748f1cd904bc75330b)
+            "org/gnome/desktop/peripherals/touchpad".click-method = "default";
         };
     };
 }
