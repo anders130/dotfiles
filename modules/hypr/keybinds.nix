@@ -9,8 +9,8 @@ in {
     home-manager.users.${username} = lib.mkIf cfg.enable {
         wayland.windowManager.hyprland.settings = {
             input = {
-                kb_layout = config.modules.hardware.keyboard.layout;
-                kb_variant = config.modules.hardware.keyboard.variant;
+                kb_layout = config.modules.utils.keyboard.layout;
+                kb_variant = config.modules.utils.keyboard.variant;
                 kb_model = "";
                 kb_options = "";
                 kb_rules = "";

@@ -2,11 +2,8 @@
     config,
     lib,
     ...
-}: let
-    cfg = config.modules.hardware.keyboard;
-in {
-    options.modules.hardware.keyboard = {
-        enable = lib.mkEnableOption "Enable keyboard";
+}: lib.mkModule config ./keyboard.nix {
+    options = {
         layout = lib.mkOption {
             type = lib.types.str;
             default = "us";
@@ -19,7 +16,7 @@ in {
         };
     };
 
-    config = lib.mkIf cfg.enable {
+    config = cfg: {
         console.keyMap = cfg.layout;
 
         services.xserver.xkb = {

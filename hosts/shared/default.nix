@@ -19,12 +19,12 @@
             git.enable = lib.mkDefault true;
             ssh.enable = lib.mkDefault true;
         };
-        hardware.keyboard.enable = lib.mkDefault true;
         services.docker.enable = lib.mkDefault true;
         utils = {
             sops.enable = lib.mkDefault true;
             stylix.enable = lib.mkDefault true;
             home-manager.enable = lib.mkDefault true;
+            keyboard.enable = lib.mkDefault true;
             nixpkgs.enable = lib.mkDefault true;
         };
     };
