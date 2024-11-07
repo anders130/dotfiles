@@ -17,6 +17,7 @@
         console = {
             fish.enable = lib.mkDefault true;
             git.enable = lib.mkDefault true;
+            ssh.enable = lib.mkDefault true;
         };
         hardware.keyboard.enable = lib.mkDefault true;
         services.docker.enable = lib.mkDefault true;
@@ -38,10 +39,6 @@
         hostName = "${hostname}";
         networkmanager.enable = lib.mkDefault true;
     };
-
-    services.openssh.enable = lib.mkDefault true;
-
-    programs.ssh.startAgent = lib.mkDefault true;
 
     users.users.${username} = {
         isNormalUser = true;

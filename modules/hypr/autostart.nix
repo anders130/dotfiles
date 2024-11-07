@@ -18,17 +18,6 @@
         # hardware stuff
         xrandr --output ${cfg.mainMonitor} --primary
 
-        # fix ssh agent
-        if ssh-add -l | grep -q "The agent has no identities."; then
-            for key in ~/.ssh/id_*; do
-                if [[ -f $key && ! $key =~ \.pub$ ]]; then
-                    ssh-add "$key"
-                fi
-            done
-        else
-            echo "SSH agent already has identities loaded."
-        fi
-
         # apps
         ${lib.concatMapStringsSep "\n" (app: ''
             ${app.cmd} &
