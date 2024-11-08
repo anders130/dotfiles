@@ -1,13 +1,9 @@
-{
-    lib,
-    pkgs,
-    ...
-}: {
+{lib, ...}: {
     options.modules.hypr = {
         enable = lib.mkEnableOption "Enable hypr";
         terminal = lib.mkOption {
             type = lib.types.str;
-            default = "${pkgs.kitty}/bin/kitty";
+            default = "kitty";
         };
         appLauncher = lib.mkOption {
             type = lib.types.str;
