@@ -11,7 +11,7 @@
 
     config = lib.mkIf config.modules.applications.alacritty.enable {
         environment.systemPackages = [
-            pkgs.unstable.alacritty
+            pkgs.alacritty
         ];
 
         home-manager.users.${username} = {config, ...}: {

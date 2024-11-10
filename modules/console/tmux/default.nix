@@ -21,7 +21,7 @@
             shortcut = "Space"; # Ctrl+Space
             baseIndex = 1; # window and pane index
 
-            plugins = with pkgs.unstable.tmuxPlugins; [
+            plugins = with pkgs.tmuxPlugins; [
                 vim-tmux-navigator
                 catppuccin
             ];

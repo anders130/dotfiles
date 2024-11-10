@@ -5,7 +5,7 @@
     username,
     ...
 }: let
-    package = pkgs.unstable.kitty;
+    package = pkgs.kitty;
 in lib.mkModule config ./. {
     environment.systemPackages = [package];
 

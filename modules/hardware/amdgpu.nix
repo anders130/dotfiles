@@ -1,21 +1,13 @@
 {
     config,
     lib,
-    pkgs,
     ...
-}: lib.mkModule config ./amdgpu.nix {
-    boot.initrd.kernelModules = ["amdgpu"];
-
-    services.xserver.videoDrivers = ["amdgpu"];
-
-    hardware.opengl = {
-        enable = true;
-        driSupport = true;
-        driSupport32Bit = true;
-        extraPackages = with pkgs; [
-            vulkan-loader
-            vulkan-validation-layers
-            vulkan-extension-layer
-        ];
+}:
+lib.mkModule config ./amdgpu.nix {
+    hardware.graphics = {
+        enable = lib.mkDefault true;
+        enable32Bit = lib.mkDefault true;
     };
+
+    hardware.amdgpu.initrd.enable = lib.mkDefault true;
 }

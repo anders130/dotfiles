@@ -65,7 +65,7 @@ To enable Secure Boot, you’ll need to set a **BIOS password** and disable **ke
    After this, verify that the keys are created successfully:
 
    ```bash
-   sudo nix run nixpkgs-unstable#sbctl verify
+   sudo nix run nixpkgs#sbctl verify
    ```
 
 2. **Enable Secure-Boot in the BIOS**

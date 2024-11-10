@@ -8,7 +8,7 @@
     cfg = config.modules.hypr;
     stylixColors = config.lib.stylix.colors;
 
-    package = pkgs.unstable.hyprlock;
+    package = pkgs.hyprlock;
 
     font = config.stylix.fonts.monospace.name;
 

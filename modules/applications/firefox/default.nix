@@ -22,7 +22,7 @@ in {
         home-manager.users.${username} = {
             programs.firefox = {
                 enable = true;
-                package = pkgs.unstable.firefox;
+                package = pkgs.firefox;
                 profiles = {
                     private = profileBaseConfig // {
                         id = 0;

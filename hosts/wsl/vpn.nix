@@ -1,6 +1,6 @@
 {pkgs, ...}: {
     environment.systemPackages = with pkgs; [
-        unstable.wsl-vpnkit
+        wsl-vpnkit
     ];
 
     environment.shellAliases = {
@@ -12,7 +12,7 @@
         enable = true;
         description = "wsl-vpnkit";
         serviceConfig = {
-            ExecStart = "${pkgs.unstable.wsl-vpnkit}/bin/wsl-vpnkit";
+            ExecStart = "${pkgs.wsl-vpnkit}/bin/wsl-vpnkit";
             Type = "idle";
             Restart = "always";
             KillMde = "mixed";

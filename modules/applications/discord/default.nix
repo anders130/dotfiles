@@ -36,7 +36,7 @@
 
                 vesktop = {
                     enable = true;
-                    package = pkgs.unstable.vesktop.overrideAttrs (finalAttrs: previousAttrs: {
+                    package = pkgs.vesktop.overrideAttrs (finalAttrs: previousAttrs: {
                         desktopItems = [
                             ((builtins.elemAt previousAttrs.desktopItems 0).override {icon = "${pkgs.discord}/share/icons/hicolor/256x256/apps/discord.png";})
                         ];

@@ -6,7 +6,7 @@
     ...
 }: let
     secrets = import ./secrets.nix;
-    package = pkgs.unstable.git;
+    package = pkgs.git;
 in {
     options.modules.console.git = {
         enable = lib.mkEnableOption "git";

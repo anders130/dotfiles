@@ -56,12 +56,11 @@
             options = "--delete-older-than 7d";
         };
 
-        package = pkgs.nixFlakes;
+        package = pkgs.nixVersions.stable;
 
         registry = {
             custom.flake = inputs.self;
             nixpkgs.flake = inputs.nixpkgs;
-            nixpkgs-unstable.flake = inputs.nixpkgs-unstable;
         };
 
         settings = {

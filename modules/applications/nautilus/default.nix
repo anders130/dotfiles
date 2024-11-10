@@ -17,17 +17,17 @@ in {
     config = lib.mkIf cfg.enable {
         environment = {
             systemPackages = [
-                (pkgs.gnome.nautilus.overrideAttrs (super: {
+                (pkgs.nautilus.overrideAttrs (super: {
                     buildInputs = super.buildInputs ++ (with pkgs.gst_all_1; [
                         gst-plugins-good
                         gst-plugins-bad
                         gst-plugins-ugly
                     ]);
                 }))
-                pkgs.gnome.nautilus-python
+                pkgs.nautilus-python
             ];
 
-            sessionVariables.NAUTILUS_4_EXTENSION_DIR = lib.mkForce "${pkgs.gnome.nautilus-python}/lib/nautilus/extensions-4";
+            sessionVariables.NAUTILUS_4_EXTENSION_DIR = lib.mkForce "${pkgs.nautilus-python}/lib/nautilus/extensions-4";
             pathsToLink = [
                 "/share/nautilus-python/extensions"
             ];
@@ -44,6 +44,6 @@ in {
             xdg.userDirs.enable = true;
         };
 
-        services.gnome.tracker-miners.enable = true;
+        services.gnome.localsearch.enable = true;
     };
 }

@@ -23,7 +23,7 @@ in {
         programs.steam = {
             enable = true;
             remotePlay.openFirewall = true;
-            package = pkgs.unstable.steam.override {
+            package = pkgs.steam.override {
                 extraPkgs = pkgs: [pkgs.attr];
             };
         };
@@ -31,7 +31,7 @@ in {
         environment.systemPackages =
             (lib.optionals config.modules.hypr.enable [
                 forceMouseToGame
-            ]) ++ (with pkgs.unstable; [
+            ]) ++ (with pkgs; [
                 protonup-qt # easy ge-proton setup for steam
                 lutris
 

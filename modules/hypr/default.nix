@@ -9,6 +9,7 @@
     cfg = config.modules.hypr;
     package = (lib.getPkgs "hyprland").hyprland;
     portalPackage = (lib.getPkgs "hyprland").xdg-desktop-portal-hyprland;
+    hyprlandPkgs = inputs.hyprland.inputs.nixpkgs.legacyPackages.${pkgs.system};
 in {
     imports = [
         ./hyprlock
@@ -28,12 +29,9 @@ in {
             xwayland.enable = true;
         };
 
-        # use gtk desktop portal
-        # (recommended for usage alongside hyprland desktop portal)
-        xdg.portal = {
-            enable = true;
-            extraPortals = [portalPackage];
-            config.commmon.default = "*";
+        hardware.graphics = lib.mkIf config.modules.hardware.amdgpu.enable {
+            package = hyprlandPkgs.mesa.drivers;
+            package32 = hyprlandPkgs.pkgsi686Linux.mesa.drivers;
         };
 
         # use cached hyprland flake builds

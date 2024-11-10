@@ -40,7 +40,7 @@ in {
     config = lib.mkIf cfg.enable {
         environment.systemPackages = [
             autostart
-        ] ++ (with pkgs.unstable; [
+        ] ++ (with pkgs; [
             swww # wallpaper utility
         ]);
 
