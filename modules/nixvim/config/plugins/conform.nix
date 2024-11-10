@@ -26,30 +26,30 @@ in{
 
         plugins.conform-nvim = {
             enable = true;
-            notifyOnError = false;
-            formatOnSave = /*lua*/''function(bufnr)
-                -- Disable "format_on_save lsp_fallback" for languages that don't
-                -- have a well standardized coding style. You can add additional
-                -- languages here or re-enable it for the disabled ones.
-                local ignore_filetypes = { ${builtins.concatStringsSep ", " (builtins.map lib.strings.escapeShellArg cfg.ignore_filetypes)} }
-                if vim.tbl_contains(ignore_filetypes, vim.bo[bufnr].filetype) then
-                    print(vim.bo[bufnr].filetype)
-                    return
-                end
-                local disable_filetypes = { c = true, cpp = true }
-                return {
-                    timeout_ms = 500,
-                    lsp_fallback = not disable_filetypes[vim.bo[bufnr].filetype],
-                }
-            end'';
-            formatters = {
-                convert_indentation = {
-                    command = "${pkgs.gnused}/bin/sed";
-                    args = ["-i" "-E" "s/^([ \t]+)/\\1\\1/" "$FILENAME"];
-                    stdin = false;
-                    cwd.__raw = /*lua*/''
-                        function() return vim.fn.expand('%:p:h') end
-                    '';
+            settings = {
+                notify_on_error = false;
+                format_on_save = /*lua*/''function(bufnr)
+                    local disable_filetypes = {
+                        ${builtins.concatStringsSep ", " (builtins.map (filetype: "${filetype} = true") cfg.ignore_filetypes)}
+                    }
+                    if disable_filetypes[vim.bo[bufnr].filetype] then
+                        return
+                    else
+                        return {
+                            timeout_ms = 500,
+                            lsp_fallback = "fallback"
+                        }
+                    end
+                end'';
+                formatters = {
+                    convert_indentation = {
+                        command = "${pkgs.gnused}/bin/sed";
+                        args = ["-i" "-E" "s/^([ \t]+)/\\1\\1/" "$FILENAME"];
+                        stdin = false;
+                        cwd.__raw = /*lua*/''
+                            function() return vim.fn.expand('%:p:h') end
+                        '';
+                    };
                 };
             };
         };

@@ -1,7 +1,7 @@
 {
     plugins = {
         lsp.servers = {
-            tsserver.enable = true;
+            ts_ls.enable = true;
             eslint.enable = true;
         };
         none-ls.sources.formatting.prettier = {

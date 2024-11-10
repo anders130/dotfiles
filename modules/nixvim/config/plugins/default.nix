@@ -7,18 +7,20 @@
         indent-blankline.enable = true;
         lualine = {
             enable = true;
-            theme = "catppuccin";
-            sectionSeparators = {
-                left = "";
-                right = "";
-            };
-            componentSeparators = {
-                left = "";
-                right = "";
+            settings.options = {
+                theme = "catppuccin";
+                section_separators = {
+                    left = "";
+                    right = "";
+                };
+                component_separators = {
+                    left = "";
+                    right = "";
+                };
             };
         };
         otter.enable = true; # completion for embedded code
-        surround.enable = true;
+        vim-surround.enable = true;
         tmux-navigator.enable = true;
         which-key.enable = true;
 
@@ -44,5 +46,6 @@
         godot.enable = true;
         markdown-preview.enable = true;
         neo-tree.enable = true;
+        web-devicons.enable = true;
     };
 }

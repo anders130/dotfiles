@@ -1,6 +1,6 @@
 {
     plugins = {
-        conform-nvim.formattersByFt.python = ["isort" "black"];
+        conform-nvim.settings.formatters_by_ft.python = ["isort" "black"];
         lsp.servers.pyright.enable = true;
     };
 }

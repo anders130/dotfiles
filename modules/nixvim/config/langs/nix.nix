@@ -20,7 +20,7 @@
         };
         conform-nvim = {
             ignore_filetypes = ["nix"]; # IMPORTANT: this a custom option
-            formattersByFt.nix = ["alejandra" "convert_indentation"];
+            settings.formatters_by_ft.nix = ["alejandra" "convert_indentation"];
         };
     };
 

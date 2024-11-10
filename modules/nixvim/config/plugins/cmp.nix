@@ -59,7 +59,7 @@
                     { name = "path"; }
                     { name = "buffer"; }
                     { name = "luasnip"; }
-                    { name = "otter"; }
+                    { name = "cmp-nvim-lsp"; }
                     { name = "supermaven"; }
                 ];
             };

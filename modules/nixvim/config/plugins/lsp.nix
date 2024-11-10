@@ -44,7 +44,7 @@
         servers = {
             cssls.enable = true;
             html.enable = true;
-            java-language-server.enable = true;
+            java_language_server.enable = true;
             jsonls.enable = true;
         };
     };
