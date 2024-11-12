@@ -2,9 +2,7 @@
     hashedPassword,
     host,
     hostname,
-    inputs,
     lib,
-    pkgs,
     username,
     ...
 }: {
@@ -17,6 +15,7 @@
         console = {
             fish.enable = lib.mkDefault true;
             git.enable = lib.mkDefault true;
+            nix.enable = lib.mkDefault true;
             ssh.enable = lib.mkDefault true;
         };
         services.docker.enable = lib.mkDefault true;
@@ -48,35 +47,5 @@
         ];
     } // lib.optionalAttrs (hashedPassword != null) {
         hashedPassword = hashedPassword;
-    };
-
-    nix = {
-        gc = {
-            automatic = true;
-            options = "--delete-older-than 7d";
-        };
-
-        package = pkgs.nixVersions.stable;
-
-        registry = {
-            custom.flake = inputs.self;
-            nixpkgs.flake = inputs.nixpkgs;
-        };
-
-        settings = {
-            accept-flake-config = true;
-            auto-optimise-store = true;
-
-            experimental-features = [
-                "nix-command"
-                "flakes"
-            ];
-
-            trusted-users = [username];
-        };
-
-        extraOptions = ''
-            !include /home/${username}/.nix.conf
-        '';
     };
 }
