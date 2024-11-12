@@ -6,10 +6,6 @@
     username,
     ...
 }: {
-    imports = [
-        ./localization.nix
-    ];
-
     # enable custom modules
     modules = {
         console = {
@@ -24,6 +20,7 @@
             stylix.enable = lib.mkDefault true;
             home-manager.enable = lib.mkDefault true;
             keyboard.enable = lib.mkDefault true;
+            locale.enable = lib.mkDefault true;
             nixpkgs.enable = lib.mkDefault true;
         };
     };
