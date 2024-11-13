@@ -32,14 +32,12 @@ in{
                     local disable_filetypes = {
                         ${builtins.concatStringsSep ", " (builtins.map (filetype: "${filetype} = true") cfg.ignore_filetypes)}
                     }
+
                     if disable_filetypes[vim.bo[bufnr].filetype] then
                         return
-                    else
-                        return {
-                            timeout_ms = 500,
-                            lsp_fallback = "fallback"
-                        }
                     end
+
+                    return { timeout_ms = 200, lsp_fallback = true }
                 end'';
                 formatters = {
                     convert_indentation = {
