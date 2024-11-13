@@ -12,14 +12,12 @@
     };
 
     config = lib.mkIf config.bundles.cli.enable {
-        modules = {
-            console = {
-                btop.enable = lib.mkDefault true;
-                fish.enable = lib.mkDefault true;
-                git.enable = lib.mkDefault true;
-                tmux.enable = lib.mkDefault true;
-            };
-            nixvim.enable = lib.mkDefault true;
+        modules.console = {
+            btop.enable = lib.mkDefault true;
+            fish.enable = lib.mkDefault true;
+            git.enable = lib.mkDefault true;
+            tmux.enable = lib.mkDefault true;
+            nvix.enable = lib.mkDefault true;
         };
 
         # for secret storing stuff

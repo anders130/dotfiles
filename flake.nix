@@ -22,7 +22,7 @@
             inputs.nixpkgs.follows = "nixpkgs";
         };
 
-        nixvim.url = "path:./modules/nixvim";
+        nvix.url = "github:anders130/nvix";
         nix-minecraft.url = "github:Infinidoge/nix-minecraft";
         nixcord.url = "github:kaylorben/nixcord";
         lumehub.url = "git+https://github.com/LumeHub/LumeHub.Server?branch=dev&submodules=1";

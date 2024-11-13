@@ -12,8 +12,6 @@ function flake-rebuild -w nixos-rebuild
     sudo true # require password to do nothing
     if test $status -ne 0; return; end # exit if unsuccessful
 
-    # update flake inputs with relative paths to avoid nixos-rebuild from failing
-    eval "nix flake update --flake $FLAKE nixvim"
     # use default host and nom
     eval "sudo nixos-rebuild switch --flake $FLAKE\?submodules=1#$NIX_FLAKE_DEFAULT_HOST $argv &| nom"
 end
