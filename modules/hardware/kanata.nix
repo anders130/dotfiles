@@ -10,19 +10,19 @@
         keyboards.default.config = ''
             (defsrc
                 caps
-                lalt ralt
+                ralt
                 lsft rsft
                 a o u s e
             )
             (deflayer default
                 esc
-                @alt @alt
+                @alt
                 lsft rsft
                 a o u s e
             )
             (deflayer unicodechars
                 esc
-                lalt ralt
+                ralt
                 lsft rsft
                 @ae @oe @ue @sz @eu
             )
