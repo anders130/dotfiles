@@ -7,6 +7,14 @@
         '';
     };
 
+    python = {
+        path = ./python;
+        description = "python development template";
+        welcomeText = ''
+            This template is a minimal python development template, that uses pytest for testing and pyproject for the project structure.
+        '';
+    };
+
     simple = {
         path = ./simple;
         description = "simple dev environment with no pre-installed packages";
