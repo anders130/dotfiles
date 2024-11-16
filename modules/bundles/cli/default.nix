@@ -17,7 +17,10 @@
             fish.enable = lib.mkDefault true;
             git.enable = lib.mkDefault true;
             tmux.enable = lib.mkDefault true;
-            nvix.enable = lib.mkDefault true;
+            nvix = {
+                enable = lib.mkDefault true;
+                type = lib.mkDefault "full";
+            };
         };
 
         # for secret storing stuff

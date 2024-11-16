@@ -13,6 +13,7 @@
             git.enable = lib.mkDefault true;
             nix.enable = lib.mkDefault true;
             ssh.enable = lib.mkDefault true;
+            nvix.enable = lib.mkDefault true;
         };
         services.docker.enable = lib.mkDefault true;
         utils = {

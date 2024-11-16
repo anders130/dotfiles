@@ -3,17 +3,26 @@
     inputs,
     lib,
     pkgs,
+    username,
     ...
 }: lib.mkModule config ./nvix.nix {
-    environment = {
-        systemPackages = [inputs.nvix.packages.${pkgs.system}.default];
+    options.type = lib.mkOption {
+        type = lib.types.enum ["base" "full"];
+        default = "base";
+    };
 
-        shellAliases = {
-            nvix = "nvim";
-            vim = "nvim";
-            vi = "nvim";
+    config = cfg: {
+        home-manager.users.${username}.home.packages = [inputs.nvix.packages.${pkgs.system}.${cfg.type}];
+        environment = {
+            systemPackages = [inputs.nvix.packages.${pkgs.system}.base];
+
+            shellAliases = {
+                nvix = "nvim";
+                vim = "nvim";
+                vi = "nvim";
+            };
+
+            variables.EDITOR = "nvim";
         };
-
-        variables.EDITOR = "nvim";
     };
 }
