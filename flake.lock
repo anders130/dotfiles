@@ -1369,11 +1369,11 @@
         "systems": "systems_7"
       },
       "locked": {
-        "lastModified": 1731756411,
-        "narHash": "sha256-HV8rnkPzBn3aHKD1Oto6DE9wqcnQ1Ml0DxNZhtbbrHw=",
+        "lastModified": 1731762906,
+        "narHash": "sha256-NSn23ReaiefaYAQznMaSZ8Ik4Ivl292sI3cKMKDd9ZY=",
         "owner": "anders130",
         "repo": "nvix",
-        "rev": "e4775b5838f772566bc9683e3262a2382133c359",
+        "rev": "bf9fbdb9db6eea147a28f906f556b712021d360b",
         "type": "github"
       },
       "original": {
