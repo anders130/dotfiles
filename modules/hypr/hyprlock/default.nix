@@ -27,6 +27,7 @@
     };
 in {
     home-manager.users.${username} = lib.mkIf cfg.enable {
+        stylix.targets.hyprlock.enable = false;
         programs.hyprlock = {
             inherit package;
             enable = true;
