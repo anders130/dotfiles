@@ -49,4 +49,6 @@
             OOMScoreAdjust = 1000;
         };
     };
+
+    nix.settings.download-speed = 8000000; # limit download speed to 8 MB/s
 }
