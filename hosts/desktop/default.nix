@@ -50,5 +50,5 @@
         };
     };
 
-    nix.settings.download-speed = 8000000; # limit download speed to 8 MB/s
+    nix.settings.download-speed = 6250; # limit download speed to 50 Mbps
 }
