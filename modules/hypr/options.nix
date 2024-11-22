@@ -39,5 +39,10 @@
             enable = lib.mkEnableOption "Enable lightdm display manager";
             autoLogin.enable = lib.mkEnableOption "Enable autologin";
         };
+        browser = lib.mkOption {
+            type = lib.types.str;
+            default = "firefox";
+            description = "Browser to use";
+        };
     };
 }

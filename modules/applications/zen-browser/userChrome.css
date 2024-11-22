@@ -1,12 +1,6 @@
-/* Catppuccin Macchiato Blue userChrome.css*/
+/* Catppuccin Macchiato Blue userChrome.css */
 
-/* hide close and all tabs button */
-.titlebar-buttonbox-container,
-#alltabs-button,
-.titlebar-spacer[type="post-tabs"] {
-    display: none !important;
-}
-
+/* Global styles and color variables */
 @media (prefers-color-scheme: dark) {
     :root {
         --zen-colors-primary: #363a4f !important;
@@ -31,40 +25,103 @@
         --zen-themed-toolbar-bg: #1e2030aa !important;
         --zen-main-browser-background: #1e2030aa !important;
     }
+}
 
+/* Hide unwanted UI elements */
+.titlebar-buttonbox-container,
+#alltabs-button,
+.titlebar-spacer[type="post-tabs"] {
+    display: none !important;
+}
+
+/* Tab styles */
+@media (prefers-color-scheme: dark) {
+
+    /* Selected tab styles (focused window) */
+    :root:not(:-moz-window-inactive) [selected="true"] .tab-background {
+        background-color: #24273aaa !important;
+        border: 1px solid #8aadf4 !important;
+        transition:
+            background-color 0.1s ease-in-out,
+            border 0.1s ease-in-out !important;
+    }
+
+    /* Selected tab styles (unfocused window) */
+    :root:-moz-window-inactive [selected="true"] .tab-background {
+        background-color: transparent !important;
+        border: 1px solid #8aadf488 !important;
+        color: var(--zen-colors-secondary) !important;
+        transition:
+            background-color 0.1s ease-in-out,
+            border 0.1s ease-in-out !important;
+    }
+
+    /* Dim selected tab text when unfocused */
+    :root:-moz-window-inactive .tabbrowser-tab[selected="true"] {
+        color: rgba(170, 192, 244, 0.5) !important;
+        transition: color 0.1s ease-in-out !important;
+    }
+}
+
+/* URL bar and navigator toolbox styles */
+@media (prefers-color-scheme: dark) {
+
+    /* URL bar styles */
+    :root:-moz-window-inactive #urlbar,
+    :root:not(:-moz-window-inactive) #urlbar {
+        transition: color 0.1s ease-in-out !important;
+    }
+
+    :root:-moz-window-inactive #urlbar {
+        color: rgba(170, 192, 244, 0.5) !important;
+    }
+
+    /* Navigator toolbox styles */
+    :root:-moz-window-inactive #navigator-toolbox,
+    :root:not(:-moz-window-inactive) #navigator-toolbox {
+        transition: color 0.1s ease-in-out !important;
+    }
+
+    :root:-moz-window-inactive #navigator-toolbox {
+        color: rgba(170, 192, 244, 0.5) !important;
+    }
+}
+
+/* Other styles */
+@media (prefers-color-scheme: dark) {
+
+    /* Toolbar and sidebar styles */
     #permissions-granted-icon {
         color: #1e2030 !important;
     }
 
-    .sidebar-placesTree {
-        background-color: #24273a !important;
-    }
-
-    #zen-workspaces-button {
-        background-color: #24273a !important;
-    }
-
-    #TabsToolbar {
-        background-color: transparent !important;
-    }
-
-    #urlbar-background {
+    .sidebar-placesTree,
+    #zen-workspaces-button,
+    #urlbar-background,
+    .content-shortcuts {
         background-color: #24273a !important;
     }
 
     .content-shortcuts {
-        background-color: #24273a !important;
         border-color: #8aadf4 !important;
     }
 
+    /* URL bar dropdown styles */
     .urlbarView-url {
         color: #8aadf4 !important;
     }
 
+    /* Bookmark panel styles */
     #zenEditBookmarkPanelFaviconContainer {
         background: #181926 !important;
     }
 
+    /* Tabs toolbar */
+    #TabsToolbar {
+        background-color: transparent !important;
+    }
+
+    /* Toolbar button styles */
     toolbar .toolbarbutton-1 {
         &:not([disabled]) {
 

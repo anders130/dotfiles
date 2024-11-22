@@ -25,6 +25,7 @@
             virt-manager.enable = true;
             zen-browser.enable = true;
         };
+        hypr.browser = "zen";
         hardware.amdgpu.enable = true;
     };
 

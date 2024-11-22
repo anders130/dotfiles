@@ -50,7 +50,7 @@ in {
                 # programs
                 "SUPER, return, exec, ${cfg.terminal}" # terminal
                 "SUPER, E, exec, nautilus" # file manager
-                "SUPER, B, exec, firefox" # browser
+                "SUPER, B, exec, ${cfg.browser}" # browser
                 "SUPER, Space, exec, ${cfg.appLauncher}"
                 "SUPER, Period, exec, rofi -modi emoji:rofimoji -show emoji" # emoji picker
                 "SUPER, BACKSPACE, exec, hyprlock" # lock screen
