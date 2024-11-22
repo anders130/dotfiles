@@ -30,6 +30,8 @@
             url = "gitlab:doronbehar/nix-xilinx";
             inputs.nixpkgs.follows = "nixpkgs";
         };
+        zen-browser.url = "github:0xc000022070/zen-browser-flake";
+        nur.url = "github:nix-community/NUR";
 
         # gui
         ags.url = "github:Aylur/ags/v1";

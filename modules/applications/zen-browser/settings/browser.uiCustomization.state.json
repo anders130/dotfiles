@@ -1,0 +1,73 @@
+{
+    "placements": {
+        "widget-overflow-fixed-list": [],
+        "unified-extensions-area": [
+            "_762f9885-5a13-4abd-9c77-433dcd38b8fd_-browser-action",
+            "_85860b32-02a8-431a-b2b1-40fbd64c9c69_-browser-action",
+            "idcac-pub_guus_ninja-browser-action",
+            "_7a7a4a92-a2a0-41d1-9fd7-1e92480d612d_-browser-action",
+            "_b9db16a4-6edc-47ec-a1f4-b86292ed211d_-browser-action",
+            "vimium-c_gdh1995_cn-browser-action",
+            "wappalyzer_crunchlabz_com-browser-action"
+        ],
+        "nav-bar": [
+            "back-button",
+            "forward-button",
+            "stop-reload-button",
+            "customizableui-special-spring1",
+            "urlbar-container",
+            "customizableui-special-spring2",
+            "downloads-button",
+            "wrapper-sidebar-button",
+            "unified-extensions-button",
+            "ublock0_raymondhill_net-browser-action",
+            "_446900e4-71c2-419f-a6a7-df9c091e268b_-browser-action",
+            "addon_darkreader_org-browser-action"
+        ],
+        "toolbar-menubar": [
+            "menubar-items"
+        ],
+        "TabsToolbar": [
+            "tabbrowser-tabs",
+            "alltabs-button"
+        ],
+        "PersonalToolbar": [
+            "import-button",
+            "personal-bookmarks"
+        ],
+        "zen-sidebar-top-buttons": [
+            "preferences-button",
+            "zen-expand-sidebar-button",
+            "zen-profile-button"
+        ],
+        "zen-sidebar-icons-wrapper": [
+            "zen-sidepanel-button",
+            "zen-workspaces-button",
+            "new-tab-button"
+        ]
+    },
+    "seen": [
+        "developer-button",
+        "_762f9885-5a13-4abd-9c77-433dcd38b8fd_-browser-action",
+        "_446900e4-71c2-419f-a6a7-df9c091e268b_-browser-action",
+        "addon_darkreader_org-browser-action",
+        "_85860b32-02a8-431a-b2b1-40fbd64c9c69_-browser-action",
+        "idcac-pub_guus_ninja-browser-action",
+        "_7a7a4a92-a2a0-41d1-9fd7-1e92480d612d_-browser-action",
+        "ublock0_raymondhill_net-browser-action",
+        "_b9db16a4-6edc-47ec-a1f4-b86292ed211d_-browser-action",
+        "vimium-c_gdh1995_cn-browser-action",
+        "wappalyzer_crunchlabz_com-browser-action"
+    ],
+    "dirtyAreaCache": [
+        "nav-bar",
+        "zen-sidebar-icons-wrapper",
+        "PersonalToolbar",
+        "toolbar-menubar",
+        "TabsToolbar",
+        "zen-sidebar-top-buttons",
+        "unified-extensions-area"
+    ],
+    "currentVersion": 20,
+    "newElementCount": 3
+}

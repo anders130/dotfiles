@@ -21,7 +21,10 @@
     };
 
     modules = {
-        applications.virt-manager.enable = true;
+        applications = {
+            virt-manager.enable = true;
+            zen-browser.enable = true;
+        };
         hardware.amdgpu.enable = true;
     };
 
