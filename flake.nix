@@ -3,10 +3,10 @@
 
     inputs = {
         # essentials
-        nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+        nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-24.11";
 
         home-manager = {
-            url = "github:nix-community/home-manager";
+            url = "github:nix-community/home-manager?ref=release-24.11";
             inputs.nixpkgs.follows = "nixpkgs";
         };
 
@@ -38,13 +38,14 @@
         hyprland = {
             type = "git";
             url = "https://github.com/hyprwm/Hyprland";
-            ref = "refs/tags/v0.45.0";
+            ref = "refs/tags/v0.45.2";
             submodules = true;
         };
 
         split-monitor-workspaces = {
             type = "git";
-            url = "https://github.com/anders130/split-monitor-workspaces";
+            url = "https://github.com/Duckonaut/split-monitor-workspaces";
+            rev = "4aee4a6d67f8714fedd33acc7c9e64befba9b5cb";
             inputs.hyprland.follows = "hyprland";
         };
 
