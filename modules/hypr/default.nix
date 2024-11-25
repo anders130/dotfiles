@@ -12,9 +12,9 @@
     hyprlandPkgs = inputs.hyprland.inputs.nixpkgs.legacyPackages.${pkgs.system};
 in {
     imports = [
-        ./hyprlock
         ./shaders
         ./options.nix
+        ./hyprlock.nix
 
         ./autostart.nix
         ./displayManager.nix
