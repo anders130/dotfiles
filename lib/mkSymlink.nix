@@ -3,13 +3,15 @@
     isThinClient,
     lib,
     ...
-}: config: path: let
-    p = lib.mkRelativePath path;
+}: hmConfig: path: let
     basePath =
         if isThinClient
         then "${inputs.self}"
-        else "${config.home.homeDirectory}/.dotfiles";
+        else "${hmConfig.home.homeDirectory}/.dotfiles";
 in {
     recursive = true; # important for directories but has no effect on files
-    source = config.lib.file.mkOutOfStoreSymlink "${basePath}/${p}";
+    source = path
+        |> lib.mkRelativePath
+        |> (p: "${basePath}/${p}")
+        |> hmConfig.lib.file.mkOutOfStoreSymlink;
 }
