@@ -2,45 +2,27 @@
     imports ? [],
     options ? {},
     config ? null,
-    name ? null,
     ...
 } @ args: let
-    relativePath = path
+    inherit (builtins) elemAt isAttrs length;
+    inherit (lib) foldr mkIf removeSuffix splitString;
+
+    pathList = path
         |> lib.mkRelativePath
-        |> lib.removeSuffix ".nix"
-        |> lib.removeSuffix "/default"; # if path is a default.nix, remove it
+        |> removeSuffix ".nix"
+        |> removeSuffix "/default" # if path is a default.nix, remove it
+        |> splitString "/";
 
-    configName = if name != null then name
-        else let a = lib.splitString "/" relativePath; in builtins.elemAt a (builtins.length a - 1);
-    configObj = if config != null then config else args;
+    configName = elemAt (length - 1) pathList; # last element of the path
 
-    pathToSet = path: value: let
-        parts = lib.splitString "/" path;
-        buildSet = parts: acc: lib.foldr (key: acc: {${key} = acc;}) acc parts;
-    in
-        buildSet parts value;
-
-    definedOptions = pathToSet relativePath ({enable = lib.mkEnableOption configName;} // options);
-
-    cfg = let
-        getFromConfig = pathStr: configObj: let
-            parts = lib.splitString "/" pathStr;
-
-            getNestedAttr = parts: obj:
-                if builtins.length parts == 0
-                then obj
-                else getNestedAttr (builtins.tail parts) (builtins.getAttr (builtins.elemAt parts 0) obj);
-        in
-            getNestedAttr parts configObj;
-    in
-        getFromConfig relativePath hostConfig;
-
-    resolvedConfig =
-        if builtins.typeOf configObj == "lambda"
-        then (configObj cfg)
-        else configObj;
+    cfg = lib.foldl' (obj: key: obj.${key}) hostConfig pathList; # get the modules option values from the hostConfig
 in {
     inherit imports;
-    options = definedOptions;
-    config = lib.mkIf cfg.enable resolvedConfig;
+    options = options
+        |> (o: o // {enable = lib.mkEnableOption configName;})
+        |> (o: foldr (key: acc: {${key} = acc;}) o pathList); # set the value at the path
+    config = config
+        |> (c: if c != null then c else args) # if config is not set, assume args are the config
+        |> (c: if isAttrs c then c else (c cfg)) # if config is a function, call it with cfg
+        |> mkIf cfg.enable; # only enable if cfg.enable is true
 }
