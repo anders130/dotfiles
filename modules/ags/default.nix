@@ -1,11 +1,10 @@
 {
-    config,
     inputs,
     lib,
     pkgs,
     username,
     ...
-}: lib.mkModule config ./. {
+}: {
     services.upower.enable = true;
 
     environment.systemPackages = [

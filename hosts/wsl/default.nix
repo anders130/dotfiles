@@ -7,9 +7,10 @@
         ./vpn.nix
     ];
 
-    bundles.cli.enable = true;
-
-    modules.services.docker.wslIntegration = true;
+    modules = {
+        bundles.cli.enable = true;
+        services.docker.wslIntegration = true;
+    };
 
     wsl = {
         enable = true;

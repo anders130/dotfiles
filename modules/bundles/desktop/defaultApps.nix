@@ -3,7 +3,7 @@
     lib,
     ...
 }: {
-    config = lib.mkIf config.bundles.desktop.enable {
+    config = lib.mkIf config.modules.bundles.desktop.enable {
         xdg.mime.defaultApplications = {
             "application/pdf" = "firefox.desktop";
             "image/*" = "loupe.desktop";

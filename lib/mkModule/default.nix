@@ -5,7 +5,11 @@
     name ? null,
     ...
 } @ args: let
-    relativePath = lib.removeSuffix ".nix" (lib.mkRelativePath path);
+    relativePath = path
+        |> lib.mkRelativePath
+        |> lib.removeSuffix ".nix"
+        |> lib.removeSuffix "/default"; # if path is a default.nix, remove it
+
     configName = if name != null then name
         else let a = lib.splitString "/" relativePath; in builtins.elemAt a (builtins.length a - 1);
     configObj = if config != null then config else args;

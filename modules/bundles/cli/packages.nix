@@ -4,7 +4,7 @@
     pkgs,
     ...
 }: {
-    config = lib.mkIf config.bundles.cli.enable {
+    config = lib.mkIf config.modules.bundles.cli.enable {
         environment.systemPackages = with pkgs; [
             curl
             wget

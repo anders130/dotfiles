@@ -1,8 +1,4 @@
 {
-    config,
-    lib,
-    ...
-}: lib.mkModule config ./locale.nix {
     time.timeZone = "Europe/Berlin";
 
     # Select internationalisation properties.

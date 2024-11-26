@@ -1,9 +1,10 @@
-{
+args@{
     config,
     lib,
+    pkgs,
     ...
 }: let
-    inherit (builtins) any attrValues baseNameOf concatMap dirOf filter groupBy;
+    inherit (builtins) any attrValues baseNameOf concatMap dirOf filter groupBy isAttrs;
     getFiles = dir: dir
         |> lib.filesystem.listFilesRecursive # list all files in the directory
         |> filter (n: lib.strings.hasSuffix ".nix" n) # only nix files
@@ -16,6 +17,12 @@
             then filter (file: baseNameOf file == "default.nix") group # only include default.nix files
             else group # otherwise include all files
         );
+
+    mkModules = files: map (file: file
+        |> import # import file
+        |> (f: if isAttrs f then f else f (args // {inherit pkgs;})) # if file is a function, call it with args
+        |> lib.mkModule config file # convert to module
+    ) files;
 in {
-    imports = getFiles ./.;
+    imports = mkModules (getFiles ./.);
 }

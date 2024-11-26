@@ -1,5 +1,5 @@
 {
-    bundles.rpi.enable = true;
+    modules.bundles.rpi.enable = true;
 
     raspberry-pi-nix.board = "bcm2711";
 

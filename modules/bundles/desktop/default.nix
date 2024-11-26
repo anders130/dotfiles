@@ -1,18 +1,11 @@
-{
-    config,
-    lib,
-    ...
-}: let
-    cfg = config.bundles.desktop;
-in {
+{lib, ...}: {
     imports = [
         ./defaultApps.nix
         ./gaming.nix
         ./packages.nix
     ];
 
-    options.bundles.desktop = {
-        enable = lib.mkEnableOption "Enable desktop bundle";
+    options = {
         gaming.enable = lib.mkEnableOption "Enable gaming stuff";
         mainMonitor = lib.mkOption {
             type = lib.types.str;
@@ -21,7 +14,7 @@ in {
         };
     };
 
-    config = lib.mkIf cfg.enable {
+    config = cfg: {
         modules = {
             ags.enable = lib.mkDefault true;
             applications = {

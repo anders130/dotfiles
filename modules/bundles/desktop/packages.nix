@@ -4,7 +4,7 @@
     pkgs,
     ...
 }: {
-    config = lib.mkIf config.bundles.desktop.enable {
+    config = lib.mkIf config.modules.bundles.desktop.enable {
         environment.systemPackages = with pkgs; [
             bitwarden
             obsidian

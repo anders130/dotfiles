@@ -1,17 +1,9 @@
-{
-    config,
-    lib,
-    ...
-}: {
+{lib, ...}: {
     imports = [
         ./packages.nix
     ];
 
-    options.bundles.cli = {
-        enable = lib.mkEnableOption "cli";
-    };
-
-    config = lib.mkIf config.bundles.cli.enable {
+    config = {
         modules.console = {
             btop.enable = lib.mkDefault true;
             fish.enable = lib.mkDefault true;

@@ -1,12 +1,10 @@
 {
-    config,
-    lib,
     pkgs,
     username,
     ...
 }: let
     package = pkgs.kitty;
-in lib.mkModule config ./. {
+in {
     environment.systemPackages = [package];
 
     home-manager.users.${username} = {

@@ -1,9 +1,4 @@
-{
-    config,
-    lib,
-    pkgs,
-    ...
-}: lib.mkModule config ./printing.nix {
+{pkgs, ...}: {
     # Enable CUPS to print documents.
     services.printing = {
         enable = true;

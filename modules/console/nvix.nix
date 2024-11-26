@@ -1,11 +1,10 @@
 {
-    config,
     inputs,
     lib,
     pkgs,
     username,
     ...
-}: lib.mkModule config ./nvix.nix {
+}: {
     options.type = lib.mkOption {
         type = lib.types.enum ["base" "full"];
         default = "base";

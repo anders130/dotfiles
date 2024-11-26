@@ -1,10 +1,9 @@
 {
     config,
     inputs,
-    lib,
     username,
     ...
-}: lib.mkModule config ./home-manager.nix {
+}: {
     imports = [
         inputs.home-manager.nixosModules.home-manager
     ];

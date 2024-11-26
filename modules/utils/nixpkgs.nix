@@ -1,10 +1,8 @@
 {
-    config,
     inputs,
-    lib,
     pkgs,
     ...
-}: lib.mkModule config ./nixpkgs.nix {
+}: {
     nixpkgs = {
         config = {
             allowUnfree = true;

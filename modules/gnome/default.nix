@@ -1,5 +1,4 @@
 {
-    config,
     lib,
     pkgs,
     username,
@@ -10,11 +9,7 @@
         ./keybinds.nix
     ];
 
-    options.modules.gnome = {
-        enable = lib.mkEnableOption "gnome";
-    };
-
-    config = lib.mkIf config.modules.gnome.enable {
+    config = {
         services.xserver = {
             enable = true;
             displayManager.gdm.enable = lib.mkDefault true;

@@ -1,8 +1,4 @@
-{
-    config,
-    lib,
-    ...
-}: lib.mkModule config ./keyboard.nix {
+{lib, ...}: {
     options = {
         layout = lib.mkOption {
             type = lib.types.str;

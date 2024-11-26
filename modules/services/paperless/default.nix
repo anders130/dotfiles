@@ -1,20 +1,14 @@
-{
-    config,
-    lib,
-    ...
-}: let
-    cfg = config.modules.services.paperless;
+{lib, ...}: let
     tikaPort = "33001";
     gotenbergPort = "33002";
 in {
-    options.modules.services.paperless = {
-        enable = lib.mkEnableOption "paperless";
+    options = {
         domain = lib.mkOption {
             type = lib.types.str;
         };
     };
 
-    config = lib.mkIf cfg.enable {
+    config = cfg: {
         services = {
             paperless = {
                 enable = true;

@@ -1,14 +1,6 @@
-{
-    config,
-    lib,
-    ...
-}: {
-    options.bundles.rpi = {
-        enable = lib.mkEnableOption "rpi bundle";
-    };
-
-    config = lib.mkIf config.bundles.rpi.enable {
-        bundles.server.enable = true;
+{lib, ...}: {
+    config = {
+        modules.bundles.server.enable = true;
 
         networking = {
             networkmanager.enable = lib.mkForce false;

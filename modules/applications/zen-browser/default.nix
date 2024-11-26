@@ -5,7 +5,7 @@
     pkgs,
     username,
     ...
-}: lib.mkModule config ./. {
+}: {
     imports = [
         inputs.nur.nixosModules.nur
     ];

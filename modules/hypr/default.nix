@@ -6,7 +6,6 @@
     username,
     ...
 }: let
-    cfg = config.modules.hypr;
     package = (lib.getPkgs "hyprland").hyprland;
     portalPackage = (lib.getPkgs "hyprland").xdg-desktop-portal-hyprland;
     hyprlandPkgs = inputs.hyprland.inputs.nixpkgs.legacyPackages.${pkgs.system};
@@ -22,7 +21,7 @@ in {
         ./plugins.nix
     ];
 
-    config = lib.mkIf cfg.enable {
+    config = cfg: {
         programs.hyprland = {
             inherit package portalPackage;
             enable = true;

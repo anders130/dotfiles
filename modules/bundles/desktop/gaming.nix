@@ -5,7 +5,7 @@
     ...
 }: let
     forceMouseToGame = pkgs.writeShellScriptBin "forceMouseToGame" /*bash*/''
-        monitor=${config.bundles.desktop.mainMonitor}
+        monitor=${config.modules.bundles.desktop.mainMonitor}
         expect_y=0
         curr_y=$(hyprctl -j monitors | ${pkgs.jq}/bin/jq '.[0].y')
         if [ $curr_y -ne $expect_y ]
@@ -19,7 +19,7 @@
         fi
     '';
 in {
-    config = lib.mkIf config.bundles.desktop.gaming.enable {
+    config = lib.mkIf config.modules.bundles.desktop.gaming.enable {
         programs.steam = {
             enable = true;
             remotePlay.openFirewall = true;

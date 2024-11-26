@@ -1,21 +1,17 @@
 {
-    config,
     lib,
     pkgs,
     username,
     ...
-}: let
-    cfg = config.modules.applications.rofi;
-in {
-    options.modules.applications.rofi = {
-        enable = lib.mkEnableOption "rofi";
+}: {
+    options = {
         terminal = lib.mkOption {
             type = lib.types.str;
             default = "alacritty";
         };
     };
 
-    config = lib.mkIf cfg.enable {
+    config = cfg: {
         environment.systemPackages = with pkgs; [
             rofimoji
         ];

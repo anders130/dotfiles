@@ -1,22 +1,15 @@
 {
-    config,
     lib,
     pkgs,
     username,
     ...
 }: {
-    options.modules.swaync = {
-        enable = lib.mkEnableOption "swaync";
-    };
+    environment.systemPackages = with pkgs; [
+        swaynotificationcenter
+        socat # to listen to hyprland events for scritping
+    ];
 
-    config = lib.mkIf config.modules.swaync.enable {
-        environment.systemPackages = with pkgs; [
-            swaynotificationcenter
-            socat # to listen to hyprland events for scritping
-        ];
-
-        home-manager.users.${username} = {config, ...}: {
-            xdg.configFile."swaync" = lib.mkSymlink config ./.;
-        };
+    home-manager.users.${username} = {config, ...}: {
+        xdg.configFile."swaync" = lib.mkSymlink config ./.;
     };
 }

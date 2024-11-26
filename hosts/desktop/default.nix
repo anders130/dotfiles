@@ -12,15 +12,15 @@
         ./home.nix
     ];
 
-    bundles = {
-        cli.enable = true;
-        desktop = {
-            enable = true;
-            gaming.enable = true;
-        };
-    };
-
     modules = {
+        bundles = {
+            cli.enable = true;
+            desktop = {
+                enable = true;
+                gaming.enable = true;
+            };
+        };
+
         applications = {
             virt-manager.enable = true;
             zen-browser.enable = true;

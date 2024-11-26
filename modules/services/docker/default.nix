@@ -1,18 +1,9 @@
-{
-    config,
-    lib,
-    username,
-    ...
-}: {
+{username, ...}: {
     imports = [
         ./wsl.nix
     ];
 
-    options.modules.services.docker = {
-        enable = lib.mkEnableOption "docker";
-    };
-
-    config = lib.mkIf config.modules.services.docker.enable {
+    config = {
         virtualisation.docker = {
             enable = true;
             enableOnBoot = true;

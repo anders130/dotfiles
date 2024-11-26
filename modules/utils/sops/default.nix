@@ -1,11 +1,9 @@
 {
-    config,
     inputs,
-    lib,
     pkgs,
     username,
     ...
-}: lib.mkModule config ./. {
+}: {
     imports = [
         inputs.sops-nix.nixosModules.sops
     ];

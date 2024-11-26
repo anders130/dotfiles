@@ -3,16 +3,18 @@
         ./hardware-configuration.nix
     ];
 
-    bundles.server.enable = true;
+    modules = {
+        bundles.server.enable = true;
 
-    modules.services = {
-        blocky.enable = true;
-        minecraft.enable = true;
-        paperless = {
-            enable = true;
-            domain = "paperless.nebulon";
+        services = {
+            blocky.enable = true;
+            minecraft.enable = true;
+            paperless = {
+                enable = true;
+                domain = "paperless.nebulon";
+            };
+            plex.enable = true;
         };
-        plex.enable = true;
     };
 
     services.samba = {

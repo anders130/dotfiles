@@ -1,21 +1,14 @@
 {
-    config,
     lib,
     pkgs,
     username,
     ...
 }: {
-    options.modules.applications.alacritty = {
-        enable = lib.mkEnableOption "alacritty";
-    };
+    environment.systemPackages = [
+        pkgs.alacritty
+    ];
 
-    config = lib.mkIf config.modules.applications.alacritty.enable {
-        environment.systemPackages = [
-            pkgs.alacritty
-        ];
-
-        home-manager.users.${username} = {config, ...}: {
-            xdg.configFile.alacritty = lib.mkSymlink config ./.;
-        };
+    home-manager.users.${username} = {config, ...}: {
+        xdg.configFile.alacritty = lib.mkSymlink config ./.;
     };
 }

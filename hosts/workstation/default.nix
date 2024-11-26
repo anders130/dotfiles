@@ -13,15 +13,15 @@
         ./home.nix
     ];
 
-    bundles = {
-        cli.enable = true;
-        desktop = {
-            enable = true;
-            mainMonitor = "eDP-1";
-        };
-    };
-
     modules = {
+        bundles = {
+            cli.enable = true;
+            desktop = {
+                enable = true;
+                mainMonitor = "eDP-1";
+            };
+        };
+
         gnome.enable = true;
         hardware = {
             amdgpu.enable = true;

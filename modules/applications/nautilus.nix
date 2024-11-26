@@ -1,20 +1,16 @@
 {
-    config,
     lib,
     pkgs,
     username,
     ...
-}: let
-    cfg = config.modules.applications.nautilus;
-in {
-    options.modules.applications.nautilus = {
-        enable = lib.mkEnableOption "nautilus";
+}: {
+    options = {
         terminal = lib.mkOption {
             type = lib.types.str;
         };
     };
 
-    config = lib.mkIf cfg.enable {
+    config = cfg: {
         environment = {
             systemPackages = [
                 (pkgs.nautilus.overrideAttrs (super: {

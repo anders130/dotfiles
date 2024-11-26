@@ -1,9 +1,4 @@
-{
-    config,
-    lib,
-    pkgs,
-    ...
-}: lib.mkModule config ./kanata.nix {
+{pkgs, ...}: {
     services.kanata = {
         enable = true;
         package = pkgs.kanata;

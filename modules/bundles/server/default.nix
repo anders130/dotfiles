@@ -1,24 +1,15 @@
-{
-    config,
-    lib,
-    username,
-    ...
-}: {
-    options.bundles.server = {
-        enable = lib.mkEnableOption "server bundle";
-    };
+{username, ...}: {
+    security.pam.sshAgentAuth.enable = true;
 
-    config = lib.mkIf config.bundles.server.enable {
-        security.pam.sshAgentAuth.enable = true;
+    # this allows you to run `nixos-rebuild --target-host admin@this-machine` from
+    # a different host. not used in this tutorial, but handy later.
+    nix.settings.trusted-users = [username];
 
-        # this allows you to run `nixos-rebuild --target-host admin@this-machine` from
-        # a different host. not used in this tutorial, but handy later.
-        nix.settings.trusted-users = [username];
+    services.openssh.enable = true;
 
-        services.openssh.enable = true;
-
-        # avoid password prompts when remote rebuilding
-        security.sudo.extraRules = [{
+    # avoid password prompts when remote rebuilding
+    security.sudo.extraRules = [
+        {
             users = [username];
             commands = [
                 {
@@ -34,6 +25,6 @@
                     options = ["NOPASSWD"];
                 }
             ];
-        }];
-    };
+        }
+    ];
 }

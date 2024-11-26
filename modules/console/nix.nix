@@ -1,11 +1,9 @@
 {
-    config,
     inputs,
-    lib,
     pkgs,
     username,
     ...
-}: lib.mkModule config ./nix.nix {
+}: {
     nix = {
         gc = {
             automatic = true;

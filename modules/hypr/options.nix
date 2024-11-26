@@ -1,6 +1,5 @@
 {lib, ...}: {
     options.modules.hypr = {
-        enable = lib.mkEnableOption "Enable hypr";
         terminal = lib.mkOption {
             type = lib.types.str;
             default = "kitty";

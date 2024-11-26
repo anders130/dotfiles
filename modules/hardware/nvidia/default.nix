@@ -1,9 +1,8 @@
 {
     config,
-    lib,
     pkgs,
     ...
-}: lib.mkModule config ./. {
+}: {
     services.xserver.videoDrivers = ["nvidia"];
 
     hardware.nvidia = {

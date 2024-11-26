@@ -3,7 +3,7 @@
     lib,
     pkgs,
     ...
-}: lib.mkModule config ./displaylink.nix {
+}: {
     boot.extraModulePackages = with config.boot.kernelPackages; [
         evdi
     ];

@@ -1,17 +1,11 @@
 {
     inputs,
-    config,
-    lib,
     pkgs,
     ...
 }: {
     imports = [inputs.nix-minecraft.nixosModules.minecraft-servers];
 
-    options.modules.services.minecraft = {
-        enable = lib.mkEnableOption "minecraft";
-    };
-
-    config = lib.mkIf config.modules.services.minecraft.enable {
+    config = {
         services.minecraft-servers = {
             enable = true;
             eula = true;
