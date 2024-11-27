@@ -19,7 +19,10 @@ in {
         environment.systemPackages = extensions;
 
         home-manager.users.${username}.dconf.settings = {
-            "org/gnome/shell".enabled-extensions = builtins.map (extension: extension.extensionUuid) extensions;
+            "org/gnome/shell" = {
+                enabled-extensions = builtins.map (extension: extension.extensionUuid) extensions;
+                disable-user-extensions = false;
+            };
 
             "org/gnome/shell/extensions/blur-my-shell" = {
                 brightness = 0.9;
