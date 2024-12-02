@@ -2,3 +2,4 @@ creation_rules:
   - key_groups:
       - age:
           - age17sl3p8jeql787hgv9wtltxeuznydq4fz63c9ngyyue63cztg09qqnwyndf # desktop
+          - age1rn4wkpgh5zsg0ny2jeuk44l2dypq4xy8n48pea7wzurvhzeul95s6jxp6k # workstation
