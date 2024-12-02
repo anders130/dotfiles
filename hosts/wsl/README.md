@@ -1,3 +1,8 @@
+# :warning: Disclaimer
+**I no longer use WSL and therefore can't guarrantee that this host works correctly.**
+
+---
+
 # WSL
 
 This is the configuration for my WSL (Windows Subsystem for Linux) setup.
