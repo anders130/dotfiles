@@ -63,7 +63,10 @@
         nixos-hardware.url = "github:NixOS/nixos-hardware/master";
         raspberry-pi-nix.url = "github:nix-community/raspberry-pi-nix";
 
-        lanzaboote.url = "github:nix-community/lanzaboote";
+        lanzaboote = {
+            url = "github:nix-community/lanzaboote";
+            inputs.nixpkgs.follows = "nixpkgs";
+        };
     };
 
     outputs = inputs: {
