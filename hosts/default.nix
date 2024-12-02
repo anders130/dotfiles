@@ -29,11 +29,10 @@ inputs: let
             inherit system specialArgs;
             modules = modules ++ [
                 ../modules
-                ./shared
                 ./${name}
-                inputs.home-manager.nixosModules.home-manager
                 {
-                    home-manager.extraSpecialArgs = specialArgs;
+                    home-manager.extraSpecialArgs = specialArgs; # for home.nix files
+                    modules.bundles.shared.enable = true;
                 }
             ];
         };

@@ -1,12 +1,14 @@
 {
-    hashedPassword,
     host,
-    hostname,
     lib,
     username,
     ...
 }: {
-    # enable custom modules
+    environment.variables = {
+        NIX_FLAKE_DEFAULT_HOST = host.name;
+        FLAKE = "/home/${username}/.dotfiles";
+    };
+
     modules = {
         console = {
             fish.enable = lib.mkDefault true;
@@ -22,28 +24,9 @@
             home-manager.enable = lib.mkDefault true;
             keyboard.enable = lib.mkDefault true;
             locale.enable = lib.mkDefault true;
+            networking.enable = lib.mkDefault true;
             nixpkgs.enable = lib.mkDefault true;
+            users.enable = lib.mkDefault true;
         };
-    };
-
-    environment.variables = {
-        NIX_FLAKE_DEFAULT_HOST = host.name;
-        FLAKE = "/home/${username}/.dotfiles";
-    };
-
-    networking = {
-        firewall.enable = lib.mkDefault true;
-        hostName = "${hostname}";
-        networkmanager.enable = lib.mkDefault true;
-    };
-
-    users.users.${username} = {
-        isNormalUser = true;
-        extraGroups = [
-            "wheel"
-            "networkmanager"
-        ];
-    } // lib.optionalAttrs (hashedPassword != null) {
-        hashedPassword = hashedPassword;
     };
 }
