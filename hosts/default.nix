@@ -1,5 +1,5 @@
 inputs: let
-    variables = import ../variables.nix;
+    inherit (builtins) attrNames filter listToAttrs mapAttrs pathExists readDir;
 
     mkLib = {system, isThinClient}:
         inputs.nixpkgs.lib.extend (final: prev:
@@ -20,7 +20,7 @@ inputs: let
     }: let
         lib = mkLib {inherit system isThinClient;};
         specialArgs = {
-            inherit inputs variables;
+            inherit inputs;
             inherit hashedPassword hostname username;
             inherit host lib;
         };
@@ -37,27 +37,13 @@ inputs: let
                 }
             ];
         };
-
-    mkNixosConfigs = nixosConfigs:
-        builtins.mapAttrs (ignored: namedConfig: mkNixosConfig namedConfig) (
-            builtins.listToAttrs (
-                builtins.map (config: {
-                    value = config;
-                    name = config.name;
-                })
-                nixosConfigs
-            )
-        );
-
-    # get all the config.nix files in the host directories
-    hosts = let
-        configExists = name: builtins.pathExists ./${name}/config.nix;
-        importConfig = name: (import ./${name}/config.nix inputs);
-        enrichConfig = name: (importConfig name) // {inherit name;};
-
-        dirContent = builtins.attrNames (builtins.readDir ./.);
-        configDirs = builtins.filter configExists dirContent;
-    in
-        builtins.map enrichConfig configDirs;
-in
-    mkNixosConfigs hosts
+in ./.
+    |> readDir
+    |> attrNames # get all dir names
+    |> filter (n: pathExists ./${n}/config.nix) # filter out all dirs that don't have a config.nix
+    |> map (n: {
+        name = n;
+        value = (import ./${n}/config.nix inputs) // {name = n;};
+    }) # convert the dir names to attrs with the config.nix as the value
+    |> listToAttrs # convert the list to an attrset
+    |> mapAttrs (_: config: mkNixosConfig config) # convert the attrset to nixosConfigs
