@@ -1,12 +1,10 @@
 {lib, ...}: {
     imports = [
         ./defaultApps.nix
-        ./gaming.nix
         ./packages.nix
     ];
 
     options = {
-        gaming.enable = lib.mkEnableOption "Enable gaming stuff";
         mainMonitor = lib.mkOption {
             type = lib.types.str;
             default = "DP-1";
@@ -30,6 +28,7 @@
                     };
                     rofi.enable = lib.mkDefault true;
                     youtube-music.enable = lib.mkDefault true;
+                    commonTools.enable = lib.mkDefault true;
                 };
                 plymouth.enable = lib.mkDefault true;
             };
