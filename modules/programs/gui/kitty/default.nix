@@ -1,4 +1,5 @@
 {
+    lib,
     pkgs,
     username,
     ...
@@ -7,7 +8,7 @@
 in {
     environment.systemPackages = [package];
 
-    home-manager.users.${username} = {
+    home-manager.users.${username} = {config, ...}: {
         programs.kitty = {
             inherit package;
             enable = true;
@@ -25,9 +26,11 @@ in {
                 disable_ligatures = "always";
             };
             extraConfig = /*bash*/''
-                # for better faster configuration iteration
-                include $FLAKE/modules/applications/kitty/kitty.conf
+                include extraConfig.conf
             '';
         };
+
+        # for better faster configuration iteration
+        xdg.configFile."kitty/extraConfig.conf" = lib.mkSymlink config ./kitty.conf;
     };
 }

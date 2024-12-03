@@ -10,7 +10,7 @@
     };
 
     modules = {
-        console = {
+        programs.cli = {
             fish.enable = lib.mkDefault true;
             git.enable = lib.mkDefault true;
             btop.enable = lib.mkDefault true;

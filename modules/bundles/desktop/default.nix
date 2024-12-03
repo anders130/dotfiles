@@ -17,18 +17,21 @@
     config = cfg: {
         modules = {
             ags.enable = lib.mkDefault true;
-            applications = {
-                alacritty.enable = lib.mkDefault true;
-                anki.enable = lib.mkDefault true;
-                discord.enable = lib.mkDefault true;
-                firefox.enable = lib.mkDefault true;
-                kitty.enable = lib.mkDefault true;
-                nautilus = {
-                    enable = lib.mkDefault true;
-                    terminal = lib.mkDefault "kitty";
+            programs = {
+                gui = {
+                    alacritty.enable = lib.mkDefault true;
+                    anki.enable = lib.mkDefault true;
+                    discord.enable = lib.mkDefault true;
+                    firefox.enable = lib.mkDefault true;
+                    kitty.enable = lib.mkDefault true;
+                    nautilus = {
+                        enable = lib.mkDefault true;
+                        terminal = lib.mkDefault "kitty";
+                    };
+                    rofi.enable = lib.mkDefault true;
+                    youtube-music.enable = lib.mkDefault true;
                 };
-                rofi.enable = lib.mkDefault true;
-                youtube-music.enable = lib.mkDefault true;
+                plymouth.enable = lib.mkDefault true;
             };
             hardware = {
                 kanata.enable = lib.mkDefault true;
@@ -39,10 +42,10 @@
                 enable = lib.mkDefault true;
                 mainMonitor = lib.mkDefault cfg.mainMonitor;
                 autostartApps = [
-                    { cmd = "signal-desktop --start-in-tray"; }
-                    { cmd = "sleep 2 && zapzap --hideStart"; }
-                    { cmd = "sleep 3 && vesktop --start-minimized"; }
-                    { cmd = "ssh-add-all-keys"; }
+                    {cmd = "signal-desktop --start-in-tray";}
+                    {cmd = "sleep 2 && zapzap --hideStart";}
+                    {cmd = "sleep 3 && vesktop --start-minimized";}
+                    {cmd = "ssh-add-all-keys";}
                 ];
                 displayManager = {
                     enable = lib.mkDefault true;
@@ -50,7 +53,6 @@
                 };
             };
             swaync.enable = lib.mkDefault true;
-            theming.plymouth.enable = lib.mkDefault true;
             utils.stylix = {
                 enable = lib.mkDefault true;
                 desktop.enable = lib.mkDefault true;

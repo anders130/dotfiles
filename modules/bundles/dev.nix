@@ -1,5 +1,5 @@
 {lib, ...}: {
-    modules.console = {
+    modules.programs.cli = {
         git.enable = lib.mkDefault true;
         nvix = {
             enable = lib.mkDefault true;

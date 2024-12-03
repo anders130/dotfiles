@@ -20,7 +20,7 @@
             };
         };
 
-        applications = {
+        programs.gui = {
             virt-manager.enable = true;
             zen-browser.enable = true;
         };

@@ -22,7 +22,7 @@
         z # autosuggestions
     ];
 in {
-    modules.console.starship.enable = true;
+    modules.programs.cli.starship.enable = true;
 
     programs.fish = {
         enable = true;
