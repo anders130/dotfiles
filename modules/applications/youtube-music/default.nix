@@ -3,8 +3,6 @@
     username,
     ...
 }: let
-    jsonFormat = pkgs.formats.json {};
-
     settings = {
         "window-size" = {
             width = 612;
@@ -48,9 +46,11 @@
         __internal__.migrations.version = "3.3.6";
     };
 in {
-    environment.systemPackages = [
-        pkgs.youtube-music
-    ];
+    environment.systemPackages = [pkgs.youtube-music];
 
-    home-manager.users.${username}.xdg.configFile."YouTube Music/config.json".source = jsonFormat.generate "config.json" settings;
+    home-manager.users.${username}.home.activation.youtube-music-config = pkgs.lib.mkAfter ''
+        config_dir="$HOME/.config/YouTube Music"
+        mkdir -p "$config_dir"
+        echo '${builtins.toJSON settings}' > "$config_dir/config.json"
+    '';
 }
