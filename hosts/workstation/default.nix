@@ -15,7 +15,7 @@
 
     modules = {
         bundles = {
-            cli.enable = true;
+            dev.enable = true;
             desktop = {
                 enable = true;
                 mainMonitor = "eDP-1";

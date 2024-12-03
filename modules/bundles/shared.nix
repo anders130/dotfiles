@@ -13,6 +13,7 @@
         console = {
             fish.enable = lib.mkDefault true;
             git.enable = lib.mkDefault true;
+            btop.enable = lib.mkDefault true;
             nix.enable = lib.mkDefault true;
             ssh.enable = lib.mkDefault true;
             nvix.enable = lib.mkDefault true;

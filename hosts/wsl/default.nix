@@ -8,7 +8,7 @@
     ];
 
     modules = {
-        bundles.cli.enable = true;
+        bundles.dev.enable = true;
         services.docker.wslIntegration = true;
     };
 
