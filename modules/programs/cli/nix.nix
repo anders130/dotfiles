@@ -48,10 +48,10 @@
             '';
         };
 
-        systemd = lib.mkIf cfg.enableLimit {
+        systemd = lib.mkIf cfg.nix-daemon.enableLimit {
             slices."nix-daemon".sliceConfig = {
                 ManagedOOMMemoryPressure = "kill";
-                ManagedOOMMemoryPressureLimit = cfg.pressure-limit;
+                ManagedOOMMemoryPressureLimit = cfg.nix-daemon.pressure-limit;
             };
             services."nix-daemon".serviceConfig = {
                 Slice = "nix-daemon.slice";

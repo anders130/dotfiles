@@ -18,7 +18,7 @@
             gaming.enable = true;
         };
         programs = {
-            cli.nix.enableLimit = true;
+            cli.nix.nix-daemon.enableLimit = true;
             gui = {
                 virt-manager.enable = true;
                 zen-browser.enable = true;

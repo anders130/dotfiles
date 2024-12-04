@@ -1,8 +1,11 @@
 {
+    lib,
     pkgs,
     username,
     ...
-}: {
+}: let
+    configPath = lib.mkRelativePath ./tmux.conf;
+in {
     programs.tmux = {
         enable = true;
         # Stop tmux+escape craziness.
@@ -20,7 +23,7 @@
         ];
 
         extraConfigBeforePlugins = /*tmux*/''
-            source-file $FLAKE/modules/console/tmux/tmux.conf
+            source-file $FLAKE/${configPath}
         '';
     };
 

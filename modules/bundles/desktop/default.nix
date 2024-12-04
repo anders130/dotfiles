@@ -1,7 +1,6 @@
 {lib, ...}: {
     imports = [
         ./defaultApps.nix
-        ./packages.nix
     ];
 
     options = {
