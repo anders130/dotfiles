@@ -15,6 +15,11 @@
         utils.lib.eachDefaultSystem (system: let
             pkgs = import nixpkgs {inherit system;};
             pythonPkgs = pkgs.python312Packages;
+            devDeps = with pythonPkgs; [
+                pytest
+                black
+                isort
+            ];
         in {
             packages.default = pythonPkgs.buildPythonPackage {
                 pname = "package";
@@ -26,8 +31,6 @@
                 build-system = [pythonPkgs.hatchling];
 
                 dependencies = with pythonPkgs; [
-                    # Python dependencies
-                    pytest
                     numpy
                 ];
 
@@ -37,19 +40,26 @@
             };
 
             devShells.default = pkgs.mkShell {
-                inputsFrom = [
-                    self.packages.${system}.default
-                ];
+                inputsFrom = [self.packages.${system}.default];
+                buildInputs = devDeps;
             };
 
-            checks.tests =
-                pkgs.runCommand "python-tests" {
-                    buildInputs = [self.packages.${system}.default];
+            checks = let
+                checkDeps = {
+                    buildInputs = [self.packages.${system}.default devDeps];
                     src = ./.;
-                } ''
-                    cp -r $src/* .
-                    pytest
-                    echo "Test run complete" > $out
+                };
+            in {
+                tests = pkgs.runCommand "python-tests" checkDeps ''
+                    pytest $src
+                    touch $out
                 '';
+
+                format = pkgs.runCommand "python-format" checkDeps ''
+                    black --check $src
+                    isort --check-only $src
+                    touch $out
+                '';
+            };
         });
 }
