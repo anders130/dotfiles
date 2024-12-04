@@ -49,7 +49,7 @@ in {
                 "SUPER SHIFT, l, movewindow, r"
                 # programs
                 "SUPER, return, exec, ${cfg.terminal}" # terminal
-                "SUPER, E, exec, nautilus" # file manager
+                "SUPER, E, exec, nautilus --new-window" # file manager
                 "SUPER, B, exec, ${cfg.browser}" # browser
                 "SUPER, Space, exec, ${cfg.appLauncher}"
                 "SUPER, Period, exec, rofi -modi emoji:rofimoji -show emoji" # emoji picker
