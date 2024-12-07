@@ -3,7 +3,6 @@
     inputs,
     lib,
     pkgs,
-    username,
     ...
 }: {
     imports = [
@@ -11,7 +10,7 @@
     ];
     config = {
         environment.systemPackages = [inputs.zen-browser.packages.${pkgs.system}.specific];
-        home-manager.users.${username} = {
+        hm = {
             programs.firefox.profiles.zen-browser = {
                 isDefault = false;
                 id = 100;

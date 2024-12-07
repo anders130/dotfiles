@@ -44,7 +44,7 @@ in {
             qt6.qtwayland
         ];
 
-        home-manager.users.${username} = {
+        hm = {
             imports = [
                 inputs.hyprland.homeManagerModules.default
             ];

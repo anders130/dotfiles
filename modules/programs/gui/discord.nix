@@ -1,14 +1,11 @@
 {
     inputs,
     pkgs,
-    username,
     ...
 }: {
-    home-manager.sharedModules = [
-        inputs.nixcord.homeManagerModules.nixcord
-    ];
+    hm = {
+        imports = [inputs.nixcord.homeManagerModules.nixcord];
 
-    home-manager.users.${username} = {
         programs.nixcord = {
             enable = true;
             config = {

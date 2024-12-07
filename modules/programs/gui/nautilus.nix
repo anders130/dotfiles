@@ -36,9 +36,7 @@
             terminal = cfg.terminal;
         };
 
-        home-manager.users.${username} = {
-            xdg.userDirs.enable = true;
-        };
+        hm.xdg.userDirs.enable = true;
 
         services.gnome.localsearch.enable = true;
     };

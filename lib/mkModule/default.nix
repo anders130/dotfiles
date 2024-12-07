@@ -1,4 +1,4 @@
-{lib, ...}: hostConfig: path: {
+{lib, ...}: hostConfig: username: path: {
     imports ? [],
     options ? {},
     config ? null,
@@ -16,6 +16,11 @@
     configName = elemAt (length - 1) pathList; # last element of the path
 
     cfg = lib.foldl' (obj: key: obj.${key}) hostConfig pathList; # get the modules option values from the hostConfig
+
+    adjustConfig = config: if config ? hm then config
+        |> (c: c // {home-manager.users.${username} = config.hm;}) # move hm to home-manager
+        |> (c: removeAttrs c ["hm"]) # remove unneccessary hm attrs
+    else config;
 in {
     inherit imports;
     options = options
@@ -24,5 +29,6 @@ in {
     config = config
         |> (c: if c != null then c else args) # if config is not set, assume args are the config
         |> (c: if isAttrs c then c else (c cfg)) # if config is a function, call it with cfg
+        |> adjustConfig # move hm config to home-manager.users.${username}
         |> mkIf cfg.enable; # only enable if cfg.enable is true
 }

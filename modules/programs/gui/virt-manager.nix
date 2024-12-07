@@ -10,10 +10,8 @@
         tctiEnvironment.enable = true;
     };
 
-    home-manager.users.${username} = {
-        dconf.settings."org/virt-manager/virt-manager/connections" = {
-            autoconnect = ["qemu:///system"];
-            uris = ["qemu:///system"];
-        };
+    hm.dconf.settings."org/virt-manager/virt-manager/connections" = {
+        autoconnect = ["qemu:///system"];
+        uris = ["qemu:///system"];
     };
 }

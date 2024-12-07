@@ -1,7 +1,6 @@
 {
     lib,
     pkgs,
-    username,
     ...
 }: {
     environment.systemPackages = with pkgs; [
@@ -9,7 +8,5 @@
         socat # to listen to hyprland events for scritping
     ];
 
-    home-manager.users.${username} = {
-        xdg.configFile."swaync" = lib.mkSymlink ./.;
-    };
+    hm.xdg.configFile."swaync" = lib.mkSymlink ./.;
 }

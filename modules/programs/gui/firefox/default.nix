@@ -1,8 +1,4 @@
-{
-    pkgs,
-    username,
-    ...
-}: let
+{pkgs, ...}: let
     profileBaseConfig = {
         settings = {
             "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
@@ -12,7 +8,7 @@
         userChrome = builtins.readFile ./chrome/userChrome.css;
     };
 in {
-    home-manager.users.${username} = {
+    hm = {
         programs.firefox = {
             enable = true;
             package = pkgs.firefox;

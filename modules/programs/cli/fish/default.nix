@@ -49,7 +49,7 @@ in {
 
     users.users.${username}.shell = pkgs.fish;
 
-    home-manager.users.${username} = {
+    hm = {
         stylix.targets.bat.enable = false;
         home.sessionVariables.SHELL = "etc/profiles/per-user/${username}/bin/fish";
 

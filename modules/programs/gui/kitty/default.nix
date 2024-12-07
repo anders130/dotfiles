@@ -1,7 +1,6 @@
 {
     lib,
     pkgs,
-    username,
     ...
 }: let
     package = pkgs.kitty;
@@ -9,7 +8,7 @@
 in {
     environment.systemPackages = [package];
 
-    home-manager.users.${username}.programs.kitty = {
+    hm.programs.kitty = {
         inherit package;
         enable = true;
         settings = {

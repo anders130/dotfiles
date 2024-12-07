@@ -2,7 +2,6 @@
     inputs,
     lib,
     pkgs,
-    username,
     ...
 }: {
     services.upower.enable = true;
@@ -11,7 +10,7 @@
         pkgs.pulseaudio
     ];
 
-    home-manager.users.${username} = {
+    hm = {
         imports = [
             inputs.ags.homeManagerModules.default
         ];

@@ -1,7 +1,6 @@
 {
     lib,
     pkgs,
-    username,
     ...
 }: let
     configPath = lib.mkRelativePath ./tmux.conf;
@@ -27,7 +26,5 @@ in {
         '';
     };
 
-    home-manager.users.${username} = {
-        stylix.targets.tmux.enable = false;
-    };
+    hm.stylix.targets.tmux.enable = false;
 }

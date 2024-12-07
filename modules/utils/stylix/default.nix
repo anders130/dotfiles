@@ -2,21 +2,14 @@
     inputs,
     lib,
     pkgs,
-    username,
     ...
 }: {
-    imports = [
-        inputs.stylix.nixosModules.stylix
-    ];
+    imports = [inputs.stylix.nixosModules.stylix];
 
-    options = {
-        desktop.enable = lib.mkEnableOption "stylix.desktop";
-    };
+    options.desktop.enable = lib.mkEnableOption "stylix.desktop";
 
     config = cfg: {
-        home-manager.users.${username} = lib.mkIf cfg.desktop.enable {
-            gtk.enable = true;
-        };
+        hm.gtk.enable = lib.mkDefault cfg.desktop.enable;
 
         stylix = {
             enable = true;

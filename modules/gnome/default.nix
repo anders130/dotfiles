@@ -1,7 +1,6 @@
 {
     lib,
     pkgs,
-    username,
     ...
 }: {
     imports = [
@@ -34,7 +33,7 @@
             tali # poker game
         ];
 
-        home-manager.users.${username}.dconf.settings = {
+        hm.dconf.settings = {
             "org/gnome/desktop/interface" = {
                 clock-show-seconds = true;
                 clock-show-weekday = true;

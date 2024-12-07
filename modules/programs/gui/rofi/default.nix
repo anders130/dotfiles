@@ -1,7 +1,6 @@
 {
     lib,
     pkgs,
-    username,
     ...
 }: {
     options = {
@@ -16,7 +15,7 @@
             rofimoji
         ];
 
-        home-manager.users.${username} = {
+        hm = {
             stylix.targets.rofi.enable = false;
 
             programs.rofi = {

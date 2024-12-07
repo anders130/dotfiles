@@ -29,7 +29,7 @@ args@{
     mkModules = files: map (file: file
         |> import # import file
         |> (f: if isAttrs f then f else f moduleArgs) # if file is a function, call it with args
-        |> lib.mkModule config file # convert to module
+        |> lib.mkModule config username file # convert to module
     ) files;
 in {
     imports = mkModules (getFiles ./.);

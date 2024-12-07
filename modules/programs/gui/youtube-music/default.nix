@@ -1,8 +1,4 @@
-{
-    pkgs,
-    username,
-    ...
-}: let
+{pkgs, ...}: let
     settings = {
         "window-size" = {
             width = 612;
@@ -48,7 +44,7 @@
 in {
     environment.systemPackages = [pkgs.youtube-music];
 
-    home-manager.users.${username}.home.activation.youtube-music-config = pkgs.lib.mkAfter ''
+    hm.home.activation.youtube-music-config = pkgs.lib.mkAfter ''
         config_dir="$HOME/.config/YouTube Music"
         mkdir -p "$config_dir"
         echo '${builtins.toJSON settings}' > "$config_dir/config.json"
