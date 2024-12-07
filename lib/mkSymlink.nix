@@ -1,9 +1,8 @@
 {
     inputs,
-    isThinClient,
     lib,
     ...
-}: hmConfig: path: let
+}: isThinClient: hmConfig: path: let
     basePath =
         if isThinClient
         then "${inputs.self}"

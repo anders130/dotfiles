@@ -1,5 +1,6 @@
 {
     config,
+    isThinClient,
     lib,
     pkgs,
     username,
@@ -27,12 +28,10 @@
     '';
 in {
     config = lib.mkIf cfg.enable {
-        environment.systemPackages = [
-            switch-shaders
-        ];
+        environment.systemPackages = [switch-shaders];
 
         home-manager.users.${username} = {config, ...}: {
-            xdg.configFile."hypr/shaders" = lib.mkSymlink config ./.;
+            xdg.configFile."hypr/shaders" = lib.mkSymlink isThinClient config ./.;
         };
     };
 }

@@ -1,11 +1,12 @@
 {
     config,
     lib,
+    pkgs,
     username,
     ...
 }: let
     cfg = config.modules.hypr;
-    greeter.package = (lib.getPkgs "hyprland").hyprland;
+    greeter.package = (lib.getPkgs pkgs.system "hyprland").hyprland;
 in {
     config = lib.mkIf cfg.enable {
         # boot into hyprland

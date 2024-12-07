@@ -1,14 +1,6 @@
 inputs: let
     inherit (builtins) attrNames filter listToAttrs mapAttrs pathExists readDir;
 
-    mkLib = {system, isThinClient}:
-        inputs.nixpkgs.lib.extend (final: prev:
-            (import ../lib {
-                inherit inputs system isThinClient;
-                lib = final;
-            })
-            // inputs.home-manager.lib);
-
     mkNixosConfig = host @ {
         name,
         hostname,
@@ -18,10 +10,10 @@ inputs: let
         isThinClient ? false,
         modules ? [],
     }: let
-        lib = mkLib {inherit system isThinClient;};
+        lib = inputs.self.outputs.lib;
         specialArgs = {
             inherit inputs;
-            inherit hashedPassword hostname username;
+            inherit hashedPassword hostname username isThinClient;
             inherit host lib;
         };
     in

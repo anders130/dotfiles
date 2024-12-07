@@ -70,10 +70,9 @@
     };
 
     outputs = inputs: {
+        lib = import ./lib inputs;
         nixosConfigurations = import ./hosts inputs;
-
         overlays = import ./overlays inputs;
-
         templates = import ./templates;
     };
 

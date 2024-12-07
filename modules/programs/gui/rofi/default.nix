@@ -1,5 +1,6 @@
 {
     lib,
+    myLib,
     pkgs,
     username,
     ...
@@ -16,7 +17,7 @@
             rofimoji
         ];
 
-        home-manager.users.${username} = {config, ...}: {
+        home-manager.users.${username} = {
             stylix.targets.rofi.enable = false;
 
             programs.rofi = {
@@ -28,7 +29,7 @@
             };
 
             xdg.configFile = {
-                "rofi/theme.rasi" = lib.mkSymlink config ./theme.rasi;
+                "rofi/theme.rasi" = myLib.mkSymlink ./theme.rasi;
 
                 "rofimoji.rc".text = ''
                     action = copy

@@ -2,12 +2,13 @@
     config,
     inputs,
     lib,
+    myLib,
     pkgs,
     username,
     ...
 }: let
-    package = (lib.getPkgs "hyprland").hyprland;
-    portalPackage = (lib.getPkgs "hyprland").xdg-desktop-portal-hyprland;
+    package = (myLib.getPkgs "hyprland").hyprland;
+    portalPackage = (myLib.getPkgs "hyprland").xdg-desktop-portal-hyprland;
     hyprlandPkgs = inputs.hyprland.inputs.nixpkgs.legacyPackages.${pkgs.system};
 in {
     imports = [
@@ -44,7 +45,7 @@ in {
             qt6.qtwayland
         ];
 
-        home-manager.users.${username} = {config, ...}: {
+        home-manager.users.${username} = {
             imports = [
                 inputs.hyprland.homeManagerModules.default
             ];
@@ -71,7 +72,7 @@ in {
                 systemd.variables = ["--all"];
             };
 
-            xdg.configFile."hypr/visuals" = lib.mkSymlink config ./visuals;
+            xdg.configFile."hypr/visuals" = myLib.mkSymlink ./visuals;
 
             stylix.targets.hyprland.enable = false;
         };

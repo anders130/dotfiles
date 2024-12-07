@@ -1,6 +1,6 @@
 {
     inputs,
-    lib,
+    myLib,
     pkgs,
     username,
     ...
@@ -11,7 +11,7 @@
         pkgs.pulseaudio
     ];
 
-    home-manager.users.${username} = {config, ...}: {
+    home-manager.users.${username} = {
         imports = [
             inputs.ags.homeManagerModules.default
         ];
@@ -29,10 +29,10 @@
         };
 
         xdg.configFile = {
-            "ags/config.js" = lib.mkSymlink config ./config.js;
-            "ags/style.css" = lib.mkSymlink config ./style.css;
-            "ags/components" = lib.mkSymlink config ./components;
-            "ags/utils" = lib.mkSymlink config ./utils;
+            "ags/config.js" = myLib.mkSymlink ./config.js;
+            "ags/style.css" = myLib.mkSymlink ./style.css;
+            "ags/components" = myLib.mkSymlink ./components;
+            "ags/utils" = myLib.mkSymlink ./utils;
         };
     };
 }

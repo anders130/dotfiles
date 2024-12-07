@@ -1,11 +1,12 @@
-args: let
+inputs: let
     inherit (builtins) attrNames filter listToAttrs map readDir replaceStrings;
-in ./.
+in inputs.nixpkgs.lib.extend (final: prev: ./.
     |> readDir
-    |> attrNames # only get the names of the files
+    |> attrNames
     |> filter (name: name != "default.nix")
     |> map (name: {
         name = replaceStrings [".nix"] [""] name;
-        value = import ./${name} args;
+        value = import ./${name} {inherit inputs; lib = final;};
     })
     |> listToAttrs
+) // inputs.home-manager.lib

@@ -1,7 +1,9 @@
 args@{
     config,
+    isThinClient,
     lib,
     pkgs,
+    username,
     ...
 }: let
     inherit (builtins) any attrValues baseNameOf concatMap dirOf filter groupBy isAttrs;
@@ -18,9 +20,15 @@ args@{
             else group # otherwise include all files
         );
 
+    myLib = lib // {
+        mkModule = lib.mkModule config;
+        getPkgs = lib.getPkgs pkgs.system;
+        mkSymlink = lib.mkSymlink isThinClient config.home-manager.users.${username};
+    };
+
     mkModules = files: map (file: file
         |> import # import file
-        |> (f: if isAttrs f then f else f (args // {inherit pkgs;})) # if file is a function, call it with args
+        |> (f: if isAttrs f then f else f (args // {inherit pkgs myLib;})) # if file is a function, call it with args
         |> lib.mkModule config file # convert to module
     ) files;
 in {

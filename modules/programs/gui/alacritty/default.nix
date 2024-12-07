@@ -1,5 +1,5 @@
 {
-    lib,
+    myLib,
     pkgs,
     username,
     ...
@@ -8,7 +8,7 @@
         pkgs.alacritty
     ];
 
-    home-manager.users.${username} = {config, ...}: {
-        xdg.configFile.alacritty = lib.mkSymlink config ./.;
+    home-manager.users.${username} = {
+        xdg.configFile.alacritty = myLib.mkSymlink ./.;
     };
 }
