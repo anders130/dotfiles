@@ -3,7 +3,6 @@
     inputs,
     lib,
     pkgs,
-    username,
     ...
 }: let
     package = (lib.getPkgs "hyprland").hyprland;
