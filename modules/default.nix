@@ -2,6 +2,7 @@ args@{
     config,
     lib,
     pkgs,
+    username,
     ...
 }: let
     inherit (builtins) any attrValues baseNameOf concatMap dirOf filter groupBy isAttrs;
@@ -18,9 +19,16 @@ args@{
             else group # otherwise include all files
         );
 
+    moduleArgs = args // {
+        inherit pkgs;
+        lib = lib // {
+            mkSymlink = lib.mkSymlink config.home-manager.users.${username};
+        };
+    };
+
     mkModules = files: map (file: file
         |> import # import file
-        |> (f: if isAttrs f then f else f (args // {inherit pkgs;})) # if file is a function, call it with args
+        |> (f: if isAttrs f then f else f moduleArgs) # if file is a function, call it with args
         |> lib.mkModule config file # convert to module
     ) files;
 in {

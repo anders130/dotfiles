@@ -44,7 +44,7 @@ in {
             qt6.qtwayland
         ];
 
-        home-manager.users.${username} = {config, ...}: {
+        home-manager.users.${username} = {
             imports = [
                 inputs.hyprland.homeManagerModules.default
             ];
@@ -71,7 +71,7 @@ in {
                 systemd.variables = ["--all"];
             };
 
-            xdg.configFile."hypr/visuals" = lib.mkSymlink config ./visuals;
+            xdg.configFile."hypr/visuals" = lib.mkSymlink ./visuals;
 
             stylix.targets.hyprland.enable = false;
         };

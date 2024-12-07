@@ -11,7 +11,7 @@
     ];
     config = {
         environment.systemPackages = [inputs.zen-browser.packages.${pkgs.system}.specific];
-        home-manager.users.${username} = hm: {
+        home-manager.users.${username} = {
             programs.firefox.profiles.zen-browser = {
                 isDefault = false;
                 id = 100;
@@ -45,8 +45,8 @@
                     StartWithLastProfile=1
                     Version=2
                 '';
-                ".zen/default/chrome/userChrome.css" = lib.mkSymlink hm.config ./userChrome.css;
-                ".zen/default/chrome/userContent.css" = lib.mkSymlink hm.config ./userContent.css;
+                ".zen/default/chrome/userChrome.css" = lib.mkSymlink ./userChrome.css;
+                ".zen/default/chrome/userContent.css" = lib.mkSymlink ./userContent.css;
             };
         };
     };

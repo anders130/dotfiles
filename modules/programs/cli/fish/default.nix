@@ -49,16 +49,16 @@ in {
 
     users.users.${username}.shell = pkgs.fish;
 
-    home-manager.users.${username} = {config, ...}: {
+    home-manager.users.${username} = {
         stylix.targets.bat.enable = false;
         home.sessionVariables.SHELL = "etc/profiles/per-user/${username}/bin/fish";
 
         xdg.configFile = {
-            "fish/extraConfig.fish" = lib.mkSymlink config ./config.fish;
-            "fish/functions" = lib.mkSymlink config ./functions;
-            "fish/themes/fish.theme" = lib.mkSymlink config ./themes/fish.theme;
-            "bat/themes/bat.tmTheme" = lib.mkSymlink config ./themes/bat.tmTheme;
-            "fastfetch/shell-greeting.jsonc" = lib.mkSymlink config ./shell-greeting.jsonc;
+            "fish/extraConfig.fish" = lib.mkSymlink ./config.fish;
+            "fish/functions" = lib.mkSymlink ./functions;
+            "fish/themes/fish.theme" = lib.mkSymlink ./themes/fish.theme;
+            "bat/themes/bat.tmTheme" = lib.mkSymlink ./themes/bat.tmTheme;
+            "fastfetch/shell-greeting.jsonc" = lib.mkSymlink ./shell-greeting.jsonc;
         };
     };
 

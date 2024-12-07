@@ -8,7 +8,7 @@
         pkgs.alacritty
     ];
 
-    home-manager.users.${username} = {config, ...}: {
-        xdg.configFile.alacritty = lib.mkSymlink config ./.;
+    home-manager.users.${username} = {
+        xdg.configFile.alacritty = lib.mkSymlink ./.;
     };
 }
