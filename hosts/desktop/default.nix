@@ -21,7 +21,10 @@
             };
         };
         hypr.browser = "zen";
-        hardware.amdgpu.enable = true;
+        hardware = {
+            amdgpu.enable = true;
+            bluetooth.enable = true;
+        };
     };
 
     boot = {
