@@ -1,15 +1,11 @@
-{
-    pkgs,
-    username,
-    ...
-}: {
+{pkgs, ...}: {
     imports = [
         ./hardware-configuration.nix
         ./disk-config.nix
         ./monitors.nix
     ];
 
-    home-manager.users.${username}.imports = [./home.nix];
+    hm.imports = [./home.nix];
 
     modules = {
         bundles = {

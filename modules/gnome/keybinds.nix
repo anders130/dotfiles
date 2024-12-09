@@ -1,7 +1,6 @@
 {
     config,
     lib,
-    username,
     ...
 }: let
     cfg = config.modules.gnome;
@@ -36,7 +35,7 @@
         }
     ];
 in {
-    config.home-manager.users.${username}.dconf.settings =
+    config.hm.dconf.settings =
         lib.mkIf cfg.enable ((mkDconfSettings keybinds) // {
             "${mediaKeysPath}" = {
                 custom-keybindings = mkCustomKeybindings keybinds;

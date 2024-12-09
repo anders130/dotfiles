@@ -2,7 +2,6 @@
     config,
     lib,
     pkgs,
-    username,
     ...
 }: let
     cfg = config.modules.hypr;
@@ -26,7 +25,7 @@
         transparentBase = "rgba(${stylixColors.base02-rgb-r}, ${stylixColors.base02-rgb-g}, ${stylixColors.base02-rgb-b}, 0.2)";
     };
 in {
-    home-manager.users.${username} = lib.mkIf cfg.enable {
+    hm = lib.mkIf cfg.enable {
         stylix.targets.hyprlock.enable = false;
         programs.hyprlock = {
             inherit package;

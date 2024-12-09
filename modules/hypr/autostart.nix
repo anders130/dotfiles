@@ -2,7 +2,6 @@
     config,
     lib,
     pkgs,
-    username,
     ...
 }: let
     cfg = config.modules.hypr;
@@ -44,17 +43,13 @@ in {
             swww # wallpaper utility
         ]);
 
-        home-manager.users.${username} = {
-            wayland.windowManager.hyprland = {
-                settings.exec-once = [
-                    "swww-daemon"
-                    "ags -b hypr"
-                    "${autostart}/bin/autostart"
-                    "swaync"
-                    greeter
-                    polkit
-                ];
-            };
-        };
+        hm.wayland.windowManager.hyprland.settings.exec-once = [
+            "swww-daemon"
+            "ags -b hypr"
+            "${autostart}/bin/autostart"
+            "swaync"
+            greeter
+            polkit
+        ];
     };
 }

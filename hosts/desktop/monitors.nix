@@ -1,4 +1,4 @@
-{username, ...}: let
+let
     monitors = [
         {
             port = "DP-3";
@@ -27,5 +27,5 @@
     mkWaylandMonitor = m: "${m.port}, ${m.resolution}@${toString m.refreshRate}, ${m.position}, ${toString m.scale}";
 in {
     boot.kernelParams = map mkMonitorKernelParam monitors;
-    home-manager.users.${username}.wayland.windowManager.hyprland.settings.monitor = map mkWaylandMonitor monitors;
+    hm.wayland.windowManager.hyprland.settings.monitor = map mkWaylandMonitor monitors;
 }

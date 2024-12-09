@@ -2,7 +2,6 @@
     config,
     lib,
     pkgs,
-    username,
     ...
 }: let
     cfg = config.modules.gnome;
@@ -18,7 +17,7 @@ in {
     config = lib.mkIf cfg.enable {
         environment.systemPackages = extensions;
 
-        home-manager.users.${username}.dconf.settings = {
+        hm.dconf.settings = {
             "org/gnome/shell" = {
                 enabled-extensions = map (e: e.extensionUuid) extensions;
                 disable-user-extensions = false;

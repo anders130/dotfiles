@@ -1,4 +1,4 @@
-{lib, ...}: hostConfig: username: path: {
+{lib, ...}: hostConfig: path: {
     imports ? [],
     options ? {},
     config ? null,
@@ -18,11 +18,7 @@
     cfg = lib.foldl' (obj: key: obj.${key}) hostConfig pathList; # get the modules option values from the hostConfig
 
     adjustConfig = config: config
-        |> (c: removeAttrs c ["imports"])
-        |> (c: if c ? hm then c
-            |> (c: c // {home-manager.users.${username} = c.hm;}) # move hm to home-manager
-            |> (c: removeAttrs c ["hm"]) # remove unneccessary hm attrs
-        else c);
+        |> (c: removeAttrs c ["imports"]);
 in {
     imports = imports ++ config.imports or [];
     options = options

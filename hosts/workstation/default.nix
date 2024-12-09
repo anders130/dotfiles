@@ -1,7 +1,6 @@
 {
     lib,
     pkgs,
-    username,
     ...
 }: {
     imports = [
@@ -9,9 +8,7 @@
         ./hardware-configuration.nix
     ];
 
-    home-manager.users.${username}.imports = [
-        ./home.nix
-    ];
+    hm.imports = [./home.nix];
 
     modules = {
         bundles = {
@@ -21,6 +18,8 @@
                 mainMonitor = "eDP-1";
             };
         };
+
+        programs.gui.zen-browser.enable = true;
 
         gnome.enable = true;
         hardware = {

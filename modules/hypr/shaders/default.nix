@@ -2,7 +2,6 @@
     config,
     lib,
     pkgs,
-    username,
     ...
 }: let
     cfg = config.modules.hypr;
@@ -31,7 +30,7 @@ in {
             switch-shaders
         ];
 
-        home-manager.users.${username} = {config, ...}: {
+        hm = {config, ...}: {
             xdg.configFile."hypr/shaders" = lib.mkSymlink config ./.;
         };
     };
