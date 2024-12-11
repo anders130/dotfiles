@@ -31,5 +31,7 @@ args@{
         |> lib.mkModule config file # convert to module
     ) files;
 in {
-    imports = mkModules (getFiles ./.);
+    imports = ./.
+        |> getFiles
+        |> mkModules;
 }

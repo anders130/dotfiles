@@ -29,6 +29,7 @@ inputs: let
             inherit system specialArgs;
             modules = modules ++ [
                 ../modules
+                ../modules2
                 ./${name}
                 {
                     home-manager.extraSpecialArgs = specialArgs; # for home.nix files
