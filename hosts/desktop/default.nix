@@ -26,7 +26,6 @@
             bluetooth.enable = true;
         };
     };
-    modules2.test.enable = true;
 
     boot = {
         binfmt.emulatedSystems = ["aarch64-linux"];

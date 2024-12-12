@@ -1,5 +1,5 @@
 {pkgs, ...}: let
-    secrets = import ./secrets.nix;
+    secrets = builtins.fromJSON (builtins.readFile ./secrets.json);
     package = pkgs.git;
 in {
     environment.systemPackages = [package];

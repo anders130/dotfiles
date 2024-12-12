@@ -1,11 +1,22 @@
-args@{
+args @ {
     config,
     lib,
     pkgs,
     ...
 }: let
-    inherit (builtins) any attrValues baseNameOf concatMap dirOf filter groupBy isAttrs;
-    getFiles = dir: dir
+    inherit (builtins) any attrNames attrValues baseNameOf concatMap dirOf filter foldl' groupBy isAttrs readDir;
+    inherit (lib) mkModule mkRelativePath recursiveMerge removeSuffix splitString;
+
+    pathToKeys = path: path
+        |> mkRelativePath
+        |> removeSuffix ".nix"
+        |> removeSuffix "/default" # default should not be in the module set path
+        |> splitString "/";
+
+    # Resolve the cfg value for a file based on its path
+    resolveCfg = path: foldl' (obj: key: obj.${key}) config (pathToKeys path);
+
+    getRelevantFiles = dir: dir
         |> lib.filesystem.listFilesRecursive # list all files in the directory
         |> filter (n: lib.strings.hasSuffix ".nix" n) # only nix files
         |> filter (n: n != ./default.nix) # filter out this file
@@ -18,20 +29,42 @@ args@{
             else group # otherwise include all files
         );
 
-    moduleArgs = args // {
-        inherit pkgs;
-        lib = lib // {
-            mkSymlink = lib.mkSymlink config.hm;
-        };
-    };
+    importModule = file: let
+        module = import file;
+    in
+        if isAttrs module then module
+        else module (args // {
+            inherit pkgs;
+            lib = lib // { # simplify lib for modules
+                mkSymlink = lib.mkSymlink config.hm;
+            };
+        });
 
-    mkModules = files: map (file: file
-        |> import # import file
-        |> (f: if isAttrs f then f else f moduleArgs) # if file is a function, call it with args
-        |> lib.mkModule config file # convert to module
-    ) files;
+    processModule = moduleFile: let
+        module = importModule moduleFile;
+        subModules = if baseNameOf moduleFile != "default.nix" then [] else moduleFile
+            |> dirOf
+            |> readDir
+            |> attrNames
+            |> filter (n: lib.strings.hasSuffix ".nix" n) # only nix files
+            |> filter (n: baseNameOf n != "default.nix")
+            |> map (file: file
+                |> (x: toString (dirOf moduleFile) + "/" + x) # get the full path of the file
+                |> importModule
+            );
+        cfg = resolveCfg moduleFile;
+    in (subModules ++ [module])
+        |> map (set:
+            if set ? config && !isAttrs set.config
+            then set // {config = set.config cfg;}
+            else set
+        )
+        |> recursiveMerge;
 in {
     imports = ./.
-        |> getFiles
-        |> mkModules;
+        |> getRelevantFiles
+        |> map (file: file
+            |> processModule
+            |> mkModule config file
+        );
 }

@@ -1,12 +1,11 @@
 {
-    config,
     lib,
     pkgs,
     ...
 }: let
-    cfg = config.modules.hypr;
-
-    autostart = pkgs.writeShellScriptBin "autostart" ''
+    greeter = "hyprlock";
+    polkit = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+    autostart = cfg: pkgs.writeShellScriptBin "autostart" ''
         hyprctl dispatch movefocus r
 
         # only execute if noisetorch is not yet active (grep finds <= 1 results)
@@ -32,21 +31,17 @@
         '')
         cfg.autostartApps}
     '';
-
-    greeter = "hyprlock";
-    polkit = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
 in {
-    config = lib.mkIf cfg.enable {
-        environment.systemPackages = [
-            autostart
-        ] ++ (with pkgs; [
+    config = cfg: {
+        environment.systemPackages = with pkgs; [
+            (autostart cfg)
             swww # wallpaper utility
-        ]);
+        ];
 
         hm.wayland.windowManager.hyprland.settings.exec-once = [
             "swww-daemon"
             "ags -b hypr"
-            "${autostart}/bin/autostart"
+            "${autostart cfg}/bin/autostart"
             "swaync"
             greeter
             polkit

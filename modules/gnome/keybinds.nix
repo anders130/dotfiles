@@ -1,9 +1,4 @@
-{
-    config,
-    lib,
-    ...
-}: let
-    cfg = config.modules.gnome;
+{lib, ...}: let
     mediaKeysPath = "org/gnome/settings-daemon/plugins/media-keys";
 
     mkCustomKeybindings = keybinds:
@@ -35,8 +30,8 @@
         }
     ];
 in {
-    config.hm.dconf.settings =
-        lib.mkIf cfg.enable ((mkDconfSettings keybinds) // {
+    config = cfg: {
+        hm.dconf.settings = ((mkDconfSettings keybinds) // {
             "${mediaKeysPath}" = {
                 custom-keybindings = mkCustomKeybindings keybinds;
                 screensaver = ["<Super>BackSpace"];
@@ -95,4 +90,5 @@ in {
                 focus-mode = "mouse";
             };
         });
+    };
 }
