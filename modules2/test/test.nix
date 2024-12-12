@@ -1,5 +1,5 @@
 {
     config = cfg: {
-        services.pict-rs.enable = true;
+        # services.pict-rs.enable = true;
     };
 }
