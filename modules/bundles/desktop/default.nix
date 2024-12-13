@@ -1,8 +1,4 @@
 {lib, ...}: {
-    imports = [
-        ./defaultApps.nix
-    ];
-
     options = {
         mainMonitor = lib.mkOption {
             type = lib.types.str;
