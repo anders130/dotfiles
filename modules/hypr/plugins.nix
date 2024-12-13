@@ -1,8 +1,6 @@
 {lib, ...}: {
     hm.wayland.windowManager.hyprland = {
-        plugins = [
-            (lib.getPkgs "split-monitor-workspaces").split-monitor-workspaces
-        ];
+        plugins = [(lib.getPkgs "split-monitor-workspaces").split-monitor-workspaces];
 
         extraConfig = /*hyprlang*/''
             plugin {

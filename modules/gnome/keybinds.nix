@@ -1,4 +1,4 @@
-{lib, ...}: let
+let
     mediaKeysPath = "org/gnome/settings-daemon/plugins/media-keys";
 
     mkCustomKeybindings = keybinds:
