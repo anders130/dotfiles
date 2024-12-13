@@ -42,16 +42,20 @@ args @ {
 
     processModule = moduleFile: let
         module = importModule moduleFile;
-        subModules = if baseNameOf moduleFile != "default.nix" then [] else moduleFile
-            |> dirOf
-            |> readDir
-            |> attrNames
-            |> filter (n: lib.strings.hasSuffix ".nix" n) # only nix files
-            |> filter (n: baseNameOf n != "default.nix")
-            |> map (file: file
-                |> (x: toString (dirOf moduleFile) + "/" + x) # get the full path of the file
-                |> importModule
+        subModules = if baseNameOf moduleFile != "default.nix" then [] else let
+            allFiles = (moduleFile
+                |> dirOf
+                |> readDir
+                |> attrNames
+                |> filter (n: lib.strings.hasSuffix ".nix" n) # only nix files
+                |> filter (n: baseNameOf n != "default.nix")
+                |> map (file: file
+                    |> (f: toString (dirOf moduleFile) + "/" + f) # get the full path of the file
+                    |> (f: /. + f) # add the ./ prefix
+                )
             );
+        in allFiles
+            |> map importModule;
         cfg = resolveCfg moduleFile;
     in (subModules ++ [module])
         |> map (set:
