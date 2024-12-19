@@ -45,6 +45,10 @@ in {
                 path = "~/Projects/Work/.gitconfig";
                 condition = "gitdir:~/Projects/Work/";
             }
+            {
+                path = "~/Projects/HSB/.gitconfig";
+                condition = "gitdir:~/Projects/HSB/";
+            }
         ];
     };
 }
