@@ -54,7 +54,6 @@
     environment.systemPackages = with pkgs; [
         xwaylandvideobridge # could be helpful for some things
         local.easyroam
-        local.keil-uvision
         vivado
     ];
 
