@@ -1,5 +1,5 @@
 {config, ...}: {
-    config = cfg: {
+    config = {
         hm.wayland.windowManager.hyprland.settings = {
             input = {
                 kb_layout = config.modules.utils.keyboard.layout;
@@ -21,6 +21,7 @@
 
             bind = let
                 e = "ags -b hypr";
+                defaultPrograms = config.modules.desktop.defaultPrograms;
             in [
                 # ags stuff
                 "SUPER CTRL SHIFT, R, exec, ${e} quit; ${e}"
@@ -41,15 +42,14 @@
                 "SUPER SHIFT, k, movewindow, u"
                 "SUPER SHIFT, l, movewindow, r"
                 # programs
-                "SUPER, return, exec, ${cfg.terminal}" # terminal
-                "SUPER, E, exec, nautilus --new-window" # file manager
-                "SUPER, B, exec, ${cfg.browser}" # browser
-                "SUPER, Space, exec, ${cfg.appLauncher}"
+                "SUPER, return, exec, ${defaultPrograms.terminal}"
+                "SUPER, E, exec, ${defaultPrograms.fileManager}"
+                "SUPER, B, exec, ${defaultPrograms.browser}"
+                "SUPER, Space, exec, pgrep rofi && pkill rofi || rofi -show drun -show-icons -matching fuzzy -sort -sorting-method fzf" # app launcher
                 "SUPER, Period, exec, rofi -modi emoji:rofimoji -show emoji" # emoji picker
                 "SUPER, BACKSPACE, exec, hyprlock" # lock screen
                 "SUPER SHIFT, S, exec, grimblast --freeze copy area" # select area to copy
                 "SUPER, T, exec, switch-shaders" # switch screen-shader
-                "SUPER, 34, exec, forceMouseToGame" # SUPER + Ü
                 "SUPER, N, exec, swaync-client -t -sw"
                 # workspaces
             ] ++ (builtins.concatLists (builtins.genList (

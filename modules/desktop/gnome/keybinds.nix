@@ -1,4 +1,4 @@
-let
+{config, ...}: let
     mediaKeysPath = "org/gnome/settings-daemon/plugins/media-keys";
 
     mkCustomKeybindings = keybinds:
@@ -16,17 +16,17 @@ let
         {
             name = "open-terminal";
             binding = "<Super>Return";
-            command = "kitty";
+            command = config.modules.desktop.defaultPrograms.terminal;
         }
         {
-            name = "open-file-explorer";
+            name = "open-file-manager";
             binding = "<Super>e";
-            command = "nautilus";
+            command = config.modules.desktop.defaultPrograms.fileManager;
         }
         {
             name = "open-browser";
             binding = "<Super>b";
-            command = "firefox";
+            command = config.modules.desktop.defaultPrograms.browser;
         }
     ];
 in {

@@ -1,13 +1,5 @@
 {lib, ...}: {
     options = {
-        terminal = lib.mkOption {
-            type = lib.types.str;
-            default = "kitty";
-        };
-        appLauncher = lib.mkOption {
-            type = lib.types.str;
-            default = "pgrep rofi && pkill rofi || rofi -show drun -show-icons -matching fuzzy -sort -sorting-method fzf";
-        };
         mainMonitor = lib.mkOption {
             type = lib.types.str;
             default = "DP-1";
@@ -37,11 +29,6 @@
         displayManager = {
             enable = lib.mkEnableOption "Enable lightdm display manager";
             autoLogin.enable = lib.mkEnableOption "Enable autologin";
-        };
-        browser = lib.mkOption {
-            type = lib.types.str;
-            default = "firefox";
-            description = "Browser to use";
         };
     };
 }

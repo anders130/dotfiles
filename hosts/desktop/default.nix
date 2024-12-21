@@ -33,6 +33,7 @@
                 };
             };
             hyprland.enable = true;
+            defaultPrograms.browser = "zen";
         };
 
         programs = {
@@ -42,7 +43,6 @@
                 zen-browser.enable = true;
             };
         };
-        hypr.browser = "zen";
         hardware = {
             amdgpu.enable = true;
             bluetooth.enable = true;

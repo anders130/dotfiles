@@ -3,11 +3,10 @@
     pkgs,
     ...
 }: {
-    options = {
-        terminal = lib.mkOption {
-            type = lib.types.str;
-            default = "alacritty";
-        };
+    options.terminal = lib.mkOption {
+        type = lib.types.str;
+        description = "Terminal to use for rofi";
+        default = "kitty";
     };
 
     config = cfg: {

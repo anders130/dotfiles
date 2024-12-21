@@ -35,10 +35,36 @@ in {
             default = {};
             description = "Monitors to use";
         };
+        defaultPrograms = let
+            mkOption = default: description:
+                lib.mkOption {
+                    inherit default description;
+                    type = lib.types.str;
+                };
+        in {
+            browser = mkOption "firefox" "Default browser to use";
+            terminal = mkOption "kitty" "Default terminal to use";
+            editor = mkOption "nvim" "Default editor to use";
+            fileManager = mkOption "nautilus --new-window" "Default file manager to use";
+            imageViewer = mkOption "loupe" "Default image viewer to use";
+            videoPlayer = mkOption "totem" "Default video player to use";
+            musicPlayer = mkOption "gnome-music" "Default music player to use";
+        };
     };
 
     config = cfg: {
         boot.kernelParams = lib.mapAttrsToList mkMonitorKernelParam cfg.monitors;
         hm.wayland.windowManager.hyprland.settings.monitor = lib.mapAttrsToList mkHyprlandMonitor cfg.monitors;
+
+        xdg.mime.defaultApplications = {
+            "application/pdf" = "${cfg.defaultPrograms.browser}.desktop";
+            "x-scheme-handler/http" = "${cfg.defaultPrograms.browser}.desktop";
+            "x-scheme-handler/https" = "${cfg.defaultPrograms.browser}.desktop";
+
+            "image/*" = "${cfg.defaultPrograms.imageViewer}.desktop";
+            "video/*" = "${cfg.defaultPrograms.videoPlayer}.desktop";
+            "audio/*" = "${cfg.defaultPrograms.musicPlayer}.desktop";
+            "text/*" = "${cfg.defaultPrograms.editor}.desktop";
+        };
     };
 }
