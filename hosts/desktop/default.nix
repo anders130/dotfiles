@@ -2,7 +2,6 @@
     imports = [
         ./hardware-configuration.nix
         ./disk-config.nix
-        ./monitors.nix
     ];
 
     hm.imports = [./home.nix];
@@ -13,6 +12,28 @@
             desktop.enable = true;
             gaming.enable = true;
         };
+        desktop = {
+            enable = true;
+            monitors = {
+                DP-3 = {
+                    resolution = "2560x1440";
+                    refreshRate = 180;
+                    position = "-2560x0";
+                };
+                DP-1 = {
+                    isMain = true;
+                    resolution = "3440x1440";
+                    refreshRate = 144;
+                    position = "0x0";
+                };
+                DP-2 = {
+                    resolution = "2560x1440";
+                    refreshRate = 180;
+                    position = "3440x0";
+                };
+            };
+        };
+
         programs = {
             cli.nix.nix-daemon.enableLimit = true;
             gui = {
