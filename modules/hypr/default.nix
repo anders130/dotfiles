@@ -21,12 +21,6 @@ in {
             package32 = hyprlandPkgs.pkgsi686Linux.mesa.drivers;
         };
 
-        # use cached hyprland flake builds
-        nix.settings = {
-            substituters = ["https://hyprland.cachix.org"];
-            trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
-        };
-
         environment.systemPackages = with pkgs; [
             libsForQt5.qt5.qtwayland
             qt6.qtwayland

@@ -41,6 +41,17 @@
                 ];
 
                 trusted-users = [username];
+
+                substituters = [
+                    "https://anders130.cachix.org"
+                    "https://nix-community.cachix.org"
+                    "https://hyprland.cachix.org"
+                ];
+                trusted-public-keys = [
+                    "anders130.cachix.org-1:mCAq0L6Ld3lG7gxJVHGzKr2rqUZ5qs5YoERxoSjMOXs="
+                    "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+                    "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
+                ];
             };
 
             extraOptions = ''
