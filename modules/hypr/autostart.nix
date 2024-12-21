@@ -3,8 +3,6 @@
     pkgs,
     ...
 }: let
-    greeter = "hyprlock";
-    polkit = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
     autostart = cfg: pkgs.writeShellScriptBin "autostart" ''
         hyprctl dispatch movefocus r
 
@@ -33,18 +31,7 @@
     '';
 in {
     config = cfg: {
-        environment.systemPackages = with pkgs; [
-            (autostart cfg)
-            swww # wallpaper utility
-        ];
-
-        hm.wayland.windowManager.hyprland.settings.exec-once = [
-            "swww-daemon"
-            "ags -b hypr"
-            "${autostart cfg}/bin/autostart"
-            "swaync"
-            greeter
-            polkit
-        ];
+        environment.systemPackages = [(autostart cfg)];
+        hm.wayland.windowManager.hyprland.settings.exec-once = ["autostart"];
     };
 }

@@ -13,10 +13,7 @@
     modules = {
         bundles = {
             dev.enable = true;
-            desktop = {
-                enable = true;
-                mainMonitor = "eDP-1";
-            };
+            desktop.enable = true;
         };
 
         desktop = {

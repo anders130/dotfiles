@@ -32,6 +32,7 @@
                     position = "3440x0";
                 };
             };
+            hyprland.enable = true;
         };
 
         programs = {

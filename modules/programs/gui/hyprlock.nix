@@ -1,5 +1,6 @@
 {
     config,
+    lib,
     pkgs,
     ...
 }: let
@@ -23,6 +24,10 @@
         transparentBase = "rgba(${stylixColors.base02-rgb-r}, ${stylixColors.base02-rgb-g}, ${stylixColors.base02-rgb-b}, 0.2)";
     };
 in {
+    options.mainMonitor = lib.mkOption {
+        type = lib.types.str;
+        description = "The main monitor";
+    };
     config = cfg: {
         hm = {
             stylix.targets.hyprlock.enable = false;
