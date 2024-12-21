@@ -1,15 +1,9 @@
 {username, ...}: {
-    imports = [
-        ./wsl.nix
-    ];
-
     virtualisation.docker = {
         enable = true;
         enableOnBoot = true;
         autoPrune.enable = true;
     };
 
-    users.users.${username}.extraGroups = [
-        "docker"
-    ];
+    users.users.${username}.extraGroups = ["docker"];
 }

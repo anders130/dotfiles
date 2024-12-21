@@ -1,11 +1,8 @@
 {
-    config,
     lib,
     pkgs,
     ...
 }: let
-    cfg = config.modules.hypr;
-
     switch-shaders = pkgs.writeShellScriptBin "switch-shaders" /*bash*/''
         set -e
 
@@ -25,13 +22,6 @@
         fi
     '';
 in {
-    config = lib.mkIf cfg.enable {
-        environment.systemPackages = [
-            switch-shaders
-        ];
-
-        hm = {config, ...}: {
-            xdg.configFile."hypr/shaders" = lib.mkSymlink config ./.;
-        };
-    };
+    environment.systemPackages = [switch-shaders];
+    hm.xdg.configFile."hypr/shaders" = lib.mkSymlink ./shaders;
 }

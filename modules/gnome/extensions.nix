@@ -1,11 +1,4 @@
-{
-    config,
-    lib,
-    pkgs,
-    ...
-}: let
-    cfg = config.modules.gnome;
-
+{pkgs, ...}: let
     extensions = with pkgs.gnomeExtensions; [
         appindicator
         blur-my-shell
@@ -14,7 +7,7 @@
         system-monitor
     ];
 in {
-    config = lib.mkIf cfg.enable {
+    config = cfg: {
         environment.systemPackages = extensions;
 
         hm.dconf.settings = {

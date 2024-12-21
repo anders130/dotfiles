@@ -9,17 +9,6 @@
     portalPackage = (lib.getPkgs "hyprland").xdg-desktop-portal-hyprland;
     hyprlandPkgs = inputs.hyprland.inputs.nixpkgs.legacyPackages.${pkgs.system};
 in {
-    imports = [
-        ./shaders
-        ./options.nix
-        ./hyprlock.nix
-
-        ./autostart.nix
-        ./displayManager.nix
-        ./keybinds.nix
-        ./plugins.nix
-    ];
-
     config = cfg: {
         programs.hyprland = {
             inherit package portalPackage;
@@ -44,9 +33,7 @@ in {
         ];
 
         hm = {
-            imports = [
-                inputs.hyprland.homeManagerModules.default
-            ];
+            imports = [inputs.hyprland.homeManagerModules.default];
 
             wayland.windowManager.hyprland = {
                 inherit package;

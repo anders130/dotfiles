@@ -1,5 +1,5 @@
 {lib, ...}: {
-    options.modules.hypr = {
+    options = {
         terminal = lib.mkOption {
             type = lib.types.str;
             default = "kitty";

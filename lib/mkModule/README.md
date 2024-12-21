@@ -7,7 +7,7 @@
        config,
        lib,
        ...
-   }: lib.mkModule config ./. {
+   }: lib.mkModule config true ./. {
        yourModuleOptions = true;
    }
    ```
@@ -19,7 +19,7 @@
        config,
        lib,
        ...
-   }: lib.mkModule config ./. {
+   }: lib.mkModule config true ./. {
        name = "myModule";
        imports = [
            ./myModule.nix
@@ -43,7 +43,7 @@
        config,
        lib,
        ...
-   }: lib.mkModule config ./. {
+   }: lib.mkModule config true ./. {
        name = "myModule";
        imports = [
            ./myModule.nix

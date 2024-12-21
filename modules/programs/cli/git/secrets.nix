@@ -1,6 +1,0 @@
-{
-    git_credentials = {
-        email = "93037023+anders130@users.noreply.github.com";
-        username = "anders130";
-    };
-}

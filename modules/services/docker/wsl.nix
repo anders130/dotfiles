@@ -5,16 +5,12 @@
     inputs,
     ...
 }: {
-    imports = [
-        inputs.nixos-wsl.nixosModules.wsl
-    ];
+    imports = [inputs.nixos-wsl.nixosModules.wsl];
 
-    options.modules.services.docker = {
-        wslIntegration = lib.mkEnableOption "wslIntegration";
-    };
+    options.wslIntegration = lib.mkEnableOption "wslIntegration";
 
-    config = lib.mkIf config.modules.services.docker.wslIntegration {
-        wsl = {
+    config = cfg: {
+        wsl = lib.mkIf cfg.wslIntegration {
             docker-desktop.enable = false;
 
             extraBin = with pkgs; [
@@ -29,6 +25,13 @@
             ];
         };
 
-        systemd.services.docker-desktop-proxy.script = lib.mkForce ''${config.wsl.wslConf.automount.root}/wsl/docker-desktop/docker-desktop-user-distro proxy --docker-desktop-root ${config.wsl.wslConf.automount.root}/wsl/docker-desktop "C:\Program Files\Docker\Docker\resources"'';
+        systemd.services.docker-desktop-proxy.script = lib.mkForce (
+            if cfg.wslIntegration
+            then ''
+                ${config.wsl.wslConf.automount.root}/wsl/docker-desktop/docker-desktop-user-distro proxy --docker-desktop-root ${config.wsl.wslConf.automount.root}/wsl/docker-desktop "C:\Program Files\Docker\Docker\resources"''
+            else ''
+                echo "WSL integration is disabled"
+            ''
+        );
     };
 }

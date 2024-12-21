@@ -3,11 +3,6 @@
     pkgs,
     ...
 }: {
-    imports = [
-        ./extensions.nix
-        ./keybinds.nix
-    ];
-
     services.xserver = {
         enable = true;
         displayManager.gdm.enable = lib.mkDefault true;
