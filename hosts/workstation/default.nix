@@ -19,9 +19,13 @@
             };
         };
 
+        desktop = {
+            enable = true;
+            gnome.enable = true;
+        };
+
         programs.gui.zen-browser.enable = true;
 
-        gnome.enable = true;
         hardware = {
             amdgpu.enable = true;
             displaylink.enable = true;
