@@ -13,7 +13,7 @@ args @ {
         if isAttrs module then module
         else module (args // {
             inherit pkgs;
-            lib = lib // {
+            lib = lib // { # simplify lib for modules
                 mkSymlink = lib.mkSymlink config.hm;
             };
         });
@@ -24,11 +24,11 @@ args @ {
         |> filter (n: n != ./default.nix) # filter out this file
         |> groupBy (file: toString (dirOf file))
         |> attrValues
-        # move files into its own list when there is no default.nix file
+        # if there is a default.nix file, then spread the files into the list
         |> concatMap (files:
             if any (file: baseNameOf file == "default.nix") files
-            then [files] # Keep as a list
-            else map (file: [file]) files # Spread into the parent list
+            then [files]
+            else map (file: [file]) files
         )
     ;
 
@@ -40,19 +40,17 @@ args @ {
     mkModules = files: let
         mainFile = head (getMainFile files);
     in
-        files
-        # |> (x: lib.debug.traceSeq {inherit x mainFile;} x)
-        |> map (file: file
+        map (file: file
             |> importModule
-            # |> (x: lib.debug.traceSeq {inherit file mainFile; equal = file == mainFile;} x)
+            # create the module with the name of the file
+            # only declare an enalbe option if the file is the main file
             |> lib.mkModule config (file == mainFile) mainFile
-        )
+        ) files
     ;
 in {
     imports = ./.
         |> getFiles
-        # |> map (x: lib.debug.traceSeq x x)
-        |> map mkModules
-        |> flatten
+        |> map mkModules # return a list of modules
+        |> flatten # bring all modules into one list
     ;
 }
