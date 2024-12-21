@@ -1,4 +1,4 @@
-{lib, ...}: hostConfig: path: {
+{lib, ...}: hostConfig: createEnableOption: path: {
     imports ? [],
     options ? {},
     config ? null,
@@ -22,7 +22,13 @@
 in {
     imports = imports ++ config.imports or [];
     options = options
-        |> (o: o // {enable = lib.mkEnableOption configName;})
+        # |> (o: o // {enable = lib.mkEnableOption configName;})
+        # |> (o: lib.debug.traceSeq {inherit path;} o)
+        |> (o:
+            if createEnableOption
+            then o // {enable = lib.mkEnableOption configName;}
+            else o
+        )
         |> (o: foldr (key: acc: {${key} = acc;}) o pathList); # set the value at the path
     config = config
         |> (c: if c != null then c else args) # if config is not set, assume args are the config

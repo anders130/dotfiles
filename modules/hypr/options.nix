@@ -44,4 +44,5 @@
             description = "Browser to use";
         };
     };
+    config = {};
 }

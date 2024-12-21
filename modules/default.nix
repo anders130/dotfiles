@@ -4,30 +4,8 @@ args @ {
     pkgs,
     ...
 }: let
-    inherit (builtins) any attrNames attrValues baseNameOf concatMap dirOf filter foldl' groupBy isAttrs readDir;
-    inherit (lib) mkModule mkRelativePath recursiveMerge removeSuffix splitString;
-
-    pathToKeys = path: path
-        |> mkRelativePath
-        |> removeSuffix ".nix"
-        |> removeSuffix "/default" # default should not be in the module set path
-        |> splitString "/";
-
-    # Resolve the cfg value for a file based on its path
-    resolveCfg = path: foldl' (obj: key: obj.${key}) config (pathToKeys path);
-
-    getRelevantFiles = dir: dir
-        |> lib.filesystem.listFilesRecursive # list all files in the directory
-        |> filter (n: lib.strings.hasSuffix ".nix" n) # only nix files
-        |> filter (n: n != ./default.nix) # filter out this file
-        # filter out files that are in the same directory as a default.nix file
-        |> groupBy (file: toString (dirOf file)) # group by directory
-        |> attrValues # convert to list of lists
-        |> concatMap (group:
-            if any (file: baseNameOf file == "default.nix") group # if dir contains a default.nix file
-            then filter (file: baseNameOf file == "default.nix") group # only include default.nix files
-            else group # otherwise include all files
-        );
+    inherit (builtins) any attrValues baseNameOf concatMap dirOf filter groupBy head isAttrs;
+    inherit (lib.lists) flatten;
 
     importModule = file: let
         module = import file;
@@ -35,40 +13,46 @@ args @ {
         if isAttrs module then module
         else module (args // {
             inherit pkgs;
-            lib = lib // { # simplify lib for modules
+            lib = lib // {
                 mkSymlink = lib.mkSymlink config.hm;
             };
         });
 
-    processModule = moduleFile: let
-        module = importModule moduleFile;
-        subModules = if baseNameOf moduleFile != "default.nix" then [] else let
-            allFiles = (moduleFile
-                |> dirOf
-                |> readDir
-                |> attrNames
-                |> filter (n: lib.strings.hasSuffix ".nix" n) # only nix files
-                |> filter (n: baseNameOf n != "default.nix")
-                |> map (file: file
-                    |> (f: toString (dirOf moduleFile) + "/" + f) # get the full path of the file
-                    |> (f: /. + f) # add the ./ prefix
-                )
-            );
-        in allFiles
-            |> map importModule;
-        cfg = resolveCfg moduleFile;
-    in (subModules ++ [module])
-        |> map (set:
-            if set ? config && !isAttrs set.config
-            then set // {config = set.config cfg;}
-            else set
+    getFiles = dir: dir
+        |> lib.filesystem.listFilesRecursive # list all files in the directory
+        |> filter (n: lib.strings.hasSuffix ".nix" n) # only nix files
+        |> filter (n: n != ./default.nix) # filter out this file
+        |> groupBy (file: toString (dirOf file))
+        |> attrValues
+        # move files into its own list when there is no default.nix file
+        |> concatMap (files:
+            if any (file: baseNameOf file == "default.nix") files
+            then [files] # Keep as a list
+            else map (file: [file]) files # Spread into the parent list
         )
-        |> recursiveMerge;
+    ;
+
+    getMainFile = files:
+        if any (file: baseNameOf file == "default.nix") files
+        then filter (file: baseNameOf file == "default.nix") files
+        else files;
+
+    mkModules = files: let
+        mainFile = head (getMainFile files);
+    in
+        files
+        # |> (x: lib.debug.traceSeq {inherit x mainFile;} x)
+        |> map (file: file
+            |> importModule
+            # |> (x: lib.debug.traceSeq {inherit file mainFile; equal = file == mainFile;} x)
+            |> lib.mkModule config (file == mainFile) mainFile
+        )
+    ;
 in {
     imports = ./.
-        |> getRelevantFiles
-        |> map (file: file
-            |> processModule
-            |> mkModule config file
-        );
+        |> getFiles
+        # |> map (x: lib.debug.traceSeq x x)
+        |> map mkModules
+        |> flatten
+    ;
 }
