@@ -3,12 +3,7 @@
         desktop = {
             enable = lib.mkDefault true;
             autostart = [
-                /*bash*/''
-                # only execute if noisetorch is not yet active (grep finds <= 1 results)
-                if [ "$(wpctl status | grep -c 'NoiseTorch Microphone')" -le 1 ]; then
-                    sleep 1 && noisetorch -i
-                fi
-                ''
+                "sleep 1 && noisetorch -i"
                 "signal-desktop --start-in-tray"
                 "sleep 2 && zapzap --hideStart"
                 "sleep 3 && vesktop --start-minimized"
