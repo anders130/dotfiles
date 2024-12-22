@@ -1,10 +1,10 @@
 {
-    config,
     inputs,
     lib,
+    pkgs,
     ...
 }: {
-    imports = [inputs.nur.nixosModules.nur];
+    imports = [inputs.nur.modules.nixos.default];
 
     environment.systemPackages = [(lib.getPkgs "zen-browser").specific];
 
@@ -13,7 +13,7 @@
             isDefault = false;
             id = 100;
             path = "../../.zen/default";
-            extensions = with config.nur.repos.rycee.firefox-addons; [
+            extensions = with pkgs.nur.repos.rycee.firefox-addons; [
                 bitwarden
                 darkreader
                 github-file-icons

@@ -17,6 +17,7 @@ inputs: rec {
         all-channels
         inputs.nix-minecraft.overlay
         inputs.nix-xilinx.overlay
+        inputs.nur.overlays.default
         evdiFix
     ];
 }
