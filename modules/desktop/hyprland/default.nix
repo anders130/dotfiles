@@ -9,7 +9,6 @@
         package = pkgs.hyprland;
         enable = true;
         xwayland.enable = true;
-        withUWSM = true;
     };
 
     xdg.portal = {
@@ -35,7 +34,7 @@
             enable = lib.mkDefault true;
             user = username;
         };
-        defaultSession = lib.mkDefault "hyprland-uwsm";
+        defaultSession = lib.mkDefault "hyprland";
     };
 
     hm = {
