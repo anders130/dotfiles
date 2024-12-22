@@ -15,25 +15,25 @@
             dev.enable = true;
             desktop.enable = true;
         };
-
         desktop = {
             enable = true;
             gnome.enable = true;
         };
-
         programs.gui.zen-browser.enable = true;
-
         hardware = {
             amdgpu.enable = true;
             displaylink.enable = true;
         };
-        hypr.displayManager = {
-            enable = false;
-            autoLogin.enable = false;
-        };
     };
 
-    services.tailscale.enable = true;
+    services = {
+        tailscale.enable = true;
+        xserver.displayManager.lightdm.enable = false;
+        displayManager = {
+            autoLogin.enable = false;
+            defaultSession = "gnome";
+        };
+    };
 
     boot = {
         bootspec.enable = true;
@@ -53,11 +53,9 @@
     };
 
     environment.systemPackages = with pkgs; [
-        xwaylandvideobridge # could be helpful for some things
         local.easyroam
         vivado
     ];
 
-    services.displayManager.defaultSession = "gnome";
     programs.nix-ld.enable = true;
 }

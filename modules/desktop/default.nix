@@ -1,6 +1,13 @@
-{lib, ...}: let
+{
+    config,
+    lib,
+    ...
+}: let
     mkMonitorKernelParam = port: c: "video=${port}:${c.resolution}@${toString c.refreshRate}Hz";
     mkHyprlandMonitor = port: c: "${port}, ${c.resolution}@${toString c.refreshRate}, ${c.position}, ${toString c.scale}";
+    getMainMonitorName = monitors: let
+        mainMonitors = builtins.filter (m: m.value.isMain) (lib.attrsToList monitors);
+    in if builtins.length mainMonitors == 0 then "DP-1" else (builtins.head mainMonitors).name;
 in {
     options = {
         monitors = lib.mkOption {
@@ -34,6 +41,11 @@ in {
             );
             default = {};
             description = "Monitors to use";
+        };
+        mainMonitor = lib.mkOption {
+            type = lib.types.str;
+            default = getMainMonitorName config.modules.desktop.monitors;
+            description = "Name of the main monitor";
         };
         defaultPrograms = let
             mkOption = default: description:

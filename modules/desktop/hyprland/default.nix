@@ -1,36 +1,70 @@
 {
-    config,
+    inputs,
     lib,
     pkgs,
+    username,
     ...
-}: let
-    getMainMonitor = monitors: builtins.head (builtins.filter (m: m.value.isMain) (lib.attrsToList monitors));
-in {
-    modules = {
-        ags.enable = true;
-        hypr = {
-            enable = true;
-            mainMonitor = (getMainMonitor config.modules.desktop.monitors).name;
-        };
-        programs.gui = {
-            rofi.enable = true;
-            swaync.enable = true;
-            hyprlock = {
-                enable = true;
-                mainMonitor = (getMainMonitor config.modules.desktop.monitors).name;
-            };
-        };
+}: {
+    programs.hyprland = {
+        package = pkgs.hyprland;
+        enable = true;
+        xwayland.enable = true;
+        withUWSM = true;
     };
 
-    environment.systemPackages = with pkgs; [
-        swww
-    ];
+    xdg.portal = {
+        enable = true;
+        xdgOpenUsePortal = true;
+        config = {
+            common.default = ["gtk"];
+            hyprland.default = [
+                "gtk"
+                "hyprland"
+            ];
+        };
+        extraPortals = [pkgs.xdg-desktop-portal-gtk];
+    };
 
-    hm.wayland.windowManager.hyprland.settings.exec-once = [
-        "swww-daemon" # wallpaper daemon
-        "ags -b hypr" # widgets
-        "swaync" # notification daemon
-        "hyprlock" # lockscreen
-        "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1" # polkit
-    ];
+    services.xserver.displayManager.lightdm = {
+        greeter.package = pkgs.hyprland;
+        enable = lib.mkDefault true;
+    };
+
+    services.displayManager = {
+        autoLogin = {
+            enable = lib.mkDefault true;
+            user = username;
+        };
+        defaultSession = lib.mkDefault "hyprland-uwsm";
+    };
+
+    hm = {
+        imports = [inputs.hyprland.homeManagerModules.default];
+
+        wayland.windowManager.hyprland = {
+            package = pkgs.hyprland;
+            enable = true;
+            xwayland.enable = true;
+
+            settings = {
+                general = {
+                    layout = "dwindle";
+                    allow_tearing = false;
+                };
+                dwindle.preserve_split = "yes";
+                gestures.workspace_swipe = "off";
+            };
+
+            extraConfig = /*hyprlang*/''
+                source = ./visuals/default.conf
+            '';
+
+            # tell systemd to import environment by default (fixes screenshare)
+            systemd.variables = ["--all"];
+        };
+
+        xdg.configFile."hypr/visuals" = lib.mkSymlink ./visuals;
+
+        stylix.targets.hyprland.enable = false;
+    };
 }

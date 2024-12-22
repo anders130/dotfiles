@@ -1,5 +1,20 @@
 {lib, ...}: {
     modules = {
+        desktop = {
+            enable = lib.mkDefault true;
+            autostart = [
+                /*bash*/''
+                # only execute if noisetorch is not yet active (grep finds <= 1 results)
+                if [ "$(wpctl status | grep -c 'NoiseTorch Microphone')" -le 1 ]; then
+                    sleep 1 && noisetorch -i
+                fi
+                ''
+                "signal-desktop --start-in-tray"
+                "sleep 2 && zapzap --hideStart"
+                "sleep 3 && vesktop --start-minimized"
+                "ssh-add-all-keys"
+            ];
+        };
         programs = {
             gui = {
                 alacritty.enable = lib.mkDefault true;
@@ -20,19 +35,6 @@
             kanata.enable = lib.mkDefault true;
             printing.enable = lib.mkDefault true;
             sound.enable = lib.mkDefault true;
-        };
-        hypr = {
-            enable = lib.mkDefault true;
-            autostartApps = [
-                {cmd = "signal-desktop --start-in-tray";}
-                {cmd = "sleep 2 && zapzap --hideStart";}
-                {cmd = "sleep 3 && vesktop --start-minimized";}
-                {cmd = "ssh-add-all-keys";}
-            ];
-            displayManager = {
-                enable = lib.mkDefault true;
-                autoLogin.enable = lib.mkDefault true;
-            };
         };
         utils.stylix = {
             enable = lib.mkDefault true;
