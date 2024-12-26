@@ -27,13 +27,6 @@
     }
 }
 
-/* Hide unwanted UI elements */
-.titlebar-buttonbox-container,
-#alltabs-button,
-.titlebar-spacer[type="post-tabs"] {
-    display: none !important;
-}
-
 /* Tab styles */
 @media (prefers-color-scheme: dark) {
 
