@@ -7,7 +7,7 @@
     hm = {
         imports = [inputs.zenix.hmModules.default];
         programs.zenix = {
-            package = (lib.getPkgs "zen-browser").specific;
+            package = (lib.getPkgs "zen-browser").default;
             enable = true;
             chrome.hideTitlebarButtons = true;
             profiles = rec {
