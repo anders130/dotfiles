@@ -1240,22 +1240,6 @@
         "type": "github"
       }
     },
-    "nixpkgs_13": {
-      "locked": {
-        "lastModified": 1734649271,
-        "narHash": "sha256-4EVBRhOjMDuGtMaofAIqzJbg4Ql7Ai0PSeuVZTHjyKQ=",
-        "owner": "nixos",
-        "repo": "nixpkgs",
-        "rev": "d70bd19e0a38ad4790d3913bf08fcbfc9eeca507",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nixos",
-        "ref": "nixos-unstable",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
     "nixpkgs_2": {
       "locked": {
         "lastModified": 1731676054,
@@ -1574,7 +1558,6 @@
         "sops-nix": "sops-nix",
         "split-monitor-workspaces": "split-monitor-workspaces",
         "stylix": "stylix",
-        "zen-browser": "zen-browser",
         "zenix": "zenix"
       }
     },
@@ -2074,7 +2057,10 @@
     },
     "zen-browser": {
       "inputs": {
-        "nixpkgs": "nixpkgs_13"
+        "nixpkgs": [
+          "zenix",
+          "nixpkgs"
+        ]
       },
       "locked": {
         "lastModified": 1735092772,
@@ -2098,20 +2084,18 @@
         ],
         "nixpkgs": [
           "nixpkgs"
-        ]
+        ],
+        "zen-browser": "zen-browser"
       },
       "locked": {
-        "lastModified": 1735233546,
-        "narHash": "sha256-SFK6h5X/586/NxP/qHDXY/Y3+CGkGCYObYIiHtDQ6pQ=",
-        "owner": "anders130",
-        "repo": "zenix",
-        "rev": "95176506d42beb9ec3c52088a2d86b7587c5f585",
-        "type": "github"
+        "lastModified": 1735236738,
+        "narHash": "sha256-xBJar3drNx3cABWqlQ/MTo9gCQI4fyglL0w/6507Lu8=",
+        "path": "/home/jesse/Projects/zenix",
+        "type": "path"
       },
       "original": {
-        "owner": "anders130",
-        "repo": "zenix",
-        "type": "github"
+        "path": "/home/jesse/Projects/zenix",
+        "type": "path"
       }
     }
   },
