@@ -2088,14 +2088,17 @@
         "zen-browser": "zen-browser"
       },
       "locked": {
-        "lastModified": 1735236738,
-        "narHash": "sha256-xBJar3drNx3cABWqlQ/MTo9gCQI4fyglL0w/6507Lu8=",
-        "path": "/home/jesse/Projects/zenix",
-        "type": "path"
+        "lastModified": 1735237021,
+        "narHash": "sha256-Gt+qgglsHXo0stop5lZ0egut4oh0RLj+K+dXBOiah3E=",
+        "owner": "anders130",
+        "repo": "zenix",
+        "rev": "ede0aa5a49b140e837bb0e0823e9783e567f38d3",
+        "type": "github"
       },
       "original": {
-        "path": "/home/jesse/Projects/zenix",
-        "type": "path"
+        "owner": "anders130",
+        "repo": "zenix",
+        "type": "github"
       }
     }
   },
