@@ -2,7 +2,10 @@
     secrets = builtins.fromJSON (builtins.readFile ./secrets.json);
     package = pkgs.git;
 in {
-    environment.systemPackages = [package];
+    environment = {
+        shellAliases.g = "git";
+        systemPackages = [package];
+    };
 
     hm.programs.git = {
         inherit package;

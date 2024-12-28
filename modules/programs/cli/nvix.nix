@@ -18,6 +18,7 @@
                 nvix = "nvim";
                 vim = "nvim";
                 vi = "nvim";
+                v = "nvim";
             };
 
             variables.EDITOR = "nvim";
