@@ -7,7 +7,10 @@
         imports = [inputs.zenix.hmModules.default];
         programs.zenix = {
             enable = true;
-            chrome.hideTitlebarButtons = true;
+            chrome = {
+                hideTitlebarButtons = true;
+                tabGroups = true;
+            };
             profiles = rec {
                 default = {
                     isDefault = true;
