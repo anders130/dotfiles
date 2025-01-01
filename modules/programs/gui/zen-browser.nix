@@ -27,8 +27,6 @@
                         vimium
                         wappalyzer
                     ];
-                    userChrome = builtins.readFile ./userChrome.css;
-                    userContent = builtins.readFile ./userContent.css;
                 };
                 work = default // {
                     isDefault = false;

@@ -2085,11 +2085,11 @@
         "zen-browser": "zen-browser"
       },
       "locked": {
-        "lastModified": 1735660335,
-        "narHash": "sha256-vHWnyoO/VvKE8p2ogJYzx9U3qgKK/8o2fkMOblg6qeo=",
+        "lastModified": 1735745487,
+        "narHash": "sha256-MnwkzwCRRx3t7mkzRYxSOyeCJ1K449JvDvAJ0ztJ55E=",
         "owner": "anders130",
         "repo": "zenix",
-        "rev": "90a33365da0a8f83c6647e1acfff0a1e70563769",
+        "rev": "c9c23514b41033bda5ac93e2422ba7c048790858",
         "type": "github"
       },
       "original": {
