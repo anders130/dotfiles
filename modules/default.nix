@@ -13,9 +13,7 @@ args @ {
         if isAttrs module then module
         else module (args // {
             inherit pkgs;
-            lib = lib // { # simplify lib for modules
-                mkSymlink = lib.mkSymlink config.hm;
-            };
+            lib = lib.configure config;
         });
 
     getFiles = dir: dir
