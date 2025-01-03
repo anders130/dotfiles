@@ -10,6 +10,12 @@
             inputs.nixpkgs.follows = "nixpkgs";
         };
 
+        modulix = {
+            url = "github:anders130/modulix";
+            inputs.nixpkgs.follows = "nixpkgs";
+            inputs.home-manager.follows = "home-manager";
+        };
+
         stylix.url = "github:danth/stylix";
 
         nix-index-database = {
@@ -74,7 +80,20 @@
     };
 
     outputs = inputs: {
-        nixosConfigurations = import ./hosts inputs;
+        nixosConfigurations = inputs.modulix.lib.mkHosts {
+            inherit inputs;
+            flakePath = "/home/jesse/.dotfiles";
+            modulesPath = ./modules;
+            specialArgs = {
+                hashedPassword = null;
+                hostname = "nixos";
+                isThinClient = false;
+                username = "jesse";
+            };
+            sharedConfig = {
+                modules.bundles.shared.enable = true;
+            };
+        };
 
         overlays = import ./overlays inputs;
 

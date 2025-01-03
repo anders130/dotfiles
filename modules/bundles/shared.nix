@@ -1,11 +1,11 @@
 {
-    host,
+    internalName,
     lib,
     username,
     ...
 }: {
     environment.variables = {
-        NIX_FLAKE_DEFAULT_HOST = host.name;
+        NIX_FLAKE_DEFAULT_HOST = internalName;
         FLAKE = "/home/${username}/.dotfiles";
     };
 

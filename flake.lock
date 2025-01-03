@@ -963,6 +963,29 @@
         "url": "https://github.com/LumeHub/LumeHub.Server?branch=dev"
       }
     },
+    "modulix": {
+      "inputs": {
+        "home-manager": [
+          "home-manager"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1735914059,
+        "narHash": "sha256-r2td850SmKfjp3RFVC81ybJ+4L8ngDLul1z+2qFXALw=",
+        "owner": "anders130",
+        "repo": "modulix",
+        "rev": "4be1e9b729faa744ba65e25248aba92a4b89a6d9",
+        "type": "github"
+      },
+      "original": {
+        "owner": "anders130",
+        "repo": "modulix",
+        "type": "github"
+      }
+    },
     "nix-darwin": {
       "inputs": {
         "nixpkgs": [
@@ -1557,6 +1580,7 @@
         "hyprland": "hyprland",
         "lanzaboote": "lanzaboote",
         "lumehub": "lumehub",
+        "modulix": "modulix",
         "nix-index-database": "nix-index-database",
         "nix-minecraft": "nix-minecraft",
         "nix-xilinx": "nix-xilinx",
