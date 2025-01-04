@@ -50,6 +50,13 @@
             "SUPER SHIFT, S, exec, grimblast --freeze copy area" # select area to copy
             "SUPER, T, exec, switch-shaders" # switch screen-shader
             "SUPER, N, exec, swaync-client -t -sw"
+            ## adjust volume
+            " , code:121, exec, swayosd-client --output-volume mute-toggle"
+            " , code:122, exec, swayosd-client --output-volume -5"
+            " , code:123, exec, swayosd-client --output-volume +5"
+            ## adjust brightness (only works on laptops)
+            " , code:232, exec, swayosd-client --brightness -5"
+            " , code:233, exec, swayosd-client --brightness +5"
             # workspaces
         ] ++ (builtins.concatLists (builtins.genList (
             x: let
@@ -64,15 +71,6 @@
             "SUPER SHIFT, D, movetoworkspace, special:magic"
             "SUPER, G, togglespecialworkspace, other"
             "SUPER SHIFT, G, movetoworkspace, special:other"
-        ];
-
-        binde = [
-            # adjust volume
-            "SUPER, up, exec, swayosd-client --output-volume +5"
-            "SUPER, down, exec, swayosd-client --output-volume -5"
-            # adjust brightness (only works on laptops)
-            "SUPER, right, exec, swayosd-client --brightness +5"
-            "SUPER, left, exec, swayosd-client --brightness -5"
         ];
 
         bindm = [
