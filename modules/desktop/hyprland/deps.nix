@@ -12,6 +12,7 @@
                 enable = true;
                 inherit (config.modules.desktop) mainMonitor;
             };
+            swayosd.enable = true;
         };
     };
 
