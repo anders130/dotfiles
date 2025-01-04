@@ -1,19 +1,15 @@
 const battery = await Service.import('battery')
 
-const Indicator = Widget.Icon({
-    icon: battery.bind('icon_name')
-})
-
-const LevelBar = Widget.LevelBar({
-    barMode: 'discrete',
-    maxValue: 7,
-    value: battery.bind('percent').as((p) => (p / 100) * 7),
-    margin: 10
-})
-
 export const Battery = Widget.Box({
     class_name: 'battery-bar',
-    children: [Indicator, LevelBar],
-    tooltipText: battery.bind('percent').as((p) => `${p}%`),
+    children: [
+        Widget.Icon({
+            icon: battery.bind('icon_name')
+        }),
+        Widget.Label({
+            label: battery.bind('percent').as((p) => `${p}%`),
+            margin: 10
+        })
+    ],
     visible: battery.bind('available')
 })
