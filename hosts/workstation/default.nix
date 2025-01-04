@@ -18,6 +18,7 @@
         desktop = {
             enable = true;
             gnome.enable = true;
+            hyprland.enable = true;
         };
         programs.gui.zen-browser.enable = true;
         hardware = {
