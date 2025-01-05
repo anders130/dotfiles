@@ -4,44 +4,43 @@
     inputs = {
         # essentials
         nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-24.11";
-
+        nur.url = "github:nix-community/NUR";
         home-manager = {
             url = "github:nix-community/home-manager?ref=release-24.11";
             inputs.nixpkgs.follows = "nixpkgs";
         };
-
         modulix = {
             url = "github:anders130/modulix";
             inputs.nixpkgs.follows = "nixpkgs";
             inputs.home-manager.follows = "home-manager";
         };
-
-        stylix.url = "github:danth/stylix/release-24.11";
-
-        nix-index-database = {
-            url = "github:nix-community/nix-index-database";
-            inputs.nixpkgs.follows = "nixpkgs";
+        stylix = {
+            url = "github:danth/stylix/release-24.11";
+            inputs.home-manager.follows = "home-manager";
         };
-
         sops-nix = {
             url = "github:Mic92/sops-nix";
             inputs.nixpkgs.follows = "nixpkgs";
         };
 
+        ## programs
         nvix.url = "github:anders130/nvix";
-        nix-minecraft.url = "github:Infinidoge/nix-minecraft";
-        nixcord.url = "github:kaylorben/nixcord";
-        lumehub.url = "git+https://github.com/LumeHub/LumeHub.Server?branch=dev&submodules=1";
-        nix-xilinx = {
-            url = "gitlab:doronbehar/nix-xilinx";
-            inputs.nixpkgs.follows = "nixpkgs";
-        };
         zenix = {
             url = "github:anders130/zenix";
             inputs.nixpkgs.follows = "nixpkgs";
             inputs.home-manager.follows = "home-manager";
         };
-        nur.url = "github:nix-community/NUR";
+        nix-minecraft.url = "github:Infinidoge/nix-minecraft";
+        nixcord.url = "github:kaylorben/nixcord";
+        lumehub.url = "git+https://github.com/LumeHub/LumeHub.Server?branch=dev&submodules=1";
+        nix-index-database = {
+            url = "github:nix-community/nix-index-database";
+            inputs.nixpkgs.follows = "nixpkgs";
+        };
+        nix-xilinx = {
+            url = "gitlab:doronbehar/nix-xilinx";
+            inputs.nixpkgs.follows = "nixpkgs";
+        };
 
         # gui
         ags.url = "github:Aylur/ags/v1";
@@ -51,7 +50,6 @@
             ref = "refs/tags/v0.45.2";
             submodules = true;
         };
-
         split-monitor-workspaces = {
             type = "git";
             url = "https://github.com/Duckonaut/split-monitor-workspaces";
@@ -64,15 +62,12 @@
             url = "github:nix-community/disko";
             inputs.nixpkgs.follows = "nixpkgs";
         };
-
         nixos-wsl = {
             url = "github:nix-community/NixOS-WSL";
             inputs.nixpkgs.follows = "nixpkgs";
         };
-
         nixos-hardware.url = "github:NixOS/nixos-hardware/master";
         raspberry-pi-nix.url = "github:nix-community/raspberry-pi-nix";
-
         lanzaboote = {
             url = "github:nix-community/lanzaboote";
             inputs.nixpkgs.follows = "nixpkgs";
