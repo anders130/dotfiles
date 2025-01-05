@@ -751,11 +751,42 @@
         "type": "github"
       }
     },
+    "hyprgraphics": {
+      "inputs": {
+        "hyprutils": [
+          "hyprland",
+          "hyprutils"
+        ],
+        "nixpkgs": [
+          "hyprland",
+          "nixpkgs"
+        ],
+        "systems": [
+          "hyprland",
+          "systems"
+        ]
+      },
+      "locked": {
+        "lastModified": 1735661246,
+        "narHash": "sha256-fWQnWA5kno7bPqdJD5inturmBhTQUM5wMIYJIAsOgR0=",
+        "owner": "hyprwm",
+        "repo": "hyprgraphics",
+        "rev": "b09980755dfb686780dcb8b72aae17fd1f5854fd",
+        "type": "github"
+      },
+      "original": {
+        "owner": "hyprwm",
+        "repo": "hyprgraphics",
+        "type": "github"
+      }
+    },
     "hyprland": {
       "inputs": {
         "aquamarine": "aquamarine",
         "hyprcursor": "hyprcursor",
+        "hyprgraphics": "hyprgraphics",
         "hyprland-protocols": "hyprland-protocols",
+        "hyprland-qtutils": "hyprland-qtutils",
         "hyprlang": "hyprlang",
         "hyprutils": "hyprutils",
         "hyprwayland-scanner": "hyprwayland-scanner",
@@ -765,17 +796,17 @@
         "xdph": "xdph"
       },
       "locked": {
-        "lastModified": 1732052838,
-        "narHash": "sha256-1pNsLGNStCFjXiBc2zMUxKzKk45CePTf+GwKlzTmrCY=",
-        "ref": "refs/tags/v0.45.2",
-        "rev": "12f9a0d0b93f691d4d9923716557154d74777b0a",
-        "revCount": 5451,
+        "lastModified": 1734636407,
+        "narHash": "sha256-dj9dpVwpyTmUyVu4jtaIU39bHgVkoZjv6cgYfWyHc9E=",
+        "ref": "refs/tags/v0.46.2",
+        "rev": "0bd541f2fd902dbfa04c3ea2ccf679395e316887",
+        "revCount": 5566,
         "submodules": true,
         "type": "git",
         "url": "https://github.com/hyprwm/Hyprland"
       },
       "original": {
-        "ref": "refs/tags/v0.45.2",
+        "ref": "refs/tags/v0.46.2",
         "submodules": true,
         "type": "git",
         "url": "https://github.com/hyprwm/Hyprland"
@@ -803,6 +834,35 @@
       "original": {
         "owner": "hyprwm",
         "repo": "hyprland-protocols",
+        "type": "github"
+      }
+    },
+    "hyprland-qtutils": {
+      "inputs": {
+        "hyprutils": [
+          "hyprland",
+          "hyprutils"
+        ],
+        "nixpkgs": [
+          "hyprland",
+          "nixpkgs"
+        ],
+        "systems": [
+          "hyprland",
+          "systems"
+        ]
+      },
+      "locked": {
+        "lastModified": 1734906472,
+        "narHash": "sha256-pWPRv/GA/X/iAwoE6gMNUqn/ZeJX1IeLPRpZI0tTPK0=",
+        "owner": "hyprwm",
+        "repo": "hyprland-qtutils",
+        "rev": "c77109d7e1ddbcdb87cafd32ce411f76328ae152",
+        "type": "github"
+      },
+      "original": {
+        "owner": "hyprwm",
+        "repo": "hyprland-qtutils",
         "type": "github"
       }
     },
@@ -1780,16 +1840,16 @@
         "nix-filter": "nix-filter"
       },
       "locked": {
-        "lastModified": 1732216105,
-        "narHash": "sha256-CaHjFzP/TI5gV5edWKguMn9qFX4j+YN/i9jpRB8PoV8=",
+        "lastModified": 1734644214,
+        "narHash": "sha256-alZJZJn5cmxNGtKZcsKzOnnTtYpcvZjqSZ48Ep7ST5Q=",
         "ref": "refs/heads/main",
-        "rev": "4aee4a6d67f8714fedd33acc7c9e64befba9b5cb",
-        "revCount": 95,
+        "rev": "88dffb38b01c712f80fe431f73859cd2210e718d",
+        "revCount": 100,
         "type": "git",
         "url": "https://github.com/Duckonaut/split-monitor-workspaces"
       },
       "original": {
-        "rev": "4aee4a6d67f8714fedd33acc7c9e64befba9b5cb",
+        "rev": "88dffb38b01c712f80fe431f73859cd2210e718d",
         "type": "git",
         "url": "https://github.com/Duckonaut/split-monitor-workspaces"
       }
