@@ -16,7 +16,7 @@
             inputs.home-manager.follows = "home-manager";
         };
 
-        stylix.url = "github:danth/stylix";
+        stylix.url = "github:danth/stylix/release-24.11";
 
         nix-index-database = {
             url = "github:nix-community/nix-index-database";
