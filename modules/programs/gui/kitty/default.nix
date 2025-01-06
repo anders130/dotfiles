@@ -14,6 +14,9 @@ in {
         settings = {
             confirm_os_window_close = 0; # disable confirmation window
 
+            cursor_trail = 3;
+            cursor_trail_decay = "0.1 0.4";
+
             window_padding_width = 5;
             placement_strategy = "top-left";
             hide_window_decorations = "yes";
