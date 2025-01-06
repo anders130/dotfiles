@@ -12,6 +12,7 @@ in {
         "swww-daemon" # wallpaper daemon
         "ags -b hypr" # widgets
         "swaync" # notification daemon
+        "swayosd-server"
         "hyprlock" # lockscreen
         "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1" # polkit
         "autostart" # start all programs set in the desktop module
