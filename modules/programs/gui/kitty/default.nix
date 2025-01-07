@@ -11,6 +11,7 @@ in {
     hm.programs.kitty = {
         inherit package;
         enable = true;
+        keybindings."ctrl+backspace" = "send_text all \\x17";
         settings = {
             confirm_os_window_close = 0; # disable confirmation window
 
