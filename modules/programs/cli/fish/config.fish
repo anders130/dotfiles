@@ -19,15 +19,13 @@ if status is-interactive
 
     # alias nix commands to nom
     function nix
-        if begin test "$argv[1]" = "shell";
-              or test "$argv[1]" = "develop";
-              or test "$argv[1]" = "build";
-            end
+        if begin test "$argv[1]" = "build";
+            or test "$argv[1]" = "shell";
+            or test "$argv[1]" = "develop";
+        end
             nom $argv
-        else if test "$argv[1]" = "dev"
-            command nix develop -c fish
         else
-            command nix $argv
+            command nix $argv --log-format internal-json -v &| nom --json
         end
     end
 

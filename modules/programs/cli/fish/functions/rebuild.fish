@@ -38,7 +38,7 @@ function rebuild -w nixos-rebuild
         sudo true # require password to do nothing
         if test $status -ne 0; return; end # exit if unsuccessful
         echo "Performing local rebuild: $cmd with host: $host"
-        eval "sudo nixos-rebuild $cmd --flake $FLAKE\?submodules=1#$host $args &| nom"
+        eval "sudo unbuffer nixos-rebuild $cmd --flake $FLAKE\?submodules=1#$host $args &| nom"
     end
 end
 
