@@ -8,7 +8,6 @@
         asciiquarium-transparent # ascii art aquarium
         bat # better cat
         broot # better tree
-        expect # holds unbuffer for nix-output-monitor
         fastfetch # system info
         fzf # fuzzy finder
         librespeed-cli # speedtest-cli

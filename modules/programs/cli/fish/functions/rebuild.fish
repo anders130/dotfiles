@@ -35,10 +35,12 @@ function rebuild -w nixos-rebuild
             return
         end
         set host $NIX_FLAKE_DEFAULT_HOST
+
         sudo true # require password to do nothing
         if test $status -ne 0; return; end # exit if unsuccessful
+
         echo "Performing local rebuild: $cmd with host: $host"
-        eval "sudo unbuffer nixos-rebuild $cmd --flake $FLAKE\?submodules=1#$host $args &| nom"
+        eval "nh os $cmd -H $host -- $args"
     end
 end
 

@@ -1,19 +1,16 @@
 {
     internalName,
     lib,
-    username,
     ...
 }: {
-    environment.variables = {
-        NIX_FLAKE_DEFAULT_HOST = internalName;
-        FLAKE = "/home/${username}/.dotfiles";
-    };
+    environment.variables.NIX_FLAKE_DEFAULT_HOST = internalName;
 
     modules = {
         programs.cli = {
             fish.enable = lib.mkDefault true;
             git.enable = lib.mkDefault true;
             btop.enable = lib.mkDefault true;
+            nh.enable = lib.mkDefault true;
             nix.enable = lib.mkDefault true;
             ssh.enable = lib.mkDefault true;
             nvix.enable = lib.mkDefault true;
