@@ -1,4 +1,5 @@
 {
+    config,
     lib,
     pkgs,
     ...
@@ -10,30 +11,25 @@
     };
 
     config = cfg: {
-        environment.systemPackages = with pkgs; [
-            rofimoji
-        ];
-
         hm = {
             stylix.targets.rofi.enable = false;
 
             programs.rofi = {
                 enable = true;
+                font = with config.stylix.fonts; "${sansSerif.name} ${toString sizes.applications}";
                 package = pkgs.rofi-wayland;
-                theme = "theme";
+                # theme = "theme";
+                theme = "extraConfig";
                 terminal = cfg.terminal;
-                extraConfig.display-drun = " Apps ";
+                extraConfig = {
+                    modi = "drun";
+                    show-icons = true;
+                    display-drun = " ";
+                    drun-display-format = "{name}";
+                };
             };
 
-            xdg.configFile = {
-                "rofi/theme.rasi" = lib.mkSymlink ./theme.rasi;
-
-                "rofimoji.rc".text = ''
-                    action = copy
-                    skin-tone = neutral
-                    max-recent = 0
-                '';
-            };
+            xdg.configFile."rofi/extraConfig.rasi" = lib.mkSymlink ./config.rasi;
         };
     };
 }
