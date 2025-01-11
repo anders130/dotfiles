@@ -2171,11 +2171,11 @@
         "zen-browser": "zen-browser"
       },
       "locked": {
-        "lastModified": 1736552828,
-        "narHash": "sha256-nCS8xPewGX5DZyG8vrbHvuhB51O+5WsvU4XsO06kLaA=",
+        "lastModified": 1736615778,
+        "narHash": "sha256-y+4l0U6PqkQ7dZA64Ewub+vSPjTMEzliuxW/idvqgco=",
         "owner": "anders130",
         "repo": "zenix",
-        "rev": "378ee63fbef5eb1205f628e10f5a02c07d45292e",
+        "rev": "e18d2f341d981029018b28be2fc6ae54433782be",
         "type": "github"
       },
       "original": {
