@@ -52,8 +52,5 @@ if status is-interactive
     set -x MANPAGER "sh -c 'col -bx | bat -l man -p'"
     set -x MANROFFOPT "-c"
 
-    # set bat theme
-    set -x BAT_THEME "bat"
-
     zoxide init fish | source
 end

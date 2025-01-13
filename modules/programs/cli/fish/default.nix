@@ -50,14 +50,14 @@ in {
     users.users.${username}.shell = pkgs.fish;
 
     hm = {
-        stylix.targets.bat.enable = false;
         home.sessionVariables.SHELL = "etc/profiles/per-user/${username}/bin/fish";
+
+        programs.bat.enable = true;
 
         xdg.configFile = {
             "fish/extraConfig.fish" = lib.mkSymlink ./config.fish;
             "fish/functions" = lib.mkSymlink ./functions;
-            "fish/themes/fish.theme" = lib.mkSymlink ./themes/fish.theme;
-            "bat/themes/bat.tmTheme" = lib.mkSymlink ./themes/bat.tmTheme;
+            "fish/themes/fish.theme" = lib.mkSymlink ./fish.theme;
             "fastfetch/shell-greeting.jsonc" = lib.mkSymlink ./shell-greeting.jsonc;
         };
     };
