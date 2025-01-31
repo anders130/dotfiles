@@ -7,8 +7,6 @@
         bitwarden
         obsidian
         insomnia # postman-alternative
-        grim # whole screen screenshot
-        grimblast # region screenshot
         libreoffice
         godot_4
         protonmail-desktop

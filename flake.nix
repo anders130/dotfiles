@@ -4,6 +4,7 @@
     inputs = {
         # essentials
         nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-24.11";
+        nixpkgs-unstable.url = "github:nixos/nixpkgs?ref=nixos-unstable";
         nur.url = "github:nix-community/NUR";
         home-manager = {
             url = "github:nix-community/home-manager?ref=release-24.11";
@@ -32,7 +33,7 @@
         };
         nix-minecraft.url = "github:Infinidoge/nix-minecraft";
         nixcord.url = "github:kaylorben/nixcord";
-        lumehub.url = "git+https://github.com/LumeHub/LumeHub.Server?branch=dev&submodules=1";
+        lumehub.url = "github:LumeHub/LumeHub.Server?ref=dev";
         nix-index-database = {
             url = "github:nix-community/nix-index-database";
             inputs.nixpkgs.follows = "nixpkgs";
@@ -47,13 +48,12 @@
         hyprland = {
             type = "git";
             url = "https://github.com/hyprwm/Hyprland";
-            ref = "refs/tags/v0.46.2";
+            ref = "refs/tags/v0.47.1";
             submodules = true;
         };
         split-monitor-workspaces = {
             type = "git";
             url = "https://github.com/Duckonaut/split-monitor-workspaces";
-            rev = "88dffb38b01c712f80fe431f73859cd2210e718d";
             inputs.hyprland.follows = "hyprland";
         };
 

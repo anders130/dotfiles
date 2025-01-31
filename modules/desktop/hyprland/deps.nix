@@ -16,9 +16,11 @@
         };
     };
 
-    environment.systemPackages = with pkgs; [
+    environment.systemPackages = with pkgs.unstable; [
         swww
         libsForQt5.qt5.qtwayland
         qt6.qtwayland
+        grim # whole screen screenshot
+        grimblast # region screenshot
     ];
 }

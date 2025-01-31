@@ -52,6 +52,7 @@
                 };
                 dwindle.preserve_split = "yes";
                 gestures.workspace_swipe = "off";
+                ecosystem.no_update_news = true;
             };
 
             extraConfig = /*hyprlang*/''

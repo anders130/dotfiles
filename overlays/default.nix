@@ -8,6 +8,14 @@ inputs: rec {
             inherit (prev) system;
             pkgs = final;
         };
+        unstable = import inputs.nixpkgs-unstable {
+            inherit (prev) system;
+            config = {
+                allowUnfree = true;
+                allowUnsupportedSystem = true;
+                permittedInsecurePackages = [];
+            };
+        };
     };
 
     evdiFix = import ./evdi.nix;

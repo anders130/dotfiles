@@ -6,7 +6,7 @@
 }: let
     stylixColors = config.lib.stylix.colors;
 
-    package = pkgs.hyprlock;
+    package = pkgs.unstable.hyprlock;
 
     font = config.stylix.fonts.monospace.name;
 
