@@ -35,6 +35,7 @@
             autoLogin.enable = false;
             defaultSession = "gnome";
         };
+        fprintd.enable = true;
     };
 
     boot = {

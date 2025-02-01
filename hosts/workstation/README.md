@@ -86,3 +86,25 @@ To enable Secure Boot, you’ll need to set a **BIOS password** and disable **ke
    ```bash
    bootctl status
    ```
+
+## Setup Fingerprint Reader
+
+To see, if the fingerprint reader is detected, run:
+
+```bash
+fprintd-list <username>
+```
+
+If the fingerprint reader is detected, you can enroll your fingerprints:
+
+```bash
+fprintd-enroll
+```
+
+To verify the enrollment, run:
+
+```bash
+fprintd-verify
+```
+
+This will show if the fingerprint is enrolled and if it is working.
