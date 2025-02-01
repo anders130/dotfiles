@@ -17,6 +17,7 @@
         };
         desktop = {
             enable = true;
+            mainMonitor = "eDP-1";
             gnome.enable = true;
             hyprland.enable = true;
         };
