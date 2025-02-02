@@ -8,7 +8,6 @@
         asciiquarium-transparent # ascii art aquarium
         bat # better cat
         broot # better tree
-        fastfetch # system info
         fzf # fuzzy finder
         librespeed-cli # speedtest-cli
         lsd # better ls
@@ -22,7 +21,10 @@
         z # autosuggestions
     ];
 in {
-    modules.programs.cli.starship.enable = true;
+    modules.programs.cli = {
+        fastfetch.enable = true;
+        starship.enable = true;
+    };
 
     programs.fish = {
         enable = true;
@@ -35,7 +37,7 @@ in {
         };
         shellInit = /*fish*/''
             if status is-interactive
-                fastfetch -c $HOME/.config/fastfetch/shell-greeting.jsonc
+                fastfetch -c $HOME/.config/fastfetch/short.jsonc
             end
         '';
         interactiveShellInit = /*fish*/''
@@ -58,7 +60,6 @@ in {
             "fish/extraConfig.fish" = lib.mkSymlink ./config.fish;
             "fish/functions" = lib.mkSymlink ./functions;
             "fish/themes/fish.theme" = lib.mkSymlink ./fish.theme;
-            "fastfetch/shell-greeting.jsonc" = lib.mkSymlink ./shell-greeting.jsonc;
         };
     };
 
