@@ -7,9 +7,6 @@
     dependencies = with pkgs; [
         asciiquarium-transparent # ascii art aquarium
         bat # better cat
-        broot # better tree
-        fzf # fuzzy finder
-        librespeed-cli # speedtest-cli
         lsd # better ls
         nix-output-monitor # prettier nix command outputs
         unimatrix # ascii art matrix

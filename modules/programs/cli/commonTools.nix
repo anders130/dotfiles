@@ -4,21 +4,23 @@
     ...
 }: {
     environment.systemPackages = with pkgs; [
+        broot # better tree
+        cachix # nix cache manager
         curl
+        ffmpeg # video downloader
+        fzf # fuzzy finder
+        librespeed-cli # speedtest-cli
+        unzip
         wget
         zip
-        unzip
-        ffmpeg # video downloader
-        librespeed-cli # speedtest-cli
-        cachix
 
         # fun stuff
         cbonsai
-        pipes
-        lolcat
         cowsay
-        sl
         fortune
+        lolcat
+        pipes
+        sl
     ];
 
     # directory dev-environments
