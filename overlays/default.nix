@@ -18,8 +18,6 @@ inputs: rec {
         };
     };
 
-    evdiFix = import ./evdi.nix;
-
     default = inputs.nixpkgs.lib.composeManyExtensions [
         allowMissingOverlay
         all-channels
@@ -27,6 +25,5 @@ inputs: rec {
         inputs.nix-xilinx.overlay
         inputs.nur.overlays.default
         inputs.hyprland.overlays.default
-        evdiFix
     ];
 }

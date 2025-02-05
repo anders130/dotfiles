@@ -53,6 +53,7 @@
                 editor = false;
             };
         };
+        kernelPackages = pkgs.linuxPackages_latest;
     };
 
     environment.systemPackages = with pkgs; [
