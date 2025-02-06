@@ -21,7 +21,10 @@
             gnome.enable = true;
             hyprland.enable = true;
         };
-        programs.gui.zen-browser.enable = true;
+        programs.gui = {
+            nwg-displays.enable = true;
+            zen-browser.enable = true;
+        };
         hardware = {
             amdgpu.enable = true;
             displaylink.enable = true;
