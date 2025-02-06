@@ -8,8 +8,6 @@
         ./hardware-configuration.nix
     ];
 
-    hm.imports = [./home.nix];
-
     modules = {
         bundles = {
             dev.enable = true;
@@ -19,7 +17,12 @@
             enable = true;
             mainMonitor = "eDP-1";
             gnome.enable = true;
-            hyprland.enable = true;
+            hyprland = {
+                enable = true;
+                extraConfig = ''
+                    source = ./override.conf
+                '';
+            };
         };
         programs.gui = {
             nwg-displays.enable = true;
@@ -30,6 +33,8 @@
             displaylink.enable = true;
         };
     };
+
+    hm.xdg.configFile."hypr/override.conf" = lib.mkSymlink ./hyprland.conf;
 
     services = {
         tailscale.enable = true;
