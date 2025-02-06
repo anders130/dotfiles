@@ -13,7 +13,6 @@
         programs = {
             gui = {
                 alacritty.enable = lib.mkDefault true;
-                anki.enable = lib.mkDefault true;
                 discord.enable = lib.mkDefault true;
                 firefox.enable = lib.mkDefault true;
                 kitty.enable = lib.mkDefault true;
