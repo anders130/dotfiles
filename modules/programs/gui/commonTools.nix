@@ -11,6 +11,7 @@
         godot_4
         protonmail-desktop
         signal-desktop # oss messenger
+        varia # download manager
         zapzap # whatsapp messenger
 
         pavucontrol # sound control
