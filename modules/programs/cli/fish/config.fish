@@ -36,7 +36,6 @@ if status is-interactive
             if begin test "$args[1]" = "build";
                     or test "$args[1]" = "shell";
                     or test "$args[1]" = "develop";
-                    or test "$args[1]" = "run";
                 end
                 nom $args
             else if test "$args[1]" = "search"
