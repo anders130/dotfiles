@@ -19,15 +19,31 @@ if status is-interactive
 
     # alias nix commands to nom
     function nix
-        if begin test "$argv[1]" = "build";
-                or test "$argv[1]" = "shell";
-                or test "$argv[1]" = "develop";
+        set -l unfree 0
+        set -l args
+
+        for arg in $argv
+            if test "$arg" = "--unfree"
+                set unfree 1
+            else
+                set args $args $arg
             end
-            nom $argv
-        else if test "$argv[1]" = "search"
-            nh $argv
+        end
+
+        if test $unfree -eq 1
+            env NIXPKGS_ALLOW_UNFREE=1 nix $args --impure
         else
-            command nix $argv
+            if begin test "$args[1]" = "build";
+                    or test "$args[1]" = "shell";
+                    or test "$args[1]" = "develop";
+                    or test "$args[1]" = "run";
+                end
+                nom $args
+            else if test "$args[1]" = "search"
+                nh $args
+            else
+                command nix $args
+            end
         end
     end
 

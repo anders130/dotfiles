@@ -34,6 +34,14 @@ If you encounter rate limiting while updating flake inputs, you can add your git
 access-tokens = github.com=ghp_***
 ```
 
+---
+
+To temporarily try out packages that are unfree, you can use the `--unfree` flag in the `nix` command:
+
+```fish
+nix run nixpkgs#unfreePackage --unfree
+```
+
 To create a new token, go to [github.com/settings/tokens](https://github.com/settings/tokens) and click on `Generate new token`.
 
 ## Installation
