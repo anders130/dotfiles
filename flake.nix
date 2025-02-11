@@ -13,7 +13,6 @@
         modulix = {
             url = "github:anders130/modulix";
             inputs.nixpkgs.follows = "nixpkgs";
-            inputs.home-manager.follows = "home-manager";
         };
         stylix = {
             url = "github:danth/stylix/release-24.11";
