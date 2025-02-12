@@ -12,6 +12,7 @@
         librespeed-cli # speedtest-cli
         unzip
         wget
+        yazi # terminal file manager
         zip
 
         # fun stuff
