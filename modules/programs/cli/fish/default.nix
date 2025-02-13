@@ -5,11 +5,9 @@
     ...
 }: let
     dependencies = with pkgs; [
-        asciiquarium-transparent # ascii art aquarium
         bat # better cat
         lsd # better ls
         nix-output-monitor # prettier nix command outputs
-        unimatrix # ascii art matrix
         zoxide # better cd
     ];
 
@@ -29,8 +27,6 @@ in {
         shellAliases = {
             ls = "lsd";
             cat = "bat";
-            aquarium = "asciiquarium -s -t";
-            matrix = "unimatrix -as 98";
         };
         shellInit = /*fish*/''
             if status is-interactive
