@@ -10,6 +10,7 @@
         ffmpeg # video downloader
         fzf # fuzzy finder
         librespeed-cli # speedtest-cli
+        nmap # network scanner
         unzip
         wget
         yazi # terminal file manager
