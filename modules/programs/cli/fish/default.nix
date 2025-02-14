@@ -8,6 +8,7 @@
         bat # better cat
         lsd # better ls
         nix-output-monitor # prettier nix command outputs
+        yt-dlp # youtube downloader
         zoxide # better cd
     ];
 
