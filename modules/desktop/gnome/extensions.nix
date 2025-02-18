@@ -5,6 +5,7 @@
         focus-changer
         fullscreen-avoider
         system-monitor
+        forge
     ];
 in {
     config = cfg: {
@@ -27,6 +28,14 @@ in {
                 blacklist = ["firefox" "zen-alpha"];
             };
             "org/gnome/shell/extensions/blur-my-shell/overview".style-components = 2; # dark background in overview
+
+            "org/gnome/shell/extensions/forge" = {
+                move-pointer-focus-enabled = true;
+            };
+            "org/gnome/shell/extensions/forge/keybindings" = {
+                window-swap-last-active = [""];
+                window-toggle-floating = ["<Super>v"];
+            };
         };
     };
 }
