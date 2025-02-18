@@ -8,24 +8,8 @@
         displayManager.gdm.enable = lib.mkDefault true;
         desktopManager.gnome.enable = true;
     };
-
-    environment.gnome.excludePackages = with pkgs; [
-        gnome-photos
-        gnome-tour
-        atomix # puzzle game
-        cheese # webcam tool
-        epiphany # web browser
-        evince # document viewer
-        geary # email reader
-        gnome-characters
-        gnome-music
-        gnome-terminal
-        hitori # sudoku game
-        iagno # go game
-        nautilus
-        totem # video player
-        tali # poker game
-    ];
+    services.gnome.core-utilities.enable = false;
+    environment.gnome.excludePackages = [pkgs.gnome-tour];
 
     hm.dconf.settings = {
         "org/gnome/desktop/interface" = {

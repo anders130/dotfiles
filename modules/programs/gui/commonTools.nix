@@ -30,8 +30,6 @@
         # icon themes
         adwaita-icon-theme # just having this installed fixes issues with some apps
 
-        dconf-editor # needed for home-manager gtk theming
-
         # work
         teams-for-linux
         jetbrains.idea-community
