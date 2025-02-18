@@ -1,4 +1,5 @@
 {
+    config,
     inputs,
     pkgs,
     ...
@@ -32,6 +33,17 @@
                     ];
                 });
             };
+        };
+
+        home.file."${config.hm.programs.nixcord.vesktop.configDir}/settings.json" = {
+            text = builtins.toJSON {
+                discordBranch = "stable";
+                minimizeToTray = true;
+                arRPC = true;
+                splashColor = "#${config.lib.stylix.colors.base05}";
+                splashBackground = "#${config.lib.stylix.colors.base00}";
+            };
+            force = true;
         };
     };
 }

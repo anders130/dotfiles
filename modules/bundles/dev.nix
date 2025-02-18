@@ -1,11 +1,13 @@
-{lib, ...}: {
+{lib, ...}: let
+    inherit (lib) mkDefault;
+in {
     modules.programs.cli = {
-        git.enable = lib.mkDefault true;
+        git.enable = mkDefault true;
         nvix = {
-            enable = lib.mkDefault true;
-            type = lib.mkDefault "full";
+            enable = mkDefault true;
+            type = mkDefault "full";
         };
-        tmux.enable = lib.mkDefault true;
-        commonTools.enable = lib.mkDefault true;
+        tmux.enable = mkDefault true;
+        commonTools.enable = mkDefault true;
     };
 }

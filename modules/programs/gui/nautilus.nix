@@ -3,10 +3,8 @@
     pkgs,
     ...
 }: {
-    options = {
-        terminal = lib.mkOption {
-            type = lib.types.str;
-        };
+    options.terminal = lib.mkOption {
+        type = lib.types.str;
     };
 
     config = cfg: {

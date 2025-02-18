@@ -1,7 +1,9 @@
-{lib, ...}: {
+{lib, ...}: let
+    inherit (lib) mkDefault;
+in {
     modules = {
         desktop = {
-            enable = lib.mkDefault true;
+            enable = mkDefault true;
             autostart = [
                 "sleep 1 && noisetorch -i"
                 "signal-desktop --start-in-tray"
@@ -12,27 +14,26 @@
         };
         programs = {
             gui = {
-                alacritty.enable = lib.mkDefault true;
-                discord.enable = lib.mkDefault true;
-                firefox.enable = lib.mkDefault true;
-                kitty.enable = lib.mkDefault true;
+                discord.enable = mkDefault true;
+                firefox.enable = mkDefault true;
+                kitty.enable = mkDefault true;
                 nautilus = {
-                    enable = lib.mkDefault true;
-                    terminal = lib.mkDefault "kitty";
+                    enable = mkDefault true;
+                    terminal = mkDefault "kitty";
                 };
-                youtube-music.enable = lib.mkDefault true;
-                commonTools.enable = lib.mkDefault true;
+                youtube-music.enable = mkDefault true;
+                commonTools.enable = mkDefault true;
             };
-            plymouth.enable = lib.mkDefault true;
+            plymouth.enable = mkDefault true;
         };
         hardware = {
-            kanata.enable = lib.mkDefault true;
-            printing.enable = lib.mkDefault true;
-            sound.enable = lib.mkDefault true;
+            kanata.enable = mkDefault true;
+            printing.enable = mkDefault true;
+            sound.enable = mkDefault true;
         };
         utils.stylix = {
-            enable = lib.mkDefault true;
-            desktop.enable = lib.mkDefault true;
+            enable = mkDefault true;
+            desktop.enable = mkDefault true;
         };
     };
 

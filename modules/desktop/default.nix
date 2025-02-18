@@ -3,36 +3,39 @@
     lib,
     ...
 }: let
+    inherit (lib) mapAttrsToList mkOption types;
+    inherit (builtins) filter head length;
+
     mkMonitorKernelParam = port: c: "video=${port}:${c.resolution}@${toString c.refreshRate}Hz";
     mkHyprlandMonitor = port: c: "${port}, ${c.resolution}@${toString c.refreshRate}, ${c.position}, ${toString c.scale}";
     getMainMonitorName = monitors: let
-        mainMonitors = builtins.filter (m: m.value.isMain) (lib.attrsToList monitors);
-    in if builtins.length mainMonitors == 0 then "DP-1" else (builtins.head mainMonitors).name;
+        mainMonitors = filter (m: m.value.isMain) (lib.attrsToList monitors);
+    in if length mainMonitors == 0 then "DP-1" else (head mainMonitors).name;
 in {
     options = {
-        monitors = lib.mkOption {
-            type = lib.types.attrsOf (
-                lib.types.submodule {
+        monitors = mkOption {
+            type = types.attrsOf (
+                types.submodule {
                     options = {
-                        isMain = lib.mkOption {
-                            type = lib.types.bool;
+                        isMain = mkOption {
+                            type = types.bool;
                             default = false;
                         };
-                        resolution = lib.mkOption {
-                            type = lib.types.str;
+                        resolution = mkOption {
+                            type = types.str;
                             description = "Resolution of the monitor";
                         };
-                        refreshRate = lib.mkOption {
-                            type = lib.types.int;
+                        refreshRate = mkOption {
+                            type = types.int;
                             description = "Refresh rate of the monitor";
                             default = 60;
                         };
-                        position = lib.mkOption {
-                            type = lib.types.str;
+                        position = mkOption {
+                            type = types.str;
                             description = "Position of the monitor";
                         };
-                        scale = lib.mkOption {
-                            type = lib.types.float;
+                        scale = mkOption {
+                            type = types.float;
                             description = "Scale of the monitor";
                             default = 1.0;
                         };
@@ -42,31 +45,31 @@ in {
             default = {};
             description = "Monitors to use";
         };
-        mainMonitor = lib.mkOption {
-            type = lib.types.str;
+        mainMonitor = mkOption {
+            type = types.str;
             default = getMainMonitorName config.modules.desktop.monitors;
             description = "Name of the main monitor";
         };
         defaultPrograms = let
-            mkOption = default: description:
-                lib.mkOption {
+            mkOpt = default: description:
+                mkOption {
                     inherit default description;
-                    type = lib.types.str;
+                    type = types.str;
                 };
         in {
-            browser = mkOption "firefox" "Default browser to use";
-            terminal = mkOption "kitty" "Default terminal to use";
-            editor = mkOption "nvim" "Default editor to use";
-            fileManager = mkOption "nautilus --new-window" "Default file manager to use";
-            imageViewer = mkOption "loupe" "Default image viewer to use";
-            videoPlayer = mkOption "totem" "Default video player to use";
-            musicPlayer = mkOption "gnome-music" "Default music player to use";
+            browser = mkOpt "firefox" "Default browser to use";
+            terminal = mkOpt "kitty" "Default terminal to use";
+            editor = mkOpt "nvim" "Default editor to use";
+            fileManager = mkOpt "nautilus --new-window" "Default file manager to use";
+            imageViewer = mkOpt "loupe" "Default image viewer to use";
+            videoPlayer = mkOpt "totem" "Default video player to use";
+            musicPlayer = mkOpt "gnome-music" "Default music player to use";
         };
     };
 
     config = cfg: {
-        boot.kernelParams = lib.mapAttrsToList mkMonitorKernelParam cfg.monitors;
-        hm.wayland.windowManager.hyprland.settings.monitor = lib.mapAttrsToList mkHyprlandMonitor cfg.monitors;
+        boot.kernelParams = mapAttrsToList mkMonitorKernelParam cfg.monitors;
+        hm.wayland.windowManager.hyprland.settings.monitor = mapAttrsToList mkHyprlandMonitor cfg.monitors;
 
         xdg.mime.defaultApplications = {
             "application/pdf" = "${cfg.defaultPrograms.browser}.desktop";

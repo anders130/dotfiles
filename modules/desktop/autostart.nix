@@ -2,9 +2,11 @@
     lib,
     pkgs,
     ...
-}: {
-    options.autostart = lib.mkOption {
-        type = lib.types.listOf lib.types.str;
+}: let
+    inherit (lib) mkOption types;
+in {
+    options.autostart = mkOption {
+        type = types.listOf types.str;
         default = [];
         description = "List of commands to execute on startup";
     };
