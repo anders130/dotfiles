@@ -14,7 +14,6 @@
             nmap # network scanner
             unzip
             wget
-            yazi # terminal file manager
             zip
 
             # fun stuff

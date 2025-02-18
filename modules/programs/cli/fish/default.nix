@@ -9,6 +9,7 @@ in {
     modules.programs.cli = {
         fastfetch.enable = true;
         starship.enable = true;
+        yazi.enable = true;
     };
 
     environment = {
