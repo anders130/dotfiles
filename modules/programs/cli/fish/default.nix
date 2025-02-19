@@ -35,7 +35,7 @@ in {
     };
     stylix.targets.fish.enable = false;
     users.users.${username}.shell = pkgs.fish;
-    hm = { home.sessionVariables.SHELL = "etc/profiles/per-user/${username}/bin/fish";
+    hm = {
         programs = {
             bat.enable = true;
             fish = {
