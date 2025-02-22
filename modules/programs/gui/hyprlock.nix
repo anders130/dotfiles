@@ -43,12 +43,12 @@ in {
                     auth.fingerprint.enabled = true;
 
                     background = [{
-                        monitor = "";
+                        monitor = ""; # all monitors
                         path = "$HOME/Pictures/main.png";
-                        blur_passes = 3;
-                        blur_size = 4;
+                        blur_passes = 5;
+                        blur_size = 3;
                         brightness = 0.5;
-                        color = colors.base;
+                        color = colors.base; # fallback to color if image is not found
                     }];
 
                     label = [
