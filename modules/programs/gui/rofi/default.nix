@@ -29,7 +29,10 @@
                 };
             };
 
-            xdg.configFile."rofi/extraConfig.rasi" = lib.mkSymlink ./config.rasi;
+            xdg.configFile = {
+                "rofi/extraConfig.rasi" = lib.mkSymlink ./config.rasi;
+                "rofi/wallpaper-selector.rasi" = lib.mkSymlink ./wallpaper-selector.rasi;
+            };
         };
     };
 }

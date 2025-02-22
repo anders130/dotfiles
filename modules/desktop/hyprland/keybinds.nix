@@ -49,6 +49,7 @@
             "SUPER SHIFT, S, exec, grimblast --freeze copy area" # select area to copy
             "SUPER, T, exec, switch-shaders" # switch screen-shader
             "SUPER, N, exec, swaync-client -t -sw"
+            "SUPER ALT, W, exec, wallpaper-selector ~/Pictures/Wallpapers ~/.config/rofi/wallpaper-selector.rasi" # wallpaper selector
             # mute/unmute
             " , code:121, exec, swayosd-client --output-volume mute-toggle"
             # workspaces

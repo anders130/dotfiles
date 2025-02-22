@@ -1,0 +1,80 @@
+configuration {
+    hover-select: true;
+    me-select-entry: "";
+    me-accept-entry: "MousePrimary";
+}
+
+* {
+    text: #cad3f5;
+    selected: #8aadf4;
+    background: #24273aaa;
+    selected-text: #1e2030;
+    shade-bg: white / 12%;
+}
+
+window {
+    fullscreen: false;
+    transparency: "real";
+    cursor: "default";
+    background-color: @background;
+
+    width: 100%;
+    height: 100%;
+    margin: 5px;
+    padding: 0px;
+    border-color: @selected;
+    border-radius: 12px;
+    border: 3px;
+}
+
+mainbox {
+    enabled: true;
+    children: [ "listview" ];
+    background-color: @background;
+}
+
+listview {
+    enabled: true;
+    columns: 4;
+    spacing: 50px;
+    padding: 20px 30px;
+    cycle: true;
+    dynamic: false;
+    scrollbar: false;
+    layout: vertical;
+    reverse: false;
+    cursor: "default";
+    background-color: transparent;
+    text-color: @text;
+}
+
+element {
+    enabled: true;
+    orientation: horizontal;
+    spacing: 0px;
+    padding: 0px;
+    border-radius: 12px;
+    background-color: @shade-bg;
+    text-color: inherit;
+}
+
+element selected.normal {
+    background-color: @selected;
+    text-color: @selected-text;
+}
+
+element-icon {
+    size: 28%;
+    cursor: inherit;
+    border-radius: 0px;
+    background-color: transparent;
+    text-color: inherit;
+}
+
+element-text {
+    vertical-align: 0.5;
+    horizontal-align: 0.5;
+    cursor: inherit;
+    background-color: transparent;
+    text-color: inherit;
+}

@@ -44,7 +44,7 @@ in {
 
                     background = [{
                         monitor = ""; # all monitors
-                        path = "$HOME/Pictures/main.png";
+                        path = "$HOME/.config/hypr/wallpaper.png";
                         blur_passes = 5;
                         blur_size = 3;
                         brightness = 0.5;
