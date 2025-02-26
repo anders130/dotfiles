@@ -43,7 +43,6 @@
         };
 
         # gui
-        ags.url = "github:Aylur/ags/v1";
         hyprland = {
             type = "git";
             url = "https://github.com/hyprwm/Hyprland";
@@ -54,6 +53,10 @@
             type = "git";
             url = "https://github.com/Duckonaut/split-monitor-workspaces";
             inputs.hyprland.follows = "hyprland";
+        };
+        my-shell = {
+            url = "github:anders130/my-shell";
+            inputs.nixpkgs.follows = "nixpkgs";
         };
 
         # host specific

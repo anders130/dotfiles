@@ -19,11 +19,8 @@
         };
 
         bind = let
-            e = "ags -b hypr";
             defaultPrograms = config.modules.desktop.defaultPrograms;
         in [
-            # ags stuff
-            "SUPER CTRL SHIFT, R, exec, ${e} quit; ${e}"
             # essential keybinds
             "SUPER, C, killactive"
             "SUPER, V, togglefloating"
