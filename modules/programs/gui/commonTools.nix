@@ -10,7 +10,6 @@
         libreoffice
         godot_4
         protonmail-desktop
-        signal-desktop # oss messenger
         varia # download manager
         zapzap # whatsapp messenger
 
@@ -40,4 +39,6 @@
     ];
 
     programs.noisetorch.enable = lib.mkDefault true;
+
+    modules.programs.gui.signal-desktop.enable = lib.mkDefault true;
 }
