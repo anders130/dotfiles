@@ -1,9 +1,17 @@
-inputs: rec {
+inputs: let
+    inherit (inputs.nixpkgs.lib) composeManyExtensions filterAttrs;
+    inherit (builtins) mapAttrs;
+in rec {
     allowMissingOverlay = final: prev: {
         makeModulesClosure = x: prev.makeModulesClosure (x // {allowMissing = true;});
     };
 
     all-channels = final: prev: {
+        inputs = let
+            filtered = filterAttrs (_: value: value ? packages) inputs;
+            mapped = mapAttrs (name: value: value.packages.${prev.system}) filtered;
+        in
+            mapped;
         local = import ../pkgs {
             inherit (prev) system;
             pkgs = final;
@@ -18,7 +26,7 @@ inputs: rec {
         };
     };
 
-    default = inputs.nixpkgs.lib.composeManyExtensions [
+    default = composeManyExtensions [
         allowMissingOverlay
         all-channels
         inputs.nix-minecraft.overlay

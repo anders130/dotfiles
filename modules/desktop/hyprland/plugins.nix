@@ -1,10 +1,6 @@
-{
-    inputs,
-    pkgs,
-    ...
-}: {
+{pkgs, ...}: {
     hm.wayland.windowManager.hyprland = {
-        plugins = [(inputs.split-monitor-workspaces.packages.${pkgs.system}.split-monitor-workspaces)];
+        plugins = [(pkgs.inputs.split-monitor-workspaces.default)];
 
         extraConfig = /*hyprlang*/''
             plugin {
