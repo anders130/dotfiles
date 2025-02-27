@@ -1212,11 +1212,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1740493901,
-        "narHash": "sha256-jqkuDLZbW4epRs+YTe8vzxW2+Bvf/6C3cfUY1zZxQSc=",
+        "lastModified": 1740692433,
+        "narHash": "sha256-HzANyXZpjVXfUMltDezuWnrCGtxbCjqQfKTPnOB7NUw=",
         "owner": "anders130",
         "repo": "my-shell",
-        "rev": "128f3fc463bfdbc63601bd9a8f9945eba69134fe",
+        "rev": "83372b29242c394e574508eb05c95acb09020e8a",
         "type": "github"
       },
       "original": {
