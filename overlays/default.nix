@@ -30,7 +30,6 @@ in rec {
         allowMissingOverlay
         all-channels
         inputs.nix-minecraft.overlay
-        inputs.nix-xilinx.overlay
         inputs.nur.overlays.default
         inputs.hyprland.overlays.default
     ];

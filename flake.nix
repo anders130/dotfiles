@@ -37,10 +37,6 @@
             url = "github:nix-community/nix-index-database";
             inputs.nixpkgs.follows = "nixpkgs";
         };
-        nix-xilinx = {
-            url = "gitlab:doronbehar/nix-xilinx";
-            inputs.nixpkgs.follows = "nixpkgs";
-        };
 
         # gui
         hyprland = {

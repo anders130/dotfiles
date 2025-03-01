@@ -65,8 +65,7 @@
     };
 
     environment.systemPackages = with pkgs; [
-        local.easyroam
-        vivado
+        unstable.easyroam-connect-desktop
     ];
 
     programs.nix-ld.enable = true;
