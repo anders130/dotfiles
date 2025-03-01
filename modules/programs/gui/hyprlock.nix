@@ -4,99 +4,90 @@
     pkgs,
     ...
 }: let
-    stylixColors = config.lib.stylix.colors;
+    font_family = config.stylix.fonts.monospace.name;
 
-    package = pkgs.unstable.hyprlock;
-
-    font = config.stylix.fonts.monospace.name;
-
-    colors = {
-        text = "rgb(${stylixColors.base05})";
-        textHex = stylixColors.base05;
-
-        base = stylixColors.base00;
-
-        blue = stylixColors.base0D;
-        transparentBlue = "rgba(${stylixColors.base0D-rgb-r}, ${stylixColors.base0D-rgb-g}, ${stylixColors.base0D-rgb-b}, 0.4)";
-        transparentRed = "rgba(${stylixColors.base08-rgb-r}, ${stylixColors.base08-rgb-g}, ${stylixColors.base08-rgb-b}, 0.4)";
-        transparentYellow = "rgba(${stylixColors.base0A-rgb-r}, ${stylixColors.base0A-rgb-g}, ${stylixColors.base0A-rgb-b}, 0.4)";
+    colors = with config.lib.stylix.colors; {
+        base = base00;
+        blue = base0D;
         transparent = "rgba(0, 0, 0, 0)";
-        transparentBase = "rgba(${stylixColors.base02-rgb-r}, ${stylixColors.base02-rgb-g}, ${stylixColors.base02-rgb-b}, 0.2)";
+
+        check_color = "rgba(${base0D-rgb-r}, ${base0D-rgb-g}, ${base0D-rgb-b}, 0.4)";
+        fail_color = "rgba(${base08-rgb-r}, ${base08-rgb-g}, ${base08-rgb-b}, 0.4)";
+        font_color = "rgb(${base05})";
+        capslock_color = "rgba(${base0A-rgb-r}, ${base0A-rgb-g}, ${base0A-rgb-b}, 0.4)";
+        font_color_hex = base05;
     };
 in {
     options.mainMonitor = lib.mkOption {
         type = lib.types.str;
         description = "The main monitor";
     };
-    config = cfg: {
-        hm = {
-            stylix.targets.hyprlock.enable = false;
-            programs.hyprlock = {
-                inherit package;
-                enable = true;
-                settings = {
-                    general = {
-                        disable_loading_bar = true;
-                        hide_cursor = true;
-                    };
+    config = cfg: let
+        monitor = cfg.mainMonitor;
+    in {
+        hm.stylix.targets.hyprlock.enable = false;
+        hm.programs.hyprlock = {
+            package = pkgs.unstable.hyprlock;
+            enable = true;
+            settings = {
+                general = {
+                    disable_loading_bar = true;
+                    hide_cursor = true;
+                };
 
-                    auth.fingerprint.enabled = true;
+                # only enable if fingerprint is enabled on the host
+                auth.fingerprint.enabled = config.services.fprintd.enable;
 
-                    background = [{
-                        monitor = ""; # all monitors
-                        path = "$HOME/.config/hypr/wallpaper.png";
-                        blur_passes = 5;
-                        blur_size = 3;
-                        brightness = 0.5;
-                        color = colors.base; # fallback to color if image is not found
-                    }];
+                background = [{
+                    monitor = ""; # all monitors
+                    path = "$HOME/.config/hypr/wallpaper.png";
+                    blur_passes = 5;
+                    blur_size = 3;
+                    brightness = 0.5;
+                    color = colors.base; # fallback to color if image is not found
+                }];
 
-                    label = [
-                        {
-                            monitor = cfg.mainMonitor;
-                            text = ''cmd[update:30000] echo "$(date +"%R")"'';
-                            color = colors.text;
-                            font_size = 90;
-                            font_family = font;
-                            position = "0, 80";
-                            halign = "center";
-                            valign = "center";
-                        }
-                        {
-                            monitor = cfg.mainMonitor;
-                            text = ''cmd[update:43200000] echo "$(date +"%A, %d %B %Y")"'';
-                            color = colors.text;
-                            font_size = 20;
-                            font_family = font;
-                            position = "0, 0";
-                            halign = "center";
-                            valign = "bottom";
-                        }
-                    ];
-
-                    # INPUT FIELD
-                    input-field = [{
-                        monitor = cfg.mainMonitor;
-                        size = "300, 60";
-                        outline_thickness = 4;
-                        dots_size = 0.2;
-                        dots_spacing = 0.2;
-                        dots_center = true;
-                        outer_color = colors.transparentBase;
-                        inner_color = colors.transparent;
-                        font_color =  colors.text;
-                        fade_on_empty = false;
-                        placeholder_text = ''<span foreground="##${colors.textHex}"><i>󰌾 Logged in as </i><span foreground="##${colors.blue}">$USER</span></span>'';
-                        hide_input = false;
-                        capslock_color = colors.transparentYellow;
-                        check_color = colors.transparentBlue;
-                        fail_color = colors.transparentRed;
-                        fail_text = ''<i>$FAIL <b>($ATTEMPTS)</b></i>'';
-                        position = "0, -35";
+                label = [
+                    {
+                        inherit monitor;
+                        inherit font_family;
+                        color = colors.font_color;
+                        text = ''cmd[update:30000] echo "$(date +"%R")"'';
+                        font_size = 90;
+                        position = "0, 80";
                         halign = "center";
                         valign = "center";
-                    }];
-                };
+                    }
+                    {
+                        inherit monitor;
+                        inherit font_family;
+                        color = colors.font_color;
+                        text = ''cmd[update:43200000] echo "$(date +"%A, %d %B %Y")"'';
+                        font_size = 20;
+                        position = "0, 0";
+                        halign = "center";
+                        valign = "bottom";
+                    }
+                ];
+
+                input-field = [{
+                    inherit monitor;
+                    inherit (colors) capslock_color check_color fail_color font_color;
+                    inner_color = colors.transparent;
+                    outer_color = "rgba(255, 255, 255, 0.1)";
+                    placeholder_text = ''<span foreground="##${colors.font_color_hex}"><i>󰌾 Logged in as </i><span foreground="##${colors.blue}">$USER</span></span>'';
+                    fail_text = ''<i>$FAIL <b>($ATTEMPTS)</b></i>'';
+                    dots_size = 0.2;
+                    dots_spacing = 0.2;
+                    dots_center = true;
+                    outline_thickness = 4;
+                    fade_on_empty = false;
+                    hide_input = false;
+                    size = "300, 60";
+                    position = "0, -35";
+                    halign = "center";
+                    valign = "center";
+                }];
             };
         };
     };
