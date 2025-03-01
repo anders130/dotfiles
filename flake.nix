@@ -76,7 +76,12 @@
         };
     };
 
-    outputs = inputs: {
+    outputs = inputs: let
+        forAllSystems = inputs.nixpkgs.lib.genAttrs [
+            "aarch64-linux"
+            "x86_64-linux"
+        ];
+    in {
         nixosConfigurations = inputs.modulix.lib.mkHosts {
             inherit inputs;
             flakePath = "/home/jesse/.dotfiles";
@@ -91,6 +96,12 @@
                 modules.bundles.shared.enable = true;
             };
         };
+
+        packages = forAllSystems (system:
+            import ./pkgs {
+                inherit system;
+                pkgs = inputs.nixpkgs.legacyPackages.${system};
+            });
 
         overlays = import ./overlays inputs;
 
