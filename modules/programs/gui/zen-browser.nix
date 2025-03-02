@@ -27,6 +27,7 @@
                         vimium
                         wappalyzer
                     ];
+                    settings."widget.use-xdg-desktop-portal.file-picker" = 1;
                 };
                 work = default // {
                     isDefault = false;

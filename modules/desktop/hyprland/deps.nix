@@ -11,6 +11,7 @@
             inherit (config.modules.desktop) mainMonitor;
         };
         swayosd.enable = true;
+        xdg-desktop-portal-termfilechooser.enable = true;
     };
 
     environment.systemPackages = with pkgs.unstable; [

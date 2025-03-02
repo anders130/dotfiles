@@ -4,11 +4,11 @@
     fetchFromGitHub,
     meson,
     ninja,
-    pkg-config,
+    pkgconf,
     inih,
     systemd,
-    cmake,
     scdoc,
+    xdg-desktop-portal,
 }:
 stdenv.mkDerivation {
     pname = "xdg-desktop-portal-termfilechooser";
@@ -24,16 +24,23 @@ stdenv.mkDerivation {
     nativeBuildInputs = [
         meson
         ninja
-        pkg-config
         scdoc
-        cmake
+        pkgconf
     ];
+
     buildInputs = [
+        xdg-desktop-portal
         inih
         systemd.dev
     ];
 
-    mesonFlags = ["-Dsd-bus-provider=libsystemd"];
+    mesonFlags = [
+        (lib.mesonEnable "systemd" true)
+        (lib.mesonEnable "man-pages" true)
+        (lib.mesonOption "sd-bus-provider" "libsystemd")
+    ];
+
+    mesonBuildType = "release";
 
     meta = with lib; {
         description = "xdg-desktop-portal backend for terminal file choosers";
