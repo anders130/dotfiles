@@ -1,10 +1,12 @@
-{pkgs, ...}: {
+{
+    pkgs,
+    username,
+    ...
+}: {
     imports = [
         ./hardware-configuration.nix
         ./disk-config.nix
     ];
-
-    hm.imports = [./home.nix];
 
     modules = {
         bundles = {
@@ -59,6 +61,26 @@
     };
 
     nix.settings.download-speed = 6250; # limit download speed to 50 Mbps
+
+    fileSystems = let
+        bindMount = drive: name: {
+            name = "/home/${username}/${name}";
+            value = {
+                device = "${drive}/${name}";
+                fsType = "none";
+                options = [
+                    "bind"
+                    "x-gvfs-hide"
+                ];
+            };
+        };
+    in builtins.listToAttrs (map (bindMount "/mnt/data") [
+        "Documents"
+        "Downloads"
+        "Music"
+        "Pictures"
+        "Videos"
+    ]);
 
     environment.systemPackages = with pkgs; [
         jetbrains.rider
