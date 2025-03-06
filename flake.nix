@@ -37,6 +37,7 @@
             url = "github:nix-community/nix-index-database";
             inputs.nixpkgs.follows = "nixpkgs";
         };
+        clock-mate.url = "github:anders130/clock-mate";
 
         # gui
         hyprland = {

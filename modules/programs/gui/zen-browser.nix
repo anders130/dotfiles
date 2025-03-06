@@ -32,6 +32,9 @@
                 work = default // {
                     isDefault = false;
                     id = 1;
+                    extensions = default.extensions ++ [
+                        inputs.clock-mate.packages.${pkgs.system}.default
+                    ];
                 };
             };
         };
