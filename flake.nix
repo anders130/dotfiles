@@ -89,6 +89,7 @@
                 isThinClient = false;
                 username = "jesse";
             };
+            helpers = inputs.home-manager.lib;
             sharedConfig = {
                 modules.bundles.shared.enable = true;
             };
