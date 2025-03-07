@@ -12,10 +12,7 @@ in rec {
             mapped = mapAttrs (name: value: value.packages.${prev.system}) filtered;
         in
             mapped;
-        local = import ../pkgs {
-            inherit (prev) system;
-            pkgs = final;
-        };
+        local = inputs.self.packages.${final.system};
         unstable = import inputs.nixpkgs-unstable {
             inherit (prev) system;
             config = {
