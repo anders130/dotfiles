@@ -23,9 +23,17 @@ in rec {
         };
     };
 
+    plex-fix = final: prev: {
+        plex-desktop = (import inputs.plex-fix {
+            config.allowUnfree = true;
+            inherit (prev) system;
+        }).plex-desktop;
+    };
+
     default = composeManyExtensions [
         allowMissingOverlay
         all-channels
+        plex-fix
         inputs.nix-minecraft.overlay
         inputs.nur.overlays.default
         inputs.hyprland.overlays.default

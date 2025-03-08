@@ -84,5 +84,6 @@
 
     environment.systemPackages = with pkgs; [
         jetbrains.rider
+        plex-desktop
     ];
 }

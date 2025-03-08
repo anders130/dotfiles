@@ -1712,6 +1712,22 @@
         "type": "github"
       }
     },
+    "plex-fix": {
+      "locked": {
+        "lastModified": 1740065155,
+        "narHash": "sha256-qtL9etQYXatQTXkUrjwnVCw2Ig5ZJEo2j4zx/wY0ato=",
+        "owner": "detroyejr",
+        "repo": "nixpkgs",
+        "rev": "78a0698b6bff1454452a81f34cccea1b5be62d2d",
+        "type": "github"
+      },
+      "original": {
+        "owner": "detroyejr",
+        "ref": "plex-desktop-dependency-cleanup",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "pre-commit-hooks": {
       "inputs": {
         "flake-compat": "flake-compat",
@@ -1807,6 +1823,7 @@
         "nixpkgs-unstable": "nixpkgs-unstable",
         "nur": "nur",
         "nvix": "nvix",
+        "plex-fix": "plex-fix",
         "raspberry-pi-nix": "raspberry-pi-nix",
         "sops-nix": "sops-nix",
         "split-monitor-workspaces": "split-monitor-workspaces",
