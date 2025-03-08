@@ -59,9 +59,9 @@
         inherit (firefox-addons.darkreader.passthru) addonId;
         default = toJSON {};
         settings.theme = with config.lib.stylix.colors; {
-            darkSchemeBackgroundColor = base00;
-            darkSchemeTextColor = base05;
-            selectionColor = base04;
+            darkSchemeBackgroundColor = "#${base00}";
+            darkSchemeTextColor = "#${base05}";
+            selectionColor = "#${base04}";
         };
     };
     set-extension-settings = pkgs.writeShellScriptBin "set-extension-settings" ''
