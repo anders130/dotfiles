@@ -31,9 +31,12 @@ in {
             printing.enable = mkDefault true;
             sound.enable = mkDefault true;
         };
-        utils.stylix = {
-            enable = mkDefault true;
-            desktop.enable = mkDefault true;
+        utils = {
+            stylix = {
+                enable = mkDefault true;
+                desktop.enable = mkDefault true;
+            };
+            qt.enable = mkDefault true;
         };
     };
 
