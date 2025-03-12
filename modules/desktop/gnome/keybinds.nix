@@ -1,4 +1,8 @@
-{config, ...}: let
+{
+    config,
+    lib,
+    ...
+}: let
     mediaKeysPath = "org/gnome/settings-daemon/plugins/media-keys";
 
     mkCustomKeybindings = keybinds:
@@ -38,8 +42,8 @@ in {
 
         "org/gnome/desktop/peripherals/keyboard" = {
             numlock-state = true;
-            delay = "uint32 250";
-            repeat-interval = "uint32 25";
+            delay = lib.hm.gvariant.mkUint32 250;
+            repeat-interval = lib.hm.gvariant.mkUint32 25;
         };
 
         "org/gnome/desktop/wm/keybindings" = {
