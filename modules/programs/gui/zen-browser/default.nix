@@ -4,18 +4,17 @@
     ...
 }: {
     hm = {
-        imports = [inputs.zenix.hmModules.default];
+        imports = [inputs.zenix.homeModules.default];
         programs.zenix = {
             enable = true;
             chrome = {
                 hideTitlebarButtons = true;
-                tabGroups = true;
             };
             profiles = rec {
                 default = {
                     isDefault = true;
                     id = 0;
-                    extensions = with pkgs.nur.repos.rycee.firefox-addons; [
+                    extensions.packages = with pkgs.nur.repos.rycee.firefox-addons; [
                         bitwarden
                         darkreader
                         github-file-icons
@@ -32,7 +31,7 @@
                 work = default // {
                     isDefault = false;
                     id = 1;
-                    extensions = default.extensions ++ [
+                    extensions.packages = default.extensions.packages ++ [
                         inputs.clock-mate.packages.${pkgs.system}.default
                     ];
                 };

@@ -37,5 +37,6 @@ in rec {
         inputs.nix-minecraft.overlay
         inputs.nur.overlays.default
         inputs.hyprland.overlays.default
+        inputs.zenix.overlays.default
     ];
 }
