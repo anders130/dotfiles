@@ -38,8 +38,6 @@
             inputs.nixpkgs.follows = "nixpkgs";
         };
         clock-mate.url = "github:anders130/clock-mate";
-        # remove when https://github.com/NixOS/nixpkgs/pull/381335 is in unstable
-        plex-fix.url = "github:detroyejr/nixpkgs/plex-desktop-dependency-cleanup";
 
         # gui
         hyprland = {
