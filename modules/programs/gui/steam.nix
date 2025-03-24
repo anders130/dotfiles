@@ -6,6 +6,4 @@
             extraPkgs = pkgs: [pkgs.attr];
         };
     };
-
-    environment.systemPackages = [pkgs.protonup-qt];
 }

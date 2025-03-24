@@ -9,7 +9,6 @@
         insomnia # postman-alternative
         libreoffice
         godot_4
-        protonmail-desktop
         varia # download manager
         zapzap # whatsapp messenger
 
@@ -21,7 +20,6 @@
         gnome-calculator
         decibels # audio player
         bottles # windows programs
-        rpi-imager
 
         fluent-gtk-theme
         orchis-theme
