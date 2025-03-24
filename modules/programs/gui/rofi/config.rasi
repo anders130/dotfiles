@@ -81,7 +81,7 @@ listview {
     padding: 0px;
 }
 
-mode-switcher{
+mode-switcher {
     background-color: transparent;
     border: 0px;
 
@@ -138,4 +138,20 @@ element-icon {
     text-color: inherit;
     size: 72px;
     cursor: inherit;
+}
+
+textbox {
+    background-color: transparent;
+    text-color: @text;
+    vertical-align: 0.5;
+    horizontal-align: 0.5;
+    highlight: none;
+}
+
+message {
+    background-color: @shade-bg;
+    border: 1px solid;
+    border-color: transparent;
+    border-radius: 12px;
+    padding: 24px;
 }

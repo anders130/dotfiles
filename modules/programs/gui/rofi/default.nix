@@ -3,7 +3,11 @@
     lib,
     pkgs,
     ...
-}: {
+}: let
+    rofi-calc = pkgs.rofi-calc.override {
+        rofi-unwrapped = pkgs.rofi-wayland-unwrapped;
+    };
+in {
     options.terminal = lib.mkOption {
         type = lib.types.str;
         description = "Terminal to use for rofi";
@@ -15,18 +19,19 @@
             stylix.targets.rofi.enable = false;
 
             programs.rofi = {
+                inherit (cfg) terminal;
                 enable = true;
-                font = with config.stylix.fonts; "${sansSerif.name} ${toString sizes.applications}";
                 package = pkgs.rofi-wayland;
-                # theme = "theme";
                 theme = "extraConfig";
-                terminal = cfg.terminal;
+                font = with config.stylix.fonts; "${sansSerif.name} ${toString sizes.applications}";
                 extraConfig = {
-                    modi = "drun";
+                    modi = "drun,calc";
                     show-icons = true;
                     display-drun = " ";
                     drun-display-format = "{name}";
+                    display-calc = " ";
                 };
+                plugins = [rofi-calc];
             };
 
             xdg.configFile = {
