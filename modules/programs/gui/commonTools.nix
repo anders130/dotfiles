@@ -16,10 +16,10 @@
         pavucontrol # sound control
 
         snapshot # camera
-        totem # video player
+        clapper # video player
         loupe # gnome image viewer
         gnome-calculator
-        gnome-music # music player
+        decibels # audio player
         bottles # windows programs
         rpi-imager
 
@@ -33,6 +33,8 @@
         teams-for-linux
         jetbrains.idea-community
     ];
+
+    environment.shellAliases.decibels = "org.gnome.Decibels";
 
     services.xserver.excludePackages = [
         pkgs.xterm

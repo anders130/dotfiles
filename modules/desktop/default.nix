@@ -62,8 +62,8 @@ in {
             editor = mkOpt "nvim" "Default editor to use";
             fileManager = mkOpt "nautilus --new-window" "Default file manager to use";
             imageViewer = mkOpt "loupe" "Default image viewer to use";
-            videoPlayer = mkOpt "totem" "Default video player to use";
-            musicPlayer = mkOpt "gnome-music" "Default music player to use";
+            videoPlayer = mkOpt "clapper" "Default video player to use";
+            musicPlayer = mkOpt "decibels" "Default music player to use";
         };
     };
 
