@@ -1,5 +1,6 @@
 {
     inputs,
+    lib,
     pkgs,
     ...
 }: {
@@ -27,6 +28,7 @@
                         wappalyzer
                     ];
                     settings."widget.use-xdg-desktop-portal.file-picker" = 1;
+                    userChrome = lib.mkSymlink ./userChrome.css;
                 };
                 work = default // {
                     isDefault = false;
