@@ -3,11 +3,6 @@
     pkgs,
     ...
 }: {
-    imports = [
-        ./disk-config.nix
-        ./hardware-configuration.nix
-    ];
-
     modules = {
         bundles = {
             dev.enable = true;

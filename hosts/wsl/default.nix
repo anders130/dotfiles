@@ -3,10 +3,6 @@
     username,
     ...
 }: {
-    imports = [
-        ./vpn.nix
-    ];
-
     modules = {
         bundles.dev.enable = true;
         services.docker.wslIntegration = true;

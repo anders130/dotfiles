@@ -3,11 +3,6 @@
     username,
     ...
 }: {
-    imports = [
-        ./hardware-configuration.nix
-        ./disk-config.nix
-    ];
-
     modules = {
         bundles = {
             dev.enable = true;

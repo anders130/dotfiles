@@ -1,8 +1,4 @@
 {pkgs, ...}: {
-    imports = [
-        ./hardware-configuration.nix
-    ];
-
     modules = {
         bundles.rpi.enable = true;
         services.blocky.enable = true;
