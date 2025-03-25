@@ -1,8 +1,4 @@
-{
-    inputs,
-    pkgs,
-    ...
-}: {
+{inputs, ...}: {
     nixpkgs = {
         config = {
             allowUnfree = true;
@@ -11,6 +7,4 @@
 
         overlays = [inputs.self.outputs.overlays.default];
     };
-
-    system.stateVersion = pkgs.lib.trivial.release;
 }

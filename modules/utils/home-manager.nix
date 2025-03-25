@@ -1,5 +1,4 @@
 {
-    config,
     inputs,
     lib,
     username,
@@ -16,7 +15,6 @@
         backupFileExtension = "hm-backup";
         users.${username}.home = {
             inherit username;
-            stateVersion = config.system.stateVersion;
             homeDirectory = "/home/${username}";
         };
     };

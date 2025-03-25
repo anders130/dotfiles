@@ -31,7 +31,10 @@
         docker = "/run/current-system/sw/bin/docker";
     };
 
-   environment.systemPackages = with pkgs; [
+    environment.systemPackages = with pkgs; [
         local.win32yank
     ];
+
+    system.stateVersion = "23.11";
+    hm.home.stateVersion = "23.11";
 }
