@@ -9,10 +9,10 @@ in {
             pkgs.signal-desktop.overrideAttrs (final: prev: {
                 buildInputs = prev.buildInputs ++ [pkgs.asar];
                 postInstall = ''
-                    asar extract $out/lib/Signal/resources/app.asar temp/
+                    asar extract $out/lib/signal-desktop/resources/app.asar temp/
                     cp ${catpuccin-theme} temp/stylesheets/catppuccin-macchiato.css
                     sed -i "1i @import \"catppuccin-macchiato.css\";" "temp/stylesheets/manifest.css"
-                    asar pack --unpack '*.node' temp/ $out/lib/Signal/resources/app.asar
+                    asar pack --unpack '*.node' temp/ $out/lib/signal-desktop/resources/app.asar
                 '';
             })
         )
