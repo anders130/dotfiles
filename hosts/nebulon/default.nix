@@ -4,14 +4,13 @@
 
         services = {
             blocky.enable = true;
+            caddy.enable = true; # important for paperless and vaultwarden
             minecraft.enable = true;
-            paperless = {
-                enable = true;
-                domain = "paperless.nebulon";
-            };
-            plex.enable = true;
+            paperless.enable = true;
         };
     };
+
+    networking.domain = "nebulon";
 
     services.samba = {
         enable = true;
