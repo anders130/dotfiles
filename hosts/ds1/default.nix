@@ -3,7 +3,7 @@
         bundles.server.enable = true;
 
         services = {
-            caddy.enable = true; # important for paperless and vaultwarden
+            caddy.enable = true; # important for paperless
             paperless.enable = true;
         };
     };
