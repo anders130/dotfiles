@@ -1,4 +1,19 @@
-{
+let
+    rackflixAddress = "192.168.2.2";
+in {
+    boot.supportedFilesystems = ["nfs"];
+
+    fileSystems = {
+        "/mnt/rackflix/data" = {
+            device = "${rackflixAddress}:/Data";
+            fsType = "nfs";
+        };
+        "/mnt/rackflix/appdata" = {
+            device = "${rackflixAddress}:/appdata";
+            fsType = "nfs";
+        };
+    };
+
     disko.devices.disk.nixos = {
         type = "disk";
         device = "/dev/nvme0n1";
