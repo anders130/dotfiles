@@ -1,18 +1,22 @@
-let
+{lib, ...}: let
     rackflixAddress = "192.168.2.2";
+    mkNfsMount = folder: {
+        type = "nfs";
+        mountConfig.Options = "noatime";
+        what = "${rackflixAddress}:${folder}";
+        where = "/mnt/rackflix/${lib.toLower folder}";
+    };
+    mkNfsAutomount = folder: {
+        wantedBy = ["multi-user.target"];
+        automountConfig.TimeoutIdleSec = "600";
+        where = "/mnt/rackflix/${lib.toLower folder}";
+    };
+    sharedFolders = ["Data" "appdata"];
 in {
     boot.supportedFilesystems = ["nfs"];
 
-    fileSystems = {
-        "/mnt/rackflix/data" = {
-            device = "${rackflixAddress}:/Data";
-            fsType = "nfs";
-        };
-        "/mnt/rackflix/appdata" = {
-            device = "${rackflixAddress}:/appdata";
-            fsType = "nfs";
-        };
-    };
+    systemd.mounts = map mkNfsMount sharedFolders;
+    systemd.automounts = map mkNfsAutomount sharedFolders;
 
     disko.devices.disk.nixos = {
         type = "disk";
