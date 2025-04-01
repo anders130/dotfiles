@@ -15,6 +15,7 @@ in {
 
     services.vaultwarden = {
         enable = true;
+        backupDir = "/mnt/rackflix/appdata/vaultwarden";
         environmentFile = config.sops.secrets.vaultwarden.path;
         config = {
             ROCKET_ADDRESS = "127.0.0.1";
