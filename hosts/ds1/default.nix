@@ -3,12 +3,13 @@
         bundles.server.enable = true;
 
         services = {
-            caddy.enable = true; # important for paperless
+            caddy.enable = true; # important for paperless and vaultwarden
             paperless.enable = true;
+            vaultwarden.enable = true;
         };
     };
 
-    networking.domain = "ds1";
+    networking.domain = "gollub.dev";
 
     boot.loader = {
         efi.canTouchEfiVariables = true;
