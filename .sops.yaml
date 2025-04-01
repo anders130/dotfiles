@@ -1,5 +1,6 @@
 creation_rules:
   - key_groups:
       - age:
-          - age17sl3p8jeql787hgv9wtltxeuznydq4fz63c9ngyyue63cztg09qqnwyndf # desktop
+          - age1v4858p85k29tp0rg9phvvaa4gyx07mdgvlumud52mhmyhrmfcaxsyckzd0 # desktop
+          - age14hmv66c09cf0qfh7vz28nyqp6vnx775hsus6e3tw294tpem45qrsgdt2dm # ds1
           - age1rn4wkpgh5zsg0ny2jeuk44l2dypq4xy8n48pea7wzurvhzeul95s6jxp6k # workstation

@@ -5,7 +5,7 @@ This module adds secrets management with [Sops](https://github.com/Mic92/sops-ni
 ## Usage
 
 ```nix
-modules.sops.enable = true;
+modules.utils.sops.enable = true;
 ```
 
 Generate the `keys.txt`:
