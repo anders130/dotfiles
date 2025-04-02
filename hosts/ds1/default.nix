@@ -5,6 +5,7 @@
             caddy.enable = true; # important for paperless and vaultwarden
             vaultwarden.enable = true;
             search.enable = true;
+            jellyfin.enable = true;
         };
     };
 
