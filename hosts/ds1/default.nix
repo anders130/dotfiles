@@ -6,6 +6,7 @@
             vaultwarden.enable = true;
             search.enable = true;
             jellyfin.enable = true;
+            minecraft.enable = true;
         };
     };
 
