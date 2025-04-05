@@ -1,34 +1,58 @@
-{config, ...}: let
+{
+    config,
+    pkgs,
+    ...
+}: let
     cfg = config.services.searx.settings.server;
+    inherit (config.networking) domain;
 in {
     services.searx = {
         enable = true;
-        environmentFile = config.sops.secrets.searx.path;
+        redisCreateLocally = true;
+        package = pkgs.unstable.searxng;
+
+        # Rate limiting
         limiterSettings = {
             real_ip = {
                 x_for = 1;
                 ipv4_prefix = 32;
                 ipv6_prefix = 56;
             };
+
             botdetection.ip_limit = {
                 filter_link_local = true;
                 link_token = true;
             };
         };
+
         settings = {
-            server = {
-                bind_address = "127.0.0.1";
-                port = 8888;
-                secret_key = "@SEARX_SECRET_KEY@";
+            general = {
+                debug = false;
+                instance_name = "SearXNG Instance";
+                donation_url = false;
+                contact_url = false;
+                privacypolicy_url = false;
+                enable_metrics = false;
             };
-            engines = [
-                {
-                    name = "google";
-                    engine = "google";
-                    shortcut = "g";
-                    use_mobile_ui = true;
-                }
-            ];
+
+            server = {
+                base_url = "https://search.${domain}";
+                port = 8888;
+                bind_address = "127.0.0.1";
+                secret_key = config.sops.secrets.searx.path;
+                limiter = true;
+                public_instance = true;
+                image_proxy = true;
+                method = "GET";
+            };
+
+            outgoing = {
+                request_timeout = 5.0;
+                max_request_timeout = 15.0;
+                pool_connections = 100;
+                pool_maxsize = 15;
+                enable_http2 = true;
+            };
         };
     };
 
@@ -39,7 +63,7 @@ in {
         group = "searx";
     };
 
-    services.caddy.virtualHosts."search.${config.networking.domain}".extraConfig = ''
+    services.caddy.virtualHosts."search.${domain}".extraConfig = ''
         reverse_proxy http://${cfg.bind_address}:${toString cfg.port} {
             header_down Referer-Policy "strict-origin-when-cross-origin"
         }
