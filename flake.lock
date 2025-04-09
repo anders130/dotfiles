@@ -1077,11 +1077,11 @@
         "nixpkgs": "nixpkgs_3"
       },
       "locked": {
-        "lastModified": 1735437529,
-        "narHash": "sha256-xjt/YpKVXC4w3xudINftZH3hTJDSm15RstXRbq7wbk8=",
+        "lastModified": 1744216212,
+        "narHash": "sha256-LekdKqxHJcHdH6pGD4hhBOhTapV9Aibhi90MV+8yDUY=",
         "owner": "LumeHub",
         "repo": "LumeHub.Server",
-        "rev": "de237fd7f03e72e95eec0dd5777254d4e4c3f9f1",
+        "rev": "96825dae93a467126b7fca9976fb8ef80ca2df40",
         "type": "github"
       },
       "original": {

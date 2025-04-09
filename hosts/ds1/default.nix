@@ -1,4 +1,4 @@
-{
+{config, ...}: {
     modules = {
         bundles.server.enable = true;
         services = {
@@ -39,6 +39,10 @@
             };
         };
     };
+
+    services.caddy.virtualHosts."led.${config.networking.domain}".extraConfig = ''
+        reverse_proxy http://192.168.178.85:5000
+    '';
 
     networking = {
         domain = "gollub.dev";
