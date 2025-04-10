@@ -23,9 +23,21 @@ in rec {
         };
     };
 
+    evdi = final: prev: {
+        linuxPackages_latest =
+            prev.linuxPackages_latest.extend
+            (lpfinal: lpprev: {
+                evdi = inputs.nixpkgs-unstable.legacyPackages.${prev.system}.linuxPackages_latest.evdi;
+            });
+        displaylink = prev.displaylink.override {
+            inherit (final.linuxPackages_latest) evdi;
+        };
+    };
+
     default = composeManyExtensions [
         allowMissingOverlay
         all-channels
+        evdi
         inputs.nix-minecraft.overlay
         inputs.nur.overlays.default
         inputs.hyprland.overlays.default
