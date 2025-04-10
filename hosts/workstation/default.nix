@@ -61,6 +61,7 @@
 
     environment.systemPackages = with pkgs; [
         unstable.easyroam-connect-desktop
+        logisim-evolution
     ];
 
     programs.nix-ld.enable = true;
