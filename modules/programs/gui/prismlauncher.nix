@@ -10,8 +10,6 @@
 in {
     environment.systemPackages = with pkgs; [
         prismlauncher # minecraft launcher
-        jdk17
-        jdk8
     ];
 
     hm.home = {
