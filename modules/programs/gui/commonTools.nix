@@ -4,7 +4,7 @@
     ...
 }: {
     environment.systemPackages = with pkgs; [
-        bitwarden
+        unstable.bitwarden-desktop
         obsidian
         insomnia # postman-alternative
         libreoffice

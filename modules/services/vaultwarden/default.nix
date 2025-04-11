@@ -27,7 +27,13 @@ in {
             SMTP_PORT = 587;
             SMTP_FROM = "vaultwarden@${domain}";
             SMTP_SECURITY = "starttls";
-            EXPERIMENTAL_CLIENT_FEATURE_FLAGS = "extension-refresh"; # new ui in browser extension
+            EXPERIMENTAL_CLIENT_FEATURE_FLAGS = builtins.concatStringsSep "," [
+                "extension-refresh" # new ui in browser extension
+                # ssh-key-support
+                "fido2-vault-credentials"
+                "ssh-key-vault-item"
+                "ssh-agent"
+            ];
         };
     };
     users.users.${username}.extraGroups = ["vaultwarden"];
