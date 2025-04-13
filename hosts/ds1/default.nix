@@ -37,6 +37,7 @@
                     difficulty = "master";
                 };
             };
+            obsidian-livesync.enable = true;
         };
     };
 
