@@ -6,6 +6,10 @@
             vaultwarden.enable = true;
             search.enable = true;
             jellyfin.enable = true;
+            nextcloud = {
+                enable = true;
+                datadir = "/mnt/rackflix/appdata/nextcloud";
+            };
             minecraft.enable = true;
             tmodloader = {
                 enable = true;
