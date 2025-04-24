@@ -42,6 +42,7 @@
                 };
             };
             obsidian-livesync.enable = true;
+            tandoor.enable = true;
         };
     };
 
