@@ -3,7 +3,10 @@
         bundles.server.enable = true;
         services = {
             caddy.enable = true; # important for paperless and vaultwarden
-            vaultwarden.enable = true;
+            vaultwarden = {
+                enable = true;
+                backupDir = "/mnt/rackflix/appdata/vaultwarden";
+            };
             search.enable = true;
             jellyfin.enable = true;
             nextcloud = {
