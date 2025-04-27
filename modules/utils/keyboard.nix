@@ -7,7 +7,7 @@
         };
         variant = lib.mkOption {
             type = lib.types.str;
-            default = "";
+            default = "de_se_fi";
             description = "Keyboard variant";
         };
     };
