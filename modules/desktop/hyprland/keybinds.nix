@@ -14,7 +14,7 @@
             follow_mouse = 1;
             mouse_refocus = 0;
 
-            touchpad.natural_scroll = false;
+            touchpad.natural_scroll = true;
             sensitivity = 0;
         };
 
