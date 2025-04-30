@@ -17,7 +17,6 @@ in {
             ssh.enable = mkDefault true;
             nvix.enable = mkDefault true;
         };
-        services.docker.enable = mkDefault true;
         utils = {
             sops.enable = mkDefault true;
             stylix.enable = mkDefault true;

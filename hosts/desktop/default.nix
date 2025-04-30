@@ -77,6 +77,9 @@
         "Videos"
     ]);
 
+    # slows down boot time
+    systemd.services.NetworkManager-wait-online.enable = false;
+
     environment.systemPackages = with pkgs; [
         jetbrains.rider
         unstable.plex-desktop
