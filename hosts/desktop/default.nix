@@ -35,10 +35,7 @@
 
         programs = {
             cli.nix.nix-daemon.enableLimit = true;
-            gui = {
-                virt-manager.enable = true;
-                zen-browser.enable = true;
-            };
+            gui.zen-browser.enable = true;
         };
         hardware = {
             amdgpu.enable = true;
