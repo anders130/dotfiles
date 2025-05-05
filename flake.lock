@@ -167,6 +167,22 @@
         "type": "github"
       }
     },
+    "catppuccin-qutebrowser": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1741931053,
+        "narHash": "sha256-FmxrgpFlp+cMUdCx5HHIiLMGWML23p+pfxTKT/X0UME=",
+        "owner": "catppuccin",
+        "repo": "qutebrowser",
+        "rev": "808adc3d7d5be6fc573d6be6e9c888cb96b5d6e6",
+        "type": "github"
+      },
+      "original": {
+        "owner": "catppuccin",
+        "repo": "qutebrowser",
+        "type": "github"
+      }
+    },
     "clock-mate": {
       "inputs": {
         "flake-utils": "flake-utils",
@@ -1706,6 +1722,7 @@
     },
     "root": {
       "inputs": {
+        "catppuccin-qutebrowser": "catppuccin-qutebrowser",
         "clock-mate": "clock-mate",
         "disko": "disko",
         "home-manager": "home-manager",

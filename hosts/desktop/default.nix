@@ -36,6 +36,7 @@
         programs = {
             cli.nix.nix-daemon.enableLimit = true;
             gui.zen-browser.enable = true;
+            gui.qutebrowser.enable = true;
         };
         hardware = {
             amdgpu.enable = true;

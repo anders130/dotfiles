@@ -38,6 +38,10 @@
             inputs.nixpkgs.follows = "nixpkgs";
         };
         clock-mate.url = "github:anders130/clock-mate";
+        catppuccin-qutebrowser = {
+            url = "github:catppuccin/qutebrowser";
+            flake = false;
+        };
 
         # gui
         hyprland = {
