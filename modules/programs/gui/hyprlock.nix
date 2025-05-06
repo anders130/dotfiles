@@ -30,10 +30,7 @@ in {
             package = pkgs.unstable.hyprlock;
             enable = true;
             settings = {
-                general = {
-                    disable_loading_bar = true;
-                    hide_cursor = true;
-                };
+                general.hide_cursor = true;
 
                 # only enable if fingerprint is enabled on the host
                 auth.fingerprint.enabled = config.services.fprintd.enable;
@@ -44,7 +41,7 @@ in {
                     blur_passes = 5;
                     blur_size = 3;
                     brightness = 0.5;
-                    color = colors.base; # fallback to color if image is not found
+                    color = "rgb(${colors.base})"; # fallback to color if image is not found
                 }];
 
                 label = [
@@ -88,6 +85,18 @@ in {
                     halign = "center";
                     valign = "center";
                 }];
+
+                animations = {
+                    enabled = true;
+                    bezier = ["linear, 1, 1, 0, 0"];
+                    animation = [
+                        "fadeIn, 1, 5, linear"
+                        "fadeOut, 1, 2, linear"
+                        "inputFieldFade, 1, 3, linear"
+                        "inputFieldColors, 1, 6, linear"
+                        "inputFieldDots, 1, 2, linear"
+                    ];
+                };
             };
         };
     };
