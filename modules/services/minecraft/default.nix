@@ -1,9 +1,11 @@
 {
+    config,
     inputs,
     pkgs,
     ...
 }: let
     server-port = 25566;
+    rcon-port = 25575;
 in {
     imports = [inputs.nix-minecraft.nixosModules.minecraft-servers];
 
@@ -12,6 +14,7 @@ in {
         eula = true;
 
         dataDir = "/srv/minecraft";
+        environmentFile = config.sops.secrets.minecraft.path;
 
         servers = let
             defaultServer = {
@@ -28,12 +31,16 @@ in {
             vanilla-1-21-5 = defaultServer // {
                 package = pkgs.minecraftServers.vanilla-1_21_5;
                 serverProperties = defaultServer.serverProperties // {
-                    inherit server-port;
+                    inherit server-port rcon-port;
                     difficulty = "hard";
                     enforce-whitelist = true;
                     white-list = true;
                     gamemode = "survival";
                     motd = "NixOS Minecraft Server";
+                    # RCON
+                    enable-rcon = true;
+                    "rcon.password" = "@RCON_PASS@";
+                    server-ip = "0.0.0.0";
                 };
                 whitelist = {
                     "anders130" = "c2e93d01-d0d9-4e19-95e3-85bf3020b4ef";
@@ -45,5 +52,15 @@ in {
         };
     };
 
-    networking.firewall.allowedTCPPorts = [server-port];
+    sops.secrets.minecraft = {
+        sopsFile = ./secrets.env;
+        format = "dotenv";
+        owner = "minecraft";
+        group = "minecraft";
+    };
+
+    networking.firewall.allowedTCPPorts = [
+        server-port
+        rcon-port
+    ];
 }
