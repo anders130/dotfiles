@@ -51,8 +51,7 @@
             submodules = true;
         };
         split-monitor-workspaces = {
-            type = "git";
-            url = "https://github.com/Duckonaut/split-monitor-workspaces";
+            url = "github:Duckonaut/split-monitor-workspaces?rev=a8e39ff10dfb5ff451416a791a30388a8517e038";
             inputs.hyprland.follows = "hyprland";
         };
         my-shell = {
