@@ -16,8 +16,7 @@
         console.keyMap = cfg.layout;
 
         services.xserver.xkb = {
-            layout = cfg.layout;
-            variant = cfg.variant;
+            inherit (cfg) layout variant;
         };
     };
 }
