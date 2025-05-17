@@ -28,7 +28,7 @@
         adwaita-icon-theme # just having this installed fixes issues with some apps
 
         # work
-        teams-for-linux
+        unstable.teams-for-linux
         jetbrains.idea-community
     ];
 
