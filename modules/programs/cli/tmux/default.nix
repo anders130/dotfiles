@@ -2,9 +2,7 @@
     lib,
     pkgs,
     ...
-}: let
-    configPath = lib.mkRelativePath ./tmux.conf;
-in {
+}: {
     programs.tmux = {
         enable = true;
         # Stop tmux+escape craziness.
@@ -15,14 +13,15 @@ in {
         keyMode = "vi";
         shortcut = "Space"; # Ctrl+Space
         baseIndex = 1; # window and pane index
-
         plugins = with pkgs.tmuxPlugins; [
             vim-tmux-navigator
             catppuccin
         ];
-
         extraConfigBeforePlugins = /*tmux*/''
-            source-file $NH_FLAKE/${configPath}
+            source-file $NH_FLAKE/${lib.mkRelativePath ./before.tmux}
+        '';
+        extraConfig = /*tmux*/''
+            source-file $NH_FLAKE/${lib.mkRelativePath ./after.tmux}
         '';
     };
 
