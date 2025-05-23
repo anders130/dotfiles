@@ -3,11 +3,11 @@
 
     inputs = {
         # essentials
-        nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-24.11";
+        nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-25.05";
         nixpkgs-unstable.url = "github:nixos/nixpkgs?ref=nixos-unstable";
         nur.url = "github:nix-community/NUR";
         home-manager = {
-            url = "github:nix-community/home-manager?ref=release-24.11";
+            url = "github:nix-community/home-manager?ref=release-25.05";
             inputs.nixpkgs.follows = "nixpkgs";
         };
         modulix = {
@@ -15,7 +15,7 @@
             inputs.nixpkgs.follows = "nixpkgs";
         };
         stylix = {
-            url = "github:danth/stylix/release-24.11";
+            url = "github:danth/stylix/release-25.05";
             inputs.home-manager.follows = "home-manager";
         };
         sops-nix = {
@@ -47,11 +47,11 @@
         hyprland = {
             type = "git";
             url = "https://github.com/hyprwm/Hyprland";
-            ref = "refs/tags/v0.47.1";
+            ref = "refs/tags/v0.49.0";
             submodules = true;
         };
         split-monitor-workspaces = {
-            url = "github:Duckonaut/split-monitor-workspaces?rev=a8e39ff10dfb5ff451416a791a30388a8517e038";
+            url = "github:Duckonaut/split-monitor-workspaces";
             inputs.hyprland.follows = "hyprland";
         };
         my-shell = {

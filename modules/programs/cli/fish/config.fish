@@ -1,3 +1,5 @@
+set fish_function_path $fish_function_path ~/.config/fish/custom_functions
+
 set -U fish_greeting ""
 # Commands to run in interactive sessions can go here
 fish_vi_key_bindings

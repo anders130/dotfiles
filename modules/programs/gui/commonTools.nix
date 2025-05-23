@@ -4,7 +4,7 @@
     ...
 }: {
     environment.systemPackages = with pkgs; [
-        unstable.bitwarden-desktop
+        bitwarden-desktop
         obsidian
         insomnia # postman-alternative
         libreoffice
@@ -28,8 +28,7 @@
         adwaita-icon-theme # just having this installed fixes issues with some apps
 
         # work
-        unstable.teams-for-linux
-        jetbrains.idea-community
+        teams-for-linux
     ];
 
     environment.shellAliases.decibels = "org.gnome.Decibels";

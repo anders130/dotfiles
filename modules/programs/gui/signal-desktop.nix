@@ -7,12 +7,22 @@ in {
     environment.systemPackages = [
         (
             pkgs.signal-desktop.overrideAttrs (final: prev: {
-                buildInputs = prev.buildInputs ++ [pkgs.asar];
+                nativeBuildInputs = (prev.nativeBuildInputs or []) ++ [pkgs.asar];
                 postInstall = ''
-                    asar extract $out/lib/signal-desktop/resources/app.asar temp/
-                    cp ${catpuccin-theme} temp/stylesheets/catppuccin-macchiato.css
-                    sed -i "1i @import \"catppuccin-macchiato.css\";" "temp/stylesheets/manifest.css"
-                    asar pack --unpack '*.node' temp/ $out/lib/signal-desktop/resources/app.asar
+                    tmpdir=$(mktemp -d)
+
+                    cp $out/share/signal-desktop/app.asar $tmpdir/app.asar
+                    cp -r $out/share/signal-desktop/app.asar.unpacked $tmpdir/app.asar.unpacked
+                    chmod -R +w $tmpdir/app.asar.unpacked
+                    cd $tmpdir
+
+                    ${pkgs.asar}/bin/asar extract app.asar app
+                    cp ${catpuccin-theme} app/stylesheets/catppuccin-macchiato.css
+                    sed -i '1i @import "catppuccin-macchiato.css";' app/stylesheets/manifest.css
+
+                    ${pkgs.asar}/bin/asar pack --unpack '*.node' app app.asar
+
+                    cp app.asar $out/share/signal-desktop/app.asar
                 '';
             })
         )

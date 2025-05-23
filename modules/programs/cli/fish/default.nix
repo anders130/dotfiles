@@ -54,7 +54,7 @@ in {
         };
         xdg.configFile = {
             "fish/extraConfig.fish" = mkSymlink ./config.fish;
-            "fish/functions" = mkSymlink ./functions;
+            "fish/custom_functions" = mkSymlink ./functions;
             "fish/themes/fish.theme" = mkSymlink ./fish.theme;
         };
     };

@@ -1,15 +1,10 @@
-{
-    config,
-    pkgs,
-    ...
-}: let
+{config, ...}: let
     cfg = config.services.searx.settings.server;
     inherit (config.networking) domain;
 in {
     services.searx = {
         enable = true;
         redisCreateLocally = true;
-        package = pkgs.unstable.searxng;
 
         # Rate limiting
         limiterSettings = {

@@ -60,7 +60,7 @@
     };
 
     environment.systemPackages = with pkgs; [
-        unstable.easyroam-connect-desktop
+        easyroam-connect-desktop
         logisim-evolution
     ];
 

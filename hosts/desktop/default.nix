@@ -79,8 +79,7 @@
     systemd.services.NetworkManager-wait-online.enable = false;
 
     environment.systemPackages = with pkgs; [
-        jetbrains.rider
-        unstable.plex-desktop
+        plex-desktop
     ];
 
     system.stateVersion = "24.05";

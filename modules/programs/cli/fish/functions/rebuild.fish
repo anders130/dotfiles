@@ -25,7 +25,7 @@ function rebuild -w nixos-rebuild
 
     if test -n "$host"
         echo "Performing remote rebuild: $cmd with host: $host"
-        eval "nixos-rebuild $cmd --flake $FLAKE\?submodules=1#$host $args --use-remote-sudo"
+        eval "nixos-rebuild $cmd --flake $NH_FLAKE\?submodules=1#$host $args --use-remote-sudo"
     else
         if test "x$NIX_FLAKE_DEFAULT_HOST" = "x"
             set_color red

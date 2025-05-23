@@ -29,7 +29,7 @@ in {
             disable_ligatures = "always";
         };
         extraConfig = ''
-            include $FLAKE/${configPath}
+            include $NH_FLAKE/${configPath}
         '';
     };
 }

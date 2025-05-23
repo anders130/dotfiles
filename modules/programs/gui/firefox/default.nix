@@ -22,7 +22,7 @@ in {
                 };
             };
         };
-
+        stylix.targets.firefox.enable = false;
         xdg.desktopEntries.firefoxWork = {
             name = "Firefox Work";
             genericName = "Web Browser";

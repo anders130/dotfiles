@@ -14,7 +14,7 @@
         xdg-desktop-portal-termfilechooser.enable = true;
     };
 
-    environment.systemPackages = with pkgs.unstable; [
+    environment.systemPackages = with pkgs; [
         swww
         libsForQt5.qt5.qtwayland
         qt6.qtwayland

@@ -1,7 +1,6 @@
 {
     config,
     lib,
-    pkgs,
     ...
 }: let
     font_family = config.stylix.fonts.monospace.name;
@@ -27,7 +26,6 @@ in {
     in {
         hm.stylix.targets.hyprlock.enable = false;
         hm.programs.hyprlock = {
-            package = pkgs.unstable.hyprlock;
             enable = true;
             settings = {
                 general.hide_cursor = true;

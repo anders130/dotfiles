@@ -1,13 +1,8 @@
-{
-    lib,
-    pkgs,
-    ...
-}: {
+{lib, ...}: {
     hm = {
         xdg.configFile."fastfetch/short.jsonc" = lib.mkSymlink ./short.jsonc;
         programs.fastfetch = {
             enable = true;
-            package = pkgs.unstable.fastfetch;
             settings = {
                 logo = {
                     type = "kitty-icat";

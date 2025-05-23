@@ -22,7 +22,7 @@ in {
         ];
 
         extraConfigBeforePlugins = /*tmux*/''
-            source-file $FLAKE/${configPath}
+            source-file $NH_FLAKE/${configPath}
         '';
     };
 

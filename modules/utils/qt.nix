@@ -15,7 +15,7 @@ in {
             platformTheme.name = "kvantum";
             style.name = "kvantum";
         };
-
+        stylix.targets.qt.enable = false;
         xdg.configFile = {
             "Kvantum/${qtThemeName}".source = "${catppuccinKvantum}/share/Kvantum/${qtThemeName}";
             "Kvantum/kvantum.kvconfig".source = (pkgs.formats.ini {}).generate "kvantum.kvconfig" {
