@@ -29,6 +29,7 @@ in {
             config = {
                 adminuser = "admin";
                 adminpassFile = config.sops.secrets."nextcloud/adminPass".path;
+                dbtype = "sqlite";
             };
         };
 
