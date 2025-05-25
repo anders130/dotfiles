@@ -5,7 +5,7 @@
     pkgs,
     ...
 }: let
-    inherit (lib) mkMerge;
+    inherit (lib) genAttrs mkMerge;
     server-port = 25566;
     rcon-port = 25575;
 in {
@@ -69,6 +69,25 @@ in {
                         motd = "NixOS Minecraft Server";
                     };
                 }
+            ];
+            cobblemon-1-21-1 = mkMerge [
+                defaultServer
+                onlyFriends
+                withRcon
+                (let
+                    modpack = pkgs.fetchzip {
+                        url = "https://mediafilez.forgecdn.net/files/6132/445/Server%20Files%20-%20Cobblemon%20Modpack%20%5BFabric%5D%201.6.1.zip";
+                        sha512 = "sha512-vVXD/2zToZImJk1SLdtedOnbaOtt6QlGP6MA+4+gncXpVK+BSma6vdnG9oh/JJKcJoTps3BGxccGg6aYqPllmQ==";
+                        stripRoot = false;
+                    };
+                in {
+                    package = pkgs.fabricServers.fabric-1_21_1;
+                    jvmOpts = "-Xmx8G -Xms4G";
+                    symlinks = genAttrs [
+                        "mods"
+                        "server-icon.png"
+                    ] (name: "${modpack}/${name}");
+                })
             ];
         };
     };
