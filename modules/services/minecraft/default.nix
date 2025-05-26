@@ -89,11 +89,152 @@ in {
                             url = "https://cdn.modrinth.com/data/cTdIg5HZ/versions/SResvls5/fightorflight-fabric-0.7.9.jar";
                             sha512 = "e27e4ce8f0f5be567db65f463297621b2ed5a6c1975028454739fe960179125e1a31e1c42e1f4c9dfe50810f56e73e26764eac1dc4716509360bbfc59aa36b29";
                         };
+                        "mods/CobbleDollars-fabric-2.0.0%2BBeta-4%2B1.21.1.jar" = pkgs.fetchurl {
+                            url = "https://cdn.modrinth.com/data/s7N7AsqL/versions/SPM5uTPU/CobbleDollars-fabric-2.0.0%2BBeta-4%2B1.21.1.jar";
+                            sha512 = "180101f5308306175392f9cbe2f05a1f1c44f0aed2833015f6133e3a02b92b6369df8d2019b52b088fbbf18a27d9fe2c9be3189b479cc7211101a1a0310a81a1";
+                        };
+                        "mods/pokeblocks-1.4.0-1.21.1.jar" = pkgs.fetchurl {
+                            url = "https://cdn.modrinth.com/data/hnOfcjSq/versions/AMYJbQsk/pokeblocks-1.4.0-1.21.1.jar";
+                            sha512 = "14c46fc6157fc796bf0d57ceabe3dad6c9196991e9e2a55c58b8f0f7207dd14644ba2a987b063c7197c02ab2be495e6c97dfd6154f3a3e980e249c6b90991581";
+                        };
+                        "mods/hiddenmons-cobblemon-v0.6.jar" = pkgs.fetchurl {
+                            url = "https://cdn.modrinth.com/data/isWGaSnM/versions/qXGqnq7v/hiddenmons-cobblemon-v0.6.jar";
+                            sha512 = "f9421a865ca9400916d70843c6fe5929897dc8a611c88098028e265b54c241037f23808f7ca675fc57ac1f8159af09cde258682e4f6e9b8435487c351df2727c";
+                        };
+                        "mods/badgebox-fabric-1.3.0.jar" = pkgs.fetchurl {
+                            url = "https://cdn.modrinth.com/data/8J7TR166/versions/1iJ9oDN4/badgebox-fabric-1.3.0.jar";
+                            sha512 = "57bf8c2e37c43da1708c6535fe05250206e0a2824bd8f37cdf3811fe35d3070b9506dffde1a647e5806da6703c727adea909464cc311603532078f420c65b65d";
+                        };
+                        "mods/CobbleFurnies-fabric-0.5.jar" = pkgs.fetchurl {
+                            url = "https://cdn.modrinth.com/data/AXY1OO9m/versions/GlSuS3y6/CobbleFurnies-fabric-0.5.jar";
+                            sha512 = "699e62770f5b8edbdc48333e8cbdd29cb5f8be0fcae2765cd648915e9834d8fdc6c81535b17c5a853096cecdc4a9ce8ae08d43993cfbe523e8e53fd5fefd051f";
+                        };
+                        "mods/sophisticatedstorage-1.21.1-1.3.7.1.115.jar" = pkgs.fetchurl {
+                            url = "https://cdn.modrinth.com/data/iHtpVwJL/versions/WUdPSXsd/sophisticatedstorage-1.21.1-1.3.7.1.115.jar";
+                            sha512 = "6467e965ae47f4094a00a5564190e97935c40e8c07b6fd765cb29de93d2d11af95e34b5fe4e3c2f8cb05240b1a971ab89842bb63368fddb5b20dc1455cd569af";
+                        };
+                        "mods/cobblemonpokemonbadges-fabric-0.1.1.jar" = pkgs.fetchurl {
+                            url = "https://cdn.modrinth.com/data/pPldOOeY/versions/LFfopB1R/cobblemonpokemonbadges-fabric-0.1.1.jar";
+                            sha512 = "13962aa463c8ec02ca490b6e0e1b475990f5a80ab921fb361ed864802562a0a5325d41779060e3a7e32fa43aec3e0e2a9b90fb5f940b6b4088e7b6639cfc03c9";
+                        };
+                        "mods/tmcraft-1.4.10%2B1.6.1.jar" = pkgs.fetchurl {
+                            url = "https://cdn.modrinth.com/data/HU6mkUZs/versions/V9WvegJQ/tmcraft-1.4.10%2B1.6.1.jar";
+                            sha512 = "56b19da35308db95a8cb7795ad80e41fc327aa36841665fcc7bcb78354a91e4cf6f902c1f30e54e9954e89bc3160db789b49b821a8942c4a58486fd8e1fa9b35";
+                        };
+                        "mods/cobblemonboxlink-fabric-1.21.1-1.0.4.jar" = pkgs.fetchurl {
+                            url = "https://cdn.modrinth.com/data/93tFY5AF/versions/S3ROOcZt/cobblemonboxlink-fabric-1.21.1-1.0.4.jar";
+                            sha512 = "3c56415f244d7d7a860e8eca623ccae3167a35ce462a22c35a82ffb5a8b8a492167b72728d25124dd645b9c484ae590b6bc8cb32d2114caa87e3bb8397a5dea1";
+                        };
+                        "mods/CobbleCuisine-1.2.jar" = pkgs.fetchurl {
+                            url = "https://cdn.modrinth.com/data/dlx62Wp3/versions/qCTnfPhI/CobbleCuisine-1.2.jar";
+                            sha512 = "64fcd4e1da1cfdb328445748309012fe3d274ab70ece37ce9399c75c4223357eefa9f4d6afa98b684281ea1d1e93edcc6fa06ad93507ec511b69d5050b3dd103";
+                        };
+                        "mods/Luckys-Cozyhome-Refurnished-1.1.15.jar" = pkgs.fetchurl {
+                            url = "https://cdn.modrinth.com/data/TNcLBDkY/versions/qGdCrL3t/Luckys-Cozyhome-Refurnished-1.1.15.jar";
+                            sha512 = "598277fea9c6f868e277704d2d3dbc16df78bcf2bca1b9794f9acac91f47c3fd81d3f1a11049f867039aa07627686481313c464d49c977c17cb2ca1e5f271f56";
+                        };
+                        "mods/cobblemon-darkrai-1.1.1.jar" = pkgs.fetchurl {
+                            url = "https://cdn.modrinth.com/data/ObH1JZK9/versions/pUcAY2DS/cobblemon-darkrai-1.1.1.jar";
+                            sha512 = "4d1e71c041149e70d28105a596decd95e8afb512353e286ff713f4f14317e46360abfbbfd92d9e1e23471cace529c83d3ed1228318dd3a8b5c420706b1579d4a";
+                        };
+                        "mods/CobbleverseBadges-1.0.jar" = pkgs.fetchurl {
+                            url = "https://cdn.modrinth.com/data/PHT3Zj0r/versions/8OttXiyI/CobbleverseBadges-1.0.jar";
+                            sha512 = "933f3882e88a6e4d17b6ccb884326470b190ba12fcb298675bb2f517218afeb86e6dcb92c84650b032b3ae47eae8996ba5bbcba619c348072e4e04e57948075e";
+                        };
+                        "mods/MelloMons.zip" = pkgs.fetchurl {
+                            url = "https://cdn.modrinth.com/data/HFE7B8bM/versions/g8PU5ubT/MelloMons.zip";
+                            sha512 = "e4a6062038407cd3e0aef979f25dd16a9c25e27f32ae78d989c241bd09bc4104222e8bd81b3644712303bf853f14fbef06e1f9df67e8f30ad9a2d20c6a5827d3";
+                        };
+                        "mods/sophisticatedbackpacks-1.21.1-3.23.4.1.96.jar" = pkgs.fetchurl {
+                            url = "https://cdn.modrinth.com/data/ouNrBQtq/versions/I83OMUa2/sophisticatedbackpacks-1.21.1-3.23.4.1.96.jar";
+                            sha512 = "62f59af8782a5fb1286dae9f04a40a8c69e6a398571175878af360ab8e6a9e27fc48b1de34c32940cc0e68868122cdd4f69ca7ecaba2f902cfeb6ffa01fa755d";
+                        };
+                        "mods/Cobbreeding-fabric-1.9.0.jar" = pkgs.fetchurl {
+                            url = "https://cdn.modrinth.com/data/ItmVb4zY/versions/WWub8t6L/Cobbreeding-fabric-1.9.0.jar";
+                            sha512 = "3bd5b5f91cd28c85847469a698efab350df5506c853a86adde81d0483f59b21721b1bef1c7b28ad69fcfc7c2f0b2d70ad4c2a75bc0b276d67491f9d08d18e90c";
+                        };
+                        "mods/MoreCobblemonTweaks-fabric-1.0.3.jar" = pkgs.fetchurl {
+                            url = "https://cdn.modrinth.com/data/5KWlJ2HC/versions/6YnYg20B/MoreCobblemonTweaks-fabric-1.0.3.jar";
+                            sha512 = "73cf74292513b8372f7805c74398d9d92ddb09213ce1846505a68eb206137cf16bcdd339a4699149c97de0ed76d2d31d5909c8dd78b5e1bb22f9b7fe452f9fc2";
+                        };
+                        "mods/cobblemon-capturexp-1.6-fabric-1.1.0.jar" = pkgs.fetchurl {
+                            url = "https://cdn.modrinth.com/data/LBl4Qguc/versions/gSyyapnZ/cobblemon-capturexp-1.6-fabric-1.1.0.jar";
+                            sha512 = "e70240f5e05a4bbbb82f314e5bac48d63d36003443fe4e62e4d8ecc940f699f361a2d4af66dab1aafc80fc2b4a5ebf520591a2bdf22dfcfe6fe3d47e70447ab3";
+                        };
+                        "mods/Cobblemon_MegaShowdown-9.6.10-release-hotfix-fabric.jar" = pkgs.fetchurl {
+                            url = "https://cdn.modrinth.com/data/SszvX85I/versions/gZ4CdHK2/Cobblemon_MegaShowdown-9.6.10-release-hotfix-fabric.jar";
+                            sha512 = "0fd1d044deb0565defcdc3a0c1bf7694f650e70af1db7d73ec7a61fb5c3728a4c58578ed566f32bc7b4d89b14b73a6421a2952d2cdc0142a2b25e3a7cde6d8fb";
+                        };
+                        "mods/rctmod-fabric-1.21.1-0.16.0-beta.jar" = pkgs.fetchurl {
+                            url = "https://cdn.modrinth.com/data/lRwTUnD7/versions/gcuFb5cB/rctmod-fabric-1.21.1-0.16.0-beta.jar";
+                            sha512 = "5809d6e6b34b406913abe1cb6b01452f007105298035b803313042330a08e2c4c85049728f614583d8f40e56b2defed25d4a92e0f276579d77d57d2e99fa7a49";
+                        };
+                        "mods/cobblenav-fabric-2.2.0.jar" = pkgs.fetchurl {
+                            url = "https://cdn.modrinth.com/data/bI8Nt3uA/versions/YthAe9vK/cobblenav-fabric-2.2.0.jar";
+                            sha512 = "e15213476916ab731a1439faaa32fd1685447323e7d2ad1cec27308bf2d416863fb1509d7ff4eed337185ba8ed8b9a2c19b55543d2341c6ecada9e1c9d7d3234";
+                        };
+                        "mods/rctapi-fabric-1.21.1-0.12.1-beta.jar" = pkgs.fetchurl {
+                            url = "https://cdn.modrinth.com/data/CBfM2yw7/versions/FY8Lm8Ie/rctapi-fabric-1.21.1-0.12.1-beta.jar";
+                            sha512 = "cd8f92590944ae1998ccfa4478656e28e1227c042465172b0a5d73440512e772eb78ae156962b5bb3eef1266c59e71d206bb236c1e3f1d04fbde08baf3d9557d";
+                        };
+                        "mods/BCA-Datapack-3.6_GE_C1.6.1_M1.21.1.zip" = pkgs.fetchurl {
+                            url = "https://cdn.modrinth.com/data/W2pr9jyL/versions/tBIidMEV/BCA-Datapack-3.6_GE_C1.6.1_M1.21.1.zip";
+                            sha512 = "ad222bddaeacf07ff00790609aa3ba3e7b84fb07b7d0426d77f304649577ea3e3d1559d824ae85e9b48cecc34678fca3eeb505b5afca95b53c8591e3bd47244a";
+                        };
+                        "mods/fabric-language-kotlin-1.13.3%2Bkotlin.2.1.21.jar" = pkgs.fetchurl {
+                            url = "https://cdn.modrinth.com/data/Ha28R6CL/versions/iqWDz8qt/fabric-language-kotlin-1.13.3%2Bkotlin.2.1.21.jar";
+                            sha512 = "805eb96067560fa8acc8fcc7dbfba4ad8eed1a2bc9b46566e184f122533fdff844288f3df635762e1af927a4efe8989e9f11007a24bcdc73a32fc2dbebd720c3";
+                        };
+                        "mods/fabric-api-0.116.0%2B1.21.1.jar" = pkgs.fetchurl {
+                            url = "https://cdn.modrinth.com/data/P7dR8mSH/versions/73Q31My7/fabric-api-0.116.0%2B1.21.1.jar";
+                            sha512 = "4023117916ba06e1f81f6321f8bb21d34f14b3001da5a9785496ff1544b1f5bc04d59d93cb4f88a0015286e6e8cb382875a9b208d46222718c107599bf4b4bdc";
+                        };
+                        "mods/geckolib-fabric-1.21.1-4.7.5.1.jar" = pkgs.fetchurl {
+                            url = "https://cdn.modrinth.com/data/8BmcQJ2H/versions/PEvrTvgj/geckolib-fabric-1.21.1-4.7.5.1.jar";
+                            sha512 = "8f2f95c8801c609c96834d06f14046cde2877dc18aa351e35b957d3d123688f61b673f8c9f1cf8fbffe345d2ada61c61d5dea0864595422d82351dcfca49090c";
+                        };
+                        "mods/trinkets-3.10.0.jar" = pkgs.fetchurl {
+                            url = "https://cdn.modrinth.com/data/5aaWibi9/versions/JagCscwi/trinkets-3.10.0.jar";
+                            sha512 = "3ea846c945a0559696501ff65b373c8ee8fd9b394604e9910b4ed710c3e07cadc674a615a2c3b385951a42253a418201975df951b3100053ed39afadc70221c9";
+                        };
+                        "mods/geckolib-fabric-1.21.5-5.0.1.jar" = pkgs.fetchurl {
+                            url = "https://cdn.modrinth.com/data/8BmcQJ2H/versions/XAOLXP45/geckolib-fabric-1.21.5-5.0.1.jar";
+                            sha512 = "d5ed55f6db5aa89ecf59b313d4798109494378224d5e138baf11b2abefcf9d0a0398cfb04675edcf95bedf85004774f3b32a7474f75053d630199aa90bc69361";
+                        };
+                        "mods/supermartijn642configlib-1.1.8-fabric-mc1.21.jar" = pkgs.fetchurl {
+                            url = "https://cdn.modrinth.com/data/LN9BxssP/versions/euSlaAtA/supermartijn642configlib-1.1.8-fabric-mc1.21.jar";
+                            sha512 = "479838148fc1979409474b460de73162b7730c36b201eb903e299c144a056fed4f6dfb4498e0ded1e93a168379ff7efe0623279aa33a82b1b222c68468c477d6";
+                        };
+                        "mods/ForgeConfigAPIPort-v21.1.3-1.21.1-Fabric.jar" = pkgs.fetchurl {
+                            url = "https://cdn.modrinth.com/data/ohNO6lps/versions/NqVx7ywO/ForgeConfigAPIPort-v21.1.3-1.21.1-Fabric.jar";
+                            sha512 = "da65efa5c11d8268fb3e1f765e81b95766610a37fb9bb3ede74865f0c8882beb8897b393581de1d7306cf16ed82cc98db84649173a4acce3bd48bc1d36d34648";
+                        };
+                        "mods/sophisticatedcore-1.21.1-1.2.9.5.147.jar" = pkgs.fetchurl {
+                            url = "https://cdn.modrinth.com/data/9jxwkYQL/versions/7FKPkK7g/sophisticatedcore-1.21.1-1.2.9.5.147.jar";
+                            sha512 = "ae0dd1fe66d7ead32c110ec9e24a684c1cdb3a36f76bdee4d9825e230e8fae675c94372a39451b53031f39814e627dd2a3ee3c1b226b979f8c9176691b25a914";
+                        };
+                        "mods/athena-fabric-1.21-4.0.1.jar" = pkgs.fetchurl {
+                            url = "https://cdn.modrinth.com/data/b1ZV3DIJ/versions/7G1e11iK/athena-fabric-1.21-4.0.1.jar";
+                            sha512 = "eae671bef85a7dbbe7bf466b444ffb574596b61972b78d1c89338c59283a3801eac622fa66bc2757f7f8a9db01cd508e42ce2c3feb85346c6502f521612a5320";
+                        };
+                        "mods/SafePastures-1.1.0%2B1.21.1.jar" = pkgs.fetchurl {
+                            url = "https://cdn.modrinth.com/data/qpe01spE/versions/ZIowP3NQ/SafePastures-1.1.0%2B1.21.1.jar";
+                            sha512 = "59ebe693a1657526376983098fdaa92c0651acf0a428fe1c741f9a5c50b9cebcea8fdfcd43a41f12f5e0e3dba44894932cd705ead5f8e008026f24f14de9e5ef";
+                        };
+                        "mods/pastureLoot-1.0.2%2B1.21.1.jar" = pkgs.fetchurl {
+                            url = "https://cdn.modrinth.com/data/XP2jcAo0/versions/HroTTOh2/pastureLoot-1.0.2%2B1.21.1.jar";
+                            sha512 = "887a07b7c524d4b2cd3b9d9ec3c171f19ea67856c958bbafb3ea0f446b21431a0fbcd34fc71be47424d62c811d8a1930043d3cf3aeeac748401629912b7ec913";
+                        };
+                        "mods/playerxp-fabric-1.0.0%2B1.21.1.jar" = pkgs.fetchurl {
+                            url = "https://cdn.modrinth.com/data/zlrbPCvu/versions/K0j3J0EE/playerxp-fabric-1.0.0%2B1.21.1.jar";
+                            sha512 = "31e6ea665bc2a61bed78ca4e0ba659ea18db089addd28eec6343c12472b337887e16aa266750aa9bf396c8f0045935a2fe495e651326409e657748a3c7dfe180";
+                        };
                     };
                     baseMods =
                         "${modpack}/mods"
                         |> readDir
                         |> attrNames
+                        |> builtins.filter (name: name != "fabric-api-0.115.0+1.21.1.jar")
                         |> map (name: {
                             name = "mods/${name}";
                             value = "${modpack}/mods/${name}";
