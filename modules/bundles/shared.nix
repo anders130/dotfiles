@@ -12,6 +12,7 @@ in {
             fish.enable = mkDefault true;
             git.enable = mkDefault true;
             btop.enable = mkDefault true;
+            direnv.enable = mkDefault true;
             nh.enable = mkDefault true;
             nix.enable = mkDefault true;
             ssh.enable = mkDefault true;

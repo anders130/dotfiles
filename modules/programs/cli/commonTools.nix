@@ -1,8 +1,4 @@
-{
-    lib,
-    pkgs,
-    ...
-}: {
+{pkgs, ...}: {
     environment = {
         systemPackages = with pkgs; [
             broot # better tree
@@ -33,7 +29,4 @@
             snake = "sssnake -s 15";
         };
     };
-
-    # directory dev-environments
-    programs.direnv.enable = lib.mkDefault true;
 }

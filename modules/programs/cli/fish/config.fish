@@ -60,7 +60,6 @@ function ls
 end
 
 set -gx EDITOR nvim
-set -x DIRENV_LOG_FORMAT ""
 
 # colorize man pages with bat
 set -x MANPAGER "sh -c 'col -bx | bat -l man -p'"
