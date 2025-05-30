@@ -242,6 +242,7 @@ in {
                         |> listToAttrs;
                 in {
                     package = pkgs.fabricServers.fabric-1_21_1;
+                    serverProperties.enable-command-block = true;
                     jvmOpts = "-Xmx8G -Xms4G";
                     symlinks =
                         baseMods
