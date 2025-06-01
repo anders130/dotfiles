@@ -229,6 +229,18 @@ in {
                             url = "https://cdn.modrinth.com/data/zlrbPCvu/versions/K0j3J0EE/playerxp-fabric-1.0.0%2B1.21.1.jar";
                             sha512 = "31e6ea665bc2a61bed78ca4e0ba659ea18db089addd28eec6343c12472b337887e16aa266750aa9bf396c8f0045935a2fe495e651326409e657748a3c7dfe180";
                         };
+                        "mods/CobblemonTools-1.1.0%2B1.21.1.jar" = pkgs.fetchurl {
+                            url = "https://cdn.modrinth.com/data/WrixRmYK/versions/mJjFa5CU/CobblemonTools-1.1.0%2B1.21.1.jar";
+                            sha512 = "2c38e80e67adc280657c88e7fa8e94f11d6c2db07e342a5b0c150b9e6cbb1e67e278eacc114f2d6421e190b1c2be49163421d6f0f9f322b767cfb6b6c1acff85";
+                        };
+                        "mods/one-player-sleep-1.0.0.jar" = pkgs.fetchurl {
+                            url = "https://cdn.modrinth.com/data/5TN2cDS9/versions/3fMnS1KA/one-player-sleep-1.0.0.jar";
+                            sha512 = "225fa4eabf895a7008c625faa0629965ceeb1b40d52ac9576f6547cb70534f08c2cdc7c064bbb00a106c35765afc9ba37fb0c5d803b05de55b673cb88d1d6818";
+                        };
+                        "mods/open-parties-and-claims-fabric-1.21.1-0.24.0.jar" = pkgs.fetchurl {
+                            url = "https://cdn.modrinth.com/data/gF3BGWvG/versions/4x8OoQC3/open-parties-and-claims-fabric-1.21.1-0.24.0.jar";
+                            sha512 = "b02ba44bb66bedd5a3bc39b970b85c839261541e01bc44685ad9fc4f62de03eda004aba1b196414da1babb9b7274bf47ad3ecfcac26226971cd8bae85a522cc1";
+                        };
                     };
                     baseMods =
                         "${modpack}/mods"
