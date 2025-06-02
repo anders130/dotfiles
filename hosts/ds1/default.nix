@@ -47,6 +47,7 @@
             obsidian-livesync.enable = true;
             tandoor.enable = true;
             cockpit.enable = true;
+            audiobookshelf.enable = true;
         };
     };
 
