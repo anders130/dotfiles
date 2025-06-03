@@ -2,6 +2,13 @@
     port = 9007;
     domain = "tandoor.${config.networking.domain}";
 in {
+    sops.secrets.tandoor = {
+        sopsFile = ./secrets.env;
+        format = "dotenv";
+        owner = config.services.tandoor-recipes.user;
+        inherit (config.services.tandoor-recipes) group;
+    };
+    systemd.services.tandoor-recipes.serviceConfig.EnvironmentFile = config.sops.secrets.tandoor.path;
     services = {
         tandoor-recipes = {
             inherit port;
