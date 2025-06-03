@@ -48,6 +48,7 @@
             tandoor.enable = true;
             cockpit.enable = true;
             audiobookshelf.enable = true;
+            authentik.enable = true;
         };
     };
 

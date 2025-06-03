@@ -42,6 +42,7 @@
             url = "github:catppuccin/qutebrowser";
             flake = false;
         };
+        authentik-nix.url = "github:nix-community/authentik-nix";
 
         # gui
         hyprland = {
