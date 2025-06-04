@@ -43,11 +43,14 @@ in {
             };
         };
         users.users.${username}.extraGroups = ["vaultwarden"];
-        services.caddy.virtualHosts.${domain}.extraConfig = ''
-            encode zstd gzip
-            reverse_proxy ${ROCKET_ADDRESS}:${toString ROCKET_PORT} {
+        services.caddy.virtualHosts.${domain} = lib.mkReverseProxy {
+            port = ROCKET_PORT;
+            extraConfig = ''
+                encode zstd gzip
+            '';
+            headers = ''
                 header_up X-Real-IP {remote_host}
-            }
-        '';
+            '';
+        };
     };
 }

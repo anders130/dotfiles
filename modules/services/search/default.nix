@@ -1,11 +1,14 @@
-{config, ...}: let
+{
+    config,
+    lib,
+    ...
+}: let
     cfg = config.services.searx.settings.server;
     inherit (config.networking) domain;
 in {
     services.searx = {
         enable = true;
         redisCreateLocally = true;
-
         # Rate limiting
         limiterSettings = {
             real_ip = {
@@ -13,13 +16,11 @@ in {
                 ipv4_prefix = 32;
                 ipv6_prefix = 56;
             };
-
             botdetection.ip_limit = {
                 filter_link_local = true;
                 link_token = true;
             };
         };
-
         settings = {
             general = {
                 debug = false;
@@ -29,7 +30,6 @@ in {
                 privacypolicy_url = false;
                 enable_metrics = false;
             };
-
             server = {
                 base_url = "https://search.${domain}";
                 port = 8888;
@@ -40,7 +40,6 @@ in {
                 image_proxy = true;
                 method = "GET";
             };
-
             outgoing = {
                 request_timeout = 5.0;
                 max_request_timeout = 15.0;
@@ -58,9 +57,10 @@ in {
         group = "searx";
     };
 
-    services.caddy.virtualHosts."search.${domain}".extraConfig = ''
-        reverse_proxy http://${cfg.bind_address}:${toString cfg.port} {
+    services.caddy.virtualHosts."search.${domain}" = lib.mkReverseProxy {
+        inherit (cfg) port;
+        headers = ''
             header_down Referer-Policy "strict-origin-when-cross-origin"
-        }
-    '';
+        '';
+    };
 }

@@ -86,7 +86,7 @@
             "aarch64-linux"
             "x86_64-linux"
         ];
-    in {
+    in rec {
         nixosConfigurations = inputs.modulix.lib.mkHosts {
             inherit inputs;
             flakePath = "/home/jesse/.dotfiles";
@@ -97,20 +97,23 @@
                 isThinClient = false;
                 username = "jesse";
             };
-            helpers = inputs.home-manager.lib;
+            helpers = inputs.home-manager.lib // lib;
             sharedConfig = {
                 modules.bundles.shared.enable = true;
             };
         };
-
+        lib = inputs.modulix.inputs.haumea.lib.load {
+            src = ./lib;
+            inputs = {
+                inherit (inputs.nixpkgs) lib;
+            };
+        };
         packages = forAllSystems (system:
             import ./pkgs {
                 inherit system;
                 pkgs = inputs.nixpkgs.legacyPackages.${system};
             });
-
         overlays = import ./overlays inputs;
-
         templates = import ./templates;
     };
 }

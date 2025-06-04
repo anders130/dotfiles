@@ -1,4 +1,8 @@
-{config, ...}: let
+{
+    config,
+    lib,
+    ...
+}: let
     domain = "obsidian.${config.networking.domain}";
     port = 5984;
 in {
@@ -40,7 +44,7 @@ in {
             };
         };
     };
-    services.caddy.virtualHosts.${domain}.extraConfig = ''
-        reverse_proxy :${toString port}
-    '';
+    services.caddy.virtualHosts.${domain} = lib.mkReverseProxy {
+        inherit port;
+    };
 }

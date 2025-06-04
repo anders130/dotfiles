@@ -1,6 +1,7 @@
 {
     config,
     inputs,
+    lib,
     ...
 }: let
     inherit (config.networking) domain;
@@ -26,7 +27,7 @@ in {
             avatars = "initials";
         };
     };
-    services.caddy.virtualHosts."auth.${domain}".extraConfig = ''
-        reverse_proxy :9000
-    '';
+    services.caddy.virtualHosts."auth.${domain}" = lib.mkReverseProxy {
+        port = 9000;
+    };
 }
