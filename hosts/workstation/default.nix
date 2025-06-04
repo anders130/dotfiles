@@ -25,6 +25,7 @@
         };
         hardware = {
             amdgpu.enable = true;
+            bluetooth.enable = true;
             displaylink.enable = true;
         };
     };
@@ -34,10 +35,7 @@
     services = {
         tailscale.enable = true;
         xserver.displayManager.lightdm.enable = false;
-        displayManager = {
-            autoLogin.enable = false;
-            defaultSession = "gnome";
-        };
+        displayManager.autoLogin.enable = false;
         fprintd.enable = true;
     };
 
