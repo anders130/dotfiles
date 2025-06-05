@@ -57,7 +57,7 @@ in {
                     type = types.str;
                 };
         in {
-            browser = mkOpt "firefox" "Default browser to use";
+            browser = mkOpt "zen" "Default browser to use";
             terminal = mkOpt "kitty" "Default terminal to use";
             editor = mkOpt "nvim" "Default editor to use";
             fileManager = mkOpt "nautilus --new-window" "Default file manager to use";

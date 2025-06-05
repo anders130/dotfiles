@@ -30,7 +30,6 @@
                 };
             };
             hyprland.enable = true;
-            defaultPrograms.browser = "zen";
         };
 
         programs = {
