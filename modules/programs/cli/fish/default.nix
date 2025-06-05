@@ -20,6 +20,7 @@ in {
             nix-output-monitor # prettier nix command outputs
             yt-dlp # youtube downloader
             zoxide # better cd
+            fd # better find
         ];
     };
     programs.fish = {
