@@ -9,12 +9,8 @@ set fish_cursor_insert line
 set fish_cursor_replace_one underscore
 
 # ctrl+p to go to previous command
-bind \cp up-or-search
-bind -M insert \cp up-or-search
-
-# ctrl+n to go to next command
-bind \cn down-or-search
-bind -M insert \cn down-or-search
+bind \cp _atuin_bind_up
+bind -M insert \cp _atuin_bind_up
 
 # alias nix commands to nom
 function nix

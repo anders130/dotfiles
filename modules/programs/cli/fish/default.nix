@@ -7,6 +7,7 @@
     inherit (lib) mkSymlink;
 in {
     modules.programs.cli = {
+        atuin.enable = true;
         fastfetch.enable = true;
         starship.enable = true;
         yazi.enable = true;
