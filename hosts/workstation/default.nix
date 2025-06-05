@@ -31,7 +31,18 @@
         };
     };
 
-    hm.xdg.configFile."hypr/override.conf" = lib.mkSymlink ./hyprland.conf;
+    hm.xdg = {
+        configFile."hypr/override.conf" = lib.mkSymlink ./hyprland.conf;
+        desktopEntries.zenForWork = {
+            name = "Zen for Work";
+            genericName = "Web Browser";
+            exec = "zen -p work";
+            icon = "zen";
+            terminal = false;
+            categories = ["Application" "Network" "WebBrowser"];
+            mimeType = ["text/html" "text/xml"];
+        };
+    };
 
     services = {
         tailscale.enable = true;
