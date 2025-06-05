@@ -22,6 +22,7 @@
         programs.gui = {
             nwg-displays.enable = true;
             zen-browser.enable = true;
+            qutebrowser.enable = true;
         };
         hardware = {
             amdgpu.enable = true;
