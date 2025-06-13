@@ -1,4 +1,8 @@
-{lib, ...}: let
+{
+    lib,
+    pkgs,
+    ...
+}: let
     inherit (lib) mkDefault;
 in {
     modules.programs.cli = {
@@ -10,4 +14,7 @@ in {
         tmux.enable = mkDefault true;
         commonTools.enable = mkDefault true;
     };
+    environment.systemPackages = with pkgs; [
+        tokei
+    ];
 }
