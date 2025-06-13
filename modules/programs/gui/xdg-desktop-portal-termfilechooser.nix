@@ -1,5 +1,5 @@
 {pkgs, ...}: let
-    package = pkgs.local.xdg-desktop-portal-termfilechooser;
+    package = pkgs.xdg-desktop-portal-termfilechooser;
 in {
     xdg.portal = {
         config.hyprland."org.freedesktop.impl.portal.FileChooser" = ["termfilechooser"];
