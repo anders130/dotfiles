@@ -14,6 +14,7 @@ in {
             btop.enable = mkDefault true;
             direnv.enable = mkDefault true;
             nh.enable = mkDefault true;
+            nix-index.enable = mkDefault true;
             nix.enable = mkDefault true;
             ssh.enable = mkDefault true;
             nvix.enable = mkDefault true;
