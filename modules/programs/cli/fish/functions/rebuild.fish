@@ -3,6 +3,7 @@ function rebuild -w nixos-rebuild
     set cmd switch
     set args
     set host
+    set rollback 0
 
     # Parse arguments
     set next_is_host 0
@@ -18,6 +19,8 @@ function rebuild -w nixos-rebuild
                 set cmd $arg
             case --host
                 set next_is_host 1
+            case --rollback
+                set rollback 1
             case '*'
                 set args $args $arg
         end
@@ -36,8 +39,11 @@ function rebuild -w nixos-rebuild
         end
         set host $NIX_FLAKE_DEFAULT_HOST
 
-        sudo true # require password to do nothing
-        if test $status -ne 0; return; end # exit if unsuccessful
+        if test $rollback -eq 1
+            echo "Performing rollback: $cmd with host: $host"
+            eval "nh os rollback"
+            return
+        end
 
         echo "Performing local rebuild: $cmd with host: $host"
         eval "nh os $cmd -H $host -- $args"
