@@ -22,7 +22,7 @@
                 # nix stuff
                 n: https://search.nixos.org/packages?query=%s Nixpkgs
                 mn: https://mynixos.com/search?q=%s MyNixOS
-                gh: https://github.com/search?q=%s GitHub
+                gh: https://github.com/search?type=code&q=%s GitHub
                 nh: https://www.nixhub.io/search?q=%s Nixhub.io
                 nw: https://wiki.nixos.org/w/index.php?search=%s wiki.nixos.org
                 ng: https://noogle.dev/q?term=%s noogle
