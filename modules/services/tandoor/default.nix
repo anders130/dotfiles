@@ -5,14 +5,21 @@
 }: let
     port = 9007;
     domain = "tandoor.${config.networking.domain}";
-in {
-    sops.secrets.tandoor = {
-        sopsFile = ./secrets.env;
-        format = "dotenv";
-        owner = config.services.tandoor-recipes.user;
-        inherit (config.services.tandoor-recipes) group;
+    appConfig = {
+        provider_id = "dex";
+        name = "Dex";
+        client_id = dexClient.id;
+        secret = config.sops.placeholder."tandoor/oidc_secret";
+        settings.server_url = "https://dex.${config.networking.domain}/.well-known/openid-configuration";
     };
-    systemd.services.tandoor-recipes.serviceConfig.EnvironmentFile = config.sops.secrets.tandoor.path;
+    dexClient = {
+        id = "tandoor";
+        name = "Tandoor";
+        redirectURIs = ["https://${domain}/accounts/oidc/${appConfig.provider_id}/login/callback/"];
+        secretFile = config.sops.secrets."tandoor/oidc_secret".path;
+        skipApprovalScreen = true;
+    };
+in {
     services.tandoor-recipes = {
         inherit port;
         enable = true;
@@ -21,11 +28,27 @@ in {
             ALLOWED_HOSTS = domain;
             DB_ENGINE = "django.db.backends.sqlite3";
             ENABLE_METRICS = 1;
-            SOCIAL_DEFAULT_GROUP = "user";
             GUNICORN_MEDIA = "1";
+            SOCIAL_DEFAULT_GROUP = "user";
+            SOCIALACCOUNT_AUTO_SIGNUP = true;
+            ACCOUNT_EMAIL_VERIFICATION = "none";
+            SOCIAL_PROVIDERS = "allauth.socialaccount.providers.openid_connect";
         };
     };
     services.caddy.virtualHosts.${domain} = lib.mkReverseProxy {
         inherit port;
     };
+    sops = {
+        secrets."tandoor/oidc_secret".sopsFile = ./secrets.yaml;
+        templates.tandoor-social-providers.content = ''
+            SOCIALACCOUNT_PROVIDERS='${builtins.toJSON {
+                openid_connect = {
+                    OAUTH_PKCE_ENABLED = "True";
+                    APPS = [appConfig];
+                };
+            }}'
+        '';
+    };
+    systemd.services.tandoor-recipes.serviceConfig.EnvironmentFile = config.sops.templates.tandoor-social-providers.path;
+    services.dex.settings.staticClients = [dexClient];
 }
