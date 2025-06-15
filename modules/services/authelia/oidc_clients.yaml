@@ -1,0 +1,10 @@
+identity_providers:
+  oidc:
+    clients:
+      - client_name: "tandoor"
+        client_id: "tandoor"
+        client_secret: ""
+        public: false
+        authorization_policy: "one_factor"
+        redirect_uris:
+          - "https://tandoor.gollub.dev/oauth2/callback"
