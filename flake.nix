@@ -35,6 +35,13 @@
             url = "github:Mic92/sops-nix";
             inputs.nixpkgs.follows = "nixpkgs";
         };
+        lix-module = {
+            url = "https://git.lix.systems/lix-project/nixos-module/archive/2.93.0.tar.gz";
+            inputs = {
+                nixpkgs.follows = "nixpkgs";
+                flake-utils.follows = "flake-utils";
+            };
+        };
 
         ## programs
         nvix = {

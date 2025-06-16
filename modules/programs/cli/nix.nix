@@ -1,10 +1,11 @@
 {
     inputs,
     lib,
-    pkgs,
     username,
     ...
 }: {
+    imports = [inputs.lix-module.nixosModules.default];
+
     options = {
         nix-daemon = {
             enableLimit = lib.mkEnableOption "Enable nix-daemon OOM limits";
@@ -23,8 +24,6 @@
                 options = "--delete-older-than 7d";
             };
 
-            package = pkgs.nixVersions.stable;
-
             registry = {
                 custom.flake = inputs.self;
                 nixpkgs.flake = inputs.nixpkgs;
@@ -38,7 +37,7 @@
                 experimental-features = [
                     "nix-command"
                     "flakes"
-                    "pipe-operators"
+                    "pipe-operator"
                 ];
 
                 trusted-users = [username];
