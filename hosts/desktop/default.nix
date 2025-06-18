@@ -11,6 +11,9 @@
         };
         desktop = {
             enable = true;
+            autostart = [
+                "nextcloud --background"
+            ];
             monitors = {
                 DP-3 = {
                     resolution = "2560x1440";
@@ -34,8 +37,32 @@
 
         programs = {
             cli.nix.nix-daemon.enableLimit = true;
-            gui.zen-browser.enable = true;
-            gui.qutebrowser.enable = true;
+            gui = {
+                zen-browser.enable = true;
+                qutebrowser.enable = true;
+                nextcloud-client = {
+                    enable = true;
+                    startInBackground = true;
+                    instance-url = "https://cloud.gollub.dev";
+                    user = "jesse";
+                    folder-sync = let
+                        basePath = "/home/${username}/Nextcloud";
+                    in {
+                        "/Documents" = {
+                            localPath = "${basePath}/Documents";
+                            ignoreHiddenFiles = false;
+                        };
+                        "/Photos" = {
+                            localPath = "${basePath}/Photos";
+                            ignoreHiddenFiles = false;
+                        };
+                        "/Music" = {
+                            localPath = "${basePath}/Music";
+                            ignoreHiddenFiles = false;
+                        };
+                    };
+                };
+            };
         };
         hardware = {
             amdgpu.enable = true;
@@ -66,13 +93,14 @@
                 ];
             };
         };
-    in builtins.listToAttrs (map (bindMount "/mnt/data") [
-        "Documents"
-        "Downloads"
-        "Music"
-        "Pictures"
-        "Videos"
-    ]);
+    in
+        builtins.listToAttrs (map (bindMount "/mnt/data") [
+            "Documents"
+            "Downloads"
+            "Music"
+            "Pictures"
+            "Videos"
+        ]);
 
     # slows down boot time
     systemd.services.NetworkManager-wait-online.enable = false;
