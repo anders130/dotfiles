@@ -3,17 +3,24 @@
     pkgs,
     username,
     ...
-}: {
+}: let
+    inherit (lib) mkDefault;
+in {
     services.xserver.displayManager.lightdm = {
         greeter.package = pkgs.hyprland;
-        enable = lib.mkDefault true;
+        enable = mkDefault true;
     };
 
     services.displayManager = {
         autoLogin = {
-            enable = lib.mkDefault true;
+            enable = mkDefault true;
             user = username;
         };
-        defaultSession = lib.mkDefault "hyprland";
+        defaultSession = mkDefault "hyprland";
+    };
+
+    security.pam.services = {
+        lightdm.enableGnomeKeyring = mkDefault true;
+        lightdm-autologin.enableGnomeKeyring = mkDefault true;
     };
 }
