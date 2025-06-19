@@ -12,7 +12,7 @@
         desktop = {
             enable = true;
             autostart = [
-                "nextcloud --background"
+                "sleep 2 && zapzap --hideStart"
             ];
             monitors = {
                 DP-3 = {

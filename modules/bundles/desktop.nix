@@ -6,8 +6,8 @@ in {
             enable = mkDefault true;
             autostart = [
                 "sleep 1 && noisetorch -i"
+                "nextcloud --background"
                 "signal-desktop --start-in-tray"
-                "sleep 2 && zapzap --hideStart"
                 "sleep 3 && vesktop --start-minimized"
                 "ssh-add-all-keys"
             ];
