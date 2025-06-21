@@ -13,8 +13,8 @@ in {
         "my-shell"
         "swaync" # notification daemon
         "swayosd-server"
-        "hyprlock" # lockscreen
-        "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1" # polkit
+        "gnome-keyring-daemon --start --components=secrets,pkcs11,ssh"
+        "hyprlock"
         "autostart" # start all programs set in the desktop module
         "${tweaks}/bin/tweaks"
     ];

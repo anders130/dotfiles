@@ -39,6 +39,4 @@ in {
             qt.enable = mkDefault true;
         };
     };
-
-    services.xserver.enable = true;
 }

@@ -9,14 +9,13 @@
         type = lib.types.lines;
         default = "";
     };
-
-    config = cfg: {
+    config = cfg: rec {
         programs.hyprland = {
-            package = pkgs.hyprland;
             enable = true;
+            package = pkgs.hyprland;
+            withUWSM = true;
             xwayland.enable = true;
         };
-
         xdg.portal = {
             enable = true;
             xdgOpenUsePortal = true;
@@ -25,15 +24,11 @@
                 "gtk"
             ];
         };
-
         hm = {
             imports = [inputs.hyprland.homeManagerModules.default];
-
+            stylix.targets.hyprland.enable = false;
             wayland.windowManager.hyprland = {
-                package = pkgs.hyprland;
-                enable = true;
-                xwayland.enable = true;
-
+                inherit (programs.hyprland) enable package xwayland;
                 settings = {
                     general = {
                         layout = "dwindle";
@@ -43,18 +38,9 @@
                     gestures.workspace_swipe = false;
                     ecosystem.no_update_news = true;
                 };
-
-                extraConfig = ''
-                    source = ./visuals/default.conf
-                '' + cfg.extraConfig;
-
-                # tell systemd to import environment by default (fixes screenshare)
-                systemd.variables = ["--all"];
+                extraConfig = "source = ./visuals/default.conf\n" + cfg.extraConfig;
             };
-
             xdg.configFile."hypr/visuals" = lib.mkSymlink ./visuals;
-
-            stylix.targets.hyprland.enable = false;
         };
     };
 }

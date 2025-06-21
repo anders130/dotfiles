@@ -81,8 +81,5 @@ in {
             "audio/*" = "${cfg.defaultPrograms.musicPlayer}.desktop";
             "text/*" = "${cfg.defaultPrograms.editor}.desktop";
         };
-
-        # for secret and session management
-        services.gnome.gnome-keyring.enable = true;
     };
 }
