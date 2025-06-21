@@ -18,7 +18,7 @@ in {
                 xrandr --output ${cfg.mainMonitor} --primary
 
                 # apps
-                ${lib.concatMapStringsSep "\n" (cmd: "uwsm app -- bash -c '${cmd}' &") cfg.autostart}
+                ${lib.concatMapStringsSep "\n" (cmd: "${cmd} &") cfg.autostart}
             '')
         ];
     };

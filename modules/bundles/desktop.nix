@@ -8,11 +8,11 @@ in {
                 afterLogin = cmd: "while pgrep -x hyprlock > /dev/null; do sleep 0.5; done && ${cmd}";
             in [
                 "sleep 1 && noisetorch -i"
-                "signal-desktop --start-in-tray"
-                "sleep 3 && vesktop --start-minimized"
+                "uwsm app -- signal-desktop --start-in-tray"
+                "sleep 3 && uwsm app -- vesktop --start-minimized"
                 "ssh-add-all-keys"
 
-                "${afterLogin "nextcloud --background"}"
+                "uwsm app -- bash -c '${afterLogin "nextcloud --background"}'"
             ];
         };
         programs = {
