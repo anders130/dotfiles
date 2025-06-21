@@ -247,16 +247,17 @@
         ]
       },
       "locked": {
-        "lastModified": 1750521096,
+        "lastModified": 1750534138,
         "narHash": "sha256-15ylXNTmK8H7h5SkAO+luRMN3ZAFWBgTARIFTnt9VFg=",
-        "owner": "anders130",
-        "repo": "clock-mate",
-        "rev": "afe34f6e19f312c7f1bc0367908720d186fcc0f1",
+        "owner": "clock-mate",
+        "repo": "extension",
+        "rev": "588d6d64c596d64e3ecd1634238baf7395ceef9c",
         "type": "github"
       },
       "original": {
-        "owner": "anders130",
-        "repo": "clock-mate",
+        "owner": "clock-mate",
+        "ref": "dev",
+        "repo": "extension",
         "type": "github"
       }
     },

@@ -34,7 +34,7 @@
                     isDefault = false;
                     id = 1;
                     extensions.packages = default.extensions.packages ++ [
-                        inputs.clock-mate.packages.${pkgs.system}.default
+                        pkgs.inputs.clock-mate.default
                     ];
                 };
             };
