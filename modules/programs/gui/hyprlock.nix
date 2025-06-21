@@ -24,6 +24,7 @@ in {
     config = cfg: let
         monitor = cfg.mainMonitor;
     in {
+        security.pam.services.hyprlock.enableGnomeKeyring = true;
         hm.stylix.targets.hyprlock.enable = false;
         hm.programs.hyprlock = {
             enable = true;
