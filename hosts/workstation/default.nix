@@ -26,7 +26,6 @@
             qutebrowser.enable = true;
             nextcloud-client = {
                 enable = true;
-                startInBackground = true;
                 instance-url = "https://cloud.gollub.dev";
                 user = "jesse";
                 folder-sync = {

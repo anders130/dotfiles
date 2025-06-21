@@ -4,12 +4,15 @@ in {
     modules = {
         desktop = {
             enable = mkDefault true;
-            autostart = [
+            autostart = let
+                afterLogin = cmd: "while pgrep -x hyprlock > /dev/null; do sleep 0.5; done && ${cmd}";
+            in [
                 "sleep 1 && noisetorch -i"
-                "nextcloud --background"
                 "signal-desktop --start-in-tray"
                 "sleep 3 && vesktop --start-minimized"
                 "ssh-add-all-keys"
+
+                "${afterLogin "nextcloud --background"}"
             ];
         };
         programs = {
