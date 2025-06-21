@@ -42,6 +42,10 @@
                 flake-utils.follows = "flake-utils";
             };
         };
+        nix-melt = {
+            url = "github:nix-community/nix-melt";
+            inputs.nixpkgs.follows = "nixpkgs";
+        };
 
         ## programs
         nvix = {
