@@ -10,7 +10,6 @@
         libreoffice
         godot_4
         varia # download manager
-        zapzap # whatsapp messenger
 
         pavucontrol # sound control
 
