@@ -46,20 +46,15 @@
                     instance-url = "https://cloud.gollub.dev";
                     user = "jesse";
                     folder-sync = let
-                        basePath = "/home/${username}/Nextcloud";
+                        mkFolder = f: {
+                            localPath = "/home/${username}/Nextcloud/${f}";
+                            ignoreHiddenFiles = false;
+                        };
                     in {
-                        "/Documents" = {
-                            localPath = "${basePath}/Documents";
-                            ignoreHiddenFiles = false;
-                        };
-                        "/Photos" = {
-                            localPath = "${basePath}/Photos";
-                            ignoreHiddenFiles = false;
-                        };
-                        "/Music" = {
-                            localPath = "${basePath}/Music";
-                            ignoreHiddenFiles = false;
-                        };
+                        "/Documents" = mkFolder "Documents";
+                        "/Photos" = mkFolder "Photos";
+                        "/Music" = mkFolder "Music";
+                        "/Videos" = mkFolder "Videos";
                     };
                 };
             };
