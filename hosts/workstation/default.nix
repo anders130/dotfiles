@@ -66,6 +66,7 @@
     services = {
         tailscale.enable = true;
         fprintd.enable = true;
+        upower.enable = true;
     };
 
     boot = {
