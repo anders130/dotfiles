@@ -12,7 +12,6 @@
         desktop = {
             enable = true;
             mainMonitor = "eDP-1";
-            gnome.enable = true;
             hyprland = {
                 enable = true;
                 extraConfig = ''
@@ -33,7 +32,7 @@
                         localPath = "/home/${username}/Nextcloud";
                         ignoreHiddenFiles = false;
                     };
-                    "/Pictures/Wallpapers" = {
+                    "/Photos/Wallpapers" = {
                         localPath = "/home/${username}/Pictures/Wallpapers";
                         ignoreHiddenFiles = false;
                     };
@@ -41,7 +40,6 @@
             };
         };
         hardware = {
-            amdgpu.enable = true;
             bluetooth.enable = true;
             displaylink.enable = true;
         };
@@ -62,17 +60,13 @@
 
     services = {
         tailscale.enable = true;
-        xserver.displayManager.lightdm.enable = false;
-        displayManager.autoLogin.enable = false;
         fprintd.enable = true;
     };
 
     boot = {
         bootspec.enable = true;
-
         initrd.systemd.enable = true;
         loader.systemd-boot.enable = lib.mkForce false;
-
         lanzaboote = {
             enable = true;
             pkiBundle = "/etc/secureboot";
@@ -86,11 +80,8 @@
     };
 
     environment.systemPackages = with pkgs; [
-        easyroam-connect-desktop
         logisim-evolution
     ];
-
-    programs.nix-ld.enable = true;
 
     system.stateVersion = "24.05";
     hm.home.stateVersion = "24.05";
