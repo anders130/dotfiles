@@ -30,7 +30,6 @@ in {
             plymouth.enable = mkDefault true;
         };
         hardware = {
-            kanata.enable = mkDefault true;
             printing.enable = mkDefault true;
             sound.enable = mkDefault true;
         };

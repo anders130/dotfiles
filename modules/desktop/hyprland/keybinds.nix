@@ -1,10 +1,10 @@
 {config, ...}: {
     hm.wayland.windowManager.hyprland.settings = {
-        input = {
-            kb_layout = config.modules.utils.keyboard.layout;
-            kb_variant = config.modules.utils.keyboard.variant;
+        input = with config.modules.utils.keyboard; {
+            kb_layout = layout;
+            kb_variant = variant;
             kb_model = "";
-            kb_options = "";
+            kb_options = options;
             kb_rules = "";
 
             numlock_by_default = true;

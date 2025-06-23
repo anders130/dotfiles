@@ -1,14 +1,21 @@
-{lib, ...}: {
+{lib, ...}: let
+    inherit (lib) mkOption types;
+in {
     options = {
-        layout = lib.mkOption {
-            type = lib.types.str;
+        layout = mkOption {
+            type = types.str;
             default = "us";
             description = "Keyboard layout";
         };
-        variant = lib.mkOption {
-            type = lib.types.str;
+        variant = mkOption {
+            type = types.str;
             default = "de_se_fi";
             description = "Keyboard variant";
+        };
+        options = mkOption {
+            type = types.str;
+            default = "caps:escape";
+            description = "Keyboard options";
         };
     };
 
@@ -16,7 +23,7 @@
         console.keyMap = cfg.layout;
 
         services.xserver.xkb = {
-            inherit (cfg) layout variant;
+            inherit (cfg) layout variant options;
         };
     };
 }
