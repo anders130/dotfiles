@@ -2,6 +2,11 @@
     inherit (lib) mkOption mkDefault types literalExpression;
 in {
     options = {
+        startInBackground = mkOption {
+            type = types.bool;
+            description = "Whether to start the Nextcloud client in the background. Uses the ~/.config/autostart directory.";
+            default = false;
+        };
         instance-url = mkOption {
             type = types.strMatching "^http.*";
             example = "https://nextcloud.example.com";
