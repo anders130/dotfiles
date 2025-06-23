@@ -3,8 +3,8 @@
     boot = {
         plymouth = {
             enable = true;
-            theme = "proxzima";
-            themePackages = [pkgs.plymouth-proxzima-theme];
+            theme = "flame";
+            themePackages = [(pkgs.adi1090x-plymouth-themes.override {selected_themes = ["flame"];})];
         };
         # Enable "Silent boot"
         consoleLogLevel = 3;
