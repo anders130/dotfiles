@@ -33,6 +33,7 @@ in {
                         position = mkOption {
                             type = types.str;
                             description = "Position of the monitor";
+                            default = "0x0";
                         };
                         scale = mkOption {
                             type = types.float;

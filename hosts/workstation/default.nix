@@ -11,7 +11,11 @@
         };
         desktop = {
             enable = true;
-            mainMonitor = "eDP-1";
+            monitors.eDP-1 = {
+                isMain = true;
+                resolution = "1920x1200";
+                refreshRate = 60;
+            };
             hyprland = {
                 enable = true;
                 extraConfig = ''
@@ -40,6 +44,7 @@
             };
         };
         hardware = {
+            amdgpu.enable = true;
             bluetooth.enable = true;
             displaylink.enable = true;
         };
