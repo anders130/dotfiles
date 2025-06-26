@@ -17,7 +17,7 @@
             tmodloader = {
                 enable = true;
                 dataDir = "/mnt/rackflix/appdata/tModLoader";
-                tmodloaderVersion = "v2025.02.3.0";
+                tmodloaderVersion = "v2025.04.3.0";
                 motd = "NixOS Terraria Server";
                 shutdownMessage = "Server is shutting down!";
                 mods.enabled = [
@@ -30,7 +30,6 @@
                     2802867430 # Fargo's Best of Both Worlds
                     2908170107 # absoluteAquarian Utilities
                     2563309347 # Magic Storage
-                    2822990384 # Overlord Vanities
                     2982195397 # Pets Overhaul
                     2820025575 # Pylons Prevent Evils
                     2619954303 # Recipe Browser
