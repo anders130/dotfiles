@@ -41,6 +41,7 @@
             "SUPER, return, exec, ${defaultPrograms.terminal}"
             "SUPER, E, exec, ${defaultPrograms.fileManager}"
             "SUPER, B, exec, ${defaultPrograms.browser}"
+            "SUPER, Q, exec, qutebrowser"
             "SUPER, Space, exec, pgrep rofi && pkill rofi || rofi -show drun -show-icons -matching fuzzy -sort -sorting-method fzf" # app launcher
             "SUPER, BACKSPACE, exec, hyprlock" # lock screen
             "SUPER SHIFT, S, exec, grimblast --freeze copy area" # select area to copy
