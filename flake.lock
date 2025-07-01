@@ -1107,11 +1107,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1751283520,
-        "narHash": "sha256-ymMYnihJcDfnbKyRbD68/UKdt3JRWrD6YMl5Fd173+k=",
+        "lastModified": 1751353259,
+        "narHash": "sha256-B8mpiVZc6Iv6pbqjCWdVYxqvNJzYNZ5p4CrLzVQitLk=",
         "owner": "anders130",
         "repo": "my-shell",
-        "rev": "8ed088090dc82b6057e37f86377be2acbd70da75",
+        "rev": "4abc893b0210d2ad16849a509b445b1d48811a33",
         "type": "github"
       },
       "original": {
