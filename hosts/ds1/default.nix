@@ -17,7 +17,7 @@
             tmodloader = {
                 enable = true;
                 dataDir = "/mnt/rackflix/appdata/tModLoader";
-                tmodloaderVersion = "v2025.04.3.0";
+                tmodloaderVersion = "v2025.05.3.0";
                 motd = "NixOS Terraria Server";
                 shutdownMessage = "Server is shutting down!";
                 mods.enabled = [
