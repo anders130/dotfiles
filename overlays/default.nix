@@ -1,5 +1,5 @@
 {inputs, ...}: let
-    inherit (inputs.modulix.inputs.haumea.lib) load loaders;
+    inherit (inputs.haumea.lib) load;
     inherit (inputs.nixpkgs.lib) composeManyExtensions;
     inherit (builtins) attrValues removeAttrs;
 

@@ -184,7 +184,7 @@
                 ./templates
             ];
             flake = {
-                lib = inputs.modulix.inputs.haumea.lib.load {
+                lib = inputs.haumea.lib.load {
                     src = ./lib;
                     inputs = {
                         inherit (inputs.nixpkgs) lib;
