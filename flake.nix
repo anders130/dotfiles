@@ -20,6 +20,8 @@
             url = "github:anders130/modulix";
             inputs.nixpkgs.follows = "nixpkgs";
         };
+        flake-parts.url = "github:hercules-ci/flake-parts";
+        systems.url = "github:nix-systems/default-linux";
         stylix = {
             url = "github:danth/stylix/release-25.05";
             inputs = {
@@ -159,48 +161,45 @@
     };
     # deduplicate inputs
     inputs = {
-        systems.url = "github:nix-systems/default-linux";
         flake-utils = {
             url = "github:numtide/flake-utils";
             inputs.systems.follows = "systems";
         };
-        flake-parts.url = "github:hercules-ci/flake-parts";
         flake-compat.url = "github:edolstra/flake-compat";
     };
 
-    outputs = inputs: let
-        forAllSystems = inputs.nixpkgs.lib.genAttrs [
-            "aarch64-linux"
-            "x86_64-linux"
-        ];
-    in rec {
-        nixosConfigurations = inputs.modulix.lib.mkHosts {
-            inherit inputs;
-            flakePath = "/home/jesse/.dotfiles";
-            modulesPath = ./modules;
-            specialArgs = {
-                hashedPassword = null;
-                hostname = "nixos";
-                isThinClient = false;
-                username = "jesse";
+    outputs = inputs:
+        inputs.flake-parts.lib.mkFlake {inherit inputs;} {
+            systems = import inputs.systems;
+            flake = {
+                lib = inputs.modulix.inputs.haumea.lib.load {
+                    src = ./lib;
+                    inputs = {
+                        inherit (inputs.nixpkgs) lib;
+                    };
+                };
+                nixosConfigurations = inputs.modulix.lib.mkHosts {
+                    inherit inputs;
+                    flakePath = "/home/jesse/.dotfiles";
+                    modulesPath = ./modules;
+                    specialArgs = {
+                        hashedPassword = null;
+                        hostname = "nixos";
+                        isThinClient = false;
+                        username = "jesse";
+                    };
+                    helpers = inputs.home-manager.lib // inputs.self.lib;
+                    sharedConfig = {
+                        modules.bundles.shared.enable = true;
+                    };
+                };
+                overlays = import ./overlays inputs;
+                templates = import ./templates;
             };
-            helpers = inputs.home-manager.lib // lib;
-            sharedConfig = {
-                modules.bundles.shared.enable = true;
+            perSystem = {pkgs, ...}: {
+                packages = import ./pkgs {
+                    inherit pkgs;
+                };
             };
         };
-        lib = inputs.modulix.inputs.haumea.lib.load {
-            src = ./lib;
-            inputs = {
-                inherit (inputs.nixpkgs) lib;
-            };
-        };
-        packages = forAllSystems (system:
-            import ./pkgs {
-                inherit system;
-                pkgs = inputs.nixpkgs.legacyPackages.${system};
-            });
-        overlays = import ./overlays inputs;
-        templates = import ./templates;
-    };
 }
