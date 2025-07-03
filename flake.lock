@@ -620,7 +620,6 @@
     "haumea": {
       "inputs": {
         "nixpkgs": [
-          "modulix",
           "nixpkgs"
         ]
       },
@@ -1080,7 +1079,9 @@
     },
     "modulix": {
       "inputs": {
-        "haumea": "haumea",
+        "haumea": [
+          "haumea"
+        ],
         "nixpkgs": [
           "nixpkgs"
         ]
@@ -1637,6 +1638,7 @@
         "flake-compat": "flake-compat",
         "flake-parts": "flake-parts",
         "flake-utils": "flake-utils",
+        "haumea": "haumea",
         "home-manager": "home-manager",
         "hyprland": "hyprland",
         "lanzaboote": "lanzaboote",

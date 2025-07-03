@@ -16,9 +16,16 @@
             url = "github:nix-community/home-manager?ref=release-25.05";
             inputs.nixpkgs.follows = "nixpkgs";
         };
+        haumea = {
+            url = "github:nix-community/haumea/v0.2.2";
+            inputs.nixpkgs.follows = "nixpkgs";
+        };
         modulix = {
             url = "github:anders130/modulix";
-            inputs.nixpkgs.follows = "nixpkgs";
+            inputs = {
+                haumea.follows = "haumea";
+                nixpkgs.follows = "nixpkgs";
+            };
         };
         flake-parts.url = "github:hercules-ci/flake-parts";
         systems.url = "github:nix-systems/default-linux";
@@ -171,6 +178,11 @@
     outputs = inputs:
         inputs.flake-parts.lib.mkFlake {inherit inputs;} {
             systems = import inputs.systems;
+            imports = [
+                ./overlays
+                ./pkgs
+                ./templates
+            ];
             flake = {
                 lib = inputs.modulix.inputs.haumea.lib.load {
                     src = ./lib;
@@ -192,13 +204,6 @@
                     sharedConfig = {
                         modules.bundles.shared.enable = true;
                     };
-                };
-                overlays = import ./overlays inputs;
-                templates = import ./templates;
-            };
-            perSystem = {pkgs, ...}: {
-                packages = import ./pkgs {
-                    inherit pkgs;
                 };
             };
         };

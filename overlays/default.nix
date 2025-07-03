@@ -1,15 +1,18 @@
-inputs: let
+{inputs, ...}: let
+    inherit (inputs.modulix.inputs.haumea.lib) load loaders;
     inherit (inputs.nixpkgs.lib) composeManyExtensions;
-    inherit (builtins) attrNames readDir filter;
-    overlays = ./.
-        |> readDir
-        |> attrNames
-        |> filter (n: n != "default.nix")
-        |> map (n: import "${./.}/${n}" inputs);
+    inherit (builtins) attrValues removeAttrs;
+
+    myOverlays = load {
+        src = ./.;
+        loader = _: path: import path inputs;
+        transformer = _: mod: removeAttrs mod ["default"];
+    };
 in {
-    default = composeManyExtensions (overlays ++ [
-        inputs.nix-minecraft.overlay
-        inputs.nur.overlays.default
-        inputs.zenix.overlays.default
-    ]);
+    flake.overlays.default = composeManyExtensions ((attrValues myOverlays)
+    ++ (with inputs; [
+        nix-minecraft.overlay
+        nur.overlays.default
+        zenix.overlays.default
+    ]));
 }
