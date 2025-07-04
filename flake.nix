@@ -179,6 +179,7 @@
         inputs.flake-parts.lib.mkFlake {inherit inputs;} {
             systems = import inputs.systems;
             imports = [
+                ./modules2
                 ./overlays
                 ./pkgs
                 ./templates
@@ -190,20 +191,61 @@
                         inherit (inputs.nixpkgs) lib;
                     };
                 };
-                nixosConfigurations = inputs.modulix.lib.mkHosts {
-                    inherit inputs;
-                    flakePath = "/home/jesse/.dotfiles";
-                    modulesPath = ./modules;
-                    specialArgs = {
-                        hashedPassword = null;
-                        hostname = "nixos";
-                        isThinClient = false;
-                        username = "jesse";
-                    };
-                    helpers = inputs.home-manager.lib // inputs.self.lib;
-                    sharedConfig = {
-                        modules.bundles.shared.enable = true;
-                    };
+                # nixosConfigurations = inputs.modulix.lib.mkHosts {
+                #     inherit inputs;
+                #     flakePath = "/home/jesse/.dotfiles";
+                #     modulesPath = ./modules;
+                #     specialArgs = {
+                #         hashedPassword = null;
+                #         hostname = "nixos";
+                #         isThinClient = false;
+                #         username = "jesse";
+                #     };
+                #     helpers = inputs.home-manager.lib // inputs.self.lib;
+                #     sharedConfig = {
+                #         modules.bundles.shared.enable = true;
+                #     };
+                # };
+                nixosConfigurations.test = inputs.nixpkgs.lib.nixosSystem {
+                    system = "x86_64-linux";
+                    modules = [
+                        ./hosts/desktop/hardware-configuration.nix
+                        ./hosts/desktop/disk-config.nix
+                        inputs.disko.nixosModules.disko
+                        inputs.self.nixosModules.default
+                        inputs.home-manager.nixosModules.home-manager
+                        inputs.stylix.nixosModules.stylix
+                        ({pkgs, ...}: {
+                            boot.loader.systemd-boot.enable = true;
+                            users.users.jesse.isNormalUser = true;
+                            home-manager.users.jesse = {
+                                home.username = "jesse";
+                                home.stateVersion = "25.05";
+                                imports = [
+                                    inputs.self.homeModules.default
+                                ];
+                            };
+                            stylix = {
+                                enable = true;
+                                base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-macchiato.yaml";
+                                polarity = "dark";
+                                cursor = {
+                                    name = "catppuccin-macchiato-dark-cursors";
+                                    package = pkgs.catppuccin-cursors.macchiatoDark;
+                                    size = 24;
+                                };
+                                fonts = {
+                                    monospace = {
+                                        package = pkgs.nerd-fonts.caskaydia-cove;
+                                        name = "CaskaydiaCove NF"; # important, because the mono version has tiny symbols
+                                    };
+                                    sizes.terminal = 14;
+                                };
+
+                                targets.console.enable = false; # deactivate tty styling
+                            };
+                        })
+                    ];
                 };
             };
         };
