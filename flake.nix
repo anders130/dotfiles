@@ -209,42 +209,27 @@
                 nixosConfigurations.test = inputs.nixpkgs.lib.nixosSystem {
                     system = "x86_64-linux";
                     modules = [
-                        ./hosts/desktop/hardware-configuration.nix
-                        ./hosts/desktop/disk-config.nix
+                        # inputs
                         inputs.disko.nixosModules.disko
-                        inputs.self.nixosModules.default
                         inputs.home-manager.nixosModules.home-manager
                         inputs.stylix.nixosModules.stylix
-                        ({pkgs, ...}: {
+                        # host specific
+                        ./hosts/desktop/hardware-configuration.nix
+                        ./hosts/desktop/disk-config.nix
+                        # modules
+                        inputs.self.nixosModules.default
+                        inputs.self.nixosModules.hyprland
+                        {
                             boot.loader.systemd-boot.enable = true;
                             users.users.jesse.isNormalUser = true;
                             home-manager.users.jesse = {
                                 home.username = "jesse";
                                 home.stateVersion = "25.05";
                                 imports = [
-                                    inputs.self.homeModules.default
+                                    inputs.self.homeModules.hyprland
                                 ];
                             };
-                            stylix = {
-                                enable = true;
-                                base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-macchiato.yaml";
-                                polarity = "dark";
-                                cursor = {
-                                    name = "catppuccin-macchiato-dark-cursors";
-                                    package = pkgs.catppuccin-cursors.macchiatoDark;
-                                    size = 24;
-                                };
-                                fonts = {
-                                    monospace = {
-                                        package = pkgs.nerd-fonts.caskaydia-cove;
-                                        name = "CaskaydiaCove NF"; # important, because the mono version has tiny symbols
-                                    };
-                                    sizes.terminal = 14;
-                                };
-
-                                targets.console.enable = false; # deactivate tty styling
-                            };
-                        })
+                        }
                     ];
                 };
             };
