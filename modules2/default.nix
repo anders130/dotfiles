@@ -8,7 +8,7 @@
             load {
                 src = p + "/${n}";
                 transformer = transformers.liftDefault;
-                inputs = args // {inherit pkgs;};
+                inputs = args // {inherit inputs pkgs;};
             });
 in {
     flake = {

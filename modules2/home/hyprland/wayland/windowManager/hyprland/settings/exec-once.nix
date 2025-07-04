@@ -1,7 +1,6 @@
 {
     nixosConfig,
     pkgs,
-    ...
 }: let
     tweaks = pkgs.writeShellScriptBin "tweaks" ''
         hyprctl dispatch movefocus r

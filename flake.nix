@@ -208,6 +208,7 @@
                 # };
                 nixosConfigurations.test = inputs.nixpkgs.lib.nixosSystem {
                     system = "x86_64-linux";
+                    specialArgs.username = "jesse";
                     modules = [
                         # inputs
                         inputs.disko.nixosModules.disko
@@ -219,17 +220,17 @@
                         # modules
                         inputs.self.nixosModules.default
                         inputs.self.nixosModules.hyprland
-                        {
+                        ({username, ...}: {
                             boot.loader.systemd-boot.enable = true;
-                            users.users.jesse.isNormalUser = true;
-                            home-manager.users.jesse = {
+                            users.users.${username}.isNormalUser = true;
+                            home-manager.users.${username} = {
                                 home.username = "jesse";
                                 home.stateVersion = "25.05";
                                 imports = [
                                     inputs.self.homeModules.hyprland
                                 ];
                             };
-                        }
+                        })
                     ];
                 };
             };
