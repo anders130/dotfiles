@@ -2,7 +2,9 @@
     nixosConfig,
     pkgs,
 }: {
-    inherit (nixosConfig.programs.hyprland) enable package xwayland;
+    inherit (nixosConfig.programs.hyprland) enable package;
+    xwayland.enable = true;
+
     plugins = [(pkgs.inputs.split-monitor-workspaces.default)];
     extraConfig =
         #hyprlang
