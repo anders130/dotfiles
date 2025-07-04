@@ -211,12 +211,11 @@
                     specialArgs = {
                         username = "jesse";
                         hashedPassword = null;
+                        hostName = "nixos";
                     };
                     modules = [
                         # inputs
                         inputs.disko.nixosModules.disko
-                        inputs.home-manager.nixosModules.home-manager
-                        inputs.stylix.nixosModules.stylix
                         # host specific
                         ./hosts/desktop/hardware-configuration.nix
                         ./hosts/desktop/disk-config.nix
