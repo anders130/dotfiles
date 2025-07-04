@@ -208,7 +208,10 @@
                 # };
                 nixosConfigurations.test = inputs.nixpkgs.lib.nixosSystem {
                     system = "x86_64-linux";
-                    specialArgs.username = "jesse";
+                    specialArgs = {
+                        username = "jesse";
+                        hashedPassword = null;
+                    };
                     modules = [
                         # inputs
                         inputs.disko.nixosModules.disko
@@ -222,7 +225,6 @@
                         inputs.self.nixosModules.hyprland
                         ({username, ...}: {
                             boot.loader.systemd-boot.enable = true;
-                            users.users.${username}.isNormalUser = true;
                             home-manager.users.${username} = {
                                 home.username = "jesse";
                                 home.stateVersion = "25.05";
