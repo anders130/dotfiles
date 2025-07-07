@@ -14,9 +14,14 @@ in {
         tmux.enable = mkDefault true;
         commonTools.enable = mkDefault true;
     };
-    environment.systemPackages = with pkgs; [
-        tokei
-        inputs.nix-melt.default
-        gemini-cli
-    ];
+    environment = {
+        systemPackages = with pkgs; [
+            tokei
+            inputs.nix-melt.default
+            unstable.gemini-cli
+        ];
+        shellAliases = {
+            ask = "gemini";
+        };
+    };
 }
