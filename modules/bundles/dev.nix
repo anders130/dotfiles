@@ -17,5 +17,6 @@ in {
     environment.systemPackages = with pkgs; [
         tokei
         inputs.nix-melt.default
+        gemini-cli
     ];
 }
