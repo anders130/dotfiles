@@ -30,10 +30,7 @@ in {
         firefly-iii-data-importer = {
             enable = true;
             virtualHost = firefly-importer-domain;
-            settings = {
-                FIREFLY_III_URL = "https://${firefly-domain}";
-                FIREFLY_III_CLIENT_ID = 2;
-            };
+            settings.FIREFLY_III_URL = "https://${firefly-domain}";
             inherit (config.services.caddy) user group;
         };
         caddy.virtualHosts = {
