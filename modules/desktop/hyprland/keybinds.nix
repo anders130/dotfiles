@@ -48,6 +48,7 @@
             "SUPER, T, exec, switch-shaders" # switch screen-shader
             "SUPER, N, exec, swaync-client -t -sw"
             "SUPER ALT, W, exec, wallpaper-selector ~/Pictures/Wallpapers ~/.config/rofi/wallpaper-selector.rasi" # wallpaper selector
+            "SUPER ALT, C, exec, hyprpicker" # color picker
             # mute/unmute
             " , code:121, exec, swayosd-client --output-volume mute-toggle"
             # workspaces
