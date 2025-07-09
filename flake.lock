@@ -2159,15 +2159,16 @@
         "zen-browser": "zen-browser"
       },
       "locked": {
-        "lastModified": 1749905428,
-        "narHash": "sha256-fHxsj2PNUpD6PH2albTo+be6P2zYfDhsoJIvzMBbozg=",
+        "lastModified": 1752066474,
+        "narHash": "sha256-ydSWUfTypX1+FhHMyIbseMqW0jsmKhBuKgIhh1ilRdw=",
         "owner": "anders130",
         "repo": "zenix",
-        "rev": "d5789dad944453333705755a2cdd87c66d2404c7",
+        "rev": "7075995248f3ce888fcf4326b110d4359cc60851",
         "type": "github"
       },
       "original": {
         "owner": "anders130",
+        "ref": "v1.14.2b",
         "repo": "zenix",
         "type": "github"
       }
