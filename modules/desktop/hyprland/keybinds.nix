@@ -45,9 +45,9 @@
             "SUPER, Space, exec, pgrep rofi && pkill rofi || rofi -show drun -show-icons -matching fuzzy -sort -sorting-method fzf" # app launcher
             "SUPER, BACKSPACE, exec, hyprlock" # lock screen
             "SUPER SHIFT, S, exec, grimblast --freeze copy area" # select area to copy
-            "SUPER, T, exec, switch-shaders" # switch screen-shader
             "SUPER, N, exec, swaync-client -t -sw"
             "SUPER ALT, W, exec, wallpaper-selector ~/Pictures/Wallpapers ~/.config/rofi/wallpaper-selector.rasi" # wallpaper selector
+            "SUPER ALT, S, exec, shader-selector" # shader selector
             "SUPER ALT, C, exec, hyprpicker" # color picker
             # mute/unmute
             " , code:121, exec, swayosd-client --output-volume mute-toggle"

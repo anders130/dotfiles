@@ -21,6 +21,7 @@
         grim # whole screen screenshot
         grimblast # region screenshot
         pkgs.local.wallpaper-selector # custom wallpaper selector using rofi and swww
+        pkgs.local.shader-selector # custom shader selector using rofi and hyprland
         pkgs.inputs.my-shell.default
         hyprpicker # color picker
     ];

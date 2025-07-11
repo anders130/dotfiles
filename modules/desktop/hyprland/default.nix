@@ -41,7 +41,10 @@
                 };
                 extraConfig = "source = ./visuals/default.conf\n" + cfg.extraConfig;
             };
-            xdg.configFile."hypr/visuals" = lib.mkSymlink ./visuals;
+            xdg.configFile = {
+                "hypr/visuals" = lib.mkSymlink ./visuals;
+                "hypr/shaders" = lib.mkSymlink ./shaders;
+            };
         };
     };
 }
