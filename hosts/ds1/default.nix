@@ -49,6 +49,7 @@
             audiobookshelf.enable = true;
             authentik.enable = true;
             firefly-iii.enable = true;
+            jellyseerr.enable = true;
         };
     };
 
