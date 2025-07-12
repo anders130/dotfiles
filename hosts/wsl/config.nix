@@ -1,5 +1,5 @@
 inputs: {
-    hostname = "nixos-wsl";
+    hostName = "nixos-wsl";
     username = "jesse";
     modules = [
         inputs.nixos-wsl.nixosModules.wsl

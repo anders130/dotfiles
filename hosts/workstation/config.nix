@@ -1,5 +1,5 @@
 inputs: {
-    hostname = "nix-workstation";
+    hostName = "nix-workstation";
     username = "jesse";
     modules = [
         inputs.disko.nixosModules.disko

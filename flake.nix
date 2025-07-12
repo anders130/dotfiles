@@ -196,7 +196,7 @@
                     modulesPath = ./modules;
                     specialArgs = {
                         hashedPassword = null;
-                        hostname = "nixos";
+                        hostName = "nixos";
                         isThinClient = false;
                         username = "jesse";
                     };
