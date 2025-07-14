@@ -52,6 +52,10 @@
                     passKeys = "";
                     pattern = "https?://zty.pe/*";
                 }
+                {
+                    passKeys = "";
+                    pattern = "https?://windows11.qemu.ds1/*";
+                }
             ];
         };
     };
