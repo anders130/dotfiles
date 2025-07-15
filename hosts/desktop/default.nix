@@ -57,6 +57,7 @@
                         "/Videos" = mkFolder "Videos";
                     };
                 };
+                anki.enable = true;
             };
         };
         hardware = {
