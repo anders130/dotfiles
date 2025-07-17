@@ -1,7 +1,6 @@
 {
     inputs,
     lib,
-    pkgs,
     ...
 }: {
     options.extraConfig = lib.mkOption {
@@ -12,7 +11,6 @@
     config = cfg: rec {
         programs.hyprland = {
             enable = true;
-            package = pkgs.hyprland;
             withUWSM = true;
             xwayland.enable = true;
         };
@@ -29,7 +27,7 @@
             imports = [inputs.hyprland.homeManagerModules.default];
             stylix.targets.hyprland.enable = false;
             wayland.windowManager.hyprland = {
-                inherit (programs.hyprland) enable package xwayland;
+                inherit (programs.hyprland) enable xwayland;
                 settings = {
                     general = {
                         layout = "dwindle";
