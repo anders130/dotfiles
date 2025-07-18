@@ -30,14 +30,21 @@
                     settings."widget.use-xdg-desktop-portal.file-picker" = 1;
                     userChrome = lib.mkSymlink ./userChrome.css;
                 };
-                work = default // {
-                    isDefault = false;
-                    id = 1;
-                    extensions.packages = default.extensions.packages ++ [
-                        pkgs.inputs.clock-mate.default
-                    ];
-                };
+                work =
+                    default
+                    // {
+                        isDefault = false;
+                        id = 1;
+                        extensions.packages =
+                            default.extensions.packages
+                            ++ [
+                                pkgs.inputs.clock-mate.default
+                            ];
+                    };
             };
         };
+        wayland.windowManager.hyprland.settings.windowrule = [
+            "noscreenshare, title:^(Extension: \\(Bitwarden Password Manager\\) - Bitwarden — Zen Browser)$"
+        ];
     };
 }

@@ -2,9 +2,10 @@
     lib,
     pkgs,
     ...
-}: {
+}: let
+    inherit (lib) mkDefault;
+in {
     environment.systemPackages = with pkgs; [
-        bitwarden-desktop
         obsidian
         insomnia # postman-alternative
         libreoffice
@@ -32,11 +33,12 @@
 
     environment.shellAliases.decibels = "org.gnome.Decibels";
 
-    services.xserver.excludePackages = [
-        pkgs.xterm
-    ];
+    services.xserver.excludePackages = [pkgs.xterm];
 
-    programs.noisetorch.enable = lib.mkDefault true;
+    programs.noisetorch.enable = mkDefault true;
 
-    modules.programs.gui.signal-desktop.enable = lib.mkDefault true;
+    modules.programs.gui = {
+        bitwarden.enable = mkDefault true;
+        signal-desktop.enable = mkDefault true;
+    };
 }
