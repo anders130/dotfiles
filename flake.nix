@@ -119,6 +119,7 @@
                 systems.follows = "systems";
             };
         };
+        nixpkgs-vesktop-pnpm-9.url = "github:NixOS/nixpkgs/c88d1114ed1344d10e21597a8f15d656fda6663a";
 
         # gui
         hyprland = {

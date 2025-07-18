@@ -1311,6 +1311,22 @@
         "type": "indirect"
       }
     },
+    "nixpkgs-vesktop-pnpm-9": {
+      "locked": {
+        "lastModified": 1744669922,
+        "narHash": "sha256-S3GYo8qDoYQmlp7gHBTGqKQuekzEnZqSPAMJR5vqFeY=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "c88d1114ed1344d10e21597a8f15d656fda6663a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "c88d1114ed1344d10e21597a8f15d656fda6663a",
+        "type": "github"
+      }
+    },
     "nixpkgs_2": {
       "locked": {
         "lastModified": 1752620740,
@@ -1606,6 +1622,7 @@
         "nixos-wsl": "nixos-wsl",
         "nixpkgs": "nixpkgs_2",
         "nixpkgs-unstable": "nixpkgs-unstable",
+        "nixpkgs-vesktop-pnpm-9": "nixpkgs-vesktop-pnpm-9",
         "nur": "nur",
         "nvix": "nvix",
         "raspberry-pi-nix": "raspberry-pi-nix",
