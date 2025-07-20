@@ -1,4 +1,4 @@
-inputs: final: prev: {
+inputs: final: prev: rec {
     unstable = import inputs.nixpkgs-unstable {
         inherit (prev) system;
         config = {
@@ -7,4 +7,9 @@ inputs: final: prev: {
             permittedInsecurePackages = [];
         };
     };
+    # permanent unstable packages
+    inherit
+        (unstable)
+        gemini-cli
+        ;
 }

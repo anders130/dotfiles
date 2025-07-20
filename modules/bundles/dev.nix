@@ -18,7 +18,7 @@ in {
         systemPackages = with pkgs; [
             tokei
             inputs.nix-melt.default
-            unstable.gemini-cli
+            gemini-cli
         ];
         shellAliases = {
             ask = "gemini";
