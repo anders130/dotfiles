@@ -11,5 +11,6 @@ inputs: final: prev: rec {
     inherit
         (unstable)
         gemini-cli
+        hyprlock
         ;
 }
