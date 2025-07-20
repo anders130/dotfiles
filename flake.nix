@@ -80,7 +80,7 @@
             };
         };
         nixcord = {
-            url = "github:kaylorben/nixcord";
+            url = "github:kaylorben/nixcord?rev=0e0a11de2a3df4356b5f84e81821db507e409ca9";
             inputs = {
                 nixpkgs.follows = "nixpkgs";
                 flake-parts.follows = "flake-parts";
