@@ -5,23 +5,27 @@
     ...
 }: let
     folder = "/mnt/rackflix/appdata/.stash";
+    mediaGroup = "media";
 in {
-    services.stash = {
-        inherit username;
-        enable = true;
-        group = "users";
-        mutableSettings = true;
-        passwordFile = "${folder}/config/password";
-        jwtSecretKeyFile = "${folder}/config/jwt";
-        sessionStoreKeyFile = "${folder}/config/session";
-        settings.stash = [
-            {path = "${folder}/media";}
-        ];
+    users = {
+        groups.${mediaGroup} = {};
+        users.${username}.extraGroups = [mediaGroup];
+        users.stash.extraGroups = [mediaGroup];
     };
-    # Stash module is stupid and unconditionally sets this
-    users.users.${username}.isSystemUser = lib.mkForce false;
-
-    services.caddy.virtualHosts."http://stash.${config.networking.hostName}" = lib.mkReverseProxy {
-        inherit (config.services.stash.settings) port;
+    services = {
+        stash = {
+            inherit username; # login name
+            enable = true;
+            mutableSettings = true;
+            passwordFile = "${folder}/config/password";
+            jwtSecretKeyFile = "${folder}/config/jwt";
+            sessionStoreKeyFile = "${folder}/config/session";
+            settings.stash = [
+                {path = "${folder}/media";}
+            ];
+        };
+        caddy.virtualHosts."http://stash.${config.networking.hostName}" = lib.mkReverseProxy {
+            inherit (config.services.stash.settings) port;
+        };
     };
 }
