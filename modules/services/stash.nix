@@ -17,12 +17,14 @@ in {
             inherit username; # login name
             enable = true;
             mutableSettings = true;
+            mutablePlugins = true;
             passwordFile = "${folder}/config/password";
             jwtSecretKeyFile = "${folder}/config/jwt";
             sessionStoreKeyFile = "${folder}/config/session";
-            settings.stash = [
-                {path = "${folder}/media";}
-            ];
+            settings = {
+                stash = [{path = "${folder}/media";}];
+                plugins_path = "${folder}/plugins";
+            };
         };
         caddy.virtualHosts."http://stash.${config.networking.hostName}" = lib.mkReverseProxy {
             inherit (config.services.stash.settings) port;
