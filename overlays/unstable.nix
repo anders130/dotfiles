@@ -10,6 +10,7 @@ inputs: final: prev: rec {
     # permanent unstable packages
     inherit
         (unstable)
+        comma
         gemini-cli
         hyprlock
         ;
