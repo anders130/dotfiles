@@ -93,7 +93,18 @@ in {
     services.samba = {
         enable = true;
         openFirewall = false; # only local network for vm
-        settings = {
+        settings = let
+            mkFileShare = path: {
+                inherit path;
+                browseable = "yes";
+                "read only" = "no";
+                "guest ok" = "yes";
+                "create mask" = "0644";
+                "directory mask" = "0755";
+                "force user" = username;
+                "force group" = "users";
+            };
+        in {
             global = {
                 "workgroup" = "WORKGROUP";
                 "server string" = "smbnix";
@@ -104,16 +115,8 @@ in {
                 "guest account" = "nobody";
                 "map to guest" = "bad user";
             };
-            public = {
-                path = "/home/${username}/public";
-                browseable = "yes";
-                "read only" = "no";
-                "guest ok" = "yes";
-                "create mask" = "0644";
-                "directory mask" = "0755";
-                "force user" = username;
-                "force group" = "users";
-            };
+            data = mkFileShare "/mnt/rackflix/data/downloads";
+            appdata = mkFileShare "/mnt/rackflix/appdata/downloads";
         };
     };
 }
