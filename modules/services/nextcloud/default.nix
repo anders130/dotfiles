@@ -29,6 +29,15 @@ in {
                 adminuser = "admin";
                 adminpassFile = config.sops.secrets."nextcloud/adminPass".path;
             };
+            settings = {
+                default_phone_region = "DE";
+                maintenance_window_start = 1;
+                log_type = "file";
+            };
+            phpOptions = {
+                "opcache.interned_strings_buffer" = "16";
+                output_buffering = "off";
+            };
         };
         systemd.tmpfiles.settings."50-nextcloud".${cfg.datadir}.d = {
             user = "nextcloud";
