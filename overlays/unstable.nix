@@ -13,5 +13,6 @@ inputs: final: prev: rec {
         comma
         gemini-cli
         hyprlock
+        nextcloud-client
         ;
 }
