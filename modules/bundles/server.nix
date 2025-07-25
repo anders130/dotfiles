@@ -10,7 +10,7 @@
     nix.settings.trusted-users = [username];
 
     users.users.${username}.openssh.authorizedKeys.keys = [
-        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBfImZ8A0bd2+tCbcikQr9H2R5j7rmov/Wp5Sa8soQqi ${username}@${config.networking.hostName}"
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIN4fLfoAIHuVXS3tzzbw8x8P1N+Ju2uj3LmqCFs5eTiy ${username}@${config.networking.hostName}"
     ];
 
     services.openssh.enable = true;
