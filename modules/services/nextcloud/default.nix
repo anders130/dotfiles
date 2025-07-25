@@ -13,10 +13,15 @@ in {
         default = "/var/lib/nextcloud";
     };
     config = cfg: {
-        sops.secrets."nextcloud/adminPass" = {
-            mode = "0440";
-            sopsFile = ./secrets.yaml;
-            owner = "nextcloud";
+        sops.secrets = let
+            c = {
+                mode = "0440";
+                sopsFile = ./secrets.yaml;
+                owner = "nextcloud";
+            };
+        in {
+            "nextcloud/adminPass" = c;
+            "nextcloud/dbPass" = c;
         };
 
         services.nextcloud = {
@@ -29,8 +34,25 @@ in {
             config = {
                 adminuser = "admin";
                 adminpassFile = config.sops.secrets."nextcloud/adminPass".path;
-                dbtype = "sqlite";
+                dbtype = "pgsql";
+                dbhost = "/run/postgresql";
+                dbname = "nextcloud";
+                dbuser = "nextcloud";
+                dbpassFile = config.sops.secrets."nextcloud/dbPass".path;
             };
+        };
+
+        services.postgresql = let
+            inherit (config.services.nextcloud.config) dbuser dbname;
+        in {
+            enable = true;
+            ensureDatabases = [dbname];
+            ensureUsers = [
+                {
+                    name = dbuser;
+                    ensureDBOwnership = true;
+                }
+            ];
         };
 
         systemd.tmpfiles.settings."50-nextcloud".${cfg.datadir}.d = {
