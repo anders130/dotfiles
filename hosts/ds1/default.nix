@@ -51,6 +51,7 @@
             firefly-iii.enable = true;
             jellyseerr.enable = true;
             stash.enable = true;
+            immich.enable = true;
         };
     };
 
