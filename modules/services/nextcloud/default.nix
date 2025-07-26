@@ -38,6 +38,19 @@ in {
                 "opcache.interned_strings_buffer" = "16";
                 output_buffering = "off";
             };
+            extraApps = {
+                inherit
+                    (pkgs.nextcloud31Packages.apps)
+                    bookmarks
+                    mail
+                    # oidc_login
+                    ;
+                theming_customcss = pkgs.fetchNextcloudApp {
+                    sha256 = "sha256-MsF+im9yCt7bRNIE8ait0wxcVzMXsHMNbp+IIzY/zJI=";
+                    url = "https://github.com/nextcloud-releases/theming_customcss/releases/download/v1.18.0/theming_customcss.tar.gz";
+                    license = "agpl3Only";
+                };
+            };
         };
         systemd.tmpfiles.settings."50-nextcloud".${cfg.datadir}.d = {
             user = "nextcloud";
