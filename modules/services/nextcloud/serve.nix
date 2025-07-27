@@ -6,6 +6,10 @@ in {
         nextcloud = {
             hostName = domain;
             https = true;
+            settings = {
+                trusted_proxies = ["127.0.0.1" "::1"];
+                forward_for_headers = ["X-Forwarded-For"];
+            };
         };
         phpfpm.pools.nextcloud.settings = let
             inherit (config.services.caddy) user group;
