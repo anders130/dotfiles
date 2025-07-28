@@ -129,7 +129,7 @@
             inputs.systems.follows = "systems";
         };
         split-monitor-workspaces = {
-            url = "github:Duckonaut/split-monitor-workspaces";
+            url = "github:Duckonaut/split-monitor-workspaces?rev=d0ba2bb24953c3c35a4a369ae4b4e50cb03f1832";
             inputs.hyprland.follows = "hyprland";
         };
         my-shell = {
