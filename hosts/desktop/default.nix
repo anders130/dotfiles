@@ -72,7 +72,7 @@
             systemd-boot.enable = true;
             efi.canTouchEfiVariables = true;
         };
-        kernelPackages = pkgs.linuxPackages_6_15;
+        kernelPackages = pkgs.linuxPackages_6_12;
     };
 
     nix.settings.download-speed = 6250; # limit download speed to 50 Mbps
