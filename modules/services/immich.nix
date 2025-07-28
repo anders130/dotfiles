@@ -11,7 +11,7 @@ in {
             enable = true;
             host = "::"; # allow IPv4 and IPv6
             accelerationDevices = ["/dev/dri/renderD128"];
-            group = "media";
+            group = "nextcloud";
         };
         caddy.virtualHosts."immich.${config.networking.domain}" = lib.mkReverseProxy {
             inherit (config.services.immich) port;

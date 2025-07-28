@@ -54,7 +54,7 @@ in {
         };
         systemd.tmpfiles.settings."50-nextcloud".${cfg.datadir}.d = {
             user = "nextcloud";
-            group = "media";
+            group = "nextcloud";
             mode = "0750";
         };
     };
