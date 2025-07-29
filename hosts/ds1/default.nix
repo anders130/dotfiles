@@ -52,6 +52,7 @@
             jellyseerr.enable = true;
             stash.enable = true;
             immich.enable = true;
+            tautulli.enable = true;
         };
     };
 
