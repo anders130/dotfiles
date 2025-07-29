@@ -47,7 +47,6 @@
             tandoor.enable = true;
             cockpit.enable = true;
             audiobookshelf.enable = true;
-            authentik.enable = true;
             firefly-iii.enable = true;
             jellyseerr.enable = true;
             stash.enable = true;
