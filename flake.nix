@@ -64,7 +64,7 @@
             };
         };
         zenix = {
-            url = "github:anders130/zenix/v1.14.2b";
+            url = "github:anders130/zenix";
             inputs = {
                 nixpkgs.follows = "nixpkgs";
                 home-manager.follows = "home-manager";
