@@ -1,7 +1,8 @@
-inputs: final: prev: rec {
+inputs: final: prev: let
     unstable = import inputs.nixpkgs-unstable {
         inherit (prev) config system;
     };
+in {
     # permanent unstable packages
     inherit
         (unstable)
