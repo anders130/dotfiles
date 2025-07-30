@@ -1,7 +1,8 @@
 inputs: {
     hostName = "nixos";
     username = "jesse";
-    modules = [
-        inputs.disko.nixosModules.disko
+    modules = with inputs; [
+        disko.nixosModules.disko
+        lsfg-vk-flake.nixosModules.default
     ];
 }

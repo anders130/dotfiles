@@ -163,6 +163,10 @@
             url = "github:0x5a4/nix-easyroam";
             inputs.nixpkgs.follows = "nixpkgs";
         };
+        lsfg-vk-flake = {
+            url = "github:pabloaul/lsfg-vk-flake/main";
+            inputs.nixpkgs.follows = "nixpkgs";
+        };
     };
     # deduplicate inputs
     inputs = {

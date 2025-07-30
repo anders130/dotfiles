@@ -1007,6 +1007,27 @@
         "url": "https://git.lix.systems/lix-project/nixos-module/archive/2.93.0.tar.gz"
       }
     },
+    "lsfg-vk-flake": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1753576548,
+        "narHash": "sha256-gnV9xY7BMHrao4QroJveGUexssBwXtyawmjoDqjO7zk=",
+        "owner": "pabloaul",
+        "repo": "lsfg-vk-flake",
+        "rev": "0fa0918ada267e177274af61dd1875ef1b5a0a8e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "pabloaul",
+        "ref": "main",
+        "repo": "lsfg-vk-flake",
+        "type": "github"
+      }
+    },
     "lumehub": {
       "inputs": {
         "flake-parts": [
@@ -1598,6 +1619,7 @@
         "hyprland": "hyprland",
         "lanzaboote": "lanzaboote",
         "lix-module": "lix-module",
+        "lsfg-vk-flake": "lsfg-vk-flake",
         "lumehub": "lumehub",
         "modulix": "modulix",
         "my-shell": "my-shell",
