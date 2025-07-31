@@ -1,4 +1,5 @@
 {
+    fileSystems."/home".neededForBoot = true; # needed for sops secrets getting created on boot
     disko.devices.disk.nixos = {
         type = "disk";
         device = "/dev/nvme0n1";
