@@ -7,7 +7,7 @@ in {
     environment.systemPackages = [
         (
             pkgs.signal-desktop.overrideAttrs (final: prev: {
-                nativeBuildInputs = (prev.nativeBuildInputs or []) ++ [pkgs.asar];
+                nativeBuildInputs = prev.nativeBuildInputs or [] ++ [pkgs.asar];
                 postInstall = ''
                     tmpdir=$(mktemp -d)
 

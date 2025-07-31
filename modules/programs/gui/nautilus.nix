@@ -29,8 +29,8 @@
         services.gvfs.enable = true; # for trash to work
 
         programs.nautilus-open-any-terminal = {
+            inherit (cfg) terminal;
             enable = true;
-            terminal = cfg.terminal;
         };
 
         hm.xdg.userDirs.enable = true;

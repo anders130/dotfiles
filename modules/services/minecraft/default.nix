@@ -86,8 +86,7 @@ in {
                             name = "mods/${mod.name}";
                             value = mod;
                         })
-                        |> listToAttrs
-                        ;
+                        |> listToAttrs;
                     baseMods =
                         "${modpack}/mods"
                         |> readDir

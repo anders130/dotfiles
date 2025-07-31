@@ -55,7 +55,7 @@
         }
     ];
 in {
-    hm.dconf.settings = ((mkCustomKeybindingEntries keybinds) // {
+    hm.dconf.settings = mkCustomKeybindingEntries keybinds // {
         "${mediaKeysPath}" = {
             custom-keybindings = mkCustomKeybindingPaths keybinds;
             screensaver = ["<Super>BackSpace"];
@@ -89,5 +89,5 @@ in {
             resize-with-right-button = true;
             focus-mode = "mouse";
         };
-    });
+    };
 }

@@ -15,7 +15,9 @@ in {
     hm.home = {
         file.".local/share/PrismLauncher/themes/Catppuccin-Macchiato".source = "${catpuccin-theme}/Catppuccin-Macchiato";
 
-        activation.setPrismLauncherTheme = lib.hm.dag.entryAfter ["writeBoundary"] /*bash*/''
+        activation.setPrismLauncherTheme = lib.hm.dag.entryAfter ["writeBoundary"]
+        # bash
+        ''
             config_file="$HOME/.local/share/PrismLauncher/prismlauncher.cfg"
 
             # Ensure the config file exists

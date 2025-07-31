@@ -1,3 +1,3 @@
 inputs: final: prev: {
-    hyprland = inputs.hyprland.packages.${prev.system}.hyprland;
+    inherit (inputs.hyprland.packages.${prev.system}) hyprland;
 }

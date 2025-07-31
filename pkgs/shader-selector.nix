@@ -26,4 +26,3 @@ pkgs.writeShellApplication {
         hyprctl keyword decoration:screen_shader "$shader_path"
     '';
 }
-

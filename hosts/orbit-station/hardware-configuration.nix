@@ -5,10 +5,12 @@
 }: {
     imports = [(modulesPath + "/installer/scan/not-detected.nix")];
 
-    boot.initrd.availableKernelModules = ["xhci_pci" "usbhid"];
-    boot.initrd.kernelModules = [];
-    boot.kernelModules = [];
-    boot.extraModulePackages = [];
+    boot = {
+        initrd.availableKernelModules = ["xhci_pci" "usbhid"];
+        initrd.kernelModules = [];
+        kernelModules = [];
+        extraModulePackages = [];
+    };
 
     fileSystems."/" = {
         device = "/dev/disk/by-label/NIXOS_SD";

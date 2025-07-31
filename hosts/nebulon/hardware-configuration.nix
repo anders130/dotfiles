@@ -6,10 +6,12 @@
 }: {
     imports = [(modulesPath + "/installer/scan/not-detected.nix")];
 
-    boot.initrd.availableKernelModules = ["xhci_pci" "ehci_pci" "ahci" "usb_storage" "sd_mod" "sr_mod"];
-    boot.initrd.kernelModules = [];
-    boot.kernelModules = [];
-    boot.extraModulePackages = [];
+    boot = {
+        initrd.availableKernelModules = ["xhci_pci" "ehci_pci" "ahci" "usb_storage" "sd_mod" "sr_mod"];
+        initrd.kernelModules = [];
+        kernelModules = [];
+        extraModulePackages = [];
+    };
 
     fileSystems."/" = {
         device = "/dev/disk/by-uuid/cacc202f-91bd-4441-b5a0-486011a3b1e6";
