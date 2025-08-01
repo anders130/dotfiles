@@ -3,10 +3,7 @@
     username,
     ...
 }: {
-    modules = {
-        bundles.dev.enable = true;
-        services.docker.wslIntegration = true;
-    };
+    modules.bundles.dev.enable = true;
 
     wsl = {
         enable = true;
