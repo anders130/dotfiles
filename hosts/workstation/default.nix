@@ -63,6 +63,9 @@
         };
     };
 
+    # slows down boot time
+    systemd.services.NetworkManager-wait-online.enable = false;
+
     services = {
         tailscale.enable = true;
         fprintd.enable = true;
