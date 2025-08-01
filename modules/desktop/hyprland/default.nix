@@ -3,12 +3,7 @@
     lib,
     ...
 }: {
-    options.extraConfig = lib.mkOption {
-        description = "Extra config to be appended to the hyprland config";
-        type = lib.types.lines;
-        default = "";
-    };
-    config = cfg: rec {
+    config = rec {
         programs.hyprland = {
             enable = true;
             withUWSM = true;
@@ -37,7 +32,7 @@
                     gestures.workspace_swipe = false;
                     ecosystem.no_update_news = true;
                 };
-                extraConfig = "source = ./visuals/default.conf\n" + cfg.extraConfig;
+                extraConfig = "source = ./visuals/default.conf";
             };
             xdg.configFile = {
                 "hypr/visuals" = lib.mkSymlink ./visuals;

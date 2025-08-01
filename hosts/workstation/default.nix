@@ -16,12 +16,7 @@
                 resolution = "1920x1200";
                 refreshRate = 60;
             };
-            hyprland = {
-                enable = true;
-                extraConfig = ''
-                    source = ./override.conf
-                '';
-            };
+            hyprland.enable = true;
         };
         programs.gui = {
             nwg-displays.enable = true;
@@ -50,16 +45,21 @@
         };
     };
 
-    hm.xdg = {
-        configFile."hypr/override.conf" = lib.mkSymlink ./hyprland.conf;
-        desktopEntries.zenForWork = {
-            name = "Zen for Work";
-            genericName = "Web Browser";
-            exec = "zen -p work";
-            icon = "zen";
-            terminal = false;
-            categories = ["Application" "Network" "WebBrowser"];
-            mimeType = ["text/html" "text/xml"];
+    hm = {
+        wayland.windowManager.hyprland.extraConfig = lib.mkAfter ''
+            source = ./override.conf
+        '';
+        xdg = {
+            configFile."hypr/override.conf" = lib.mkSymlink ./hyprland.conf;
+            desktopEntries.zenForWork = {
+                name = "Zen for Work";
+                genericName = "Web Browser";
+                exec = "zen -p work";
+                icon = "zen";
+                terminal = false;
+                categories = ["Application" "Network" "WebBrowser"];
+                mimeType = ["text/html" "text/xml"];
+            };
         };
     };
 
