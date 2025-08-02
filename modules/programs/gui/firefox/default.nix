@@ -1,4 +1,9 @@
-{pkgs, ...}: let
+{
+    lib,
+    pkgs,
+    ...
+}: let
+    inherit (lib) mkMerge;
     profileBaseConfig = {
         settings = {
             "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
@@ -13,13 +18,17 @@ in {
             enable = true;
             package = pkgs.firefox;
             profiles = {
-                private = profileBaseConfig // {
-                    id = 0;
-                    isDefault = true;
-                };
-                work = profileBaseConfig // {
-                    id = 1;
-                };
+                private = mkMerge [
+                    profileBaseConfig
+                    {
+                        id = 0;
+                        isDefault = true;
+                    }
+                ];
+                work = mkMerge [
+                    profileBaseConfig
+                    {id = 1;}
+                ];
             };
         };
         stylix.targets.firefox.enable = false;

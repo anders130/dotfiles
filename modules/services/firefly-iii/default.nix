@@ -2,7 +2,10 @@
     inherit (config.networking) domain;
     firefly-domain = "firefly.${domain}";
     firefly-importer-domain = "firefly-importer.${domain}";
-    fileServer = {package, socket}: ''
+    fileServer = {
+        package,
+        socket,
+    }: ''
         root * ${package}/public
         file_server
         php_fastcgi unix/${socket}

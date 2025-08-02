@@ -121,7 +121,9 @@
                         "master" = "2";
                         "journey" = "3";
                     }
-                    .${cfg.world.difficulty};
+                    .${
+                        cfg.world.difficulty
+                    };
                 "TMOD_WORLDNAME" = cfg.world.name;
                 "TMOD_WORLDSEED" = cfg.world.seed;
                 "TMOD_WORLDSIZE" =
@@ -130,7 +132,9 @@
                         "medium" = "2";
                         "large" = "3";
                     }
-                    .${cfg.world.size};
+                    .${
+                        cfg.world.size
+                    };
                 "TMOD_MAXPLAYERS" = toString cfg.maxPlayers;
             };
         };

@@ -3,7 +3,9 @@
     lib,
     pkgs,
     ...
-}: {
+}: let
+    inherit (lib) mkMerge mkSymlink;
+in {
     hm = {
         imports = [inputs.zenix.homeModules.default];
         programs.zenix = {
@@ -11,10 +13,8 @@
             chrome = {
                 hideTitlebarButtons = true;
             };
-            profiles = rec {
-                default = {
-                    isDefault = true;
-                    id = 0;
+            profiles = let
+                base = {
                     extensions.packages = with pkgs.nur.repos.rycee.firefox-addons; [
                         bitwarden
                         darkreader
@@ -28,19 +28,28 @@
                         wappalyzer
                     ];
                     settings."widget.use-xdg-desktop-portal.file-picker" = 1;
-                    userChrome = lib.mkSymlink ./userChrome.css;
+                    userChrome = mkSymlink ./userChrome.css;
                 };
-                work =
-                    default
-                    // {
+            in {
+                default = mkMerge [
+                    base
+                    {
+                        isDefault = true;
+                        id = 0;
+                    }
+                ];
+                work = mkMerge [
+                    base
+                    {
                         isDefault = false;
                         id = 1;
                         extensions.packages =
-                            default.extensions.packages
+                            base.extensions.packages
                             ++ [
                                 pkgs.inputs.clock-mate.default
                             ];
-                    };
+                    }
+                ];
             };
         };
         wayland.windowManager.hyprland.settings.windowrule = [

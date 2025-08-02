@@ -23,13 +23,9 @@
 
         sops.templates."lumehub-secrets.json" = {
             path = "/var/lib/lumehub/appsettings.Production.json";
-            content = /*json*/''
-            {
-                "ApiKeySettings": {
-                    "ApiKey": "${config.sops.placeholder.lumehub_api_key}"
-                }
-            }
-            '';
+            content = builtins.toJSON {
+                ApiKeySettings.ApiKey = config.sops.placeholder.lumehub_api_key;
+            };
         };
     };
 }

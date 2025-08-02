@@ -10,7 +10,10 @@
     mkHyprlandMonitor = port: c: "${port}, ${c.resolution}@${toString c.refreshRate}, ${c.position}, ${toString c.scale}";
     getMainMonitorName = monitors: let
         mainMonitors = filter (m: m.value.isMain) (lib.attrsToList monitors);
-    in if length mainMonitors == 0 then "DP-1" else (head mainMonitors).name;
+    in
+        if length mainMonitors == 0
+        then "DP-1"
+        else (head mainMonitors).name;
 in {
     options = {
         monitors = mkOption {
