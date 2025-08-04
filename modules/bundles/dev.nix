@@ -17,7 +17,7 @@ in {
     environment = {
         systemPackages = with pkgs; [
             tokei
-            inputs.nix-melt.default
+            nix-melt
             gemini-cli
             statix
         ];

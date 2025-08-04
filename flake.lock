@@ -1119,26 +1119,6 @@
         "type": "github"
       }
     },
-    "nix-melt": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1726500436,
-        "narHash": "sha256-jx7g9GOFAjOlJyNsGOUTLh2qWII9u0prOoBEvNPmdj8=",
-        "owner": "nix-community",
-        "repo": "nix-melt",
-        "rev": "53521fdf80c9bf9b8bdfbac07df5c97609a35703",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-community",
-        "repo": "nix-melt",
-        "type": "github"
-      }
-    },
     "nix-minecraft": {
       "inputs": {
         "flake-compat": [
@@ -1558,7 +1538,6 @@
         "my-shell": "my-shell",
         "nix-easyroam": "nix-easyroam",
         "nix-index-database": "nix-index-database",
-        "nix-melt": "nix-melt",
         "nix-minecraft": "nix-minecraft",
         "nixcord": "nixcord",
         "nixos-hardware": "nixos-hardware",
