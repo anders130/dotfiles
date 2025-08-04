@@ -119,6 +119,14 @@
                 systems.follows = "systems";
             };
         };
+        statix = {
+            url = "github:RobWalt/statix?rev=support-pipe-operator";
+            inputs = {
+                flake-parts.follows = "flake-parts";
+                nixpkgs.follows = "nixpkgs";
+                systems.follows = "systems";
+            };
+        };
 
         # gui
         hyprland = {

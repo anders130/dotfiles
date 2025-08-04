@@ -19,6 +19,7 @@ in {
             tokei
             inputs.nix-melt.default
             gemini-cli
+            statix
         ];
         shellAliases = {
             ask = "gemini";
