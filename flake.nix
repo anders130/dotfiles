@@ -123,6 +123,13 @@
                 systems.follows = "systems";
             };
         };
+        pre-commit-hooks = {
+            url = "github:cachix/git-hooks.nix";
+            inputs = {
+                flake-compat.follows = "flake-compat";
+                nixpkgs.follows = "nixpkgs";
+            };
+        };
 
         # gui
         hyprland = {
@@ -161,6 +168,7 @@
                 nixpkgs.follows = "nixpkgs";
                 flake-compat.follows = "flake-compat";
                 flake-parts.follows = "flake-parts";
+                pre-commit-hooks-nix.follows = "";
             };
         };
         nix-easyroam = {
@@ -188,6 +196,7 @@
                 ./overlays
                 ./pkgs
                 ./templates
+                inputs.pre-commit-hooks.flakeModule
             ];
             flake = {
                 lib = inputs.haumea.lib.load {
@@ -211,6 +220,26 @@
                         modules.bundles.shared.enable = true;
                     };
                 };
+            };
+            perSystem = {
+                config,
+                system,
+                ...
+            }: {
+                pre-commit.settings.hooks = {
+                    shellcheck = {
+                        enable = true;
+                        excludes = ["\\.envrc"];
+                    };
+                    # nix
+                    # alejandra.enable = true;
+                    statix = {
+                        enable = true;
+                        package = inputs.statix.packages.${system}.statix;
+                    };
+                    ripsecrets.enable = true;
+                };
+                devShells.default = config.pre-commit.devShell;
             };
         };
 }

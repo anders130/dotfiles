@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # Check if the user provided an argument
 if [ -z "$1" ]; then
     echo "Please provide a fan speed percentage (e.g., 50, 75, 100)."
