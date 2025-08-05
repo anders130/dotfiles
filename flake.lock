@@ -1226,6 +1226,21 @@
         "type": "github"
       }
     },
+    "nixpkgs-immich": {
+      "locked": {
+        "lastModified": 1754410984,
+        "narHash": "sha256-82B2+V/qSupEIGF030d78kDHpaqccCykVQ3TpItQd4M=",
+        "owner": "anders130",
+        "repo": "nixpkgs",
+        "rev": "52561b82de4b109898889fdf0b38e330851f92ea",
+        "type": "github"
+      },
+      "original": {
+        "owner": "anders130",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nixpkgs-lib": {
       "locked": {
         "lastModified": 1753579242,
@@ -1540,6 +1555,7 @@
         "nixos-hardware": "nixos-hardware",
         "nixos-wsl": "nixos-wsl",
         "nixpkgs": "nixpkgs_2",
+        "nixpkgs-immich": "nixpkgs-immich",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "nur": "nur",
         "nvix": "nvix",
