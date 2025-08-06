@@ -33,6 +33,7 @@ in {
                 default_phone_region = "DE";
                 maintenance_window_start = 1;
                 log_type = "file";
+                "localstorage.umask" = 002;
             };
             phpOptions = {
                 "opcache.interned_strings_buffer" = "16";
