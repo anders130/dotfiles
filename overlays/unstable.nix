@@ -9,6 +9,7 @@ in {
         comma
         gemini-cli
         # hyprlock
+        jellyseerr
         nextcloud-client
         ;
 }
