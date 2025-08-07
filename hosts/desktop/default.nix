@@ -58,6 +58,7 @@
                     };
                 };
                 anki.enable = true;
+                obs.enable = true;
             };
         };
         hardware = {
