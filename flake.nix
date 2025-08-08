@@ -148,6 +148,11 @@
             url = "github:anders130/my-shell";
             inputs.nixpkgs.follows = "nixpkgs";
         };
+        caelestia-cli.url = "github:caelestia-dots/cli";
+        caelestia = {
+            url = "github:caelestia-dots/shell";
+            inputs.caelestia-cli.follows = "caelestia-cli";
+        };
 
         # host specific
         disko = {

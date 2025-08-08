@@ -32,7 +32,8 @@
                     position = "3440x0";
                 };
             };
-            hyprland.enable = true;
+            # hyprland.enable = true;
+            caelestia.enable = true;
         };
 
         programs = {
