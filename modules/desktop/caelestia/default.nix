@@ -1,6 +1,7 @@
 {
     config,
     inputs,
+    lib,
     pkgs,
     ...
 }: rec {
@@ -25,8 +26,12 @@
             caelestia-cli
             caelestia-shell
         ];
+        xdg.configFile."hypr/caelestia.conf" = lib.mkSymlink ./hyprland.conf;
         wayland.windowManager.hyprland = {
             inherit (programs.hyprland) enable xwayland;
+            extraConfig = ''
+                source = ./caelestia.conf
+            '';
             settings = {
                 general = {
                     layout = "dwindle";
@@ -104,6 +109,26 @@
                     "size 70%, title:\'termfilechooser\'"
 
                     "opacity 1, class:com.github.rafostar.Clapper"
+                ];
+                layerrule = [
+                    "noanim, caelestia-(launcher|osd|notifications|border-exclusion|area-picker)"
+                    "animation fade, caelestia-(drawers|background)"
+                    "order 1, caelestia-border-exclusion"
+                    "order 2, caelestia-bar"
+                    "xray 1, caelestia-(border|launcher|bar|sidebar|navbar|mediadisplay|screencorners)"
+                    "blur, caelestia-.*"
+                    "blurpopups, caelestia-.*"
+                    "ignorealpha 0.57, caelestia-.*"
+                ];
+                bindin = [
+                    "Super, mouse:272, global, caelestia:launcherInterrupt"
+                    "Super, mouse:273, global, caelestia:launcherInterrupt"
+                    "Super, mouse:274, global, caelestia:launcherInterrupt"
+                    "Super, mouse:275, global, caelestia:launcherInterrupt"
+                    "Super, mouse:276, global, caelestia:launcherInterrupt"
+                    "Super, mouse:277, global, caelestia:launcherInterrupt"
+                    "Super, mouse_up, global, caelestia:launcherInterrupt"
+                    "Super, mouse_down, global, caelestia:launcherInterrupt"
                 ];
 
                 dwindle.preserve_split = true;
