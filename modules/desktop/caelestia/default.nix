@@ -21,9 +21,9 @@
     hm = {
         imports = [inputs.hyprland.homeManagerModules.default];
         stylix.targets.hyprland.enable = false;
-        home.packages = [
-            inputs.caelestia-cli.packages.${pkgs.system}.default
-            inputs.caelestia.packages.${pkgs.system}.default
+        home.packages = with pkgs; [
+            caelestia-cli
+            caelestia-shell
         ];
         wayland.windowManager.hyprland = {
             inherit (programs.hyprland) enable xwayland;

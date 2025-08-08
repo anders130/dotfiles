@@ -149,8 +149,8 @@
             inputs.nixpkgs.follows = "nixpkgs";
         };
         caelestia-cli.url = "github:caelestia-dots/cli";
-        caelestia = {
-            url = "github:caelestia-dots/shell";
+        caelestia-shell = {
+            url = "github:anders130/caelestia-shell";
             inputs.caelestia-cli.follows = "caelestia-cli";
         };
 

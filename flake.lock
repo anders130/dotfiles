@@ -29,7 +29,7 @@
     "app2unit": {
       "inputs": {
         "nixpkgs": [
-          "caelestia",
+          "caelestia-cli",
           "nixpkgs"
         ]
       },
@@ -50,7 +50,7 @@
     "app2unit_2": {
       "inputs": {
         "nixpkgs": [
-          "caelestia-cli",
+          "caelestia-shell",
           "nixpkgs"
         ]
       },
@@ -243,34 +243,11 @@
         "type": "github"
       }
     },
-    "caelestia": {
-      "inputs": {
-        "app2unit": "app2unit",
-        "caelestia-cli": [
-          "caelestia-cli"
-        ],
-        "nixpkgs": "nixpkgs",
-        "quickshell": "quickshell"
-      },
-      "locked": {
-        "lastModified": 1754564802,
-        "narHash": "sha256-FKicEg4cqgUQzyipaAaK8iOuVideZlX0wboH3Xag68M=",
-        "owner": "caelestia-dots",
-        "repo": "shell",
-        "rev": "964d5deaa2b3aefd8fa0eb7ce682689b73bafc9f",
-        "type": "github"
-      },
-      "original": {
-        "owner": "caelestia-dots",
-        "repo": "shell",
-        "type": "github"
-      }
-    },
     "caelestia-cli": {
       "inputs": {
-        "app2unit": "app2unit_2",
+        "app2unit": "app2unit",
         "caelestia-shell": "caelestia-shell",
-        "nixpkgs": "nixpkgs_2"
+        "nixpkgs": "nixpkgs"
       },
       "locked": {
         "lastModified": 1754293738,
@@ -299,7 +276,7 @@
           "caelestia-cli",
           "nixpkgs"
         ],
-        "quickshell": "quickshell_2"
+        "quickshell": "quickshell"
       },
       "locked": {
         "lastModified": 1754283125,
@@ -312,6 +289,29 @@
       "original": {
         "owner": "caelestia-dots",
         "repo": "shell",
+        "type": "github"
+      }
+    },
+    "caelestia-shell_2": {
+      "inputs": {
+        "app2unit": "app2unit_2",
+        "caelestia-cli": [
+          "caelestia-cli"
+        ],
+        "nixpkgs": "nixpkgs_2",
+        "quickshell": "quickshell_2"
+      },
+      "locked": {
+        "lastModified": 1754674499,
+        "narHash": "sha256-UM/YjcUOsXWxiqccyBnWEgq7IQlxXv0+uq4EtGk4lfQ=",
+        "owner": "anders130",
+        "repo": "caelestia-shell",
+        "rev": "f0e9e1fac8c9b1d727c64f3384dfeebaa8737d89",
+        "type": "github"
+      },
+      "original": {
+        "owner": "anders130",
+        "repo": "caelestia-shell",
         "type": "github"
       }
     },
@@ -1652,7 +1652,8 @@
     "quickshell": {
       "inputs": {
         "nixpkgs": [
-          "caelestia",
+          "caelestia-cli",
+          "caelestia-shell",
           "nixpkgs"
         ]
       },
@@ -1673,7 +1674,6 @@
     "quickshell_2": {
       "inputs": {
         "nixpkgs": [
-          "caelestia-cli",
           "caelestia-shell",
           "nixpkgs"
         ]
@@ -1722,8 +1722,8 @@
     "root": {
       "inputs": {
         "authentik-nix": "authentik-nix",
-        "caelestia": "caelestia",
         "caelestia-cli": "caelestia-cli",
+        "caelestia-shell": "caelestia-shell_2",
         "catppuccin-qutebrowser": "catppuccin-qutebrowser",
         "clock-mate": "clock-mate",
         "disko": "disko",
