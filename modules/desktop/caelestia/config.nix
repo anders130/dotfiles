@@ -6,7 +6,8 @@
             desktopClock.enabled = true;
         };
         bar.status = {
-            showAudio = true;
+            showAudio = false;
+            showAudioSwitcher = true;
             showKbLayout = false;
             showNetwork = false;
             showBluetooth = false;

@@ -1,0 +1,118 @@
+diff --git a/config/BarConfig.qml b/config/BarConfig.qml
+index 498b2f5..5ef8ccb 100644
+--- a/config/BarConfig.qml
++++ b/config/BarConfig.qml
+@@ -22,6 +22,7 @@ JsonObject {
+ 
+     component Status: JsonObject {
+         property bool showAudio: false
++        property bool showAudioSwitcher: true
+         property bool showKbLayout: false
+         property bool showNetwork: true
+         property bool showBluetooth: true
+diff --git a/default.nix b/default.nix
+index 910e094..365d155 100644
+--- a/default.nix
++++ b/default.nix
+@@ -30,7 +30,6 @@
+   pipewire,
+   caelestia-cli,
+   withCli ? false,
+-  extraRuntimeDeps ? [],
+ }: let
+   runtimeDeps =
+     [
+@@ -53,7 +52,6 @@
+       findutils
+       file
+     ]
+-    ++ extraRuntimeDeps
+     ++ lib.optional withCli caelestia-cli;
+ 
+   fontconfig = makeFontsConf {
+diff --git a/modules/bar/components/StatusIcons.qml b/modules/bar/components/StatusIcons.qml
+index c364d6b..6fa2fb9 100644
+--- a/modules/bar/components/StatusIcons.qml
++++ b/modules/bar/components/StatusIcons.qml
+@@ -1,6 +1,7 @@
+ pragma ComponentBehavior: Bound
+ 
+ import qs.components
++import qs.components.controls
+ import qs.services
+ import qs.utils
+ import qs.config
+@@ -14,6 +15,7 @@ Item {
+     id: root
+ 
+     property color colour: Colours.palette.m3secondary
++    property bool isHeadphonesIcon: false
+ 
+     readonly property list<var> hoverAreas: [
+         {
+@@ -63,6 +65,36 @@ Item {
+             }
+         }
+ 
++        // Audio switcher
++        Loader {
++            id: audioSwitcher
++
++            Layout.alignment: Qt.AlignHCenter
++            asynchronous: true
++            active: Config.bar.status.showAudioSwitcher
++            visible: active
++
++            sourceComponent: CustomMouseArea {
++                id: audioSwitcherArea
++
++                implicitWidth: icon.implicitWidth
++                implicitHeight: icon.implicitHeight
++
++                onClicked: {
++                    Audio.toggleAudioPort(root.isHeadphonesIcon);
++                    root.isHeadphonesIcon = !root.isHeadphonesIcon;
++                }
++
++                MaterialIcon {
++                    id: icon
++                    anchors.centerIn: parent
++                    animate: true
++                    text: root.isHeadphonesIcon ? "headphones" : "speaker"
++                    color: root.colour
++                }
++            }
++        }
++
+         // Keyboard layout icon
+         Loader {
+             id: kbLayout
+diff --git a/services/Audio.qml b/services/Audio.qml
+index e156e6e..437408c 100644
+--- a/services/Audio.qml
++++ b/services/Audio.qml
+@@ -3,6 +3,8 @@ pragma Singleton
+ import qs.config
+ import Quickshell
+ import Quickshell.Services.Pipewire
++import QtQuick
++import Quickshell.Io
+ 
+ Singleton {
+     id: root
+@@ -52,6 +54,15 @@ Singleton {
+         Pipewire.preferredDefaultAudioSource = newSource;
+     }
+ 
++    function toggleAudioPort(isHeadphonesIconState: bool): void {
++        const speakers = "analog-output-lineout";
++        const headphones = "analog-output-headphones";
++
++        const newPort = isHeadphonesIconState ? speakers : headphones;
++
++        Quickshell.execDetached(["pactl", "set-sink-port", "@DEFAULT_SINK@", newPort]);
++    }
++
+     PwObjectTracker {
+         objects: [...root.sinks, ...root.sources]
+     }
