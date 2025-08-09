@@ -140,12 +140,14 @@
                         hyprctl setcursor ${config.stylix.cursor.package.name} ${toString config.stylix.cursor.size}
                     '';
                 in [
-                    "caelestia shell"
+                    "caelestia shell -d"
                     "gnome-keyring-daemon --start --components=secrets,pkcs11,ssh"
+                    "sleep 2.8 && hyprctl dispatch global caelestia:lock && mkdir -p /tmp/hyprland && touch /tmp/hyprland/first_lock_done"
                     "autostart" # start all programs set in the desktop module
                     "${tweaks}/bin/tweaks"
                 ];
             };
         };
     };
+    security.pam.services.caelestia.enableGnomeKeyring = true;
 }
