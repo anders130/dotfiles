@@ -150,7 +150,7 @@
         };
         caelestia-cli.url = "github:caelestia-dots/cli";
         caelestia-shell = {
-            url = "github:anders130/caelestia-shell";
+            url = "github:caelestia-dots/shell";
             inputs.caelestia-cli.follows = "caelestia-cli";
         };
 
