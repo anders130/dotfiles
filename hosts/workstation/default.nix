@@ -16,7 +16,10 @@
                 resolution = "1920x1200";
                 refreshRate = 60;
             };
-            hyprland.enable = true;
+            caelestia = {
+                enable = true;
+                shell.showNetwork = true;
+            };
         };
         programs.gui = {
             nwg-displays.enable = true;

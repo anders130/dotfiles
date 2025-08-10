@@ -33,7 +33,6 @@
                     position = "3440x0";
                 };
             };
-            # hyprland.enable = true;
             caelestia.enable = true;
         };
 
