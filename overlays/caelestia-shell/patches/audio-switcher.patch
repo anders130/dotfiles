@@ -10,28 +10,8 @@ index 498b2f5..5ef8ccb 100644
          property bool showKbLayout: false
          property bool showNetwork: true
          property bool showBluetooth: true
-diff --git a/default.nix b/default.nix
-index 910e094..365d155 100644
---- a/default.nix
-+++ b/default.nix
-@@ -30,7 +30,6 @@
-   pipewire,
-   caelestia-cli,
-   withCli ? false,
--  extraRuntimeDeps ? [],
- }: let
-   runtimeDeps =
-     [
-@@ -53,7 +52,6 @@
-       findutils
-       file
-     ]
--    ++ extraRuntimeDeps
-     ++ lib.optional withCli caelestia-cli;
- 
-   fontconfig = makeFontsConf {
 diff --git a/modules/bar/components/StatusIcons.qml b/modules/bar/components/StatusIcons.qml
-index c364d6b..6fa2fb9 100644
+index c364d6b..62690f5 100644
 --- a/modules/bar/components/StatusIcons.qml
 +++ b/modules/bar/components/StatusIcons.qml
 @@ -1,6 +1,7 @@
@@ -42,15 +22,7 @@ index c364d6b..6fa2fb9 100644
  import qs.services
  import qs.utils
  import qs.config
-@@ -14,6 +15,7 @@ Item {
-     id: root
- 
-     property color colour: Colours.palette.m3secondary
-+    property bool isHeadphonesIcon: false
- 
-     readonly property list<var> hoverAreas: [
-         {
-@@ -63,6 +65,36 @@ Item {
+@@ -63,6 +64,33 @@ Item {
              }
          }
  
@@ -69,16 +41,13 @@ index c364d6b..6fa2fb9 100644
 +                implicitWidth: icon.implicitWidth
 +                implicitHeight: icon.implicitHeight
 +
-+                onClicked: {
-+                    Audio.toggleAudioPort(root.isHeadphonesIcon);
-+                    root.isHeadphonesIcon = !root.isHeadphonesIcon;
-+                }
++                onClicked: Audio.toggleAudioPort()
 +
 +                MaterialIcon {
 +                    id: icon
 +                    anchors.centerIn: parent
 +                    animate: true
-+                    text: root.isHeadphonesIcon ? "headphones" : "speaker"
++                    text: Audio.isHeadphonesIcon ? "headphones" : "speaker"
 +                    color: root.colour
 +                }
 +            }
@@ -88,10 +57,10 @@ index c364d6b..6fa2fb9 100644
          Loader {
              id: kbLayout
 diff --git a/services/Audio.qml b/services/Audio.qml
-index e156e6e..437408c 100644
+index e156e6e..eaf57b4 100644
 --- a/services/Audio.qml
 +++ b/services/Audio.qml
-@@ -3,6 +3,8 @@ pragma Singleton
+@@ -3,10 +3,30 @@ pragma Singleton
  import qs.config
  import Quickshell
  import Quickshell.Services.Pipewire
@@ -100,15 +69,40 @@ index e156e6e..437408c 100644
  
  Singleton {
      id: root
-@@ -52,6 +54,15 @@ Singleton {
+ 
++    Process {
++        id: audioPortProcess
++        command: ["pactl", "list", "sinks"]
++        stdout: StdioCollector {
++            onStreamFinished: {
++                if (text.includes("Active Port: analog-output-headphones")) {
++                    isHeadphonesIcon = true;
++                } else if (text.includes("Active Port: analog-output-lineout")) {
++                    isHeadphonesIcon = false;
++                }
++            }
++        }
++    }
++
++    function init() {
++        audioPortProcess.running = true;
++    }
++
+     readonly property var nodes: Pipewire.nodes.values.reduce((acc, node) => {
+         if (!node.isStream) {
+             if (node.isSink)
+@@ -52,7 +72,21 @@ Singleton {
          Pipewire.preferredDefaultAudioSource = newSource;
      }
  
-+    function toggleAudioPort(isHeadphonesIconState: bool): void {
++    property bool isHeadphonesIcon: false
++
++    function toggleAudioPort(): void {
 +        const speakers = "analog-output-lineout";
 +        const headphones = "analog-output-headphones";
 +
-+        const newPort = isHeadphonesIconState ? speakers : headphones;
++        const newPort = root.isHeadphonesIcon ? speakers : headphones;
++        root.isHeadphonesIcon = !root.isHeadphonesIcon;
 +
 +        Quickshell.execDetached(["pactl", "set-sink-port", "@DEFAULT_SINK@", newPort]);
 +    }
@@ -116,3 +110,6 @@ index e156e6e..437408c 100644
      PwObjectTracker {
          objects: [...root.sinks, ...root.sources]
      }
++
++    Component.onCompleted: init()
+ }
