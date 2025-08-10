@@ -1,4 +1,5 @@
 {
+    lib,
     pkgs,
     username,
     ...
@@ -68,9 +69,12 @@
         };
     };
 
-    services.lsfg-vk = {
-        enable = true;
-        ui.enable = true;
+    services = {
+        lsfg-vk = {
+            enable = true;
+            ui.enable = true;
+        };
+        blueman.enable = lib.mkForce false;
     };
 
     boot = {

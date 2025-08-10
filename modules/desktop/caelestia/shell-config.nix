@@ -10,7 +10,7 @@
             showAudioSwitcher = true;
             showKbLayout = false;
             showNetwork = false;
-            showBluetooth = false;
+            showBluetooth = config.hardware.bluetooth.enable;
             showBattery = false;
         };
         launcher = {
