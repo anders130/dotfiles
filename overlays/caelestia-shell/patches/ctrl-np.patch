@@ -1,0 +1,17 @@
+diff --git a/modules/launcher/Content.qml b/modules/launcher/Content.qml
+index 9b0e4e5..e2451d4 100644
+--- a/modules/launcher/Content.qml
++++ b/modules/launcher/Content.qml
+@@ -108,10 +108,10 @@ Item {
+                     return;
+ 
+                 if (event.modifiers & Qt.ControlModifier) {
+-                    if (event.key === Qt.Key_J) {
++                    if (event.key === Qt.Key_N) {
+                         list.currentList?.incrementCurrentIndex();
+                         event.accepted = true;
+-                    } else if (event.key === Qt.Key_K) {
++                    } else if (event.key === Qt.Key_P) {
+                         list.currentList?.decrementCurrentIndex();
+                         event.accepted = true;
+                     }

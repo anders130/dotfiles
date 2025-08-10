@@ -1,0 +1,23 @@
+diff --git a/src/caelestia/utils/wallpaper.py b/src/caelestia/utils/wallpaper.py
+index 6c6532c..78c2479 100644
+--- a/src/caelestia/utils/wallpaper.py
++++ b/src/caelestia/utils/wallpaper.py
+@@ -146,18 +146,6 @@ def set_wallpaper(wall: Path | str, no_smart: bool) -> None:
+     wallpaper_thumbnail_path.unlink(missing_ok=True)
+     wallpaper_thumbnail_path.symlink_to(thumb)
+ 
+-    scheme = get_scheme()
+-
+-    # Change mode and variant based on wallpaper colour
+-    if scheme.name == "dynamic" and not no_smart:
+-        smart_opts = get_smart_opts(wall, cache)
+-        scheme.mode = smart_opts["mode"]
+-        scheme.variant = smart_opts["variant"]
+-
+-    # Update colours
+-    scheme.update_colours()
+-    apply_colours(scheme.colours, scheme.mode)
+-
+ 
+ def set_random(args: Namespace) -> None:
+     set_wallpaper(random.choice(get_wallpapers(args)), args.no_smart)
