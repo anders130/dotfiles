@@ -32,9 +32,11 @@
                 "blurpopups, caelestia-.*"
                 "ignorealpha 0.57, caelestia-.*"
             ];
-            exec-once = [
+            exec-once = let
+                afterShellStarted = cmd: "while ! hyprctl layers | grep 'namespace: caelestia-background' | grep -qv 'pid: -1'; do sleep 0.1; done && ${cmd}";
+            in [
                 "caelestia shell -d"
-                "sleep 2.8 && hyprctl dispatch global caelestia:lock && mkdir -p /tmp/hyprland && touch /tmp/hyprland/first_lock_done"
+                (afterShellStarted "sleep 0.3 && hyprctl dispatch global caelestia:lock && mkdir -p /tmp/hyprland && touch /tmp/hyprland/first_lock_done")
             ];
         };
     };
