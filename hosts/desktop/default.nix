@@ -33,7 +33,10 @@
                     position = "3440x0";
                 };
             };
-            caelestia.enable = true;
+            caelestia = {
+                enable = true;
+                shell.showAudioSwitcher = true;
+            };
         };
 
         programs = {
