@@ -1,40 +1,29 @@
 {
-    inputs,
+    config,
     lib,
+    pkgs,
     ...
-}: rec {
-    programs.hyprland = {
-        enable = true;
-        withUWSM = true;
-        xwayland.enable = true;
-    };
-    environment.sessionVariables.NIXOS_OZONE_WL = "1";
-    xdg.portal = {
-        enable = true;
-        xdgOpenUsePortal = true;
-        config.hyprland.default = [
-            "hyprland"
-            "gtk"
-        ];
-    };
-    hm = {
-        imports = [inputs.hyprland.homeManagerModules.default];
-        stylix.targets.hyprland.enable = false;
-        wayland.windowManager.hyprland = {
-            inherit (programs.hyprland) enable xwayland;
-            settings = {
-                general = {
-                    layout = "dwindle";
-                    allow_tearing = false;
-                };
-                dwindle.preserve_split = true;
-                gestures.workspace_swipe = false;
-                ecosystem.no_update_news = true;
+}: {
+    modules = {
+        desktop.hyprland-common.enable = true;
+        programs.gui = {
+            rofi.enable = true;
+            swaync.enable = true;
+            hyprlock = {
+                enable = true;
+                inherit (config.modules.desktop) mainMonitor;
             };
-        };
-        xdg.configFile = {
-            "hypr/visuals" = lib.mkSymlink ./visuals;
-            "hypr/shaders" = lib.mkSymlink ./shaders;
+            swayosd.enable = true;
+            xdg-desktop-portal-termfilechooser.enable = true;
         };
     };
+    environment.systemPackages = with pkgs; [
+        swww
+        grim # whole screen screenshot
+        grimblast # region screenshot
+        pkgs.local.wallpaper-selector # custom wallpaper selector using rofi and swww
+        pkgs.local.shader-selector # custom shader selector using rofi and hyprland
+        pkgs.inputs.my-shell.default
+    ];
+    hm.xdg.configFile."hypr/shaders" = lib.mkSymlink ./shaders;
 }
