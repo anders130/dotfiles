@@ -32,12 +32,6 @@
                 "blurpopups, caelestia-.*"
                 "ignorealpha 0.57, caelestia-.*"
             ];
-            exec-once = let
-                afterShellStarted = cmd: "while ! hyprctl layers | grep 'namespace: caelestia-background' | grep -qv 'pid: -1'; do sleep 0.1; done && ${cmd}";
-            in [
-                "caelestia shell -d"
-                (afterShellStarted "sleep 0.3 && hyprctl dispatch global caelestia:lock && mkdir -p /tmp/hyprland && touch /tmp/hyprland/first_lock_done")
-            ];
         };
     };
     security.pam.services.caelestia.enableGnomeKeyring = true;
