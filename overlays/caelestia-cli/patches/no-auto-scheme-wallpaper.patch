@@ -1,16 +1,8 @@
 diff --git a/src/caelestia/utils/wallpaper.py b/src/caelestia/utils/wallpaper.py
-index 6c6532c..d5613ab 100644
+index 6c6532c..78c2479 100644
 --- a/src/caelestia/utils/wallpaper.py
 +++ b/src/caelestia/utils/wallpaper.py
-@@ -125,6 +125,7 @@ def get_colours_for_wall(wall: Path | str, no_smart: bool) -> None:
- 
- 
- def set_wallpaper(wall: Path | str, no_smart: bool) -> None:
-+    print(f"Setting wallpaper to {wall}")
-     # Make path absolute
-     wall = Path(wall).resolve()
- 
-@@ -146,17 +147,7 @@ def set_wallpaper(wall: Path | str, no_smart: bool) -> None:
+@@ -146,18 +146,6 @@ def set_wallpaper(wall: Path | str, no_smart: bool) -> None:
      wallpaper_thumbnail_path.unlink(missing_ok=True)
      wallpaper_thumbnail_path.symlink_to(thumb)
  
@@ -25,7 +17,7 @@ index 6c6532c..d5613ab 100644
 -    # Update colours
 -    scheme.update_colours()
 -    apply_colours(scheme.colours, scheme.mode)
-+    print("Done setting wallpaper")
- 
+-
  
  def set_random(args: Namespace) -> None:
+     set_wallpaper(random.choice(get_wallpapers(args)), args.no_smart)
