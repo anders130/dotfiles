@@ -61,6 +61,9 @@
             "opacity ${default_opacity}, class:firefox, initialTitle:Library"
             ## zen browser
             "opacity ${blur_opacity}, class:zen.*"
+            ### floating Picture-in-Picture
+            "float, initialTitle:Picture-in-Picture"
+            "size 1280 720, initialTitle:Picture-in-Picture"
             ## qutebrowser
             "opacity ${blur_opacity}, class:org.qutebrowser.qutebrowser"
             # termfilechooser centered and floated

@@ -4,10 +4,18 @@
             "SUPER, SPACE, global, caelestia:launcher"
             "SUPER, BACKSPACE, global, caelestia:lock" # lock screen
             "SUPER+SHIFT, S, global, caelestia:screenshot"
+            "CTRL+SUPER, R, exec, caelestia record"
+            "ALT+SUPER, R, exec, caelestia record -r"
+        ];
+        bindr = [
+            "CTRL+SUPER+SHIFT, R, exec, pkill .quickshell-wra; caelestia shell -d"
         ];
         bindl = [
             ", XF86MonBrightnessUp, global, caelestia:brightnessUp"
             ", XF86MonBrightnessDown, global, caelestia:brightnessDown"
+            # restore lock
+            "CTRL+SUPER, BACKSPACE, exec, caelestia shell -d"
+            "CTRL+SUPER, BACKSPACE, global, caelestia:lock"
         ];
         bindle = [
             ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"

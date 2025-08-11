@@ -32,6 +32,9 @@
                 "blurpopups, caelestia-.*"
                 "ignorealpha 0.57, caelestia-.*"
             ];
+            windowrule = [
+                "opacity 1, class:swappy"
+            ];
         };
     };
     security.pam.services.caelestia.enableGnomeKeyring = true;
