@@ -1,0 +1,1031 @@
+diff --git a/README.md b/README.md
+index cb5fb45..5e5f569 100644
+--- a/README.md
++++ b/README.md
+@@ -200,12 +200,17 @@ All configuration options are in `~/.config/caelestia/shell.json`.
+         "dragThreshold": 20,
+         "persistent": true,
+         "showOnHover": true,
++        "clock": {
++            "showCalendar": true,
++            "style": "simple"
++        },
+         "status": {
+             "showAudio": false,
+             "showBattery": true,
+             "showBluetooth": true,
+             "showKbLayout": false,
+-            "showNetwork": true
++            "showNetwork": true,
++            "showNotifications": true
+         },
+         "workspaces": {
+             "activeIndicator": true,
+diff --git a/config/BarConfig.qml b/config/BarConfig.qml
+index 498b2f5..38f1013 100644
+--- a/config/BarConfig.qml
++++ b/config/BarConfig.qml
+@@ -8,6 +8,13 @@ JsonObject {
+     property Status status: Status {}
+     property Sizes sizes: Sizes {}
+ 
++    property Clock clock: Clock {}
++
++    component Clock: JsonObject {
++        property bool showCalendar: true
++        property string style: "modern"  // Options: "modern", "simple"
++    }
++
+     component Workspaces: JsonObject {
+         property int shown: 5
+         property bool rounded: true
+@@ -21,6 +28,7 @@ JsonObject {
+     }
+ 
+     component Status: JsonObject {
++        property bool showNotifications: true
+         property bool showAudio: false
+         property bool showKbLayout: false
+         property bool showNetwork: true
+diff --git a/modules/bar/Bar.qml b/modules/bar/Bar.qml
+index 22f21dd..7a870d6 100644
+--- a/modules/bar/Bar.qml
++++ b/modules/bar/Bar.qml
+@@ -16,6 +16,7 @@ Item {
+     required property BarPopouts.Wrapper popouts
+ 
+     function checkPopout(y: real): void {
++
+         const spacing = Appearance.spacing.small;
+         const aw = activeWindow.child;
+         const awy = activeWindow.y + aw.y;
+@@ -24,6 +25,9 @@ Item {
+         const th = tray.implicitHeight;
+         const trayItems = tray.items;
+ 
++        const clockY = clock.y;
++        const clockHeight = clock.implicitHeight;
++
+         // Check status icons hover areas
+         let statusIconFound = false;
+         for (const area of statusIconsInner.hoverAreas) {
+@@ -47,6 +51,13 @@ Item {
+             popouts.currentName = "activewindow";
+             popouts.currentCenter = Qt.binding(() => activeWindow.y + aw.y + aw.implicitHeight / 2);
+             popouts.hasCurrent = true;
++
++        } else if (y >= clockY && y <= clockY + clockHeight && Config.bar.clock.showCalendar) {
++            const style = Config.bar.clock.style || "advanced";
++            popouts.currentName = style === "simple" ? "calendar-simple" : "calendar-advanced";
++            popouts.currentCenter = Qt.binding(() => clock.y + clock.implicitHeight / 2);
++            popouts.hasCurrent = true;
++
+         } else if (y > ty && y < ty + th) {
+             const index = Math.floor(((y - ty) / th) * trayItems.count);
+             const item = trayItems.itemAt(index);
+@@ -54,6 +65,7 @@ Item {
+             popouts.currentName = `traymenu${index}`;
+             popouts.currentCenter = Qt.binding(() => tray.y + item.y + item.implicitHeight / 2);
+             popouts.hasCurrent = true;
++            
+         } else if (!statusIconFound) {
+             popouts.hasCurrent = false;
+         }
+@@ -63,7 +75,7 @@ Item {
+     anchors.bottom: parent.bottom
+     anchors.left: parent.left
+ 
+-    implicitWidth: child.implicitWidth + Math.max(Appearance.padding.smaller, Config.border.thickness) * 2
++    implicitWidth: child.implicitWidth + Config.border.thickness * 2
+ 
+     Item {
+         id: child
+@@ -97,8 +109,8 @@ Item {
+ 
+             CustomMouseArea {
+                 anchors.fill: parent
+-                anchors.leftMargin: -Math.max(Appearance.padding.smaller, Config.border.thickness)
+-                anchors.rightMargin: -Math.max(Appearance.padding.smaller, Config.border.thickness)
++                anchors.leftMargin: -Config.border.thickness
++                anchors.rightMargin: -Config.border.thickness
+ 
+                 function onWheel(event: WheelEvent): void {
+                     const activeWs = Hyprland.activeToplevel?.workspace?.name;
+diff --git a/modules/bar/components/StatusIcons.qml b/modules/bar/components/StatusIcons.qml
+index c364d6b..daf2d45 100644
+--- a/modules/bar/components/StatusIcons.qml
++++ b/modules/bar/components/StatusIcons.qml
+@@ -16,6 +16,11 @@ Item {
+     property color colour: Colours.palette.m3secondary
+ 
+     readonly property list<var> hoverAreas: [
++        {
++            name: "notifications",
++            item: notificationsIcon,
++            enabled: Config.bar.status.showNotifications
++        },
+         {
+             name: "audio",
+             item: audioIcon,
+@@ -48,6 +53,30 @@ Item {
+         anchors.horizontalCenter: parent.horizontalCenter
+         spacing: Appearance.spacing.smaller / 2
+ 
++        // Notifications icon
++        Loader {
++            id: notificationsIcon
++
++            asynchronous: true
++            active: Config.bar.status.showNotifications
++            visible: active
++
++            sourceComponent: MaterialIcon {
++                animate: true
++                text: {
++                    if (Notifs.dnd) return "notifications_off"
++                    if (Notifs.list.length > 0) return "notifications"
++                    return "notifications_none"
++                }
++                color: Notifs.dnd ? Colours.palette.m3error : root.colour
++
++                MouseArea {
++                    anchors.fill: parent
++                    onClicked: Notifs.toggleDnd()
++                }
++            }
++        }
++
+         // Audio icon
+         Loader {
+             id: audioIcon
+diff --git a/modules/bar/popouts/Bluetooth.qml b/modules/bar/popouts/Bluetooth.qml
+index 6678030..f8035ed 100644
+--- a/modules/bar/popouts/Bluetooth.qml
++++ b/modules/bar/popouts/Bluetooth.qml
+@@ -108,7 +108,7 @@ ColumnLayout {
+                 implicitHeight: connectIcon.implicitHeight + Appearance.padding.small
+ 
+                 radius: Appearance.rounding.full
+-                color: Qt.alpha(Colours.palette.m3primary, device.modelData.state === BluetoothDeviceState.Connected ? 1 : 0)
++                color: device.modelData.state === BluetoothDeviceState.Connected ? Colours.palette.m3primary : Colours.tPalette.m3surface
+ 
+                 StyledBusyIndicator {
+                     anchors.centerIn: parent
+diff --git a/modules/bar/popouts/Calendars/Advanced.qml b/modules/bar/popouts/Calendars/Advanced.qml
+new file mode 100644
+index 0000000..b23a4f3
+--- /dev/null
++++ b/modules/bar/popouts/Calendars/Advanced.qml
+@@ -0,0 +1,286 @@
++pragma ComponentBehavior: Bound
++
++import qs.components
++import qs.components.controls
++import qs.services
++import qs.config
++import qs.utils
++import Quickshell
++import QtQuick
++import QtQuick.Controls
++import QtQuick.Layouts
++
++ColumnLayout {
++    id: root
++    
++    spacing: Appearance.spacing.normal
++    width: 360
++
++    property date currentDate: new Date()
++    property int currentYear: currentDate.getFullYear()
++    property int currentMonth: currentDate.getMonth()
++
++    opacity: 0
++    scale: 0.9
++    y: -10
++
++    Component.onCompleted: {
++        opacity = 1
++        scale = 1
++        y = 0
++    }
++
++    Behavior on opacity {
++        NumberAnimation {
++            duration: Appearance.anim.durations.normal
++            easing.type: Easing.OutCubic
++        }
++    }
++
++    Behavior on scale {
++        NumberAnimation {
++            duration: Appearance.anim.durations.normal
++            easing.type: Easing.OutBack
++        }
++    }
++
++    Behavior on y {
++        NumberAnimation {
++            duration: Appearance.anim.durations.normal
++            easing.type: Easing.OutCubic
++        }
++    }
++
++    RowLayout {
++        Layout.margins: Appearance.padding.larger
++        Layout.fillWidth: true
++        spacing: Appearance.spacing.large
++
++        MaterialIcon {
++            text: "calendar_month"
++            color: Colours.palette.m3primary
++            font.pixelSize: Appearance.font.size.large * 2
++        }
++
++        ColumnLayout {
++            Layout.fillWidth: true
++            spacing: Appearance.spacing.small
++
++            StyledText {
++                text: Time.format("dddd, MMMM d")
++                font.weight: 600
++                font.pointSize: Appearance.font.size.normal
++            }
++
++            StyledText {
++                text: Time.format("yyyy")
++                color: Colours.palette.m3onSurfaceVariant
++                font.pointSize: Appearance.font.size.smaller
++            }
++        }
++
++        StyledText {
++            text: Time.format(Config.services.useTwelveHourClock ? "h:mm A" : "HH:mm")
++            color: Colours.palette.m3primary
++            font.weight: 600
++            font.pointSize: Appearance.font.size.large * 1.3
++            font.family: Appearance.font.family.mono
++        }
++    }
++
++    // Calendar grid
++    Item {
++        Layout.fillWidth: true
++        Layout.leftMargin: Appearance.padding.small
++        Layout.rightMargin: Appearance.padding.smaller
++        Layout.preferredHeight: calendarGrid.implicitHeight + Appearance.padding.normal * 2
++
++        ColumnLayout {
++            id: calendarGrid
++
++            anchors.fill: parent
++            anchors.margins: Appearance.padding.normal
++            spacing: Appearance.spacing.small
++
++            // Month navigation
++            RowLayout {
++                Layout.fillWidth: true
++                Layout.bottomMargin: Appearance.spacing.small
++
++                StyledRect {
++                    implicitWidth: implicitHeight
++                    implicitHeight: prevIcon.implicitHeight + Appearance.padding.small * 2
++
++                    radius: Appearance.rounding.full
++                    color: Colours.palette.m3primaryContainer
++
++                    StateLayer {
++                        color: Colours.palette.m3onPrimaryContainer
++
++                        function onClicked(): void {
++                            root.currentMonth = root.currentMonth - 1
++                            if (root.currentMonth < 0) {
++                                root.currentMonth = 11
++                                root.currentYear = root.currentYear - 1
++                            }
++                        }
++                    }
++
++                    MaterialIcon {
++                        id: prevIcon
++
++                        anchors.centerIn: parent
++                        text: "chevron_left"
++                        color: Colours.palette.m3onPrimaryContainer
++                    }
++                }
++
++                StyledText {
++                    Layout.fillWidth: true
++
++                    text: {
++                        const monthNames = Array.from({ length: 12 }, (_, i) => Qt.locale().monthName(i, Qt.locale().LongFormat))
++                        return monthNames[root.currentMonth] + " " + root.currentYear
++                    }
++                    horizontalAlignment: Text.AlignHCenter
++                    font.weight: 600
++                    font.pointSize: Appearance.font.size.normal
++                }
++
++                StyledRect {
++                    implicitWidth: implicitHeight
++                    implicitHeight: nextIcon.implicitHeight + Appearance.padding.small * 2
++                    radius: Appearance.rounding.full
++                    color: Colours.palette.m3primaryContainer
++
++                    StateLayer {
++                        color: Colours.palette.m3onPrimaryContainer
++                        function onClicked(): void {
++                            root.currentMonth = root.currentMonth + 1
++                            if (root.currentMonth > 11) {
++                                root.currentMonth = 0
++                                root.currentYear = root.currentYear + 1
++                            }
++                        }
++                    }
++
++                    MaterialIcon {
++                        id: nextIcon
++                        anchors.centerIn: parent
++                        text: "chevron_right"
++                        color: Colours.palette.m3onPrimaryContainer
++                    }
++                }
++            }
++
++            // Day headers
++            DayOfWeekRow {
++                Layout.fillWidth: true
++                Layout.preferredHeight: Appearance.font.size.extraLarge
++
++                padding: Appearance.padding.large
++                spacing: Appearance.spacing.large
++
++                delegate: StyledText {
++                    required property var model
++
++                    horizontalAlignment: Text.AlignHCenter
++                    verticalAlignment: Text.AlignVCenter
++                    text: model.shortName
++                    color: Colours.palette.m3onSurfaceVariant
++
++                    font.pointSize: Appearance.font.size.small
++                    font.weight: 500
++                }
++            }
++
++            // Calendar days grid
++            MonthGrid {
++                Layout.fillWidth: true
++                Layout.preferredHeight: implicitHeight
++                Layout.margins: Appearance.padding.large
++
++                month: root.currentMonth
++                year: root.currentYear
++                spacing: Appearance.spacing.large
++
++                delegate: Item {
++                    id: dayItem
++                    required property var model
++
++                    implicitWidth: implicitHeight
++                    implicitHeight: dayText.implicitHeight + Appearance.padding.small * 2
++
++                    StyledRect {
++                        anchors.centerIn: parent
++                        implicitWidth: parent.implicitHeight
++                        implicitHeight: parent.implicitHeight
++                        radius: Appearance.rounding.full
++                        color: dayItem.model.today ? Colours.palette.m3primary : "transparent"
++
++                        StateLayer {
++                            visible: dayItem.model.month === root.currentMonth
++                            color: Colours.palette.m3onSurface
++                            function onClicked(): void {}
++                        }
++
++                        StyledText {
++                            id: dayText
++                            anchors.centerIn: parent
++                            horizontalAlignment: Text.AlignHCenter
++                            text: Qt.formatDate(dayItem.model.date, "d")
++                            color: dayItem.model.today ? Colours.palette.m3onPrimary : 
++                                   dayItem.model.month === root.currentMonth ? Colours.palette.m3onSurfaceVariant : Colours.palette.m3outline
++
++                            font.pointSize: Appearance.font.size.small
++                            font.weight: dayItem.model.today ? 600 : 400
++                        }
++                    }
++                }
++            }
++        }
++    }
++
++    // Today button
++    RowLayout {
++        Layout.margins: Appearance.spacing.normal
++        Layout.rightMargin: Appearance.padding.large
++        Layout.fillWidth: true
++        spacing: Appearance.spacing.small
++
++        StyledRect {
++            Layout.fillWidth: true
++            implicitHeight: todayBtn.implicitHeight + Appearance.padding.normal * 2
++            radius: Appearance.rounding.large
++            color: Colours.palette.m3primaryContainer
++
++            StateLayer {
++                color: Colours.palette.m3onPrimaryContainer
++
++                function onClicked(): void {
++                    const today = new Date()
++                    root.currentYear = today.getFullYear()
++                    root.currentMonth = today.getMonth()
++                }
++            }
++
++            RowLayout {
++                id: todayBtn
++                anchors.centerIn: parent
++                spacing: Appearance.spacing.small
++
++                MaterialIcon {
++                    text: "today"
++                    color: Colours.palette.m3onPrimaryContainer
++                    font.pixelSize: Appearance.font.size.normal
++                }
++
++                StyledText {
++                    text: qsTr("Today")
++                    color: Colours.palette.m3onPrimaryContainer
++                    font.weight: 500
++                }
++            }
++        }
++    }
++}
+diff --git a/modules/bar/popouts/Calendars/Simple.qml b/modules/bar/popouts/Calendars/Simple.qml
+new file mode 100644
+index 0000000..ef4531f
+--- /dev/null
++++ b/modules/bar/popouts/Calendars/Simple.qml
+@@ -0,0 +1,206 @@
++pragma ComponentBehavior: Bound
++
++import qs.components
++import qs.components.controls
++import qs.services
++import qs.config
++import qs.utils
++import Quickshell
++import QtQuick
++import QtQuick.Controls
++import QtQuick.Layouts
++
++ColumnLayout {
++    id: root
++
++    spacing: Appearance.spacing.normal
++    width: 320
++
++    property date currentDate: new Date()
++    property int currentYear: currentDate.getFullYear()
++    property int currentMonth: currentDate.getMonth()
++
++    opacity: 0
++    scale: 0.9
++    y: -10
++
++    Component.onCompleted: {
++        opacity = 1
++        scale = 1
++        y = 0
++    }
++
++    Behavior on opacity {
++        NumberAnimation {
++            duration: Appearance.anim.durations.normal
++            easing.type: Easing.OutCubic
++        }
++    }
++
++    Behavior on scale {
++        NumberAnimation {
++            duration: Appearance.anim.durations.normal
++            easing.type: Easing.OutBack
++        }
++    }
++
++    Behavior on y {
++        NumberAnimation {
++            duration: Appearance.anim.durations.normal
++            easing.type: Easing.OutCubic
++        }
++    }
++
++    // Calendar grid
++    Item {
++        Layout.fillWidth: true
++        Layout.leftMargin: Appearance.padding.small
++        Layout.rightMargin: Appearance.padding.small
++        Layout.preferredHeight: calendarGrid.implicitHeight + Appearance.padding.small * 2
++
++        ColumnLayout {
++            id: calendarGrid
++
++            anchors.fill: parent
++            anchors.margins: Appearance.padding.normal
++            spacing: Appearance.spacing.small
++
++            // Month navigation
++            RowLayout {
++                Layout.fillWidth: true
++                Layout.bottomMargin: Appearance.spacing.small
++
++                StyledRect {
++                    implicitWidth: implicitHeight
++                    implicitHeight: prevIcon.implicitHeight + Appearance.padding.small * 1.5
++
++                    radius: Appearance.rounding.full
++                    color: Colours.palette.m3primaryContainer
++
++                    StateLayer {
++                        color: Colours.palette.m3onPrimaryContainer
++
++                        function onClicked(): void {
++                            root.currentMonth = root.currentMonth - 1
++                            if (root.currentMonth < 0) {
++                                root.currentMonth = 11
++                                root.currentYear = root.currentYear - 1
++                            }
++                        }
++                    }
++
++                    MaterialIcon {
++                        id: prevIcon
++
++                        anchors.centerIn: parent
++                        text: "chevron_left"
++                        color: Colours.palette.m3onPrimaryContainer
++                    }
++                }
++
++                StyledText {
++                    Layout.fillWidth: true
++
++                    text: {
++                        const monthNames = Array.from({ length: 12 }, (_, i) => Qt.locale().monthName(i, Qt.locale().LongFormat))
++                        return monthNames[root.currentMonth] + " " + root.currentYear
++                    }
++                    horizontalAlignment: Text.AlignHCenter
++                    font.weight: 600
++                    font.pointSize: Appearance.font.size.normal
++                }
++
++                StyledRect {
++                    implicitWidth: implicitHeight
++                    implicitHeight: nextIcon.implicitHeight + Appearance.padding.small * 1.5
++                    radius: Appearance.rounding.full
++                    color: Colours.palette.m3primaryContainer
++
++                    StateLayer {
++                        color: Colours.palette.m3onPrimaryContainer
++                        function onClicked(): void {
++                            root.currentMonth = root.currentMonth + 1
++                            if (root.currentMonth > 11) {
++                                root.currentMonth = 0
++                                root.currentYear = root.currentYear + 1
++                            }
++                        }
++                    }
++
++                    MaterialIcon {
++                        id: nextIcon
++                        anchors.centerIn: parent
++                        text: "chevron_right"
++                        color: Colours.palette.m3onPrimaryContainer
++                    }
++                }
++            }
++
++            // Day headers
++            DayOfWeekRow {
++                Layout.fillWidth: true
++                Layout.preferredHeight: Appearance.font.size.extraLarge
++
++                padding: Appearance.padding.normal
++                spacing: Appearance.spacing.normal
++
++                delegate: StyledText {
++                    required property var model
++
++                    horizontalAlignment: Text.AlignHCenter
++                    verticalAlignment: Text.AlignVCenter
++                    text: model.shortName
++                    color: Colours.palette.m3onSurfaceVariant
++
++                    font.pointSize: Appearance.font.size.small
++                    font.weight: 500
++                }
++            }
++
++            // Calendar days grid
++            MonthGrid {
++                Layout.fillWidth: true
++                Layout.preferredHeight: implicitHeight
++                Layout.margins: Appearance.padding.smaller
++
++                month: root.currentMonth
++                year: root.currentYear
++                spacing: Appearance.spacing.large
++
++                delegate: Item {
++                    id: dayItem
++                    required property var model
++
++                    implicitWidth: implicitHeight
++                    implicitHeight: dayText.implicitHeight + Appearance.padding.small * 2
++
++                    StyledRect {
++                        anchors.centerIn: parent
++                        implicitWidth: parent.implicitHeight
++                        implicitHeight: parent.implicitHeight
++                        radius: Appearance.rounding.full
++                        color: dayItem.model.today ? Colours.palette.m3primary : "transparent"
++
++                        StateLayer {
++                            visible: dayItem.model.month === root.currentMonth
++                            color: Colours.palette.m3onSurface
++                            function onClicked(): void {}
++                        }
++
++                        StyledText {
++                            id: dayText
++                            anchors.centerIn: parent
++                            horizontalAlignment: Text.AlignHCenter
++                            text: Qt.formatDate(dayItem.model.date, "d")
++                            color: dayItem.model.today ? Colours.palette.m3onPrimary : 
++                                   dayItem.model.month === root.currentMonth ? Colours.palette.m3onSurfaceVariant : Colours.palette.m3outline
++
++                            font.pointSize: Appearance.font.size.small
++                            font.weight: dayItem.model.today ? 600 : 400
++                        }
++                    }
++                }
++            }
++        }
++    }
++}
+diff --git a/modules/bar/popouts/Content.qml b/modules/bar/popouts/Content.qml
+index 453611c..46bb11c 100644
+--- a/modules/bar/popouts/Content.qml
++++ b/modules/bar/popouts/Content.qml
+@@ -4,6 +4,7 @@ import qs.config
+ import Quickshell
+ import Quickshell.Services.SystemTray
+ import QtQuick
++import "Calendars"
+ 
+ Item {
+     id: root
+@@ -52,6 +53,27 @@ Item {
+             }
+         }
+ 
++        Popout {
++            name: "calendar-advanced"
++            sourceComponent: Loader {
++                source: "Calendars/Advanced.qml"
++            }
++        }
++
++        Popout {
++            name: "calendar-simple"
++            sourceComponent: Loader {
++                source: "Calendars/Simple.qml"
++            }
++        }
++
++        Popout {
++            name: "notifications"
++            sourceComponent: Notifications {
++                wrapper: root.wrapper
++            }
++        }
++
+         Repeater {
+             model: ScriptModel {
+                 values: [...SystemTray.items.values]
+diff --git a/modules/bar/popouts/Network.qml b/modules/bar/popouts/Network.qml
+index 6a95b73..ed48b86 100644
+--- a/modules/bar/popouts/Network.qml
++++ b/modules/bar/popouts/Network.qml
+@@ -102,7 +102,7 @@ ColumnLayout {
+                 implicitHeight: connectIcon.implicitHeight + Appearance.padding.small
+ 
+                 radius: Appearance.rounding.full
+-                color: Qt.alpha(Colours.palette.m3primary, networkItem.modelData.active ? 1 : 0)
++                color: networkItem.modelData.active ? Colours.palette.m3primary : Colours.tPalette.m3surface
+ 
+                 StyledBusyIndicator {
+                     anchors.centerIn: parent
+diff --git a/modules/bar/popouts/Notifications.qml b/modules/bar/popouts/Notifications.qml
+new file mode 100644
+index 0000000..2247964
+--- /dev/null
++++ b/modules/bar/popouts/Notifications.qml
+@@ -0,0 +1,242 @@
++pragma ComponentBehavior: Bound
++
++import qs.components
++import qs.components.controls
++import qs.components.widgets
++import qs.services
++import qs.config
++import qs.utils
++import Quickshell
++import Quickshell.Services.Notifications
++import QtQuick
++import QtQuick.Controls
++import QtQuick.Layouts
++import "../../notifications" as NotificationComponents
++
++ColumnLayout {
++    id: root
++
++    required property Item wrapper
++
++    spacing: Appearance.spacing.normal
++    width: 420
++
++    readonly property int maxListHeight: Math.min(480, (QsWindow.window?.screen?.height ?? 800) * 0.6)
++
++    readonly property int notifCount: {
++        return (Notifs.list && Notifs.list.length !== undefined)
++        ? Notifs.list.length
++        : ((Notifs.list && Notifs.list.count !== undefined) ? Notifs.list.count : 0)
++    }
++    function notifAt(i) {
++        if (!Notifs.list) return undefined
++        if (typeof Notifs.list.get === 'function') return Notifs.list.get(i)
++        return Notifs.list[i]
++    }
++
++    function scrollToTop(): void {
++        if (notifScroll && notifScroll.contentItem && notifScroll.contentItem.contentY !== undefined) {
++            notifScroll.contentItem.contentY = 0;
++        }
++    }
++
++    RowLayout {
++        Layout.margins: Appearance.padding.normal
++        Layout.topMargin: Appearance.padding.large
++        Layout.bottomMargin: Appearance.padding.small
++        Layout.fillWidth: true
++        spacing: Appearance.spacing.normal
++
++        MaterialIcon {
++            text: {
++                if (Notifs.dnd) return "notifications_off"
++                if (notifCount > 0) return "notifications"
++                return "notifications_none"
++            }
++            color: Notifs.dnd ? Colours.palette.m3error : Colours.palette.m3primary
++        }
++
++        StyledText {
++            Layout.fillWidth: true
++            text: qsTr("Notifications")
++            font.weight: 600
++        }
++
++        StyledRect {
++            radius: Appearance.rounding.full
++            implicitHeight: Appearance.font.size.normal * 1.6
++            implicitWidth: Math.max(implicitHeight, badgeText.implicitWidth + Appearance.padding.small * 2)
++            color: Colours.palette.m3primaryContainer
++
++            StyledText {
++                id: badgeText
++                anchors.centerIn: parent
++                text: notifCount
++                color: Colours.palette.m3onPrimaryContainer
++            }
++        }
++    }
++
++    Toggle {
++        Layout.leftMargin: Appearance.padding.normal
++        Layout.rightMargin: Appearance.padding.normal
++        Layout.bottomMargin: Appearance.padding.small
++        label: qsTr("Do Not Disturb")
++        checked: Notifs.dnd
++        toggle.onToggled: Notifs.toggleDnd()
++    }
++
++    Item {
++        visible: notifCount === 0
++        Layout.fillWidth: true
++        Layout.leftMargin: Appearance.padding.normal
++        Layout.rightMargin: Appearance.padding.normal
++        Layout.maximumHeight: maxListHeight
++        Layout.preferredHeight: Math.min(maxListHeight, 260 + Appearance.padding.normal * 2)
++        Layout.minimumHeight: Math.min(260, maxListHeight)
++
++        ColumnLayout {
++            anchors.centerIn: parent
++            spacing: Appearance.spacing.large
++
++            MaterialIcon {
++                Layout.alignment: Qt.AlignHCenter
++                text: "notifications_none"
++                color: Colours.palette.m3onSurfaceVariant
++                font.pixelSize: 120
++                opacity: 0.6
++            }
++
++            StyledText {
++                Layout.alignment: Qt.AlignHCenter
++                text: qsTr("No notifications")
++                color: Colours.palette.m3onSurfaceVariant
++                font.pointSize: Appearance.font.size.large
++                font.weight: 400
++                opacity: 0.8
++            }
++        }
++    }
++
++    Item {
++        Layout.fillWidth: true
++        visible: notifCount > 0
++        Layout.leftMargin: Appearance.padding.normal
++        Layout.rightMargin: Appearance.padding.normal
++        Layout.maximumHeight: maxListHeight
++        Layout.preferredHeight: Math.min(maxListHeight, (notifList?.implicitHeight ?? 0) + Appearance.padding.normal * 2)
++        Layout.minimumHeight: Math.min(260, maxListHeight)
++
++        ListView {
++            id: notifScroll
++            anchors.fill: parent
++            anchors.margins: Appearance.padding.normal
++            spacing: Appearance.spacing.normal
++            clip: true
++
++            model: ScriptModel {
++                values: [...Notifs.list].reverse()
++            }
++
++            delegate: Item {
++                id: wrapper
++                required property int index
++                required property var modelData
++                readonly property alias nonAnimHeight: notif.nonAnimHeight
++            
++                width: ListView.view ? ListView.view.width : 0
++                height: notif.implicitHeight
++            
++                NotificationComponents.Notification {
++                    id: notif
++                    width: parent.width
++                    modelData: wrapper.modelData
++                    color: Colours.palette.m3surfaceContainerHigh
++                    opacity: 0.8
++                }
++            }
++
++            add: Transition {
++                NumberAnimation {
++                    property: "opacity"
++                    from: 0
++                    to: 1
++                    duration: Appearance.anim.durations.normal
++                    easing.type: Easing.OutCubic
++                }
++            }
++
++            remove: null
++
++            displaced: Transition {
++                NumberAnimation {
++                    property: "y"
++                    duration: Appearance.anim.durations.normal
++                    easing.type: Easing.OutCubic
++                }
++            }
++        }
++    }
++
++    component Toggle: RowLayout {
++        required property string label
++        property alias checked: toggle.checked
++        property alias toggle: toggle
++
++        Layout.fillWidth: true
++        Layout.rightMargin: Appearance.padding.small
++        spacing: Appearance.spacing.normal
++
++        StyledText {
++            Layout.fillWidth: true
++            text: parent.label
++        }
++
++        StyledSwitch {
++            id: toggle
++        }
++    }
++
++    StyledRect {
++        Layout.margins: Appearance.spacing.normal
++        Layout.fillWidth: true
++        implicitHeight: clearBtn.implicitHeight + Appearance.padding.normal * 2
++
++        radius: Appearance.rounding.large
++        color: notifCount === 0 ? Qt.darker(Colours.palette.m3surfaceContainer, 1.2) : Colours.palette.m3primaryContainer
++
++        StateLayer {
++            color: notifCount === 0 ? Colours.palette.m3onSurface : Colours.palette.m3onPrimaryContainer
++            disabled: notifCount === 0
++            opacity: notifCount === 0 ? 0.4 : 1.0
++
++            function onClicked(): void {
++                for (let i = root.notifCount - 1; i >= 0; i--) {
++                    const n = root.notifAt(i)
++                    if (n && n.notification && typeof n.notification.dismiss === 'function') {
++                        n.notification.dismiss()
++                    }
++                }
++            }
++        }
++
++        RowLayout {
++            id: clearBtn
++            
++            anchors.centerIn: parent
++            spacing: Appearance.spacing.small
++            opacity: notifCount === 0 ? 0.4 : 1.0
++
++            MaterialIcon {
++                id: clearIcon
++                text: "clear_all"
++                color: notifCount === 0 ? Colours.palette.m3onSurface : Colours.palette.m3onPrimaryContainer
++            }
++
++            StyledText {
++                text: notifCount === 0 ? qsTr("Nothing to clear") : qsTr("Clear all")
++                color: notifCount === 0 ? Colours.palette.m3onSurface : Colours.palette.m3onPrimaryContainer
++            }
++        }
++    }
++}
+diff --git a/modules/dashboard/dash/User.qml b/modules/dashboard/dash/User.qml
+index 53b136b..d4d52be 100644
+--- a/modules/dashboard/dash/User.qml
++++ b/modules/dashboard/dash/User.qml
+@@ -21,7 +21,7 @@ Row {
+         implicitHeight: info.implicitHeight
+ 
+         radius: Appearance.rounding.large
+-        color: Colours.layer(Colours.palette.m3surfaceContainerHigh, 2)
++        color: Colours.tPalette.m3surfaceContainerHigh
+ 
+         MaterialIcon {
+             anchors.centerIn: parent
+diff --git a/modules/drawers/Exclusions.qml b/modules/drawers/Exclusions.qml
+index e4015c8..b214408 100644
+--- a/modules/drawers/Exclusions.qml
++++ b/modules/drawers/Exclusions.qml
+@@ -33,7 +33,5 @@ Scope {
+         name: "border-exclusion"
+         exclusiveZone: Config.border.thickness
+         mask: Region {}
+-        implicitWidth: 1
+-        implicitHeight: 1
+     }
+ }
+diff --git a/services/Notifs.qml b/services/Notifs.qml
+index 87ecca5..30711ea 100644
+--- a/services/Notifs.qml
++++ b/services/Notifs.qml
+@@ -13,6 +13,12 @@ Singleton {
+ 
+     readonly property list<Notif> list: []
+     readonly property list<Notif> popups: list.filter(n => n.popup)
++    
++    property bool dnd: false
++    
++    function toggleDnd(): void {
++        dnd = !dnd
++    }
+ 
+     NotificationServer {
+         id: server
+@@ -27,8 +33,9 @@ Singleton {
+         onNotification: notif => {
+             notif.tracked = true;
+ 
++            // Only show notifications if DND is not enabled
+             root.list.push(notifComp.createObject(root, {
+-                popup: true,
++                popup: !root.dnd,
+                 notification: notif
+             }));
+         }

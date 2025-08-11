@@ -1,0 +1,61 @@
+diff --git a/src/caelestia/subcommands/record.py b/src/caelestia/subcommands/record.py
+index 69c961e..64abc7b 100644
+--- a/src/caelestia/subcommands/record.py
++++ b/src/caelestia/subcommands/record.py
+@@ -1,4 +1,6 @@
+-import subprocess
++import shutil, os, errno
++import subprocess, time
++from pathlib import Path
+ import time
+ from argparse import Namespace
+ from datetime import datetime
+@@ -30,6 +32,20 @@ class Command:
+                 region = self.args.region
+             args += ["-g", region.strip()]
+ 
++        monitors = subprocess.check_output(["hyprctl", "monitors"], text=True).splitlines()
++        focused_monitor = None
++        for i, line in enumerate(monitors):
++            if "focused: yes" in line:
++                # Look backwards for the monitor name
++                for j in range(i, -1, -1):
++                    if "Monitor" in monitors[j]:
++                        focused_monitor = monitors[j].split()[1]
++                        break
++                break
++
++        if focused_monitor:
++            args += ["-o", focused_monitor]
++
+         if self.args.sound:
+             sources = subprocess.check_output(["pactl", "list", "short", "sources"], text=True).splitlines()
+             for source in sources:
+@@ -56,12 +72,26 @@ class Command:
+             notify("Recording failed", f"Recording failed to start: {proc.communicate()[1]}")
+ 
+     def stop(self) -> None:
++        # Start killing recording process
+         subprocess.run(["pkill", "wl-screenrec"])
+ 
+         # Move to recordings folder
+         new_path = recordings_dir / f"recording_{datetime.now().strftime('%Y%m%d_%H-%M-%S')}.mp4"
+         recordings_dir.mkdir(exist_ok=True, parents=True)
+-        recording_path.rename(new_path)
++
++        # Wait for recording to finish to avoid corrupted video file
++        while subprocess.run(["pidof", "wl-screenrec"], stdout=subprocess.DEVNULL).returncode == 0:
++            time.sleep(0.1)
++
++        # Move by renaming
++        try:
++            recording_path.rename(new_path)
++        except OSError as e:
++            # If the destination is on a different filesystem, use robust shutil move function
++            if e.errno == errno.EXDEV:
++                shutil.move(recording_path, new_path)
++            else:
++                raise
+ 
+         # Close start notification
+         try:
