@@ -43,10 +43,11 @@
         };
         hardware = {
             amdgpu.enable = true;
-            bluetooth.enable = true;
             displaylink.enable = true;
         };
     };
+
+    hardware.bluetooth.enable = true;
 
     hm = {
         wayland.windowManager.hyprland.extraConfig = lib.mkAfter ''

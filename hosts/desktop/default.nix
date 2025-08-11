@@ -1,5 +1,4 @@
 {
-    lib,
     pkgs,
     username,
     ...
@@ -65,18 +64,13 @@
                 obs.enable = true;
             };
         };
-        hardware = {
-            amdgpu.enable = true;
-            bluetooth.enable = true;
-        };
+        hardware.amdgpu.enable = true;
     };
 
-    services = {
-        lsfg-vk = {
-            enable = true;
-            ui.enable = true;
-        };
-        blueman.enable = lib.mkForce false;
+    hardware.bluetooth.enable = true;
+    services.lsfg-vk = {
+        enable = true;
+        ui.enable = true;
     };
 
     boot = {
