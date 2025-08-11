@@ -19,7 +19,7 @@
                 showAudio = false;
                 showKbLayout = false;
                 showBluetooth = config.hardware.bluetooth.enable;
-                showBattery = config.services.upower.enable;
+                showBattery = with config.services; (upower.enable && power-profiles-daemon.enable);
             };
             launcher = {
                 vimKeybinds = true;
