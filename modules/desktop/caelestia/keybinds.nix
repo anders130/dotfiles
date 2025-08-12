@@ -8,7 +8,7 @@
             "ALT+SUPER, R, exec, caelestia record -r"
         ];
         bindr = [
-            "CTRL+SUPER+SHIFT, R, exec, pkill .quickshell-wra; caelestia shell -d"
+            "CTRL+SUPER+SHIFT, R, exec, systemctl --user restart caelestia.service"
         ];
         bindl = [
             ", XF86MonBrightnessUp, global, caelestia:brightnessUp"

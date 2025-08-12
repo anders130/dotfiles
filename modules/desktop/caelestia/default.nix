@@ -1,10 +1,6 @@
-{pkgs, ...}: {
+{
     modules.desktop.hyprland-common.enable = true;
     hm = {
-        home.packages = with pkgs; [
-            caelestia-cli
-            caelestia-shell
-        ];
         wayland.windowManager.hyprland.settings = {
             general = {
                 gaps_in = 5;
