@@ -7,7 +7,7 @@
                 gaps_out = 10;
                 border_size = 3;
             };
-            decoration.rounding = 20;
+            decoration.rounding = 25;
             bindin = [
                 "Super, mouse:272, global, caelestia:launcherInterrupt"
                 "Super, mouse:273, global, caelestia:launcherInterrupt"

@@ -1,17 +1,5 @@
-diff --git a/config/BarConfig.qml b/config/BarConfig.qml
-index 498b2f5..5ef8ccb 100644
---- a/config/BarConfig.qml
-+++ b/config/BarConfig.qml
-@@ -22,6 +22,7 @@ JsonObject {
- 
-     component Status: JsonObject {
-         property bool showAudio: false
-+        property bool showAudioSwitcher: true
-         property bool showKbLayout: false
-         property bool showNetwork: true
-         property bool showBluetooth: true
 diff --git a/modules/bar/components/StatusIcons.qml b/modules/bar/components/StatusIcons.qml
-index c364d6b..62690f5 100644
+index f7d9828..95e9bf5 100644
 --- a/modules/bar/components/StatusIcons.qml
 +++ b/modules/bar/components/StatusIcons.qml
 @@ -1,6 +1,7 @@
@@ -22,24 +10,29 @@ index c364d6b..62690f5 100644
  import qs.services
  import qs.utils
  import qs.config
-@@ -63,6 +64,33 @@ Item {
-             }
-         }
+@@ -15,6 +16,7 @@ StyledRect {
  
-+        // Audio switcher
-+        Loader {
-+            id: audioSwitcher
-+
-+            Layout.alignment: Qt.AlignHCenter
-+            asynchronous: true
-+            active: Config.bar.status.showAudioSwitcher
-+            visible: active
-+
+     property color colour: Colours.palette.m3secondary
+     readonly property alias items: iconColumn
++    property bool isHeadphonesIcon: false
+ 
+     color: Colours.tPalette.m3surfaceContainer
+     radius: Appearance.rounding.full
+@@ -34,10 +36,23 @@ StyledRect {
+             name: "audio"
+             active: Config.bar.status.showAudio
+ 
+-            sourceComponent: MaterialIcon {
+-                animate: true
+-                text: Icons.getVolumeIcon(Audio.volume, Audio.muted)
+-                color: root.colour
 +            sourceComponent: CustomMouseArea {
-+                id: audioSwitcherArea
++                id: audioArea
 +
 +                implicitWidth: icon.implicitWidth
 +                implicitHeight: icon.implicitHeight
++
++                hoverEnabled: false
 +
 +                onClicked: Audio.toggleAudioPort()
 +
@@ -50,12 +43,9 @@ index c364d6b..62690f5 100644
 +                    text: Audio.isHeadphonesIcon ? "headphones" : "speaker"
 +                    color: root.colour
 +                }
-+            }
-+        }
-+
-         // Keyboard layout icon
-         Loader {
-             id: kbLayout
+             }
+         }
+ 
 diff --git a/services/Audio.qml b/services/Audio.qml
 index e156e6e..eaf57b4 100644
 --- a/services/Audio.qml

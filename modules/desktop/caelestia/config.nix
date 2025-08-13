@@ -7,7 +7,7 @@
 }: {
     options.shell = {
         showNetwork = lib.mkEnableOption "Show network status";
-        showAudioSwitcher = lib.mkEnableOption "Show audio switcher";
+        showAudio = lib.mkEnableOption "Show audio switcher";
     };
     config = cfg: {
         hm = {
@@ -21,12 +21,24 @@
                         enabled = true;
                         desktopClock.enabled = true;
                     };
-                    bar.status = {
-                        inherit (cfg.shell) showNetwork showAudioSwitcher;
-                        showAudio = false;
-                        showKbLayout = false;
-                        showBluetooth = config.hardware.bluetooth.enable;
-                        showBattery = with config.services; (upower.enable && power-profiles-daemon.enable);
+                    bar = {
+                        entries = map (id: {
+                            inherit id;
+                            enabled = true;
+                        }) [
+                            "workspaces"
+                            "spacer"
+                            "tray"
+                            "clock"
+                            "statusIcons"
+                            "power"
+                        ];
+                        status = {
+                            inherit (cfg.shell) showNetwork showAudio;
+                            showKbLayout = false;
+                            showBluetooth = config.hardware.bluetooth.enable;
+                            showBattery = with config.services; (upower.enable && power-profiles-daemon.enable);
+                        };
                     };
                     launcher = {
                         vimKeybinds = true;

@@ -156,7 +156,7 @@
             };
         };
         caelestia-shell = {
-            url = "github:anders130/caelestia-shell";
+            url = "github:caelestia-dots/shell";
             inputs = {
                 nixpkgs.follows = "nixpkgs-unstable";
                 caelestia-cli.follows = "caelestia-cli";

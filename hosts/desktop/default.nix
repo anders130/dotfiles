@@ -34,7 +34,7 @@
             };
             caelestia = {
                 enable = true;
-                shell.showAudioSwitcher = true;
+                shell.showAudio = true;
             };
         };
 
