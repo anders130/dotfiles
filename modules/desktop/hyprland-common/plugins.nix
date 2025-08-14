@@ -1,6 +1,6 @@
 {pkgs, ...}: {
     hm.wayland.windowManager.hyprland = {
-        plugins = [pkgs.inputs.split-monitor-workspaces.default];
+        plugins = [pkgs.hyprlandPlugins.split-monitor-workspaces];
         extraConfig = /*hyprlang*/''
             plugin {
                 split-monitor-workspaces {
