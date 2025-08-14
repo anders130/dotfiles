@@ -43,6 +43,11 @@
                 source = "./extra.conf";
             };
         };
-        xdg.configFile."hypr/extra.conf" = lib.mkSymlink ./hyprland.conf;
+        xdg.configFile = {
+            "hypr/extra.conf" = lib.mkSymlink ./hyprland.conf;
+            "hypr/xdph.conf".text = lib.toHyprlang {
+                screencopy.allow_token_by_default = true;
+            };
+        };
     };
 }
