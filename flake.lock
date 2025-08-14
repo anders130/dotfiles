@@ -211,11 +211,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1755065440,
-        "narHash": "sha256-D7nXY7VkYf1FgPZSlNsriuXRAWiY+/tWyhYOdsYwGLI=",
+        "lastModified": 1755137282,
+        "narHash": "sha256-BnbDuysTxBTUkAkL4eSK1tR+AWBQ1V2NxeVaHASSFIo=",
         "owner": "caelestia-dots",
         "repo": "cli",
-        "rev": "386ccf3729f9958b9127d928f2dc7f9c6958457a",
+        "rev": "c3631cd35b4ac4a11edc146e54e511553acfe7e4",
         "type": "github"
       },
       "original": {
@@ -235,11 +235,11 @@
         "quickshell": "quickshell"
       },
       "locked": {
-        "lastModified": 1755090584,
-        "narHash": "sha256-D1yTWn74sWixGkUpB7b38utFM7GM109Egk5L7wdKchk=",
+        "lastModified": 1755155904,
+        "narHash": "sha256-e874GPkYovYqnMm+g+zUJNKkQSAFFJZkHQOrEwB+YWA=",
         "owner": "caelestia-dots",
         "repo": "shell",
-        "rev": "38b2ef006192b236f479a7134998383e581df4a3",
+        "rev": "a02d774b0a671c2c20d067f0b1b393ac4dfc6204",
         "type": "github"
       },
       "original": {
@@ -1366,11 +1366,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1753977315,
-        "narHash": "sha256-AM3CZh+Emk/cr5Gf6RUf2xzkWdRB+yewP1YWoRxUbYQ=",
+        "lastModified": 1755095763,
+        "narHash": "sha256-cFwtMaONA4uKYk/rBrmFvIAQieZxZytoprzIblTn1HA=",
         "owner": "nix-community",
         "repo": "nixvim",
-        "rev": "a16c89c175277309fd3dd065fb5bc4eab450ae07",
+        "rev": "ecc7880e00a2a735074243d8a664a931d73beace",
         "type": "github"
       },
       "original": {
@@ -1413,11 +1413,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1753450833,
-        "narHash": "sha256-Pmpke0JtLRzgdlwDC5a+aiLVZ11JPUO5Bcqkj0nHE/k=",
+        "lastModified": 1754301638,
+        "narHash": "sha256-aRgzcPDd2axHFOuMlPLuzmDptUM2JU8mUL3jfgbBeyc=",
         "owner": "NuschtOS",
         "repo": "search",
-        "rev": "40987cc1a24feba378438d691f87c52819f7bd75",
+        "rev": "a60091045273484c040a91f5c229ba298f8ecc27",
         "type": "github"
       },
       "original": {
@@ -1440,11 +1440,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1754040765,
-        "narHash": "sha256-QUcXxIBFKA68BLNUpRM2tnTzeTeeEegmu5xM3S1qAy8=",
+        "lastModified": 1755181454,
+        "narHash": "sha256-hHKyXp6v5YVa40mLG/HMZISbx3DQzl10zt/gFkDbff4=",
         "owner": "anders130",
         "repo": "nvix",
-        "rev": "0a865c59da8c69a4b7da91c29377851eb53919f5",
+        "rev": "43b71cc98740647b99b644afd7133ec7d5e8bab1",
         "type": "github"
       },
       "original": {
