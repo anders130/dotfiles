@@ -39,11 +39,10 @@
                 gestures.workspace_swipe = false;
                 ecosystem.no_update_news = true;
             };
-            extraConfig = ''
-                source = ./extra.conf
-            '';
+            extraConfig = lib.toHyprlang {
+                source = "./extra.conf";
+            };
         };
         xdg.configFile."hypr/extra.conf" = lib.mkSymlink ./hyprland.conf;
     };
 }
-
