@@ -123,7 +123,6 @@
                 systems.follows = "systems";
             };
         };
-        nixpkgs-immich.url = "github:anders130/nixpkgs";
         pre-commit-hooks = {
             url = "github:cachix/git-hooks.nix";
             inputs = {
