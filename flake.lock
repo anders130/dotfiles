@@ -1110,6 +1110,26 @@
         "type": "github"
       }
     },
+    "nh": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1754913455,
+        "narHash": "sha256-pnq15m/78lyeGNOxNSS/p2ndAN9bBUgcf4+D+pTm5ps=",
+        "owner": "nix-community",
+        "repo": "nh",
+        "rev": "dad5d56c9c1d4e1f04857d56b629b99e8b8eab7c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "nh",
+        "type": "github"
+      }
+    },
     "nix-easyroam": {
       "inputs": {
         "nixpkgs": [
@@ -1603,6 +1623,7 @@
         "lumehub": "lumehub",
         "modulix": "modulix",
         "my-shell": "my-shell",
+        "nh": "nh",
         "nix-easyroam": "nix-easyroam",
         "nix-index-database": "nix-index-database",
         "nix-minecraft": "nix-minecraft",

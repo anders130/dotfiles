@@ -130,6 +130,10 @@
                 nixpkgs.follows = "nixpkgs";
             };
         };
+        nh = {
+            url = "github:nix-community/nh";
+            inputs.nixpkgs.follows = "nixpkgs";
+        };
 
         # gui
         hyprland = {

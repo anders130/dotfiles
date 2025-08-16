@@ -41,12 +41,12 @@ function rebuild -w nixos-rebuild
 
         if test $rollback -eq 1
             echo "Performing rollback: $cmd with host: $host"
-            eval "nh os rollback"
+            eval "nh os rollback -d always"
             return
         end
 
         echo "Performing local rebuild: $cmd with host: $host"
-        eval "nh os $cmd -H $host -- $args"
+        eval "nh os $cmd -H $host -d always -- $args"
     end
 end
 
