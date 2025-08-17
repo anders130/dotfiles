@@ -10,6 +10,7 @@
 
     environment.systemPackages = with pkgs; [
         lutris
+        r2modman
 
         # other games
         space-cadet-pinball
