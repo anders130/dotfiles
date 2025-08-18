@@ -6,6 +6,12 @@
 }: let
     inherit (builtins) attrNames concatStringsSep readFile toJSON;
     inherit (pkgs.nur.repos.rycee) firefox-addons;
+    vimiumStyle = pkgs.fetchFromGitHub {
+        owner = "catppuccin";
+        repo = "vimium";
+        rev = "3e81c66636668fabd740927c437ad87b14593528";
+        sha256 = "sha256-WDBH90+asu5aiQcMVIm3SOoWQLCB30h2LY+umWH62hs=";
+    };
     vimium = {
         inherit (firefox-addons.vimium.passthru) addonId;
         default = toJSON {settingsVersion = "2.1.2";};
@@ -34,7 +40,7 @@
                 map K previousTab
             '';
             newTabUrl = "https://online.bonjourr.fr";
-            userDefinedLinkHintCss = readFile ./vimium.css;
+            userDefinedLinkHintCss = readFile "${vimiumStyle}/themes/catppuccin-vimium-macchiato.css";
             exclusionRules = toJSON [
                 {
                     passKeys = "f";
