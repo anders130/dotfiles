@@ -32,6 +32,8 @@
                 "opacity 1, class:swappy"
             ];
         };
+        # TODO: remove this once home-manager module supports this
+        systemd.user.services.caelestia.Service.Environment = ["QT_QPA_PLATFORMTHEME=gtk3"];
     };
     security.pam.services.caelestia.enableGnomeKeyring = true;
 }

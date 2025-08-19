@@ -9,7 +9,13 @@
     options.desktop.enable = lib.mkEnableOption "stylix.desktop";
 
     config = cfg: {
-        hm.gtk.enable = lib.mkDefault cfg.desktop.enable;
+        hm.gtk = {
+            enable = lib.mkDefault cfg.desktop.enable;
+            iconTheme = {
+                package = pkgs.adwaita-icon-theme;
+                name = "Adwaita";
+            };
+        };
         stylix = {
             enable = true;
             base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-macchiato.yaml";

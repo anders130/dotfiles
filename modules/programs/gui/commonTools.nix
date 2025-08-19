@@ -24,9 +24,6 @@ in {
         fluent-gtk-theme
         orchis-theme
 
-        # icon themes
-        adwaita-icon-theme # just having this installed fixes issues with some apps
-
         # work
         teams-for-linux
     ];
