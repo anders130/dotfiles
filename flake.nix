@@ -116,7 +116,7 @@
             };
         };
         statix = {
-            url = "github:RobWalt/statix?rev=support-pipe-operator";
+            url = "github:RobWalt/statix?rev=62568df3cbd9b3cb03cf3a8816daf69d84b7a06f";
             inputs = {
                 flake-parts.follows = "flake-parts";
                 nixpkgs.follows = "nixpkgs";
@@ -124,7 +124,7 @@
             };
         };
         pre-commit-hooks = {
-            url = "github:cachix/git-hooks.nix";
+            url = "github:cachix/git-hooks.nix?rev=16ec914f6fb6f599ce988427d9d94efddf25fe6d";
             inputs = {
                 flake-compat.follows = "flake-compat";
                 nixpkgs.follows = "nixpkgs";
