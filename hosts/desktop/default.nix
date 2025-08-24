@@ -62,6 +62,7 @@
                 };
                 anki.enable = true;
                 obs.enable = true;
+                winapps.enable = true;
             };
         };
         hardware.amdgpu.enable = true;

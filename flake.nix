@@ -134,6 +134,10 @@
             url = "github:nix-community/nh";
             inputs.nixpkgs.follows = "nixpkgs";
         };
+        winapps = {
+            url = "github:winapps-org/winapps";
+            inputs.nixpkgs.follows = "nixpkgs";
+        };
 
         # gui
         hyprland = {
