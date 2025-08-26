@@ -68,7 +68,10 @@
         hardware.amdgpu.enable = true;
     };
 
-    hardware.bluetooth.enable = true;
+    hardware = {
+        bluetooth.enable = true;
+        i2c.enable = true;
+    };
     services.lsfg-vk = {
         enable = true;
         ui.enable = true;

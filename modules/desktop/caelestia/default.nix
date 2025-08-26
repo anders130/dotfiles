@@ -1,4 +1,4 @@
-{
+{username, ...}: {
     modules.desktop.hyprland-common.enable = true;
     hm = {
         wayland.windowManager.hyprland.settings = {
@@ -36,4 +36,5 @@
         systemd.user.services.caelestia.Service.Environment = ["QT_QPA_PLATFORMTHEME=gtk3"];
     };
     security.pam.services.caelestia.enableGnomeKeyring = true;
+    users.users.${username}.extraGroups = ["i2c"]; # needed for making the brightness slider work
 }
