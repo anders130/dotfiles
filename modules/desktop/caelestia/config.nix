@@ -20,6 +20,7 @@
                     background = {
                         enabled = true;
                         desktopClock.enabled = true;
+                        visualiser.enabled = false;
                     };
                     bar = {
                         entries = map (id: {
@@ -45,6 +46,7 @@
                         enableDangerousActions = true;
                     };
                     notifs.actionOnClick = true;
+                    services.defaultPlayer = "YT Music";
                     session.vimKeybinds = true;
                 };
                 cli = {
