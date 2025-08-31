@@ -38,6 +38,7 @@
             "video-toggle".mode = "custom";
             "precise-volume".globalShortcuts = {};
             discord.listenAlong = true;
+            synced-lyrics.enabled = true;
         };
         __internal__.migrations.version = "3.3.6";
     };
