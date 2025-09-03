@@ -37,6 +37,7 @@
                         status = {
                             inherit (cfg.shell) showNetwork showAudio;
                             showKbLayout = false;
+                            showLockStatus = false;
                             showBluetooth = config.hardware.bluetooth.enable;
                             showBattery = with config.services; (upower.enable && power-profiles-daemon.enable);
                         };

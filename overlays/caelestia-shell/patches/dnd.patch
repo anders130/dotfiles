@@ -1,8 +1,8 @@
 diff --git a/README.md b/README.md
-index c033353..5b57211 100644
+index 0868434..c962f59 100644
 --- a/README.md
 +++ b/README.md
-@@ -296,7 +296,9 @@ The module automatically adds Caelestia shell to the path with **full functional
+@@ -268,7 +268,9 @@ default, you must create it manually.
      },
      "bar": {
          "clock": {
@@ -13,24 +13,24 @@ index c033353..5b57211 100644
          },
          "dragThreshold": 20,
          "entries": [
-@@ -348,7 +350,8 @@ The module automatically adds Caelestia shell to the path with **full functional
-             "showBattery": true,
+@@ -321,7 +323,8 @@ default, you must create it manually.
              "showBluetooth": true,
              "showKbLayout": false,
--            "showNetwork": true
-+            "showNetwork": true,
+             "showNetwork": true,
+-            "showLockStatus": true
++            "showLockStatus": true,
 +            "showNotifications": true
          },
          "tray": {
              "background": false,
 diff --git a/config/BarConfig.qml b/config/BarConfig.qml
-index 1f9db70..2178a75 100644
+index 5967952..84055b2 100644
 --- a/config/BarConfig.qml
 +++ b/config/BarConfig.qml
-@@ -78,10 +78,13 @@ JsonObject {
-         property bool showNetwork: true
+@@ -79,10 +79,13 @@ JsonObject {
          property bool showBluetooth: true
          property bool showBattery: true
+         property bool showLockStatus: true
 +        property bool showNotifications: true
      }
  
@@ -58,12 +58,12 @@ index 0382b5d..905d088 100644
      }
  
 diff --git a/modules/bar/components/StatusIcons.qml b/modules/bar/components/StatusIcons.qml
-index 2a61e3f..b8a0149 100644
+index 23be57b..4de7195 100644
 --- a/modules/bar/components/StatusIcons.qml
 +++ b/modules/bar/components/StatusIcons.qml
-@@ -29,6 +29,32 @@ StyledRect {
-         anchors.centerIn: parent
-         spacing: Appearance.spacing.smaller / 2
+@@ -103,6 +103,32 @@ StyledRect {
+             }
+         }
  
 +        // Notifications icon
 +        WrappedLoader {
@@ -599,11 +599,11 @@ index 0000000..ef4531f
 +    }
 +}
 diff --git a/modules/bar/popouts/Content.qml b/modules/bar/popouts/Content.qml
-index f197e20..d761f40 100644
+index b600867..f8ea68f 100644
 --- a/modules/bar/popouts/Content.qml
 +++ b/modules/bar/popouts/Content.qml
-@@ -58,6 +58,27 @@ Item {
-             source: "KbLayout.qml"
+@@ -63,6 +63,27 @@ Item {
+             source: "LockStatus.qml"
          }
  
 +        Popout {
