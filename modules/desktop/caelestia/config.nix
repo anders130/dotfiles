@@ -45,6 +45,17 @@
                     launcher = {
                         vimKeybinds = true;
                         enableDangerousActions = true;
+                        hiddenApps = [
+                            "kvantummanager"
+                            "fish"
+                            "qt5ct"
+                            "qt6ct"
+                            "uuctl"
+                            "Steam Linux Runtime 3.0 (sniper)"
+                            "Proton 9.0"
+                            "Proton EasyAntiCheat Runtime"
+                            "Yazi"
+                        ];
                     };
                     notifs.actionOnClick = true;
                     services.defaultPlayer = "YT Music";
