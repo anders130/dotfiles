@@ -70,6 +70,7 @@
             "float, center, title:'termfilechooser'"
             "size 70%, title:'termfilechooser'"
             "opacity 1, class:com.github.rafostar.Clapper"
+            "opacity 1, class:org.pwmt.zathura"
         ];
     };
 }
