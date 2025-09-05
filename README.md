@@ -2,7 +2,7 @@
 
 ## About
 
-This repository contains all my NixOS configurations. It uses [Nix flakes](https://nixos.wiki/wiki/Flakes) to manage the configurations. <br>
+This repository contains all my NixOS configurations. It uses [Nix flakes](https://wiki.nixos.org/wiki/Flakes) to manage the configurations. <br>
 To create the hosts and modules I use the nix-library [modulix](https://github.com/anders130/modulix).
 
 - [./hosts](./hosts): Contains the configurations for my different hosts.
