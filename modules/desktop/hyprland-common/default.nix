@@ -39,6 +39,8 @@
                 dwindle.preserve_split = true;
                 gestures.workspace_swipe = false;
                 ecosystem.no_update_news = true;
+                # switches to browser when link is opened
+                misc.focus_on_activate = true;
             };
             extraConfig = lib.toHyprlang {
                 source = "./extra.conf";
