@@ -6,9 +6,10 @@ inputs: final: prev: {
                 desktopName = "Discord";
                 exec = "vesktop %U";
                 icon = "${prev.discord}/share/icons/hicolor/256x256/apps/discord.png";
-                startupWMClass = "Discord";
+                startupWMClass = "vesktop";
                 genericName = "Internet Messenger";
                 keywords = ["discord" "vencord" "vesktop"];
+                categories = ["Network" "InstantMessaging" "Chat"];
             })
         ];
     });
