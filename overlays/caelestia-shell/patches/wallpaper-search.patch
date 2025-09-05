@@ -1,0 +1,12 @@
+diff --git a/services/Wallpapers.qml b/services/Wallpapers.qml
+index 209ce1b..d6c7cdf 100644
+--- a/services/Wallpapers.qml
++++ b/services/Wallpapers.qml
+@@ -39,6 +39,7 @@ Searcher {
+     }
+ 
+     list: wallpapers.entries
++    key: "path"
+     useFuzzy: Config.launcher.useFuzzy.wallpapers
+     extraOpts: useFuzzy ? ({}) : ({
+             forward: false
