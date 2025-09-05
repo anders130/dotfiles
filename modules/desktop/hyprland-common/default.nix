@@ -15,6 +15,7 @@
             libsForQt5.qt5.qtwayland
             qt6.qtwayland
             hyprpicker # color picker
+            wl-clipboard # clipboard manager for hyprpicker
         ];
     };
     xdg.portal = {
