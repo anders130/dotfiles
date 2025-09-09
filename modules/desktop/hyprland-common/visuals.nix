@@ -47,15 +47,18 @@
             session_lock_xray = 1;
         };
         windowrule = let
-            default_opacity = "0.85 0.84";
             # active and inactive opacity
-            blur_opacity = "0.99999997";
+            default_opacity = "0.85 0.84";
             # for windows that set their own opacity
+            blur_opacity = "0.99999997";
         in [
             # make everything transparent
             "opacity ${default_opacity}, class:.*"
             # override transparency for specific apps
-            "opacity 1, class:totem"
+            "opaque, class:totem"
+            "opaque, class:com.github.rafostar.Clapper"
+            "opaque, class:org.pwmt.zathura"
+            "opaque, class:chrome-localhost__-Default"
             ## firefox
             "opacity ${blur_opacity}, class:firefox"
             "opacity ${default_opacity}, class:firefox, initialTitle:Library"
@@ -69,8 +72,6 @@
             # termfilechooser centered and floated
             "float, center, title:'termfilechooser'"
             "size 70%, title:'termfilechooser'"
-            "opacity 1, class:com.github.rafostar.Clapper"
-            "opacity 1, class:org.pwmt.zathura"
         ];
     };
 }
