@@ -12,6 +12,7 @@ in {
         immich
         jellyseerr
         nextcloud-client
+        nh
         uwsm
         ;
 }
