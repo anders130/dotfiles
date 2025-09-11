@@ -12,7 +12,6 @@ in {
         immich
         jellyseerr
         nextcloud-client
-        tailscale
         uwsm
         ;
 }
