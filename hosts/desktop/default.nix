@@ -63,6 +63,7 @@
                 anki.enable = true;
                 obs.enable = true;
                 winapps.enable = true;
+                kdeconnect.enable = true;
             };
         };
         hardware.amdgpu.enable = true;
