@@ -23,6 +23,7 @@
             };
             vesktop = {
                 enable = true;
+                useSystemVencord = false;
                 settings = {
                     minimizeToTray = "on";
                     discordBranch = "stable";
