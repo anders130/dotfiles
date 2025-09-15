@@ -139,12 +139,12 @@
         hyprland = {
             type = "git";
             url = "https://github.com/hyprwm/Hyprland";
-            ref = "refs/tags/v0.50.1";
+            ref = "refs/tags/v0.51.0";
             submodules = true;
             inputs.systems.follows = "systems";
         };
         split-monitor-workspaces = {
-            url = "github:Duckonaut/split-monitor-workspaces?rev=d0ba2bb24953c3c35a4a369ae4b4e50cb03f1832";
+            url = "github:Duckonaut/split-monitor-workspaces";
             inputs.hyprland.follows = "hyprland";
         };
         my-shell = {
