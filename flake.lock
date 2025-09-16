@@ -846,6 +846,27 @@
         "type": "github"
       }
     },
+    "hyprsplit": {
+      "inputs": {
+        "hyprland": [
+          "hyprland"
+        ]
+      },
+      "locked": {
+        "lastModified": 1757701108,
+        "narHash": "sha256-h6vDtBKTfyuA/6frSFcTrdjoAKhwlGBT+nzjoWf9sQE=",
+        "owner": "shezdy",
+        "repo": "hyprsplit",
+        "rev": "e31227208dc1a8351940dea401ab415f2f72dadd",
+        "type": "github"
+      },
+      "original": {
+        "owner": "shezdy",
+        "ref": "v0.51.0",
+        "repo": "hyprsplit",
+        "type": "github"
+      }
+    },
     "hyprutils": {
       "inputs": {
         "nixpkgs": [
@@ -1163,21 +1184,6 @@
       }
     },
     "nix-filter": {
-      "locked": {
-        "lastModified": 1693833173,
-        "narHash": "sha256-hlMABKrGbEiJD5dwUSfnw1CQ3bG7KKwDV+Nx3bEZd7U=",
-        "owner": "numtide",
-        "repo": "nix-filter",
-        "rev": "ac030bd9ba98e318e1f4c4328d60766ade8ebe8b",
-        "type": "github"
-      },
-      "original": {
-        "owner": "numtide",
-        "repo": "nix-filter",
-        "type": "github"
-      }
-    },
-    "nix-filter_2": {
       "locked": {
         "lastModified": 1731533336,
         "narHash": "sha256-oRam5PS1vcrr5UPgALW0eo1m/5/pls27Z/pabHNy2Ms=",
@@ -1645,6 +1651,7 @@
         "haumea": "haumea",
         "home-manager": "home-manager",
         "hyprland": "hyprland",
+        "hyprsplit": "hyprsplit",
         "lanzaboote": "lanzaboote",
         "lix-module": "lix-module",
         "lsfg-vk-flake": "lsfg-vk-flake",
@@ -1664,7 +1671,6 @@
         "pre-commit-hooks": "pre-commit-hooks_2",
         "raspberry-pi-nix": "raspberry-pi-nix",
         "sops-nix": "sops-nix",
-        "split-monitor-workspaces": "split-monitor-workspaces",
         "statix": "statix",
         "stylix": "stylix",
         "systems": "systems",
@@ -1846,27 +1852,6 @@
       "original": {
         "owner": "Mic92",
         "repo": "sops-nix",
-        "type": "github"
-      }
-    },
-    "split-monitor-workspaces": {
-      "inputs": {
-        "hyprland": [
-          "hyprland"
-        ],
-        "nix-filter": "nix-filter"
-      },
-      "locked": {
-        "lastModified": 1757587300,
-        "narHash": "sha256-hIBLvVbyldm/N7W5EYRaEkA1kOgSjyoaYuOjHybJ2bI=",
-        "owner": "Duckonaut",
-        "repo": "split-monitor-workspaces",
-        "rev": "f128289c3820f397f60874a8082dd8d1a0a67732",
-        "type": "github"
-      },
-      "original": {
-        "owner": "Duckonaut",
-        "repo": "split-monitor-workspaces",
         "type": "github"
       }
     },
@@ -2079,7 +2064,7 @@
       "inputs": {
         "flake-compat": "flake-compat_3",
         "flake-utils": "flake-utils_3",
-        "nix-filter": "nix-filter_2",
+        "nix-filter": "nix-filter",
         "nixpkgs": [
           "nixpkgs"
         ]

@@ -143,8 +143,8 @@
             submodules = true;
             inputs.systems.follows = "systems";
         };
-        split-monitor-workspaces = {
-            url = "github:Duckonaut/split-monitor-workspaces";
+        hyprsplit = {
+            url = "github:shezdy/hyprsplit?ref=v0.51.0";
             inputs.hyprland.follows = "hyprland";
         };
         my-shell = {

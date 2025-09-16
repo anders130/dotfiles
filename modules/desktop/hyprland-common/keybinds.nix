@@ -51,8 +51,8 @@
             ++ (
                 builtins.genList (x: toString (x + 1)) 9
                 |> map (i: [
-                    "SUPER, ${i}, split-workspace, ${i}"
-                    "SUPER Shift, ${i}, split-movetoworkspace, ${i}"
+                    "SUPER, ${i}, split:workspace, ${i}"
+                    "SUPER Shift, ${i}, split:movetoworkspace, ${i}"
                 ])
                 |> builtins.concatLists
             )
