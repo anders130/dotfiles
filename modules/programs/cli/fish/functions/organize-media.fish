@@ -32,19 +32,6 @@ function organize-media
     set tv_shows_dir (set -q _flag_t; and echo $_flag_t[1]; or echo "$HOME/Videos/TV")
     set yes (set -q _flag_y; and echo 1; or echo 0)
 
-    # Confirm prompt
-    function read_confirm -a prompt
-        while true
-            read -l -P "$prompt [y/N]: " confirm
-            switch $confirm
-                case y Y
-                    return 0
-                case '' n N
-                    return 1
-            end
-        end
-    end
-
     # Avoid duplicate destination names
     function unique_path -a path
         set dir (dirname "$path")
