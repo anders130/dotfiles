@@ -52,6 +52,7 @@
             stash.enable = true;
             immich.enable = true;
             tautulli.enable = true;
+            space-engineers.enable = true;
         };
     };
 
