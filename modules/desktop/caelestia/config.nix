@@ -16,10 +16,17 @@
                 enable = true;
                 package = pkgs.caelestia-shell;
                 settings = {
-                    general.apps = {
-                        terminal = [config.modules.desktop.defaultPrograms.terminal];
-                        playback = [config.modules.desktop.defaultPrograms.videoPlayer];
-                        explorer = ["nautilus"];
+                    general = {
+                        apps = {
+                            terminal = [config.modules.desktop.defaultPrograms.terminal];
+                            playback = [config.modules.desktop.defaultPrograms.videoPlayer];
+                            explorer = ["nautilus"];
+                        };
+                        idle = {
+                            lockTimeout = 0;
+                            dpmsTimeout = 0;
+                            sleepTimeout = 0;
+                        };
                     };
                     background = {
                         enabled = true;
