@@ -34,7 +34,11 @@ in {
                 "${dataDir}/SpaceEngineersDedicated:/appdata/space-engineers/SpaceEngineersDedicated"
                 "${dataDir}/steamcmd:/root/.steam"
             ];
-            extraOptions = ["--network=host"];
+            extraOptions = [
+                "--network=host"
+                "--memory=16g"
+                "--memory-swap=16g"
+            ];
         };
         networking.firewall.allowedUDPPorts = [cfg.port];
         systemd.tmpfiles.rules = [
