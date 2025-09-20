@@ -22,11 +22,6 @@
                             playback = [config.modules.desktop.defaultPrograms.videoPlayer];
                             explorer = ["nautilus"];
                         };
-                        idle = {
-                            lockTimeout = 0;
-                            dpmsTimeout = 0;
-                            sleepTimeout = 0;
-                        };
                     };
                     background = {
                         enabled = true;
