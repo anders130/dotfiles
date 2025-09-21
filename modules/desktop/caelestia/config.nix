@@ -17,10 +17,12 @@
                 package = pkgs.caelestia-shell;
                 settings = {
                     general = {
-                        apps = {
-                            terminal = [config.modules.desktop.defaultPrograms.terminal];
-                            playback = [config.modules.desktop.defaultPrograms.videoPlayer];
-                            explorer = ["nautilus"];
+                        apps = let
+                            inherit (config.modules.desktop) defaultPrograms;
+                        in {
+                            inherit (defaultPrograms) terminal;
+                            playback = defaultPrograms.videoPlayer;
+                            explorer = defaultPrograms.fileManager;
                         };
                     };
                     background = {

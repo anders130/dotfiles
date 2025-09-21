@@ -43,21 +43,22 @@
 
     keybinds = let
         inherit (config.modules.desktop.defaultPrograms) terminal fileManager browser;
+        asString = builtins.concatStringsSep " ";
     in [
         {
             name = "open-terminal";
             binding = "<Super>Return";
-            command = terminal;
+            command = asString terminal;
         }
         {
             name = "open-file-manager";
             binding = "<Super>e";
-            command = fileManager;
+            command = asString fileManager;
         }
         {
             name = "open-browser";
             binding = "<Super>b";
-            command = browser;
+            command = asString browser;
         }
     ];
 in {

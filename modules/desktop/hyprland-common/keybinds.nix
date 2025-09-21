@@ -20,6 +20,7 @@
 
         bind = let
             inherit (config.modules.desktop) defaultPrograms;
+            asString = builtins.concatStringsSep " ";
         in
             [
                 # essential keybinds
@@ -39,9 +40,9 @@
                 "SUPER SHIFT, k, movewindow, u"
                 "SUPER SHIFT, l, movewindow, r"
                 # programs
-                "SUPER, return, exec, ${defaultPrograms.terminal}"
-                "SUPER, E, exec, ${defaultPrograms.fileManager}"
-                "SUPER, B, exec, ${defaultPrograms.browser}"
+                "SUPER, return, exec, ${asString defaultPrograms.terminal}"
+                "SUPER, E, exec, ${asString defaultPrograms.fileManager}"
+                "SUPER, B, exec, ${asString defaultPrograms.browser}"
                 "SUPER, Q, exec, qutebrowser"
                 "SUPER ALT, C, exec, hyprpicker -a" # color picker
                 # mute/unmute
