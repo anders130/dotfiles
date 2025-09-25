@@ -6,6 +6,7 @@
             "SUPER+SHIFT, S, global, caelestia:screenshot"
             "CTRL+SUPER, R, exec, caelestia record"
             "ALT+SUPER, R, exec, caelestia record -r"
+            "SUPER, N, exec, caelestia shell drawers toggle sidebar"
         ];
         bindr = [
             "CTRL+SUPER+SHIFT, R, exec, systemctl --user restart caelestia.service"
