@@ -31,6 +31,7 @@
             windowrule = [
                 "opacity 1, class:swappy"
             ];
+            cursor.hotspot_padding = 1;
         };
         # TODO: remove this once home-manager module supports this
         systemd.user.services.caelestia.Service.Environment = ["QT_QPA_PLATFORMTHEME=gtk3"];
