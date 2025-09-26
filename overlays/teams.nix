@@ -1,10 +1,12 @@
-inputs: final: prev: {
-    teams-for-linux = prev.teams-for-linux.overrideAttrs (oldAttrs: let
+inputs: final: prev: let
+    inherit (inputs.nixpkgs-unstable.legacyPackages.${prev.system}) teams-for-linux;
+in {
+    teams-for-linux = teams-for-linux.overrideAttrs (oldAttrs: let
         xdgOpenWrapper = final.writeShellScriptBin "xdg-open" ''
             exec firefox -P work "$@"
         '';
         teamsWrapper = final.writeShellScriptBin "teams-for-linux-with-browser" ''
-            PATH=${xdgOpenWrapper}/bin:$PATH exec ${prev.teams-for-linux}/bin/teams-for-linux "$@"
+            PATH=${xdgOpenWrapper}/bin:$PATH exec ${teams-for-linux}/bin/teams-for-linux "$@"
         '';
     in {
         desktopItems = [
