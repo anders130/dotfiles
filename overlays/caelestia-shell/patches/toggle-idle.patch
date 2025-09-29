@@ -1,0 +1,42 @@
+diff --git a/config/GeneralConfig.qml b/config/GeneralConfig.qml
+index eecca01..9fa3e0b 100644
+--- a/config/GeneralConfig.qml
++++ b/config/GeneralConfig.qml
+@@ -13,6 +13,7 @@ JsonObject {
+     }
+ 
+     component Idle: JsonObject {
++        property bool enabled: true
+         property bool lockBeforeSleep: true
+         property bool inhibitWhenAudio: true
+         property list<var> timeouts: [
+diff --git a/modules/IdleMonitors.qml b/modules/IdleMonitors.qml
+index b7ce058..6d88dab 100644
+--- a/modules/IdleMonitors.qml
++++ b/modules/IdleMonitors.qml
+@@ -42,7 +42,7 @@ Scope {
+         IdleMonitor {
+             required property var modelData
+ 
+-            enabled: root.enabled && (modelData.enabled ?? true)
++            enabled: Config.general.idle.enabled && root.enabled && (modelData.enabled ?? true)
+             timeout: modelData.timeout
+             respectInhibitors: modelData.respectInhibitors ?? true
+             onIsIdleChanged: root.handleIdleAction(isIdle ? modelData.idleAction : modelData.returnAction)
+diff --git a/modules/utilities/Content.qml b/modules/utilities/Content.qml
+index d5be824..a68c827 100644
+--- a/modules/utilities/Content.qml
++++ b/modules/utilities/Content.qml
+@@ -18,7 +18,11 @@ Item {
+         anchors.fill: parent
+         spacing: Appearance.spacing.normal
+ 
+-        IdleInhibit {}
++        IdleInhibit {
++            visible: Config.general.idle.enabled
++            Layout.preferredHeight: Config.general.idle.enabled ? implicitHeight : 0
++            Layout.fillHeight: Config.general.idle.enabled
++        }
+ 
+         Record {
+             props: root.props
