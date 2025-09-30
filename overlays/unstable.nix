@@ -13,6 +13,7 @@ in {
         jellyseerr
         nextcloud-client
         nh
+        stash
         uwsm
         ;
 }
