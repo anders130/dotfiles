@@ -24,7 +24,7 @@
                             playback = defaultPrograms.videoPlayer;
                             explorer = defaultPrograms.fileManager;
                         };
-                        idle.enabled = false;
+                        idle.timeouts = []; # disable idle
                     };
                     background = {
                         enabled = true;
