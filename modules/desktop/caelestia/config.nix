@@ -41,7 +41,6 @@
                             "tray"
                             "clock"
                             "statusIcons"
-                            "power"
                         ];
                         status = {
                             inherit (cfg.shell) showNetwork showAudio;
