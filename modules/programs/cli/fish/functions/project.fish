@@ -32,20 +32,22 @@ function project
         end
     end
 
+    set session_name (echo "$project_name" | tr '.' '-')
+
     echo "Opening project '$project_name' at '$project_dir'..."
 
-    tmux has-session -t "$project_name" 2>/dev/null
+    tmux has-session -t "$session_name" 2>/dev/null
     if test $status -ne 0
-        tmux new-session -d -s "$project_name" -c "$project_dir"
-        tmux rename-window -t "$project_name":1 code
-        tmux send-keys -t "$project_name":code 'nvim .' C-m
-        tmux new-window -t "$project_name" -n test -c "$project_dir"
-        tmux select-window -t "$project_name":code
+        tmux new-session -d -s "$session_name" -c "$project_dir"
+        tmux rename-window -t "$session_name":1 code
+        tmux send-keys -t "$session_name":code 'nvim .' C-m
+        tmux new-window -t "$session_name" -n test -c "$project_dir"
+        tmux select-window -t "$session_name":code
     end
 
     if set -q TMUX
-        tmux switch-client -t "$project_name"
+        tmux switch-client -t "$session_name"
     else
-        tmux attach-session -t "$project_name"
+        tmux attach-session -t "$session_name"
     end
 end
