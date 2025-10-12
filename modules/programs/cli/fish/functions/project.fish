@@ -1,9 +1,9 @@
 function project
     function find_projects
         if type -q fd
-            fd . "$HOME/Projects" --type d --max-depth 3
+            fd --full-path --type d --hidden '\.git$' "$HOME/Projects" | sed 's#/.git##' | sed 's#/$##'
         else
-            find "$HOME/Projects" -mindepth 1 -maxdepth 3 -type d
+            find "$HOME/Projects" -type d -name ".git" -print | sed 's#/.git##' | sed 's#/$##'
         end
     end
 
@@ -21,14 +21,11 @@ function project
         end
     else
         set project_name "$argv[1]"
-        set project_dir "$HOME/Projects/$project_name"
+        set project_dir (find_projects | grep -E '/'$project_name'$' | head -n 1)
 
-        if not test -d "$project_dir"
-            set project_dir (find "$HOME/Projects" -type d -name "$project_name" | head -n 1)
-            if test -z "$project_dir"
-                echo "Project directory matching '$project_name' not found."
-                return 1
-            end
+        if test -z "$project_dir"
+            echo "Project directory matching '$project_name' not found."
+            return 1
         end
     end
 
