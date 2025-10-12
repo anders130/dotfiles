@@ -7,28 +7,29 @@ function project
         end
     end
 
-    if test -z "$argv[1]"
-        if type -q fzf
-            set project_dir (find_projects | fzf)
-            if test -z "$project_dir"
-                echo "No project selected."
-                return 1
-            end
-            set project_name (basename "$project_dir")
-        else
-            echo "Usage: project <project-name>"
-            return 1
-        end
-    else
-        set project_name "$argv[1]"
-        set project_dir (find_projects | grep -E '/'$project_name'$' | head -n 1)
+    set project_dir ""
 
-        if test -z "$project_dir"
-            echo "Project directory matching '$project_name' not found."
+    # Determine project_dir
+    if test -z "$argv[1]"
+        # Interactive mode
+        if not type -q fzf
+            echo "fzf not found. Usage: project <project-name>"
             return 1
         end
+        set project_dir (find_projects | fzf)
+    else
+        # Direct mode
+        set project_name_arg "$argv[1]"
+        set project_dir (find_projects | grep -E '/'"$project_name_arg"'$' | head -n 1)
     end
 
+    # Exit if no project was selected or found
+    if test -z "$project_dir"
+        echo "No project selected or found."
+        return 1
+    end
+
+    set project_name (basename "$project_dir")
     set session_name (echo "$project_name" | tr '.' '-')
 
     echo "Opening project '$project_name' at '$project_dir'..."
