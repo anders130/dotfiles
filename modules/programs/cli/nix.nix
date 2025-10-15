@@ -1,11 +1,10 @@
 {
     inputs,
     lib,
+    pkgs,
     username,
     ...
 }: {
-    imports = [inputs.lix-module.nixosModules.default];
-
     options = {
         nix-daemon = {
             enableLimit = lib.mkEnableOption "Enable nix-daemon OOM limits";
@@ -19,6 +18,7 @@
 
     config = cfg: {
         nix = {
+            package = pkgs.lixPackageSets.latest.lix;
             gc = {
                 automatic = true;
                 options = "--delete-older-than 7d";
