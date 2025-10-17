@@ -48,6 +48,9 @@ in {
                     "Freddyblitz" = "569ef34e-d78e-467e-b9af-c16ec4fa40bc";
                     "lego6cat" = "81948a2b-7475-4e77-ac14-de8d2c5a249a";
                     "Kotbaer" = "bc0a249e-b7d5-4fce-be3a-e59b889a7d99";
+                    "MelonDeity" = "606d2063-a2d8-462b-bd50-18d7b11d3cf1";
+                    "Trockenbubi" = "d7359ca9-9f5c-4d7b-b322-568cbcb24d99";
+                    "DocHoodson" = "6808996d-8e41-4aa2-a459-c4dcbfb0359d";
                 };
             };
         in {
@@ -64,6 +67,18 @@ in {
                 withRcon
                 {
                     package = pkgs.minecraftServers.vanilla-1_21_5;
+                    serverProperties = {
+                        gamemode = "survival";
+                        motd = "NixOS Minecraft Server";
+                    };
+                }
+            ];
+            vanilla-1_21_10 = mkMerge [
+                defaultServer
+                onlyFriends
+                withRcon
+                {
+                    package = pkgs.minecraftServers.vanilla-1_21_10;
                     serverProperties = {
                         gamemode = "survival";
                         motd = "NixOS Minecraft Server";
