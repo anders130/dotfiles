@@ -1,17 +1,10 @@
-{pkgs, ...}: {
+{
     modules = {
         bundles.rpi.enable = true;
+        hardware.raspberry-pi.enable = true;
         services.blocky.enable = true;
     };
 
-    boot = {
-        kernelPackages = pkgs.linuxKernel.packages.linux_rpi4;
-        loader = {
-            grub.enable = false;
-            generic-extlinux-compatible.enable = true;
-        };
-    };
-
-    system.stateVersion = "24.05";
-    hm.home.stateVersion = "24.05";
+    system.stateVersion = "25.05";
+    hm.home.stateVersion = "25.05";
 }

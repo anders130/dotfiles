@@ -5,6 +5,7 @@ inputs: {
     system = "aarch64-linux";
     isThinClient = true;
     modules = [
-        inputs.nixos-hardware.nixosModules.raspberry-pi-4
+        ../../modules/hardware/raspberry-pi/_nixosSystemModule.nix
+        inputs.nixos-raspberrypi.nixosModules.raspberry-pi-4.base
     ];
 }
