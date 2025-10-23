@@ -77,7 +77,7 @@
             };
         };
         lumehub = {
-            url = "github:LumeHub/LumeHub.Server?ref=dev";
+            url = "github:LumeHub/server?ref=dev";
             inputs = {
                 nixpkgs.follows = "nixpkgs-unstable";
                 flake-parts.follows = "flake-parts";

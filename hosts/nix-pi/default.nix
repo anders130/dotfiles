@@ -1,16 +1,20 @@
-{
+{inputs, ...}: {
+    imports = [inputs.lumehub.nixosModules.default];
+
     modules = {
         bundles.rpi.enable = true;
         hardware.raspberry-pi = {
             enable = true;
             spi.enable = true;
         };
-        services.lumehub = {
-            enable = true;
-            settings.LedControllerSettings = {
-                PixelCount = 256;
-                ClockFrequency = 1500000;
-            };
+    };
+
+    services.lumehub = {
+        enable = true;
+        openFirewall = true;
+        settings = {
+            led_controller.controller_type = "ws2801";
+            led_controller.pixel_count = 256;
         };
     };
 
