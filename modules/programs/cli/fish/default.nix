@@ -58,6 +58,7 @@ in {
             "fish/extraConfig.fish" = mkSymlink ./config.fish;
             "fish/custom_functions" = mkSymlink ./functions;
             "fish/themes/fish.theme" = mkSymlink ./fish.theme;
+            "fish/conf.d/direnv_hook.fish" = mkSymlink ./direnv_hook.fish;
         };
     };
 }
