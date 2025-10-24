@@ -82,6 +82,7 @@ in {
                     serverProperties = {
                         gamemode = "survival";
                         motd = "NixOS Minecraft Server";
+                        difficulty = "hard";
                     };
                 }
             ];
