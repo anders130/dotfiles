@@ -291,16 +291,15 @@
         ]
       },
       "locked": {
-        "lastModified": 1761568719,
-        "narHash": "sha256-pVA5w44oNHPuRgz1HPCHRDUbLzIPK8dpP2YOUvOEeAI=",
+        "lastModified": 1761664855,
+        "narHash": "sha256-k3Agk/sIlh7q7Dc4grs0PeYf7xrcr9al6ezqLOfgLsg=",
         "owner": "clock-mate",
         "repo": "extension",
-        "rev": "87f235a6a601ecf76fe9a06cc726e9ab4a303d36",
+        "rev": "8d8f236fd877fb978cee777357573a742c2f4636",
         "type": "github"
       },
       "original": {
         "owner": "clock-mate",
-        "ref": "dev",
         "repo": "extension",
         "type": "github"
       }

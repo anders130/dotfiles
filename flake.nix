@@ -88,7 +88,7 @@
             inputs.nixpkgs.follows = "nixpkgs";
         };
         clock-mate = {
-            url = "github:clock-mate/extension/dev";
+            url = "github:clock-mate/extension";
             inputs = {
                 flake-utils.follows = "flake-utils";
                 nixpkgs.follows = "nixpkgs-unstable";
