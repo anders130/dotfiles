@@ -51,6 +51,7 @@ in {
                     "MelonDeity" = "606d2063-a2d8-462b-bd50-18d7b11d3cf1";
                     "Trockenbubi" = "d7359ca9-9f5c-4d7b-b322-568cbcb24d99";
                     "DocHoodson" = "6808996d-8e41-4aa2-a459-c4dcbfb0359d";
+                    "HuGei" = "af4f5eda-b15f-4f1e-b0af-d535e8fa2e2f";
                 };
             };
         in {
