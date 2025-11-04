@@ -1,6 +1,7 @@
 {
     modules.services.minecraft = {
         enable = true;
+        backupDir = "/mnt/rackflix/appdata/minecraft/backups";
         friends = {
             "anders130" = "c2e93d01-d0d9-4e19-95e3-85bf3020b4ef";
             "PingPand" = "f3a1c150-11d7-453b-9f18-6173582c78ad";
