@@ -13,7 +13,6 @@
                 enable = true;
                 datadir = "/mnt/rackflix/appdata/nextcloud";
             };
-            minecraft.enable = true;
             tmodloader = {
                 enable = true;
                 dataDir = "/mnt/rackflix/appdata/tModLoader";

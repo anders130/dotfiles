@@ -5,7 +5,6 @@
         services = {
             blocky.enable = true;
             caddy.enable = true; # important for paperless and vaultwarden
-            minecraft.enable = true;
             paperless.enable = true;
         };
     };

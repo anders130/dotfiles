@@ -5,139 +5,198 @@
     pkgs,
     ...
 }: let
-    inherit (builtins) attrNames filter listToAttrs readDir;
-    inherit (lib) genAttrs mkMerge;
-    server-port = 25566;
-    rcon-port = 25575;
+    inherit (builtins) attrNames attrValues elem filter isList listToAttrs mapAttrs readDir replaceStrings;
+    inherit (lib) flatten genAttrs mkEnableOption mkMerge mkOption optional optionalAttrs types unique;
+    mkEnabledOption = description: mkOption {
+        inherit description;
+        type = types.bool;
+        default = true;
+    };
 in {
     imports = [inputs.nix-minecraft.nixosModules.minecraft-servers];
+    options = {
+        dataDir = mkOption {
+            type = types.str;
+            default = "/srv/minecraft";
+            description = "Directory to store Minecraft data in";
+        };
+        friends = mkOption {
+            type = types.attrsOf types.str;
+            description = "List of Minecraft friends, who will be able to join your server if the option `onlyFriends` is set to `true`.";
+        };
+        servers = mkOption {
+            type = types.attrsOf (
+                types.submodule {
+                    options = {
+                        enable = mkEnabledOption "Enable the server";
+                        server-port = mkOption {
+                            type = types.port;
+                            default = 25566;
+                        };
+                        openFirewall = mkEnabledOption "Open firewall for server-port";
+                        motd = mkOption {
+                            type = types.str;
+                            default = "This is a Minecraft Server";
+                        };
+                        server-icon = mkOption {
+                            type = types.nullOr types.path;
+                            default = null;
+                        };
+                        rcon = {
+                            enable = mkEnableOption "Enable RCON";
+                            port = mkOption {
+                                type = types.port;
+                                default = 25575;
+                            };
+                            openFirewall = mkEnabledOption "Open firewall for RCON port";
+                        };
+                        autoStart = mkEnableOption "Automatically start the server";
+                        onlyFriends = mkEnableOption "Only allow friends to join the server";
+                        type = mkOption {
+                            type = types.enum ["vanilla" "fabric"];
+                            default = "vanilla";
+                        };
+                        version = mkOption {
+                            type = types.str;
+                            default = "1.21.10";
+                        };
+                        mods = mkOption {
+                            type = types.oneOf [(types.listOf types.package) types.path];
+                            default = [];
+                            description = "List of mods to install. Can be a list of packages or a path to .nix file containing the list of packages.";
+                        };
+                        ignoredMods = mkOption {
+                            type = types.listOf types.str;
+                            default = [];
+                            description = "List of mod names to ignore when generating symlinks. Useful if the modpack contains a mod with the same name as a mod in the mods list, but you only want to symlink one of them.";
+                        };
+                        modpack = mkOption {
+                            type = types.nullOr types.package;
+                            default = null;
+                        };
+                        serverProperties = mkOption {
+                            type = types.attrs;
+                            default = {};
+                        };
+                        ram = mkOption {
+                            type = types.str;
+                            default = "4G";
+                            description = "Amount of RAM to allocate to the server";
+                        };
+                    };
+                }
+            );
+        };
+    };
+    config = cfg: {
+        services.minecraft-servers = {
+            inherit (cfg) dataDir;
+            enable = true;
+            eula = true;
+            environmentFile = config.sops.secrets.minecraft.path;
+            servers = mapAttrs (n: v: let
+                getPackage = {
+                    version,
+                    type,
+                    ...
+                }:
+                    pkgs.minecraftServers."${type}-${replaceStrings ["."] ["_"] version}";
 
-    services.minecraft-servers = {
-        enable = true;
-        eula = true;
-
-        dataDir = "/srv/minecraft";
-        environmentFile = config.sops.secrets.minecraft.path;
-        servers = let
-            defaultServer = {
-                enable = true;
-                autoStart = false;
-                serverProperties = {
-                    inherit server-port;
-                    motd = lib.mkDefault "This is a Minecraft Server";
+                default = {
+                    enable = true;
+                    inherit (v) autoStart;
+                    serverProperties = mkMerge [
+                        {
+                            inherit (v) server-port motd;
+                            server-ip = "0.0.0.0";
+                        }
+                        v.serverProperties
+                    ];
+                    jvmOpts = ["-Xmx${v.ram}" "-Xms${v.ram}"];
                 };
-            };
-            withRcon = {
-                serverProperties = {
-                    inherit rcon-port;
-                    enable-rcon = true;
-                    "rcon.password" = "@RCON_PASS@";
-                    server-ip = "0.0.0.0";
-                };
-            };
-            onlyFriends = {
-                serverProperties = {
-                    white-list = true;
-                    enforce-whitelist = true;
-                };
-                whitelist = {
-                    "anders130" = "c2e93d01-d0d9-4e19-95e3-85bf3020b4ef";
-                    "PingPand" = "f3a1c150-11d7-453b-9f18-6173582c78ad";
-                    "CorvPauer" = "4eeadfee-16c6-40c3-ad6c-661144cea4b4";
-                    "Timfoxi" = "edececc7-205f-4804-942b-e7122bd1fb61";
-                    "Freddyblitz" = "569ef34e-d78e-467e-b9af-c16ec4fa40bc";
-                    "lego6cat" = "81948a2b-7475-4e77-ac14-de8d2c5a249a";
-                    "Kotbaer" = "bc0a249e-b7d5-4fce-be3a-e59b889a7d99";
-                    "MelonDeity" = "606d2063-a2d8-462b-bd50-18d7b11d3cf1";
-                    "Trockenbubi" = "d7359ca9-9f5c-4d7b-b322-568cbcb24d99";
-                    "DocHoodson" = "6808996d-8e41-4aa2-a459-c4dcbfb0359d";
-                    "HuGei" = "af4f5eda-b15f-4f1e-b0af-d535e8fa2e2f";
-                };
-            };
-        in {
-            vanilla-1-20-4 = mkMerge [
-                defaultServer
-                onlyFriends
-                {
-                    package = pkgs.minecraftServers.vanilla-1_20_4;
-                }
-            ];
-            vanilla-1-21-5 = mkMerge [
-                defaultServer
-                onlyFriends
-                withRcon
-                {
-                    package = pkgs.minecraftServers.vanilla-1_21_5;
+                withRcon = {
                     serverProperties = {
-                        gamemode = "survival";
-                        motd = "NixOS Minecraft Server";
+                        enable-rcon = true;
+                        "rcon.password" = "@RCON_PASS@";
+                        "rcon.port" = v.rcon.port;
                     };
-                }
-            ];
-            vanilla-1_21_10 = mkMerge [
-                defaultServer
-                onlyFriends
-                withRcon
-                {
-                    package = pkgs.minecraftServers.vanilla-1_21_10;
+                };
+                onlyFriends = {
                     serverProperties = {
-                        gamemode = "survival";
-                        motd = "NixOS Minecraft Server";
-                        difficulty = "hard";
+                        white-list = true;
+                        enforce-whitelist = true;
                     };
-                }
-            ];
-            cobblemon-1-21-1 = mkMerge [
-                defaultServer
-                onlyFriends
-                withRcon
-                (let
-                    modpack = pkgs.fetchzip {
-                        url = "https://mediafilez.forgecdn.net/files/6132/445/Server%20Files%20-%20Cobblemon%20Modpack%20%5BFabric%5D%201.6.1.zip";
-                        sha512 = "sha512-vVXD/2zToZImJk1SLdtedOnbaOtt6QlGP6MA+4+gncXpVK+BSma6vdnG9oh/JJKcJoTps3BGxccGg6aYqPllmQ==";
-                        stripRoot = false;
-                    };
-                    extraMods =
-                        import ./_mods.nix pkgs
+                    whitelist = cfg.friends;
+                };
+                mkModsSymlinks = {
+                    mods,
+                    ignoredMods,
+                    modpack,
+                    ...
+                }: let
+                    baseMods =
+                        (
+                            if mods == [] || mods == null
+                            then []
+                            else if isList mods
+                            then mods
+                            else import mods pkgs
+                        )
                         |> map (mod: {
                             name = "mods/${mod.name}";
                             value = mod;
-                        })
-                        |> listToAttrs;
-                    baseMods =
-                        "${modpack}/mods"
-                        |> readDir
-                        |> attrNames
-                        |> filter (name: name != "fabric-api-0.115.0+1.21.1.jar")
-                        |> map (name: {
-                            name = "mods/${name}";
-                            value = "${modpack}/mods/${name}";
-                        })
-                        |> listToAttrs;
-                in {
-                    package = pkgs.fabricServers.fabric-1_21_1;
-                    serverProperties.enable-command-block = true;
-                    jvmOpts = "-Xmx8G -Xms4G";
-                    symlinks =
-                        baseMods
-                        // extraMods
-                        // genAttrs [
+                        });
+                    modpackMods =
+                        if modpack == null
+                        then []
+                        else
+                            "${modpack}/mods"
+                            |> readDir
+                            |> attrNames
+                            |> map (name: {
+                                name = "mods/${baseNameOf (toString name)}";
+                                value = "${modpack}/mods/${name}";
+                            });
+                in
+                    baseMods
+                    ++ modpackMods
+                    |> filter (mod: !(elem mod.name ignoredMods))
+                    |> listToAttrs;
+            in
+                mkMerge [
+                    default
+                    {package = getPackage v;}
+                    (optionalAttrs v.rcon.enable withRcon)
+                    (optionalAttrs v.onlyFriends onlyFriends)
+                    (optionalAttrs (v.server-icon != null) {
+                        symlinks."server-icon.png" = v.server-icon;
+                    })
+                    (optionalAttrs (v.mods != [] || v.modpack != null) {
+                        symlinks = mkModsSymlinks v;
+                    })
+                    (optionalAttrs (v.modpack != null && v.server-icon == null) {
+                        symlinks = genAttrs [
                             "server-icon.png"
-                        ] (name: "${modpack}/${name}");
-                })
-            ];
+                        ] (name: "${v.modpack}/${name}");
+                    })
+                ])
+            cfg.servers;
         };
-    };
 
-    sops.secrets.minecraft = {
-        sopsFile = ./secrets.env;
-        format = "dotenv";
-        owner = "minecraft";
-        group = "minecraft";
-    };
+        sops.secrets.minecraft = {
+            sopsFile = ./secrets.env;
+            format = "dotenv";
+            owner = "minecraft";
+            group = "minecraft";
+        };
 
-    networking.firewall.allowedTCPPorts = [
-        server-port
-        rcon-port
-    ];
+        networking.firewall.allowedTCPPorts =
+            cfg.servers
+            |> attrValues
+            |> map (s:
+                optional s.openFirewall s.server-port
+                ++ optional s.rcon.openFirewall s.rcon.port)
+            |> flatten
+            |> unique;
+    };
 }
