@@ -33,7 +33,7 @@
                     if [ -d "$worldDir" ]; then
                         echo "Backing up $name..."
                         portFile="/srv/minecraft/$name/server.properties"
-                        rconPort=$(grep '^rcon-port=' "$portFile" | cut -d= -f2 || true)
+                        rconPort=$(grep '^rcon.port=' "$portFile" | cut -d= -f2 || true)
                         [ -z "$rconPort" ] && rconPort=25575
 
                         $RCON_CMD -P "$rconPort" "say Backup starting..."
