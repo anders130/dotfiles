@@ -40,7 +40,7 @@ in {
                         };
                         server-icon = mkOption {
                             type = types.nullOr types.path;
-                            default = null;
+                            default = ./server-icon.png;
                         };
                         rcon = {
                             enable = mkEnableOption "Enable RCON";
