@@ -38,6 +38,8 @@ in {
         serverProperties = {
             gamemode = "survival";
             difficulty = "hard";
+            spawn-protection = 0;
         };
+        ram = "8G";
     };
 }
