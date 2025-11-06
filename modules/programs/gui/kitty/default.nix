@@ -1,15 +1,5 @@
-{
-    lib,
-    pkgs,
-    ...
-}: let
-    package = pkgs.kitty;
-    configPath = lib.mkRelativePath ./kitty.conf;
-in {
-    environment.systemPackages = [package];
-
+{lib, ...}: {
     hm.programs.kitty = {
-        inherit package;
         enable = true;
         keybindings."ctrl+backspace" = "send_text all \\x17";
         settings = {
@@ -29,7 +19,7 @@ in {
             disable_ligatures = "always";
         };
         extraConfig = ''
-            include $NH_FLAKE/${configPath}
+            include $NH_FLAKE/${lib.mkRelativePath ./kitty.conf}
         '';
     };
 }
