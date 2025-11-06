@@ -28,6 +28,7 @@ in {
         interactiveShellInit = /*fish*/''
             fish_config theme choose "fish"
             source $HOME/.config/fish/extraConfig.fish
+            source ${pkgs.fish}/share/fish/completions/git.fish
             fastfetch -c $HOME/.config/fastfetch/short.jsonc
         '';
         shellAliases = {
@@ -42,16 +43,15 @@ in {
             bat.enable = true;
             fish = {
                 enable = true;
-                plugins = with pkgs.fishPlugins; [
-                    {
-                        name = "autopair";
-                        inherit (autopair) src;
-                    }
-                    {
-                        name = "zoxide";
-                        inherit (z) src;
-                    }
-                ];
+                plugins = map (p: {
+                    name = p.pname;
+                    inherit (p) src;
+                })
+                (with pkgs.fishPlugins; [
+                    autopair
+                    z
+                    fzf
+                ]);
             };
         };
         xdg.configFile = {
