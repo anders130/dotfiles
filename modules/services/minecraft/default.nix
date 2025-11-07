@@ -7,11 +7,12 @@
 }: let
     inherit (builtins) attrNames attrValues elem filter isList listToAttrs mapAttrs readDir replaceStrings;
     inherit (lib) flatten genAttrs mkEnableOption mkMerge mkOption optional optionalAttrs types unique;
-    mkEnabledOption = description: mkOption {
-        inherit description;
-        type = types.bool;
-        default = true;
-    };
+    mkEnabledOption = description:
+        mkOption {
+            inherit description;
+            type = types.bool;
+            default = true;
+        };
 in {
     imports = [inputs.nix-minecraft.nixosModules.minecraft-servers];
     options = {
@@ -83,6 +84,14 @@ in {
                             default = "4G";
                             description = "Amount of RAM to allocate to the server";
                         };
+                        symlinks = mkOption {
+                            type = types.attrsOf types.path;
+                            default = {};
+                        };
+                        files = mkOption {
+                            type = types.attrsOf types.path;
+                            default = {};
+                        };
                     };
                 }
             );
@@ -104,7 +113,7 @@ in {
 
                 default = {
                     enable = true;
-                    inherit (v) autoStart;
+                    inherit (v) autoStart symlinks files;
                     serverProperties = mkMerge [
                         {
                             inherit (v) server-port motd;
