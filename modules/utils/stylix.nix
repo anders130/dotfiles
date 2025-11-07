@@ -5,12 +5,12 @@
     ...
 }: {
     imports = [inputs.stylix.nixosModules.stylix];
-
     options.desktop.enable = lib.mkEnableOption "stylix.desktop";
-
-    config = cfg: {
+    config = cfg: let
+        ifDesktop = lib.mkForce cfg.desktop.enable;
+    in {
         hm.gtk = {
-            enable = lib.mkDefault cfg.desktop.enable;
+            enable = ifDesktop;
             iconTheme = {
                 package = pkgs.adwaita-icon-theme;
                 name = "Adwaita";
@@ -35,5 +35,8 @@
 
             targets.console.enable = false; # deactivate tty styling
         };
+        # only enable qt for desktop
+        qt.enable = ifDesktop;
+        hm.qt.enable = ifDesktop;
     };
 }
