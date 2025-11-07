@@ -41,5 +41,6 @@ in {
             spawn-protection = 0;
         };
         ram = "8G";
+        files."world/datapacks/yummy_jump" = ./datapacks/yummy_jump;
     };
 }

@@ -1,0 +1,22 @@
+{
+    "display": {
+        "icon": {
+            "id": "minecraft:firework_rocket",
+            "count": 1
+        },
+        "title": "Yummy Food",
+        "description": "",
+        "frame": "challenge",
+        "show_toast": false,
+        "announce_to_chat": false
+    },
+    "parent": "minecraft:husbandry/balanced_diet",
+    "criteria": {
+        "yummy_food": {
+            "trigger": "minecraft:consume_item"
+        }
+    },
+    "rewards": {
+        "function": "yummy_jump:start_jump"
+    }
+}
