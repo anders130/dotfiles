@@ -98,16 +98,6 @@
             url = "github:catppuccin/qutebrowser";
             flake = false;
         };
-        authentik-nix = {
-            url = "github:nix-community/authentik-nix";
-            inputs = {
-                flake-compat.follows = "flake-compat";
-                flake-parts.follows = "flake-parts";
-                flake-utils.follows = "flake-utils";
-                nixpkgs.follows = "nixpkgs-unstable";
-                systems.follows = "systems";
-            };
-        };
         statix = {
             url = "github:oppiliappan/statix";
             inputs = {
