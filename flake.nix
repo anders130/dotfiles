@@ -50,6 +50,7 @@
                 systems.follows = "systems";
                 flake-parts.follows = "flake-parts";
                 nixpkgs.follows = "nixpkgs-unstable";
+                nixvim.inputs.nuschtosSearch.follows = "";
             };
         };
         zenix = {
@@ -115,7 +116,11 @@
         };
         winapps = {
             url = "github:winapps-org/winapps";
-            inputs.nixpkgs.follows = "nixpkgs";
+            inputs = {
+                flake-compat.follows = "flake-compat";
+                flake-utils.follows = "flake-utils";
+                nixpkgs.follows = "nixpkgs";
+            };
         };
 
         # gui
@@ -124,7 +129,10 @@
             url = "https://github.com/hyprwm/Hyprland";
             ref = "refs/tags/v0.51.1";
             submodules = true;
-            inputs.systems.follows = "systems";
+            inputs = {
+                systems.follows = "systems";
+                pre-commit-hooks.follows = "";
+            };
         };
         hyprsplit = {
             url = "github:shezdy/hyprsplit?ref=v0.51.1";
