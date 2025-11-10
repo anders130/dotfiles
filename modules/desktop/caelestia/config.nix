@@ -16,6 +16,7 @@
                 enable = true;
                 package = pkgs.caelestia-shell;
                 settings = {
+                    appearance.font.family.clock = "DejaVu Sans";
                     general = {
                         apps = let
                             inherit (config.modules.desktop) defaultPrograms;
