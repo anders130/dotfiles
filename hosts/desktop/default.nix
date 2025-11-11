@@ -66,7 +66,10 @@
                 kdeconnect.enable = true;
             };
         };
-        hardware.amdgpu.enable = true;
+        hardware = {
+            amdgpu.enable = true;
+            openrgb.enable = true;
+        };
     };
 
     hardware = {
