@@ -14,6 +14,7 @@
             "Trockenbubi" = "d7359ca9-9f5c-4d7b-b322-568cbcb24d99";
             "DocHoodson" = "6808996d-8e41-4aa2-a459-c4dcbfb0359d";
             "HuGei" = "af4f5eda-b15f-4f1e-b0af-d535e8fa2e2f";
+            "F4tbro" = "08efa9e0-a999-4242-959f-dab3d57b28ec";
         };
         servers = {
             vanilla-1-20-4 = {
