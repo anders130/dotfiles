@@ -14,6 +14,5 @@ in {
         nextcloud-client
         nh
         stash
-        uwsm
         ;
 }
