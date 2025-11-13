@@ -13,6 +13,7 @@
             type = types.bool;
             default = true;
         };
+    mkGamerules = import ./_declarative-gamerules.nix pkgs;
 in {
     imports = [inputs.nix-minecraft.nixosModules.minecraft-servers];
     options = {
@@ -91,6 +92,11 @@ in {
                         files = mkOption {
                             type = types.attrsOf types.path;
                             default = {};
+                        };
+                        gamerules = mkOption {
+                            type = types.attrs;
+                            default = {};
+                            description = "Gamerules to set on the server. Achieved by the `declarative-gamerules` datapack.";
                         };
                     };
                 }
@@ -187,6 +193,9 @@ in {
                         symlinks = genAttrs [
                             "server-icon.png"
                         ] (name: "${v.modpack}/${name}");
+                    })
+                    (optionalAttrs (v.gamerules != {}) {
+                        files."world/datapacks/declarative-gamerules" = mkGamerules v.gamerules;
                     })
                 ])
             cfg.servers;

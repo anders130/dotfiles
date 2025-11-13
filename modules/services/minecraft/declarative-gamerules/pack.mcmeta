@@ -1,0 +1,10 @@
+{
+    "pack": {
+        "description": "Sets gamerules declaratively",
+        "pack_format": 81,
+        "supported_formats": [
+            81,
+            81
+        ]
+    }
+}

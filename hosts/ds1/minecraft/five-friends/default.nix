@@ -42,5 +42,9 @@ in {
         };
         ram = "8G";
         files."world/datapacks/yummy_jump" = ./datapacks/yummy_jump;
+        gamerules = {
+            playerSleepingPercentage = 33;
+            spawnRadius = 1;
+        };
     };
 }
