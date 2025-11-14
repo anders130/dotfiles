@@ -76,9 +76,12 @@
         bluetooth.enable = true;
         i2c.enable = true;
     };
-    services.lsfg-vk = {
-        enable = true;
-        ui.enable = true;
+    services = {
+        lsfg-vk = {
+            enable = true;
+            ui.enable = true;
+        };
+        tailscale.enable = true;
     };
 
     boot = {
@@ -119,8 +122,6 @@
     environment.systemPackages = with pkgs; [
         plex-desktop
     ];
-
-    services.tailscale.enable = true;
 
     system.stateVersion = "24.05";
     hm.home.stateVersion = "24.05";
