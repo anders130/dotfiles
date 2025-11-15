@@ -25,4 +25,50 @@ _: final: prev: {
         )
         old.buildInputs;
     });
+    openrgb-plugin-effects = prev.openrgb-plugin-effects.overrideAttrs (old: {
+        src = prev.fetchFromGitea {
+            domain = "codeberg.org";
+            owner = "OpenRGB";
+            repo = "OpenRGBEffectsPlugin";
+            rev = "release_candidate_1.0rc2";
+            sha256 = "sha256-0W0hO3PSMpPLc0a7g/Nn7GWMcwBXhOxh1Y2flpdcnfE=";
+            fetchSubmodules = true;
+        };
+        version = "1.0rc2";
+        patches = [];
+
+        nativeBuildInputs =
+            (old.nativeBuildInputs or [])
+            ++ [
+                prev.qt6.qtbase
+                prev.qt6.qttools
+            ];
+
+        preConfigure = ''
+            export PATH=${prev.qt6.qtbase}/bin:$PATH
+        '';
+
+        postPatch = ''
+            cp -r ${final.openrgb.src} OpenRGB
+
+            # Fix SPDWrapper includes
+            for f in OpenRGB/**/*.cpp OpenRGB/**/*.h; do
+              substituteInPlace "$f" \
+                --replace-quiet '#include "SPDWrapper.h"' '#include "SPDAccessor/SPDWrapper.h"'
+            done
+
+            pipewireInc=${prev.pipewire.dev}/include
+            pipewirePipeInc=${prev.pipewire.dev}/include/pipewire-0.3
+            pipewireSpaInc=${prev.pipewire.dev}/include/spa-0.2
+
+            echo "INCLUDEPATH += ''${pipewireInc} ''${pipewirePipeInc} ''${pipewireSpaInc}" >> OpenRGBEffectsPlugin.pro
+            echo "LIBS += -L${prev.pipewire}/lib -lpipewire-0.3" >> OpenRGBEffectsPlugin.pro
+        '';
+
+        postConfigure = ''
+            # Replace lrelease path in Makefile with the correct binary from qttools
+            substituteInPlace Makefile \
+              --replace '${prev.qt6.qtbase}/bin/lrelease' '${prev.qt6.qttools}/bin/lrelease'
+        '';
+    });
 }
