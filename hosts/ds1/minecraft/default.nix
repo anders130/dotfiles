@@ -15,6 +15,7 @@
             "DocHoodson" = "6808996d-8e41-4aa2-a459-c4dcbfb0359d";
             "HuGei" = "af4f5eda-b15f-4f1e-b0af-d535e8fa2e2f";
             "F4tbro" = "08efa9e0-a999-4242-959f-dab3d57b28ec";
+            "QueenKati1612" = "9cef4d25-6bd1-493d-baeb-91d1f5997ba4";
         };
         servers = {
             vanilla-1-20-4 = {
