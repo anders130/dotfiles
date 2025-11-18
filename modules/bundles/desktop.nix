@@ -40,7 +40,7 @@ in {
         };
         hardware = {
             printing.enable = mkDefault true;
-            sound.enable = mkDefault true;
+            audio.enable = mkDefault true;
         };
         utils = {
             stylix = {
