@@ -36,6 +36,7 @@ in {
             cat = "bat";
         };
     };
+    documentation.man.generateCaches = false; # speeds up rebuilds
     stylix.targets.fish.enable = false;
     users.users.${username}.shell = pkgs.fish;
     hm = {
