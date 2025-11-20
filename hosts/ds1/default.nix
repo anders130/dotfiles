@@ -52,6 +52,7 @@
             immich.enable = true;
             tautulli.enable = true;
             space-engineers.enable = true;
+            ntfy.enable = true;
         };
     };
 

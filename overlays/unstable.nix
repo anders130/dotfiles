@@ -13,6 +13,7 @@ in {
         jellyseerr
         nextcloud-client
         nh
+        ntfy-sh
         stash
         ;
 }
