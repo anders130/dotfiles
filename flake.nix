@@ -173,12 +173,7 @@
         nixos-raspberrypi.url = "github:nvmd/nixos-raspberrypi/main";
         lanzaboote = {
             url = "github:nix-community/lanzaboote";
-            inputs = {
-                nixpkgs.follows = "nixpkgs";
-                flake-compat.follows = "flake-compat";
-                flake-parts.follows = "flake-parts";
-                pre-commit-hooks-nix.follows = "";
-            };
+            inputs.nixpkgs.follows = "nixpkgs";
         };
         nix-easyroam = {
             url = "github:0x5a4/nix-easyroam";
