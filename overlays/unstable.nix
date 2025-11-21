@@ -14,6 +14,9 @@ in {
         nextcloud-client
         nh
         ntfy-sh
+        pihole
+        pihole-ftl
+        pihole-web
         stash
         ;
 }

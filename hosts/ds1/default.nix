@@ -53,6 +53,7 @@
             tautulli.enable = true;
             space-engineers.enable = true;
             ntfy.enable = true;
+            pihole.enable = true;
         };
     };
 
