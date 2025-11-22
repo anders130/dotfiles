@@ -72,6 +72,10 @@
             }];
         };
     };
+    modules.utils.networking = {
+        address = "192.168.178.6";
+        interface = "enp12s0";
+    };
 
     boot.loader = {
         efi.canTouchEfiVariables = true;
