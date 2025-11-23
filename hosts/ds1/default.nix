@@ -57,9 +57,27 @@
         };
     };
 
-    services.caddy.virtualHosts."led.${config.networking.domain}".extraConfig = ''
-        reverse_proxy http://192.168.178.85:5000
-    '';
+    modules.services.caddy.virtualHosts = {
+        "led.${config.networking.domain}" = {
+            from = "192.168.178.85";
+            port = 5000;
+        };
+        "paperless.rackflix" = {
+            from = "192.168.178.4";
+            port = 8000;
+            local = true;
+        };
+        "admin.rackflix" = {
+            from = "192.168.178.4";
+            port = 8080;
+            local = true;
+        };
+        "http://plex.rackflix" = {
+            from = "192.168.178.4";
+            port = 32400;
+            local = true;
+        };
+    };
 
     networking = {
         domain = "gollub.dev";
