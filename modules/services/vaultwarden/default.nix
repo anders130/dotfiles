@@ -43,7 +43,7 @@ in {
             };
         };
         users.users.${username}.extraGroups = ["vaultwarden"];
-        services.caddy.virtualHosts.${domain} = lib.mkReverseProxy {
+        modules.services.caddy.virtualHosts.${domain} = {
             port = ROCKET_PORT;
             extraConfig = ''
                 encode zstd gzip

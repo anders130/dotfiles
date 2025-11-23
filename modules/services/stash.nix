@@ -1,6 +1,5 @@
 {
     config,
-    lib,
     username,
     ...
 }: let
@@ -26,8 +25,9 @@ in {
                 plugins_path = "${folder}/plugins";
             };
         };
-        caddy.virtualHosts."http://stash.${config.networking.hostName}" = lib.mkReverseProxy {
-            inherit (config.services.stash.settings) port;
-        };
+    };
+    modules.services.caddy.virtualHosts."http://stash.${config.networking.hostName}" = {
+        inherit (config.services.stash.settings) port;
+        local = true;
     };
 }

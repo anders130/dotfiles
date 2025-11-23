@@ -1,8 +1,4 @@
-{
-    config,
-    lib,
-    ...
-}: let
+{config, ...}: let
     cfg = config.services.searx.settings.server;
     inherit (config.networking) domain;
 in {
@@ -57,7 +53,7 @@ in {
         group = "searx";
     };
 
-    services.caddy.virtualHosts."search.${domain}" = lib.mkReverseProxy {
+    modules.services.caddy.virtualHosts."search.${domain}" = {
         inherit (cfg) port;
         headers = ''
             header_down Referer-Policy "strict-origin-when-cross-origin"

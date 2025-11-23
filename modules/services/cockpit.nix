@@ -13,7 +13,8 @@ in {
             ProtocolHeader = "X-Forwarded-Proto";
         };
     };
-    services.caddy.virtualHosts."http://${domain}" = lib.mkReverseProxy {
+    modules.services.caddy.virtualHosts."http://${domain}" = {
         inherit (config.services.cockpit) port;
+        local = true;
     };
 }

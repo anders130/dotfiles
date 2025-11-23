@@ -1,8 +1,4 @@
-{
-    config,
-    lib,
-    ...
-}: let
+{config, ...}: let
     port = 9007;
     domain = "tandoor.${config.networking.domain}";
 in {
@@ -25,7 +21,7 @@ in {
             GUNICORN_MEDIA = "1";
         };
     };
-    services.caddy.virtualHosts.${domain} = lib.mkReverseProxy {
+    modules.services.caddy.virtualHosts.${domain} = {
         inherit port;
     };
 }

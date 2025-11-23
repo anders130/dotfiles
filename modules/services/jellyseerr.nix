@@ -1,12 +1,7 @@
-{
-    config,
-    lib,
-    ...
-}: {
-    services = {
-        jellyseerr.enable = true;
-        caddy.virtualHosts."http://jellyseerr.${config.networking.hostName}" = lib.mkReverseProxy {
-            inherit (config.services.jellyseerr) port;
-        };
+{config, ...}: {
+    services.jellyseerr.enable = true;
+    modules.services.caddy.virtualHosts."http://jellyseerr.${config.networking.hostName}" = {
+        inherit (config.services.jellyseerr) port;
+        local = true;
     };
 }

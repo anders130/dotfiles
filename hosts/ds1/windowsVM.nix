@@ -77,18 +77,21 @@ in {
             Restart = "always";
         };
     };
-    services.caddy.virtualHosts."http://windows11.qemu.${config.networking.hostName}".extraConfig = ''
-        handle /websockify* {
-            reverse_proxy localhost:${toString novncPort}
-        }
+    modules.services.caddy.virtualHosts."http://windows11.qemu.${config.networking.hostName}" = {
+        local = true;
+        extraConfig = ''
+            handle /websockify* {
+                reverse_proxy localhost:${toString novncPort}
+            }
 
-        root * ${pkgs.novnc}/share/webapps/novnc
-        file_server
+            root * ${pkgs.novnc}/share/webapps/novnc
+            file_server
 
-        handle_path / {
-            rewrite * /vnc.html
-        }
-    '';
+            handle_path / {
+                rewrite * /vnc.html
+            }
+        '';
+    };
     # fileshare with samba
     services.samba = {
         enable = true;

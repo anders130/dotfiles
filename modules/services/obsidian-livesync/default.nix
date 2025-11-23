@@ -44,7 +44,7 @@ in {
             };
         };
     };
-    services.caddy.virtualHosts.${domain} = lib.mkReverseProxy {
+    modules.services.caddy.virtualHosts.${domain} = {
         inherit port;
     };
 }

@@ -1,8 +1,4 @@
-{
-    config,
-    lib,
-    ...
-}: let
+{config, ...}: let
     domain = "ntfy.${config.networking.domain}";
     port = 2586;
 in {
@@ -20,16 +16,16 @@ in {
                 enable-login = true;
             };
         };
-        caddy.virtualHosts.${domain} = lib.mkReverseProxy {
-            inherit port;
-            extraConfig = ''
-                @httpget {
-                    protocol http
-                    method GET
-                    path_regexp ^/([-_a-z0-9]{0,64}$|docs/|static/)
-                }
-                redir @httpget https://{host}{uri}
-            '';
-        };
+    };
+    modules.services.caddy.virtualHosts.${domain} = {
+        inherit port;
+        extraConfig = ''
+            @httpget {
+                protocol http
+                method GET
+                path_regexp ^/([-_a-z0-9]{0,64}$|docs/|static/)
+            }
+            redir @httpget https://{host}{uri}
+        '';
     };
 }

@@ -1,11 +1,9 @@
 args @ {
     config,
     inputs,
-    lib,
     ...
 }: let
     inherit (builtins) removeAttrs;
-    inherit (lib) mkReverseProxy;
 
     webPort = 168;
     pruneModule = path: let
@@ -29,8 +27,9 @@ in {
             enable = true;
             ports = [webPort];
         };
-        caddy.virtualHosts."http://pihole.${config.networking.hostName}" = mkReverseProxy {
-            port = webPort;
-        };
+    };
+    modules.services.caddy.virtualHosts."http://pihole.${config.networking.hostName}" = {
+        port = webPort;
+        local = true;
     };
 }

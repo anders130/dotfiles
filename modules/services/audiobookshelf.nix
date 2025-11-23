@@ -1,8 +1,4 @@
-{
-    config,
-    lib,
-    ...
-}: let
+{config, ...}: let
     host = "127.0.0.1";
     port = 8090;
 in {
@@ -10,10 +6,11 @@ in {
         inherit host port;
         enable = true;
     };
-    services.caddy.virtualHosts."http://audiobookshelf.${config.networking.hostName}" = lib.mkReverseProxy {
+    modules.services.caddy.virtualHosts."http://audiobookshelf.${config.networking.hostName}" = {
         inherit port;
         extraConfig = ''
             encode gzip zstd
         '';
+        local = true;
     };
 }

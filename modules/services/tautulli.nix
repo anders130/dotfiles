@@ -1,12 +1,7 @@
-{
-    config,
-    lib,
-    ...
-}: {
-    services.tautulli = {
-        enable = true;
-    };
-    services.caddy.virtualHosts."http://tautulli.${config.networking.hostName}" = lib.mkReverseProxy {
+{config, ...}: {
+    services.tautulli.enable = true;
+    modules.services.caddy.virtualHosts."http://tautulli.${config.networking.hostName}" = {
         inherit (config.services.tautulli) port;
+        local = true;
     };
 }

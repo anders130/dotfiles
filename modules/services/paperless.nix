@@ -1,8 +1,4 @@
-{
-    config,
-    lib,
-    ...
-}: let
+{config, ...}: let
     inherit (config.networking) domain;
     tikaPort = "33001";
     gotenbergPort = "33002";
@@ -17,11 +13,9 @@ in {
             PAPERLESS_TIKA_GOTENBERG_ENDPOINT = "http://127.0.0.1:${gotenbergPort}";
         };
     };
-    services.caddy.virtualHosts."http://paperless.${domain}" = lib.mkReverseProxy {
+    modules.services.caddy.virtualHosts."http://paperless.${domain}" = {
         inherit (config.services.paperless) port;
-        extraConfig = ''
-            tls internal
-        '';
+        local = true;
         headers = ''
             header_down Referer-Policy "strict-origin-when-cross-origin"
         '';
