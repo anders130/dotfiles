@@ -127,7 +127,7 @@
         hyprland = {
             type = "git";
             url = "https://github.com/hyprwm/Hyprland";
-            ref = "refs/tags/v0.51.1";
+            ref = "refs/tags/v0.52.1";
             submodules = true;
             inputs = {
                 systems.follows = "systems";
@@ -135,7 +135,7 @@
             };
         };
         hyprsplit = {
-            url = "github:shezdy/hyprsplit?ref=v0.51.1";
+            url = "github:shezdy/hyprsplit?ref=v0.52.1";
             inputs.hyprland.follows = "hyprland";
         };
         my-shell = {
@@ -149,13 +149,9 @@
                 caelestia-shell.follows = "caelestia-shell";
             };
         };
-        nixpkgs-caelestia.url = "nixpkgs/cf3f5c4def3c7b5f1fc012b3d839575dbe552d43";
         caelestia-shell = {
             url = "github:caelestia-dots/shell";
-            inputs = {
-                nixpkgs.follows = "nixpkgs-caelestia";
-                caelestia-cli.follows = "caelestia-cli";
-            };
+            inputs.caelestia-cli.follows = "caelestia-cli";
         };
 
         # host specific
