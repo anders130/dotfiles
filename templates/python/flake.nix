@@ -3,63 +3,89 @@
 
     inputs = {
         nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-        utils.url = "github:numtide/flake-utils";
+        flake-parts.url = "github:hercules-ci/flake-parts";
     };
 
-    outputs = {
-        self,
-        nixpkgs,
-        utils,
-        ...
-    }:
-        utils.lib.eachDefaultSystem (system: let
-            pkgs = import nixpkgs {inherit system;};
-            pythonPkgs = pkgs.python312Packages;
-            devDeps = with pythonPkgs; [
-                pytest
-                black
-                isort
-            ];
-        in {
-            packages.default = pythonPkgs.buildPythonPackage {
-                pname = "package";
-                version = "0.1.0";
-                format = "pyproject";
-
+    outputs = inputs:
+        inputs.flake-parts.lib.mkFlake {inherit inputs;} {
+            systems = ["x86_64-linux"];
+            perSystem = {
+                pkgs,
+                system,
+                ...
+            }: let
+                pythonPkgs = pkgs.python312Packages;
+                devDeps = with pythonPkgs; [
+                    pytest
+                    black
+                    isort
+                ];
+                package = inputs.self.packages.${system}.default;
                 src = ./.;
-
-                build-system = [pythonPkgs.hatchling];
-
-                dependencies = with pythonPkgs; [
-                    numpy
-                ];
-
-                buidInputs = with pkgs; [
-                    # Non Python dependencies
-                ];
-            };
-
-            devShells.default = pkgs.mkShell {
-                inputsFrom = [self.packages.${system}.default];
-                buildInputs = devDeps;
-            };
-
-            checks = let
-                checkDeps = {
-                    buildInputs = [self.packages.${system}.default devDeps];
-                    src = ./.;
+                pyproject = {
+                    build-system = {
+                        requires = ["hatchling"];
+                        build-backend = "hatchling.build";
+                    };
+                    project = {
+                        inherit (package) version;
+                        name = package.pname;
+                        dependencies = map (p: p.pname) inputs.self.packages.${system}.default.dependencies;
+                        readme = "README.md";
+                        keywords = [];
+                        requires-python = ">=3.12";
+                    };
+                    project.scripts.${package.pname} = "src.main:main";
+                    tool.hatch.build.targets.wheel.packages = ["src"];
                 };
             in {
-                tests = pkgs.runCommand "python-tests" checkDeps ''
-                    pytest $src
-                    touch $out
-                '';
+                packages.default = pythonPkgs.buildPythonPackage {
+                    inherit src;
+                    pname = "package";
+                    version = "0.1.0";
+                    format = "pyproject";
+                    build-system = [pythonPkgs.hatchling];
 
-                format = pkgs.runCommand "python-format" checkDeps ''
-                    black --check $src
-                    isort --check-only $src
-                    touch $out
-                '';
+                    dependencies = with pythonPkgs; [
+                        # python dependencies
+                        numpy
+                    ];
+                    buidInputs = with pkgs; [
+                        # Non python dependencies
+                    ];
+                };
+                devShells.default = pkgs.mkShell {
+                    inputsFrom = [package];
+                    buildInputs = devDeps;
+                    shellHook = ''
+                        cat ${pkgs.writers.writeTOML "pyproject.toml" pyproject} > pyproject.toml
+                        echo "__version__ = \"${package.version}\"" > src/__init__.py
+                    '';
+                };
+                formatter = pkgs.writeShellApplication {
+                    name = "format";
+                    runtimeInputs = devDeps;
+                    text = ''
+                        black .
+                        isort . --profile black
+                    '';
+                };
+                checks = let
+                    checkDeps = {
+                        inherit src;
+                        buildInputs = [package devDeps];
+                    };
+                in {
+                    tests = pkgs.runCommand "python-tests" checkDeps ''
+                        pytest $src
+                        touch $out
+                    '';
+                    format = pkgs.runCommand "python-format" checkDeps ''
+                        black --check $src
+                        isort $src --check --diff --known-local-folder "src" --profile "black"
+                        touch $out
+                    '';
+                };
             };
-        });
+        };
 }
