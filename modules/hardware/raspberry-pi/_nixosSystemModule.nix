@@ -8,7 +8,7 @@
         sd-image
         trusted-nix-caches
         inputs.nixos-raspberrypi.lib.inject-overlays
-        (lib.mkAliasOptionModuleMD ["environment" "checkConfigurationOptions"] ["_module" "check"])
+        (lib.mkAliasOptionModule ["environment" "checkConfigurationOptions"] ["_module" "check"])
     ];
     disabledModules = [(modulesPath + "/rename.nix")];
 }

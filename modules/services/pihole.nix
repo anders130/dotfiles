@@ -1,25 +1,14 @@
-args @ {
+{
     config,
     inputs,
     lib,
     ...
 }: let
-    inherit (builtins) concatMap filter removeAttrs;
+    inherit (builtins) concatMap filter;
     inherit (lib) mapAttrsToList removePrefix;
 
     webPort = 168;
-    pruneModule = path: let
-        orig = import path args;
-    in
-        orig // {meta = removeAttrs (orig.meta or {}) ["doc"];};
-
-    ftlModule = "${inputs.nixpkgs-unstable}/nixos/modules/services/networking/pihole-ftl.nix";
-    webModule = "${inputs.nixpkgs-unstable}/nixos/modules/services/web-apps/pihole-web.nix";
 in {
-    imports = [
-        (pruneModule ftlModule)
-        (pruneModule webModule)
-    ];
     services = {
         pihole-ftl = {
             enable = true;

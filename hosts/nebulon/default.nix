@@ -45,7 +45,7 @@
     hardware.enableRedistributableFirmware = true;
 
     # prevent laptop from suspending when lid is closed
-    services.logind.lidSwitchExternalPower = "ignore";
+    services.logind.settings.Login.HandleLidSwitchExternalPower = "ignore";
 
     system.stateVersion = "24.05";
     hm.home.stateVersion = "24.05";

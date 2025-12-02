@@ -1,5 +1,5 @@
 inputs: final: prev: let
-    inherit (inputs.nixpkgs-unstable.legacyPackages.${prev.system}) teams-for-linux;
+    inherit (inputs.nixpkgs-unstable.legacyPackages.${prev.stdenv.hostPlatform.system}) teams-for-linux;
 in {
     teams-for-linux = teams-for-linux.overrideAttrs (oldAttrs: let
         xdgOpenWrapper = final.writeShellScriptBin "xdg-open" ''

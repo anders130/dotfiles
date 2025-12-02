@@ -1,6 +1,7 @@
 inputs: final: prev: let
     unstable = import inputs.nixpkgs-unstable {
-        inherit (prev) config system;
+        inherit (prev) config;
+        inherit (prev.stdenv.hostPlatform) system;
     };
 in {
     # permanent unstable packages

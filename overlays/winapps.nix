@@ -1,3 +1,3 @@
 inputs: final: prev: {
-    inherit (inputs.winapps.packages.${prev.system}) winapps winapps-launcher;
+    inherit (inputs.winapps.packages.${prev.stdenv.hostPlatform.system}) winapps winapps-launcher;
 }

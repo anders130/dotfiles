@@ -12,9 +12,5 @@
     '';
 in {
     services.openssh.enable = true;
-    programs.ssh.startAgent = true;
-
-    environment.systemPackages = [
-        sshAddAllKeys
-    ];
+    environment.systemPackages = [sshAddAllKeys];
 }

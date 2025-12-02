@@ -2,7 +2,7 @@
     coreutils,
     imagemagick,
     libnotify,
-    rofi-wayland,
+    rofi,
     swww,
     writeShellScriptBin,
 }:
@@ -48,7 +48,7 @@ writeShellScriptBin "wallpaper-selector" ''
             thumbnail="$CACHE_DIR/$filename"
             echo -en "$filename\x00icon\x1f$thumbnail\n"
         done | \
-        ${rofi-wayland}/bin/rofi -dmenu -theme "$ROFI_THEME" -i -p "Select Wallpaper")
+        ${rofi}/bin/rofi -dmenu -theme "$ROFI_THEME" -i -p "Select Wallpaper")
 
     # If a wallpaper was selected, set it with swww
     if [ -n "$wallpaper" ]; then

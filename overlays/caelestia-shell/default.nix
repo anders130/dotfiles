@@ -1,7 +1,7 @@
 inputs: final: prev: let
     inherit (builtins) attrNames readDir;
 in {
-    caelestia-shell = (inputs.caelestia-shell.packages.${prev.system}.default.override {
+    caelestia-shell = (inputs.caelestia-shell.packages.${prev.stdenv.hostPlatform.system}.default.override {
         extraRuntimeDeps = with prev; [
             pulseaudio
             ddcutil

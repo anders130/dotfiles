@@ -1,11 +1,11 @@
 {
-    rofi-wayland,
+    rofi,
     hyprland,
     pkgs,
 }:
 pkgs.writeShellApplication {
     name = "shader-selector";
-    runtimeInputs = [rofi-wayland hyprland];
+    runtimeInputs = [rofi hyprland];
     text = ''
         shader_dir="$HOME/.config/hypr/shaders/"
 
