@@ -1,11 +1,15 @@
 {
     internalName,
     lib,
+    pkgs,
     ...
 }: let
     inherit (lib) mkDefault;
 in {
-    environment.variables.NIX_FLAKE_DEFAULT_HOST = internalName;
+    environment = {
+        systemPackages = [pkgs.local.rebuild];
+        variables.NIX_FLAKE_DEFAULT_HOST = internalName;
+    };
 
     modules = {
         programs.cli = {
