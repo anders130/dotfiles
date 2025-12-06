@@ -6,7 +6,7 @@
     nixos-rebuild,
     stdenv,
     writers,
-    arguments ? [],
+    rebuildArgs ? [],
     ...
 }: let
     buildInputs = [
@@ -62,7 +62,7 @@
             end
 
             echo "Performing local rebuild: $cmd with host: $host"
-            eval "nh os $cmd -H $host -d always -- $args ${builtins.concatStringsSep " " arguments}"
+            eval "nh os $cmd -H $host -d always -- $args ${builtins.concatStringsSep " " rebuildArgs}"
         end
     '';
 
