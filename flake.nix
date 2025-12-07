@@ -127,7 +127,7 @@
         hyprland = {
             type = "git";
             url = "https://github.com/hyprwm/Hyprland";
-            ref = "refs/tags/v0.52.1";
+            ref = "refs/tags/v0.52.2";
             submodules = true;
             inputs = {
                 systems.follows = "systems";
@@ -135,7 +135,7 @@
             };
         };
         hyprsplit = {
-            url = "github:shezdy/hyprsplit?ref=v0.52.1";
+            url = "github:shezdy/hyprsplit?ref=v0.52.2";
             inputs.hyprland.follows = "hyprland";
         };
         my-shell = {
