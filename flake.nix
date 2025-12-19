@@ -142,16 +142,15 @@
             url = "github:anders130/my-shell";
             inputs.nixpkgs.follows = "nixpkgs";
         };
+        nixpkgs-caelestia.url = "nixpkgs/2fad6eac6077f03fe109c4d4eb171cf96791faa4";
         caelestia-cli = {
             url = "github:caelestia-dots/cli";
-            inputs = {
-                nixpkgs.follows = "nixpkgs-unstable";
-                caelestia-shell.follows = "caelestia-shell";
-            };
+            inputs.caelestia-shell.follows = "caelestia-shell";
         };
         caelestia-shell = {
-            url = "github:caelestia-dots/shell";
+            url = "github:caelestia-dots/shell?rev16229e4219ef6a0951e4c9a3bff9bfe3fd54f16f";
             inputs.caelestia-cli.follows = "caelestia-cli";
+            inputs.nixpkgs.follows = "nixpkgs-caelestia";
         };
 
         # host specific
