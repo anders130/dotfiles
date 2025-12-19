@@ -18,6 +18,7 @@ in {
         pihole
         pihole-ftl
         pihole-web
+        proton-ge-bin
         stash
         ;
 }
