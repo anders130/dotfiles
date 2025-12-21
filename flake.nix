@@ -50,7 +50,6 @@
                 systems.follows = "systems";
                 flake-parts.follows = "flake-parts";
                 nixpkgs.follows = "nixpkgs-unstable";
-                nixvim.inputs.nuschtosSearch.follows = "";
             };
         };
         zenix = {
