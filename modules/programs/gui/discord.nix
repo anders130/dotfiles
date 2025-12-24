@@ -13,7 +13,8 @@
                 ];
                 plugins = {
                     fakeNitro.enable = true;
-                    PinDMs.enable = true;
+                    MutualGroupDMs.enable = true;
+                    BlurNSFW.enable = true;
                     volumeBooster.enable = true;
                 };
             };
