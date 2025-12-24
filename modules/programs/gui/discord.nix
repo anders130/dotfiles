@@ -13,7 +13,7 @@
                 ];
                 plugins = {
                     fakeNitro.enable = true;
-                    pinDMs.enable = true;
+                    PinDMs.enable = true;
                     volumeBooster.enable = true;
                 };
             };
