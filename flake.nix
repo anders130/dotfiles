@@ -147,7 +147,7 @@
             inputs.caelestia-shell.follows = "caelestia-shell";
         };
         caelestia-shell = {
-            url = "github:caelestia-dots/shell?rev16229e4219ef6a0951e4c9a3bff9bfe3fd54f16f";
+            url = "github:caelestia-dots/shell?rev=16229e4219ef6a0951e4c9a3bff9bfe3fd54f16f";
             inputs.caelestia-cli.follows = "caelestia-cli";
             inputs.nixpkgs.follows = "nixpkgs-caelestia";
         };
