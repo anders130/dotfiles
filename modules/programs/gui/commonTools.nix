@@ -8,9 +8,7 @@ in {
     environment.systemPackages = with pkgs; [
         obsidian
         insomnia # postman-alternative
-        libreoffice
         godot_4
-        varia # download manager
 
         pavucontrol # sound control
 
