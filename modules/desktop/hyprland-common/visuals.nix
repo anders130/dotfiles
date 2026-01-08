@@ -50,27 +50,28 @@
             default_opacity = "0.85 0.84";
             # for windows that set their own opacity
             blur_opacity = "0.99999997";
+            mkRuleFor = attrs: match_type: matches:
+                matches
+                |> builtins.concatStringsSep "|"
+                |> (c: "match:${match_type} ${c}, ${attrs}");
         in [
             # make everything transparent
-            "opacity ${default_opacity}, class:.*"
+            "match:class .*, opacity ${default_opacity}"
             # override transparency for specific apps
-            "opaque, class:totem"
-            "opaque, class:com.github.rafostar.Clapper"
-            "opaque, class:org.pwmt.zathura"
-            "opaque, class:chrome-localhost__-Default"
-            ## firefox
-            "opacity ${blur_opacity}, class:firefox"
-            "opacity ${default_opacity}, class:firefox, initialTitle:Library"
-            ## zen browser
-            "opacity ${blur_opacity}, class:zen.*"
-            ### floating Picture-in-Picture
-            "float, initialTitle:Picture-in-Picture"
-            "size 1280 720, initialTitle:Picture-in-Picture"
-            ## qutebrowser
-            "opacity ${blur_opacity}, class:org.qutebrowser.qutebrowser"
-            # termfilechooser centered and floated
-            "float, center, title:'termfilechooser'"
-            "size 70%, title:'termfilechooser'"
+            (mkRuleFor "opaque true" "class" [
+                "totem"
+                "com\.github\.rafostar\.Clapper"
+                "org\.pwmt.zathura"
+                "chrome-localhost__-Default"
+            ])
+            (mkRuleFor "opacity ${blur_opacity}" "class" [
+                "firefox"
+                "zen.*|org\.qutebrowser\.qutebrowser"
+            ])
+            "match:class firefox, match:initial_title Library, opacity ${default_opacity}"
+
+            "match:initial_title Picture-in-Picture, float true, size 1280 720"
+            "match:title 'termfilechooser', float true, center true, size 70%"
         ];
     };
 }

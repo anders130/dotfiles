@@ -53,7 +53,7 @@ in {
             };
         };
         wayland.windowManager.hyprland.settings.windowrule = [
-            "noscreenshare, title:^(Extension: \\(Bitwarden Password Manager\\) - Bitwarden — Zen Browser)$"
+            "no_screen_share true, match:title ^(Extension: \\(Bitwarden Password Manager\\) - Bitwarden — Zen Browser)$"
         ];
     };
 }

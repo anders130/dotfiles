@@ -19,17 +19,24 @@
                 "Super, mouse_down, global, caelestia:launcherInterrupt"
             ];
             layerrule = [
-                "noanim, caelestia-(launcher|osd|notifications|border-exclusion|area-picker)"
-                "animation fade, caelestia-(drawers|background)"
-                "order 1, caelestia-border-exclusion"
-                "order 2, caelestia-bar"
-                "xray 1, caelestia-(border|launcher|bar|sidebar|navbar|mediadisplay|screencorners)"
-                "blur, caelestia-.*"
-                "blurpopups, caelestia-.*"
-                "ignorealpha 0.57, caelestia-.*"
+                "animation fade, match:namespace hyprpicker"
+                "animation fade, match:namespace selection" # slurp
+                "animation fade, match:namespace wayfreeze"
+
+                # Fuzzel
+                "animation popin 80%, match:namespace launcher"
+                "blur true, match:namespace launcher"
+
+                # Shell
+                "no_anim true, match:namespace caelestia-(border-exclusion|area-picker)"
+                "animation fade, match:namespace caelestia-(drawers|background)"
+                "blur true, match:namespace caelestia-drawers"
+                "ignore_alpha 0.57, match:namespace caelestia-drawers"
             ];
             windowrule = [
-                "opacity 1, class:swappy"
+                "opaque true, match:class swappy|org\.quickshell"
+                "center true, match:float true, match:xwayland false"
+                "float true, match:class org\.quickshell|org\.pulseaudio"
             ];
             cursor.hotspot_padding = 1;
         };
