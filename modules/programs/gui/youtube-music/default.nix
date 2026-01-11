@@ -38,7 +38,10 @@
             "video-toggle".mode = "custom";
             "precise-volume".globalShortcuts = {};
             discord.listenAlong = true;
-            synced-lyrics.enabled = true;
+            synced-lyrics = {
+                enabled = true;
+                preferredProvider = "YTMusic";
+            };
         };
         __internal__.migrations.version = "3.3.6";
     };
