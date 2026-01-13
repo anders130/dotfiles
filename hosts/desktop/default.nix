@@ -107,6 +107,7 @@
         i2c.enable = true;
     };
     services = {
+        flatpak.enable = true;
         lsfg-vk = {
             enable = true;
             ui.enable = true;
