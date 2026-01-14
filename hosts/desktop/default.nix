@@ -153,6 +153,7 @@
 
     environment.systemPackages = with pkgs; [
         plex-desktop
+        hytale-launcher
     ];
 
     system.stateVersion = "24.05";

@@ -121,6 +121,13 @@
                 nixpkgs.follows = "nixpkgs";
             };
         };
+        hytale-launcher = {
+            url = "github:anders130/hytale-launcher-flake";
+            inputs = {
+                nixpkgs.follows = "nixpkgs-unstable";
+                flake-utils.follows = "flake-utils";
+            };
+        };
 
         # gui
         hyprland = {

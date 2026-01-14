@@ -888,6 +888,29 @@
         "type": "github"
       }
     },
+    "hytale-launcher": {
+      "inputs": {
+        "flake-utils": [
+          "flake-utils"
+        ],
+        "nixpkgs": [
+          "nixpkgs-unstable"
+        ]
+      },
+      "locked": {
+        "lastModified": 1768433901,
+        "narHash": "sha256-0pdeM16SjpsVoFgehAvNIyM90ac3Yl6OZdOGXr1tCUk=",
+        "owner": "anders130",
+        "repo": "hytale-launcher-flake",
+        "rev": "fcb2bbe006ed834e5eaf54c86dd09674e63ffcfb",
+        "type": "github"
+      },
+      "original": {
+        "owner": "anders130",
+        "repo": "hytale-launcher-flake",
+        "type": "github"
+      }
+    },
     "lanzaboote": {
       "inputs": {
         "crane": "crane",
@@ -1472,6 +1495,7 @@
         "home-manager": "home-manager",
         "hyprland": "hyprland",
         "hyprsplit": "hyprsplit",
+        "hytale-launcher": "hytale-launcher",
         "lanzaboote": "lanzaboote",
         "lsfg-vk-flake": "lsfg-vk-flake",
         "lumehub": "lumehub",
