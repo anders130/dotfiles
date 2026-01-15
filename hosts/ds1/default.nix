@@ -54,6 +54,7 @@
             space-engineers.enable = true;
             ntfy.enable = true;
             pihole.enable = true;
+            hytale.enable = true;
         };
     };
 
