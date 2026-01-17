@@ -3,19 +3,20 @@ let
     workDir = "/var/lib/hytale";
 in {
     virtualisation.oci-containers.containers.hytale = {
-        image = "deinfreu/hytale-server:experimental";
+        image = "indifferentbroccoli/hytale-server-docker";
         environment = {
-            SERVER_IP = "0.0.0.0";
-            SERVER_PORT = "5520";
-            PROD = "FALSE";
-            DEBUG = "FALSE";
-            TZ = "Europe/Berlin";
+            DEFAULT_PORT = toString port;
+            ENABLE_BACKUPS = "TRUE";
+            SERVER_NAME = "NixOS Hytale Server";
+            MAX_MEMORY = "8G";
         };
         volumes = [
-            "/var/lib/hytale/data:/home/container"
-            "/etc/machine-id:/etc/machine-id:ro"
+            "/var/lib/hytale/data:/home/hytale/server-files"
         ];
-        extraOptions = ["--tty"];
+        extraOptions = [
+            "--tty"
+            "--stop-timeout=30"
+        ];
         autoStart = false;
         user = "root:root";
         ports = ["${toString port}:5520/udp"];
