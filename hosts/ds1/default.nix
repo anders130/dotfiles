@@ -3,6 +3,7 @@
         bundles.server.enable = true;
         services = {
             caddy.enable = true; # important for paperless and vaultwarden
+            postgresql.enable = true; # important for nextcloud and tandoor
             vaultwarden = {
                 enable = true;
                 backupDir = "/mnt/rackflix/appdata/vaultwarden";
