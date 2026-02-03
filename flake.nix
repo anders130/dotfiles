@@ -64,8 +64,8 @@
             url = "github:Infinidoge/nix-minecraft";
             inputs = {
                 flake-compat.follows = "flake-compat";
-                flake-utils.follows = "flake-utils";
                 nixpkgs.follows = "nixpkgs-unstable";
+                systems.follows = "systems";
             };
         };
         nixcord = {
