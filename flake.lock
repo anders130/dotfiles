@@ -1055,16 +1055,17 @@
         ]
       },
       "locked": {
-        "lastModified": 1769687838,
-        "narHash": "sha256-BVb8+MPFi6/ITlhdVcX6PGsdtYnUolyzPVcyAVTCpIs=",
-        "owner": "0x5a4",
+        "lastModified": 1767294927,
+        "narHash": "sha256-H7JpcCHCIc+Usln3z1cK0dgnD4T+z2Bco1B23IPzkyw=",
+        "owner": "einetuer",
         "repo": "nix-easyroam",
-        "rev": "c5745795950187f79437fd8fafbb66dcd479a89a",
+        "rev": "21b11b6335d149a405bdb415bee9319850347229",
         "type": "github"
       },
       "original": {
-        "owner": "0x5a4",
+        "owner": "einetuer",
         "repo": "nix-easyroam",
+        "rev": "21b11b6335d149a405bdb415bee9319850347229",
         "type": "github"
       }
     },
