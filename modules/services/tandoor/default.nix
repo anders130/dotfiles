@@ -19,6 +19,7 @@ in {
             ENABLE_METRICS = 1;
             SOCIAL_DEFAULT_GROUP = "user";
             GUNICORN_MEDIA = "1";
+            MEDIA_ROOT = "/var/lib/tandoor-recipes";
 
             DB_ENGINE = "django.db.backends.postgresql";
             POSTGRES_HOST = "/run/postgresql";
