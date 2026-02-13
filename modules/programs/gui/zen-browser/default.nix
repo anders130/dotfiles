@@ -27,7 +27,10 @@ in {
                         vimium
                         wappalyzer
                     ];
-                    settings."widget.use-xdg-desktop-portal.file-picker" = 1;
+                    settings = {
+                        "widget.use-xdg-desktop-portal.file-picker" = 1;
+                        "browser.translations.neverTranslateLanguages" = "de,en";
+                    };
                     userChrome = mkSymlink ./userChrome.css;
                 };
             in {
