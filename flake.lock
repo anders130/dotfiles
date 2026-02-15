@@ -1104,6 +1104,21 @@
         "type": "github"
       }
     },
+    "nix-lib": {
+      "locked": {
+        "lastModified": 1771194330,
+        "narHash": "sha256-TDwWpX6wiY6EwiHHkNB+2WQYLW4iHMptkGSZcgD+RbY=",
+        "owner": "anders130",
+        "repo": "nix-lib",
+        "rev": "dfa0ca750ac2394c544d39af8ab1129897da4f09",
+        "type": "github"
+      },
+      "original": {
+        "owner": "anders130",
+        "repo": "nix-lib",
+        "type": "github"
+      }
+    },
     "nix-minecraft": {
       "inputs": {
         "flake-compat": [
@@ -1504,6 +1519,7 @@
         "my-shell": "my-shell",
         "nix-easyroam": "nix-easyroam",
         "nix-index-database": "nix-index-database",
+        "nix-lib": "nix-lib",
         "nix-minecraft": "nix-minecraft",
         "nixcord": "nixcord",
         "nixos-raspberrypi": "nixos-raspberrypi",

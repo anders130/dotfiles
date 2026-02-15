@@ -42,6 +42,7 @@
             url = "github:Mic92/sops-nix";
             inputs.nixpkgs.follows = "nixpkgs";
         };
+        nix-lib.url = "github:anders130/nix-lib";
 
         ## programs
         nvix = {

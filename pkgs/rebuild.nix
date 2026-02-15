@@ -1,20 +1,18 @@
 {
-    fish,
-    installShellFiles,
     lib,
     nh,
     nixos-rebuild,
-    stdenv,
+    writeFishApplication,
     writers,
     rebuildArgs ? [],
-    ...
-}: let
-    buildInputs = [
-        fish
+}:
+writeFishApplication {
+    name = "rebuild";
+    runtimeInputs = [
         nh
         nixos-rebuild
     ];
-    scriptPath = writers.writeFish "rebuild.fish" ''
+    script = writers.writeFish "rebuild.fish" ''
         # Default values
         set cmd switch
         set args
@@ -65,36 +63,13 @@
             eval "nh os $cmd -H $host -d always -- $args ${builtins.concatStringsSep " " rebuildArgs}"
         end
     '';
-
-    completionPath = writers.writeFish "rebuild.fish-completion-content" ''
+    completions = writers.writeFish "rebuild.fish-completion-content" ''
         complete -c rebuild -w nixos-rebuild
         complete -c rebuild -s H -l host -r -d 'Host to deploy to'
         complete -c rebuild -l rollback -d 'Perform a rollback instead of a rebuild'
     '';
-in
-    stdenv.mkDerivation {
-        pname = "rebuild";
-        version = "1.0";
-
-        src = null;
-        dontUnpack = true;
-
-        nativeBuildInputs = [installShellFiles];
-        inherit buildInputs completionPath scriptPath;
-
-        installPhase = ''
-            mkdir -p $out/bin
-
-            cp "$scriptPath" $out/bin/rebuild
-            chmod +x $out/bin/rebuild
-
-            installShellCompletion \
-              --cmd rebuild \
-              --fish "$completionPath"
-        '';
-
-        meta = {
-            description = "Wrapper script for nixos-rebuild with fish completions.";
-            platforms = lib.platforms.all;
-        };
-    }
+    meta = {
+        description = "Wrapper script for nixos-rebuild with fish completions.";
+        platforms = lib.platforms.all;
+    };
+}
