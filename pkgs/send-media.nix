@@ -4,7 +4,7 @@
     writeShellApplication,
     fileWatcherService ? "media-mover.service",
     destinationPath ? "/home/admin/public",
-    sshAddress ? null, # user@host, set via .override
+    sshAddress ? "", # user@host, set via .override
 }:
 writeShellApplication {
     name = "send-media";
