@@ -34,6 +34,7 @@
                 accept-flake-config = true;
                 auto-optimise-store = true;
                 warn-dirty = false;
+                keep-outputs = true; # nice for development
 
                 experimental-features = [
                     "nix-command"
