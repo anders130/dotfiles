@@ -63,6 +63,7 @@
                 "com\.github\.rafostar\.Clapper"
                 "org\.pwmt.zathura"
                 "chrome-localhost__-Default"
+                "chromium-browser"
             ])
             (mkRuleFor "opacity ${blur_opacity}" "class" [
                 "firefox"
