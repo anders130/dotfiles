@@ -1,5 +1,6 @@
 {
     lib,
+    nix,
     nh,
     nixos-rebuild,
     writeFishApplication,
@@ -10,7 +11,8 @@ writeFishApplication {
     name = "rebuild";
     runtimeInputs = [
         nh
-        nixos-rebuild
+        nix
+        (nixos-rebuild.override {inherit nix;})
     ];
     script = writers.writeFish "rebuild.fish" ''
         # Default values

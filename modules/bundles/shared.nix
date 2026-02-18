@@ -1,4 +1,5 @@
 {
+    config,
     internalName,
     lib,
     pkgs,
@@ -7,7 +8,7 @@
     inherit (lib) mkDefault;
 in {
     environment = {
-        systemPackages = [pkgs.local.rebuild];
+        systemPackages = [(pkgs.local.rebuild.override {nix = config.nix.package;})];
         variables.NIX_FLAKE_DEFAULT_HOST = internalName;
     };
 
