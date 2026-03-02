@@ -25,6 +25,15 @@
             '';
         };
 
+        slidev = {
+            path = ./slidev;
+            description = "slidev presentation template";
+            welcomeText = ''
+                This template is a slidev presentation template.
+                Make sure to update the dependencies before using it.
+            '';
+        };
+
         typst = {
             path = ./typst;
             description = "typst development template using typix";
