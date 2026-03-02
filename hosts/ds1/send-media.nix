@@ -15,6 +15,14 @@ in {
                 path = "/mnt/rackflix/data/Videos/Serien";
                 owner = "admin:users";
             };
+            "anime" = {
+                path = "/mnt/rackflix/data/Videos/Anime Serien";
+                owner = "admin:users";
+            };
+            "music" = {
+                path = "/mnt/rackflix/data/Music";
+                owner = "admin:users";
+            };
             "stash" = {
                 path = "/mnt/rackflix/appdata/.stash/media";
                 owner = "admin:media";
