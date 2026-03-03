@@ -981,11 +981,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1761557906,
-        "narHash": "sha256-P6sXrfignhMq/vDympwj7YPuPcbNfLVBjAXNPpFwsEM=",
+        "lastModified": 1772530266,
+        "narHash": "sha256-D0e+HE0pH6oqVRWmj75Oasrj/+1TpxZ4YJIBcjZxTdQ=",
         "owner": "LumeHub",
         "repo": "server",
-        "rev": "c66ca4aa97702f4a8d0e6bf02ed82be0bbd77d42",
+        "rev": "21253b1d84a91ac9a3023c3f27bd5f5c52e92ba7",
         "type": "github"
       },
       "original": {
