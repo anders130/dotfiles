@@ -8,6 +8,11 @@
             spi.enable = true;
         };
     };
+    modules.programs.cli = {
+        nvix.enable = false; # neovim config - probably huge
+        nix-index.enable = false; # large database
+        direnv.enable = false;
+    };
 
     services.lumehub = {
         enable = true;
