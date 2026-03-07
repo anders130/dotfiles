@@ -20,6 +20,7 @@ in {
             nix-melt
             gemini-cli
             statix
+            devenv
         ];
         shellAliases = {
             ask = "gemini";

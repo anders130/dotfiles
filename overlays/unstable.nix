@@ -8,6 +8,7 @@ in {
     inherit
         (unstable)
         comma
+        devenv
         gemini-cli
         # hyprlock
         immich
