@@ -29,10 +29,14 @@
                     };
                     background = {
                         enabled = true;
-                        desktopClock.enabled = true;
+                        desktopClock = {
+                            enabled = true;
+                            scale = 0.7;
+                        };
                         visualiser.enabled = false;
                     };
                     bar = {
+                        clock.showIcon = false;
                         entries = map (id: {
                             inherit id;
                             enabled = true;

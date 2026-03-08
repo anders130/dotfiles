@@ -1,0 +1,13 @@
+diff --git a/modules/background/Wallpaper.qml b/modules/background/Wallpaper.qml
+index 39a48fc..f97a802 100644
+--- a/modules/background/Wallpaper.qml
++++ b/modules/background/Wallpaper.qml
+@@ -31,7 +31,7 @@ Item {
+     Loader {
+         anchors.fill: parent
+ 
+-        active: !root.source
++        active: !root.source && !root.current
+ 
+         sourceComponent: StyledRect {
+             color: Colours.palette.m3surfaceContainer
