@@ -26,7 +26,7 @@ function update
         set_color green
         echo "Updating Hyprland and Hyprsplit to $hyprland_version..."
         set_color white
-        sed -i 's/ref = ".*"/ref = "refs\/tags\/v'"$hyprland_version"'"/' flake.nix
+        sed -i -E 's|(url = "github:hyprwm/hyprland/)[^"]+(")|\1v'"$hyprland_version"'\2|' flake.nix
         sed -i -E 's|(url = "github:shezdy/hyprsplit\?ref=)[^"]+(";)|\1v'"$hyprland_version"'\2|' flake.nix
     end
 
@@ -52,4 +52,3 @@ function update
     echo "Update finished."
     set_color white
 end
-
