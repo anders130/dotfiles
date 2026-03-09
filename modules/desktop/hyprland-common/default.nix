@@ -6,12 +6,12 @@
 }: rec {
     programs.hyprland = {
         enable = true;
-        withUWSM = true;
         xwayland.enable = true;
     };
     environment = {
         sessionVariables.NIXOS_OZONE_WL = "1";
         systemPackages = with pkgs; [
+            app2unit
             libsForQt5.qt5.qtwayland
             qt6.qtwayland
             hyprpicker # color picker

@@ -5,8 +5,8 @@
     ...
 }: {
     programs.fish.loginShellInit = ''
-        if not set -q HYPRLAND_INSTANCE_SIGNATURE && uwsm check may-start
-            exec uwsm start default
+        if not set -q HYPRLAND_INSTANCE_SIGNATURE
+            exec start-hyprland
         end
     '';
     # autologin only in tty1

@@ -1,20 +1,18 @@
 _: afterFirstLogin:
 map (cmd:
         if builtins.typeOf cmd == "string"
-        then "uwsm app -- ${cmd}"
+        then "app2unit -- ${cmd}"
         else let
-            cmd' = c: "${
-                if cmd.delay > 0.0
-                then "sleep ${toString cmd.delay} && "
-                else ""
-            }${
+            appCmd =
                 if cmd.isApp
-                then "uwsm app -- ${c}"
-                else c
-            }";
-        in
-            cmd' (
+                then "app2unit -- ${cmd.command}"
+                else cmd.command;
+            inner =
                 if cmd.afterFirstLogin
-                then afterFirstLogin cmd.command
-                else cmd.command
-            ))
+                then afterFirstLogin appCmd
+                else appCmd;
+        in "${
+            if cmd.delay > 0.0
+            then "sleep ${toString cmd.delay} && "
+            else ""
+        }${inner}")
