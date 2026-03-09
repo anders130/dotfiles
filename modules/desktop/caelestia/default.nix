@@ -43,6 +43,5 @@
         # TODO: remove this once home-manager module supports this
         systemd.user.services.caelestia.Service.Environment = ["QT_QPA_PLATFORMTHEME=gtk3"];
     };
-    security.pam.services.caelestia.enableGnomeKeyring = true;
     users.users.${username}.extraGroups = ["i2c"]; # needed for making the brightness slider work
 }

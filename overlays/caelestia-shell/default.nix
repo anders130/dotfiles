@@ -12,5 +12,11 @@ in {
             |> readDir
             |> attrNames
             |> map (n: ./patches/${n});
+        postInstall =
+            (oldAttrs.postInstall or "")
+            + ''
+                printf '\nauth    optional    /run/current-system/sw/lib/security/pam_gnome_keyring.so\n' \
+                    >> $out/share/caelestia-shell/assets/pam.d/passwd
+            '';
     });
 }
