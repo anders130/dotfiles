@@ -24,7 +24,7 @@ in {
         services.nextcloud = {
             inherit (cfg) datadir;
             enable = true;
-            package = pkgs.nextcloud32;
+            package = pkgs.nextcloud33;
             config = {
                 adminuser = "admin";
                 adminpassFile = config.sops.secrets."nextcloud/adminPass".path;
@@ -41,14 +41,16 @@ in {
             };
             extraApps = {
                 inherit
-                    (pkgs.nextcloud32Packages.apps)
+                    (pkgs.nextcloud33Packages.apps)
                     bookmarks
+                    calendar
+                    contacts
                     mail
                     # oidc_login
                     ;
                 theming_customcss = pkgs.fetchNextcloudApp {
-                    sha256 = "sha256-tDU6GIGX5PFr6+iBYjUl4iGcZKUmc/3MUBt5xD561uw=";
-                    url = "https://github.com/nextcloud-releases/theming_customcss/releases/download/v1.19.0/theming_customcss.tar.gz";
+                    sha256 = "sha256-Fgu31s+K4MFUgvNe9mAVHi9C0iJnv40v1onUMk+lFZk=";
+                    url = "https://github.com/nextcloud-releases/theming_customcss/releases/download/v1.20.0/theming_customcss.tar.gz";
                     license = "agpl3Only";
                 };
             };
