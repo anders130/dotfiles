@@ -84,9 +84,9 @@
             };
         };
         lumehub = {
-            url = "github:LumeHub/server?ref=dev";
+            url = "github:LumeHub/server/dev";
             inputs = {
-                nixpkgs.follows = "nixpkgs-unstable";
+                crane.follows = "crane";
                 flake-parts.follows = "flake-parts";
             };
         };
@@ -178,7 +178,10 @@
         nixos-raspberrypi.url = "github:nvmd/nixos-raspberrypi/main";
         lanzaboote = {
             url = "github:nix-community/lanzaboote";
-            inputs.nixpkgs.follows = "nixpkgs";
+            inputs = {
+                crane.follows = "crane";
+                nixpkgs.follows = "nixpkgs";
+            };
         };
         nix-easyroam = {
             url = "github:einetuer/nix-easyroam/21b11b6335d149a405bdb415bee9319850347229";
@@ -196,6 +199,7 @@
             inputs.systems.follows = "systems";
         };
         flake-compat.url = "github:edolstra/flake-compat";
+        crane.url = "github:ipetkov/crane";
     };
 
     outputs = inputs:
