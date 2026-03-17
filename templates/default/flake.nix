@@ -2,9 +2,9 @@
     description = "Template";
 
     inputs = {
-        nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+        nixpkgs.url = "nixpkgs/nixos-unstable";
     };
 
-    outputs = {nixpkgs, ...}: {
+    outputs = inputs: {
     };
 }
