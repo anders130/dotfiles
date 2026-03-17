@@ -31,6 +31,8 @@
         stylix.targets.hyprland.enable = false;
         wayland.windowManager.hyprland = {
             inherit (programs.hyprland) enable xwayland;
+            package = null;
+            portalPackage = null;
             settings = {
                 general = {
                     layout = "dwindle";
@@ -44,6 +46,7 @@
             extraConfig = lib.toHyprlang {
                 source = "./extra.conf";
             };
+            systemd.variables = ["--all"];
         };
         xdg.configFile = {
             "hypr/extra.conf" = lib.mkSymlink ./hyprland.conf;
