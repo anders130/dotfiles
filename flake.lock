@@ -954,14 +954,21 @@
         "flake-parts": [
           "flake-parts"
         ],
+        "git-hooks": [
+          "pre-commit-hooks"
+        ],
+        "import-tree": [
+          "nix-lib",
+          "import-tree"
+        ],
         "nixpkgs": "nixpkgs_3"
       },
       "locked": {
-        "lastModified": 1773429079,
-        "narHash": "sha256-6H9X/eXN8svXT8Hq94Aw3Mdv3owB1P0INprqWjV8sTk=",
+        "lastModified": 1773784643,
+        "narHash": "sha256-NwKiPHObPURMR/QDn3YoK9r6SPs76E7R0gCdLYETCWA=",
         "owner": "LumeHub",
         "repo": "server",
-        "rev": "928e473be947b20e9f163680b325471cc72769d9",
+        "rev": "358ab40ede7c12bc6e5f1f2e812db8878ac9c2ba",
         "type": "github"
       },
       "original": {
@@ -1298,11 +1305,11 @@
     },
     "nixpkgs_3": {
       "locked": {
-        "lastModified": 1759917807,
-        "narHash": "sha256-WoSazth5EXIJmveWf0zbTMycrgpbLYOth6KhmltMuv0=",
+        "lastModified": 1773353462,
+        "narHash": "sha256-LmlmQWWeKJi5k0NmgU/yz2IxsRiY+butOoXt9MyFVhM=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "fb5cf53218b987f2703a5bbc292a030c0fe33443",
+        "rev": "24f4544180242cd80bb2492ce6907243bc716e08",
         "type": "github"
       },
       "original": {

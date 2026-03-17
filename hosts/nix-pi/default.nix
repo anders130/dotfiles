@@ -21,12 +21,6 @@
             led_controller.controller_type = "ws2801";
             led_controller.pixel_count = 256;
         };
-        extraEffects.tv_mode = ''
-            [[layers]]
-            effect = "tv_effect"
-            fade_start = 100.0
-            fade_end   = 120.0
-        '';
     };
 
     system.stateVersion = "24.05";
