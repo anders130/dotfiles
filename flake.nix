@@ -140,14 +140,14 @@
 
         # gui
         hyprland = {
-            url = "github:hyprwm/hyprland/v0.54.1";
+            url = "github:hyprwm/hyprland/v0.54.2";
             inputs = {
                 systems.follows = "systems";
                 pre-commit-hooks.follows = "";
             };
         };
         hyprsplit = {
-            url = "github:shezdy/hyprsplit?ref=v0.54.1";
+            url = "github:shezdy/hyprsplit/v0.54.2";
             inputs.hyprland.follows = "hyprland";
         };
         my-shell = {
