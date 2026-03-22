@@ -1416,11 +1416,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1772617647,
-        "narHash": "sha256-frJ8li7QKJHGi8LLdpmB5LRosMd4lTGT2fOXFKA1oeA=",
+        "lastModified": 1774219152,
+        "narHash": "sha256-ARmoNWMV5T2FGAhExbOPByeKvEKcJkovAcSc5icpTu0=",
         "owner": "anders130",
         "repo": "nvix",
-        "rev": "fc8f60f85fcbdc70f1bf65cd2c0d0999e2cd9b6a",
+        "rev": "0d1a577dd8de2c51fe10fc0c41f447d12c68a56e",
         "type": "github"
       },
       "original": {
