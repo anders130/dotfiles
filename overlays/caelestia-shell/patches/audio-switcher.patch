@@ -1,15 +1,15 @@
 diff --git a/modules/bar/components/StatusIcons.qml b/modules/bar/components/StatusIcons.qml
-index 27fd9f8..51ddc1a 100644
+index 455e04e..ac3ac1e 100644
 --- a/modules/bar/components/StatusIcons.qml
 +++ b/modules/bar/components/StatusIcons.qml
-@@ -1,6 +1,7 @@
- pragma ComponentBehavior: Bound
- 
+@@ -6,6 +6,7 @@ import Quickshell
+ import Quickshell.Bluetooth
+ import Quickshell.Services.UPower
  import qs.components
 +import qs.components.controls
  import qs.services
- import qs.utils
  import qs.config
+ import qs.utils
 @@ -15,6 +16,7 @@ StyledRect {
  
      property color colour: Colours.palette.m3secondary
@@ -47,25 +47,26 @@ index 27fd9f8..51ddc1a 100644
          }
  
 diff --git a/services/Audio.qml b/services/Audio.qml
-index 71ccb86..46ab258 100644
+index 100f001..e6e2b79 100644
 --- a/services/Audio.qml
 +++ b/services/Audio.qml
-@@ -6,12 +6,14 @@ import Caelestia
+@@ -3,6 +3,7 @@ pragma Singleton
+ import QtQuick
  import Quickshell
  import Quickshell.Services.Pipewire
- import QtQuick
 +import Quickshell.Io
- 
- Singleton {
-     id: root
+ import Caelestia
+ import Caelestia.Services
+ import qs.config
+@@ -12,6 +13,7 @@ Singleton {
  
      property string previousSinkName: ""
      property string previousSourceName: ""
 +    property bool isHeadphonesIcon: false
  
-     readonly property var nodes: Pipewire.nodes.values.reduce((acc, node) => {
-         if (!node.isStream) {
-@@ -79,16 +81,43 @@ Singleton {
+     property list<PwNode> sinks: []
+     property list<PwNode> sources: []
+@@ -67,6 +69,31 @@ Singleton {
          Pipewire.preferredDefaultAudioSource = newSource;
      }
  
@@ -94,14 +95,18 @@ index 71ccb86..46ab258 100644
 +        isHeadphonesIcon = sinkName.includes("headphone") || sinkName.includes("headset");
 +    }
 +
+     function setStreamVolume(stream: PwNode, newVolume: real): void {
+         if (stream?.ready && stream?.audio) {
+             stream.audio.muted = false;
+@@ -95,6 +122,7 @@ Singleton {
+         return stream.properties["application.name"] || stream.description || stream.name || qsTr("Unknown Application");
+     }
+ 
++
      onSinkChanged: {
          if (!sink?.ready)
              return;
- 
-         const newSinkName = sink.description || sink.name || qsTr("Unknown Device");
-+        const newSinkNameLower = (sink.description || sink.name || "").toLowerCase();
- 
-         if (previousSinkName && previousSinkName !== newSinkName && Config.utilities.toasts.audioOutputChanged)
+@@ -105,6 +133,7 @@ Singleton {
              Toaster.toast(qsTr("Audio output changed"), qsTr("Now using: %1").arg(newSinkName), "volume_up");
  
          previousSinkName = newSinkName;
@@ -109,14 +114,3 @@ index 71ccb86..46ab258 100644
      }
  
      onSourceChanged: {
-@@ -103,6 +132,10 @@ Singleton {
-         previousSourceName = newSourceName;
-     }
- 
-+    onNodesChanged: {
-+        updateHeadphonesIconState();
-+    }
-+
-     Component.onCompleted: {
-         previousSinkName = sink?.description || sink?.name || qsTr("Unknown Device");
-         previousSourceName = source?.description || source?.name || qsTr("Unknown Device");
