@@ -964,11 +964,11 @@
         "nixpkgs": "nixpkgs_3"
       },
       "locked": {
-        "lastModified": 1773784643,
-        "narHash": "sha256-NwKiPHObPURMR/QDn3YoK9r6SPs76E7R0gCdLYETCWA=",
+        "lastModified": 1774258826,
+        "narHash": "sha256-wgU9snwg/23BRaOdRRiHXm5vO2S6GfbMthxH/FJGtws=",
         "owner": "LumeHub",
         "repo": "server",
-        "rev": "358ab40ede7c12bc6e5f1f2e812db8878ac9c2ba",
+        "rev": "9b3d5d8fcc758ee91c97e09fe58cbaa1f7d34208",
         "type": "github"
       },
       "original": {
