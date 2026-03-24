@@ -1407,6 +1407,12 @@
         "flake-parts": [
           "flake-parts"
         ],
+        "git-hooks": [
+          "pre-commit-hooks"
+        ],
+        "nix-lib": [
+          "nix-lib"
+        ],
         "nixpkgs": [
           "nixpkgs-unstable"
         ],
@@ -1416,11 +1422,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1774267745,
-        "narHash": "sha256-y+SgcTXUZtcMMdtWSkVTF59bRXpEwX9L67CucXHoXnk=",
+        "lastModified": 1774384344,
+        "narHash": "sha256-TeOa0UUV1y9g8NMmr/H70HbG3YxdTPNWvFDFg1gTbRo=",
         "owner": "anders130",
         "repo": "nvix",
-        "rev": "ae2f77649362cec8ab540be04f659e94ed330571",
+        "rev": "0df787cd3604f1046439e44a4bca21e833ea7962",
         "type": "github"
       },
       "original": {

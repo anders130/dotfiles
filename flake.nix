@@ -57,6 +57,8 @@
                 systems.follows = "systems";
                 flake-parts.follows = "flake-parts";
                 nixpkgs.follows = "nixpkgs-unstable";
+                nix-lib.follows = "nix-lib";
+                git-hooks.follows = "pre-commit-hooks";
             };
         };
         zenix = {
