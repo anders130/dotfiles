@@ -27,7 +27,7 @@
                 "SUPER, C, killactive"
                 "SUPER, V, togglefloating"
                 "SUPER, F, fullscreen"
-                "SUPER, S, togglesplit"
+                "SUPER, S, layoutmsg, togglesplit"
                 "SUPER, P, pin"
                 # move focus with vim-like keybinds
                 "SUPER, h, movefocus, l"
