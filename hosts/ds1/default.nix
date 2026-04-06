@@ -56,6 +56,7 @@
             ntfy.enable = true;
             pihole.enable = true;
             hytale.enable = true;
+            astroneer.enable = true;
         };
     };
 
