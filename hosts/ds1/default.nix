@@ -102,6 +102,16 @@
         systemd-boot.enable = true;
     };
 
+    services.terraria = {
+        enable = true;
+        openFirewall = true;
+        port = 7778;
+        worldPath = "/var/lib/terraria/Worlds/Terraria.wld";
+        autoCreatedWorldSize = "large";
+        maxPlayers = 8;
+    };
+    systemd.services.terraria.wantedBy = lib.mkForce [];
+
     system.stateVersion = "24.11";
     hm.home.stateVersion = "24.11";
 }
