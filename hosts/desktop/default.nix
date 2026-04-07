@@ -44,6 +44,7 @@
                 zen-browser.enable = true;
                 qutebrowser.enable = true;
                 zapzap.enable = true;
+                element-desktop.enable = true;
                 nextcloud-client = {
                     enable = true;
                     instance-url = "https://cloud.gollub.dev";
