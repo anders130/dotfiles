@@ -179,7 +179,6 @@
                 flake-compat.follows = "flake-compat";
             };
         };
-        nixos-raspberrypi.url = "github:nvmd/nixos-raspberrypi/main";
         lanzaboote = {
             url = "github:nix-community/lanzaboote";
             inputs = {
