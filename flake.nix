@@ -187,10 +187,6 @@
                 nixpkgs.follows = "nixpkgs";
             };
         };
-        nix-easyroam = {
-            url = "github:einetuer/nix-easyroam/21b11b6335d149a405bdb415bee9319850347229";
-            inputs.nixpkgs.follows = "nixpkgs";
-        };
         lsfg-vk-flake = {
             url = "github:pabloaul/lsfg-vk-flake/main";
             inputs.nixpkgs.follows = "nixpkgs";

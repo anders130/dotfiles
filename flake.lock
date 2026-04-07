@@ -1023,27 +1023,6 @@
         "type": "github"
       }
     },
-    "nix-easyroam": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1767294927,
-        "narHash": "sha256-H7JpcCHCIc+Usln3z1cK0dgnD4T+z2Bco1B23IPzkyw=",
-        "owner": "einetuer",
-        "repo": "nix-easyroam",
-        "rev": "21b11b6335d149a405bdb415bee9319850347229",
-        "type": "github"
-      },
-      "original": {
-        "owner": "einetuer",
-        "repo": "nix-easyroam",
-        "rev": "21b11b6335d149a405bdb415bee9319850347229",
-        "type": "github"
-      }
-    },
     "nix-filter": {
       "locked": {
         "lastModified": 1731533336,
@@ -1541,7 +1520,6 @@
         "lumehub": "lumehub",
         "modulix": "modulix",
         "my-shell": "my-shell",
-        "nix-easyroam": "nix-easyroam",
         "nix-index-database": "nix-index-database",
         "nix-lib": "nix-lib",
         "nix-minecraft": "nix-minecraft",
