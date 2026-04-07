@@ -26,4 +26,14 @@
     };
 
     hm.stylix.targets.tmux.enable = false;
+
+    systemd.user.services.kill-tmux = {
+        description = "Kill tmux on logout";
+        wantedBy = ["exit.target"];
+        before = ["exit.target"];
+        serviceConfig = {
+            Type = "oneshot";
+            ExecStart = "${lib.getExe pkgs.tmux} kill-server";
+        };
+    };
 }
