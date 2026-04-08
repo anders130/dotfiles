@@ -915,38 +915,6 @@
         "type": "github"
       }
     },
-    "lumehub": {
-      "inputs": {
-        "crane": [
-          "crane"
-        ],
-        "flake-parts": [
-          "flake-parts"
-        ],
-        "git-hooks": [
-          "pre-commit-hooks"
-        ],
-        "import-tree": [
-          "nix-lib",
-          "import-tree"
-        ],
-        "nixpkgs": "nixpkgs_3"
-      },
-      "locked": {
-        "lastModified": 1774258826,
-        "narHash": "sha256-wgU9snwg/23BRaOdRRiHXm5vO2S6GfbMthxH/FJGtws=",
-        "owner": "LumeHub",
-        "repo": "server",
-        "rev": "9b3d5d8fcc758ee91c97e09fe58cbaa1f7d34208",
-        "type": "github"
-      },
-      "original": {
-        "owner": "LumeHub",
-        "ref": "dev",
-        "repo": "server",
-        "type": "github"
-      }
-    },
     "modulix": {
       "inputs": {
         "haumea": [
@@ -1222,22 +1190,6 @@
     },
     "nixpkgs_3": {
       "locked": {
-        "lastModified": 1773353462,
-        "narHash": "sha256-LmlmQWWeKJi5k0NmgU/yz2IxsRiY+butOoXt9MyFVhM=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "24f4544180242cd80bb2492ce6907243bc716e08",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "ref": "nixpkgs-unstable",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
-    "nixpkgs_4": {
-      "locked": {
         "lastModified": 1774388614,
         "narHash": "sha256-tFwzTI0DdDzovdE9+Ras6CUss0yn8P9XV4Ja6RjA+nU=",
         "owner": "NixOS",
@@ -1422,7 +1374,6 @@
         "hytale-launcher": "hytale-launcher",
         "lanzaboote": "lanzaboote",
         "lsfg-vk-flake": "lsfg-vk-flake",
-        "lumehub": "lumehub",
         "modulix": "modulix",
         "my-shell": "my-shell",
         "nix-index-database": "nix-index-database",
@@ -1430,7 +1381,7 @@
         "nix-minecraft": "nix-minecraft",
         "nixcord": "nixcord",
         "nixos-wsl": "nixos-wsl",
-        "nixpkgs": "nixpkgs_4",
+        "nixpkgs": "nixpkgs_3",
         "nixpkgs-caelestia": "nixpkgs-caelestia",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "nur": "nur",
