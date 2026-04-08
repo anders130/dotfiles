@@ -169,10 +169,7 @@
         };
         lanzaboote = {
             url = "github:nix-community/lanzaboote";
-            inputs = {
-                crane.follows = "crane";
-                nixpkgs.follows = "nixpkgs";
-            };
+            inputs.nixpkgs.follows = "nixpkgs";
         };
         lsfg-vk-flake = {
             url = "github:pabloaul/lsfg-vk-flake/main";
@@ -186,7 +183,6 @@
             inputs.systems.follows = "systems";
         };
         flake-compat.url = "github:edolstra/flake-compat";
-        crane.url = "github:ipetkov/crane";
     };
 
     outputs = inputs:
