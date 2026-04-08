@@ -16,7 +16,6 @@
 in {
     flake.overlays.default = composeManyExtensions ((attrValues myOverlays)
     ++ (with inputs; [
-        hytale-launcher.overlays.default
         nix-minecraft.overlay
         nur.overlays.default
         zenix.overlays.default

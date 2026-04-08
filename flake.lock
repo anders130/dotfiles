@@ -833,24 +833,21 @@
     },
     "hytale-launcher": {
       "inputs": {
-        "flake-utils": [
-          "flake-utils"
-        ],
         "nixpkgs": [
           "nixpkgs-unstable"
         ]
       },
       "locked": {
-        "lastModified": 1768669756,
-        "narHash": "sha256-iSkW2n65ObLK6ipN+FKcitHle1y3epG5fC+BWb43hJc=",
+        "lastModified": 1775660040,
+        "narHash": "sha256-TkQn7Lko9sF/5rU7HxwCU5Ze2yddkgyuSRq1Q/ZJInQ=",
         "owner": "anders130",
-        "repo": "hytale-launcher-flake",
-        "rev": "8a21d9a8d3ae718220f67be51b9d2e299c76bce2",
+        "repo": "hytale-launcher-nix",
+        "rev": "02314ae2309a9bc1f785404e545d2ffcc1234961",
         "type": "github"
       },
       "original": {
         "owner": "anders130",
-        "repo": "hytale-launcher-flake",
+        "repo": "hytale-launcher-nix",
         "type": "github"
       }
     },

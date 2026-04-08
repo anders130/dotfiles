@@ -124,11 +124,8 @@
             };
         };
         hytale-launcher = {
-            url = "github:anders130/hytale-launcher-flake";
-            inputs = {
-                nixpkgs.follows = "nixpkgs-unstable";
-                flake-utils.follows = "flake-utils";
-            };
+            url = "github:anders130/hytale-launcher-nix";
+            inputs.nixpkgs.follows = "nixpkgs-unstable";
         };
 
         # gui
