@@ -47,26 +47,21 @@ index 455e04ef..ac3ac1ec 100644
          }
  
 diff --git a/services/Audio.qml b/services/Audio.qml
-index e2d936a0..ad2eff96 100644
+index e2d936a0..75046568 100644
 --- a/services/Audio.qml
 +++ b/services/Audio.qml
-@@ -4,6 +4,7 @@ import QtQuick
- import Quickshell
- import Quickshell.Io
- import Quickshell.Services.Pipewire
-+import Quickshell.Io
- import Caelestia
- import Caelestia.Services
- import qs.config
-@@ -13,6 +14,7 @@ Singleton {
+@@ -13,6 +13,10 @@ Singleton {
  
      property string previousSinkName: ""
      property string previousSourceName: ""
-+    property bool isHeadphonesIcon: false
++    readonly property bool isHeadphonesIcon: {
++        const name = (sink?.description || sink?.name || "").toLowerCase();
++        return name.includes("headphone") || name.includes("headset");
++    }
  
      property list<PwNode> sinks: []
      property list<PwNode> sources: []
-@@ -77,6 +79,33 @@ Singleton {
+@@ -77,6 +81,27 @@ Singleton {
          setAudioSink(sinks[nextIndex]);
      }
  
@@ -91,16 +86,10 @@ index e2d936a0..ad2eff96 100644
 +        }
 +    }
 +
-+    function updateHeadphonesIconState(): void {
-+        const sinkName = (sink?.description || sink?.name || "").toLowerCase();
-+        isHeadphonesIcon = sinkName.includes("headphone") || sinkName.includes("headset");
-+    }
-+
-+
      function setStreamVolume(stream: PwNode, newVolume: real): void {
          if (stream?.ready && stream?.audio) {
              stream.audio.muted = false;
-@@ -105,6 +134,7 @@ Singleton {
+@@ -105,6 +130,7 @@ Singleton {
          return stream.properties["application.name"] || stream.description || stream.name || qsTr("Unknown Application");
      }
  
@@ -108,11 +97,3 @@ index e2d936a0..ad2eff96 100644
      onSinkChanged: {
          if (!sink?.ready)
              return;
-@@ -115,6 +145,7 @@ Singleton {
-             Toaster.toast(qsTr("Audio output changed"), qsTr("Now using: %1").arg(newSinkName), "volume_up");
- 
-         previousSinkName = newSinkName;
-+        updateHeadphonesIconState();
-     }
- 
-     onSourceChanged: {
