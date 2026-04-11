@@ -11,15 +11,11 @@ in {
         devenv
         gemini-cli
         # hyprlock
-        immich
-        jellyseerr
         nextcloud-client
         nh
-        ntfy-sh
         pihole
         pihole-ftl
         pihole-web
         proton-ge-bin
-        stash
         ;
 }

@@ -1014,32 +1014,6 @@
         "type": "github"
       }
     },
-    "nix-minecraft": {
-      "inputs": {
-        "flake-compat": [
-          "flake-compat"
-        ],
-        "nixpkgs": [
-          "nixpkgs-unstable"
-        ],
-        "systems": [
-          "systems"
-        ]
-      },
-      "locked": {
-        "lastModified": 1775618440,
-        "narHash": "sha256-CFaKbdcgHhDftrcvYbn5DDmjhrctzGYjMLRXBWw5ApA=",
-        "owner": "Infinidoge",
-        "repo": "nix-minecraft",
-        "rev": "344529e7d9cb54f6748ae8a1107a5f99c7b1e638",
-        "type": "github"
-      },
-      "original": {
-        "owner": "Infinidoge",
-        "repo": "nix-minecraft",
-        "type": "github"
-      }
-    },
     "nixcord": {
       "inputs": {
         "flake-compat": [
@@ -1372,7 +1346,6 @@
         "my-shell": "my-shell",
         "nix-index-database": "nix-index-database",
         "nix-lib": "nix-lib",
-        "nix-minecraft": "nix-minecraft",
         "nixcord": "nixcord",
         "nixos-wsl": "nixos-wsl",
         "nixpkgs": "nixpkgs_3",

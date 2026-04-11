@@ -69,14 +69,6 @@
                 flake-parts.follows = "flake-parts";
             };
         };
-        nix-minecraft = {
-            url = "github:Infinidoge/nix-minecraft";
-            inputs = {
-                flake-compat.follows = "flake-compat";
-                nixpkgs.follows = "nixpkgs-unstable";
-                systems.follows = "systems";
-            };
-        };
         nixcord = {
             url = "github:kaylorben/nixcord";
             inputs = {
