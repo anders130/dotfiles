@@ -7,6 +7,7 @@ in {
     # permanent unstable packages
     inherit
         (unstable)
+        claude-code
         comma
         devenv
         gemini-cli
