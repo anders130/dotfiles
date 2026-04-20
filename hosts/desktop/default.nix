@@ -13,6 +13,10 @@
             enable = true;
             autostart = [
                 "sleep 2 && zapzap --hideStart"
+                {
+                    command = "bitwarden";
+                    afterFirstLogin = true;
+                }
             ];
             monitors = {
                 DP-3 = {
