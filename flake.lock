@@ -267,6 +267,28 @@
         "type": "github"
       }
     },
+    "firefox-addons": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "dir": "pkgs/firefox-addons",
+        "lastModified": 1776657773,
+        "narHash": "sha256-GgExKCDspgASVM6sRH0VcVyixQznxuR4tjiAA7MfKxs=",
+        "owner": "rycee",
+        "repo": "nur-expressions",
+        "rev": "986236cd6fad0979233ae5e73456a365f79ff198",
+        "type": "gitlab"
+      },
+      "original": {
+        "dir": "pkgs/firefox-addons",
+        "owner": "rycee",
+        "repo": "nur-expressions",
+        "type": "gitlab"
+      }
+    },
     "firefox-gnome-theme": {
       "flake": false,
       "locked": {
@@ -1204,18 +1226,20 @@
     "nur": {
       "inputs": {
         "flake-parts": [
+          "stylix",
           "flake-parts"
         ],
         "nixpkgs": [
-          "nixpkgs-unstable"
+          "stylix",
+          "nixpkgs"
         ]
       },
       "locked": {
-        "lastModified": 1775662057,
-        "narHash": "sha256-LG6dmWDFupuAkMjQDGuFB9uHjI26sI5n2GkKWqQ1YvQ=",
+        "lastModified": 1776679267,
+        "narHash": "sha256-SW3OGbLSo4w0Uh6wHfD5gYnvMRYwvKLW3EBX+TBHcA4=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "3e23e182935bb987359a84b98e2f9785672da019",
+        "rev": "dd785f4fd2fdb039e8fe6c72a729912a0debc4ce",
         "type": "github"
       },
       "original": {
@@ -1332,6 +1356,7 @@
         "catppuccin-qutebrowser": "catppuccin-qutebrowser",
         "clock-mate": "clock-mate",
         "disko": "disko",
+        "firefox-addons": "firefox-addons",
         "flake-compat": "flake-compat",
         "flake-parts": "flake-parts",
         "flake-utils": "flake-utils",
@@ -1351,7 +1376,6 @@
         "nixpkgs": "nixpkgs_3",
         "nixpkgs-caelestia": "nixpkgs-caelestia",
         "nixpkgs-unstable": "nixpkgs-unstable",
-        "nur": "nur",
         "nvix": "nvix",
         "pre-commit-hooks": "pre-commit-hooks",
         "sops-nix": "sops-nix",
@@ -1359,7 +1383,7 @@
         "stylix": "stylix",
         "systems": "systems",
         "winapps": "winapps",
-        "zenix": "zenix"
+        "zen-browser": "zen-browser"
       }
     },
     "rust-overlay": {
@@ -1443,9 +1467,7 @@
         "nixpkgs": [
           "nixpkgs"
         ],
-        "nur": [
-          "nur"
-        ],
+        "nur": "nur",
         "systems": [
           "systems"
         ],
@@ -1636,49 +1658,24 @@
     },
     "zen-browser": {
       "inputs": {
-        "nixpkgs": [
-          "zenix",
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1753676490,
-        "narHash": "sha256-XeifEftxYGP/gzp6O1yO1S1W+MEx4Xvrgeu84ryRPNQ=",
-        "owner": "youwen5",
-        "repo": "zen-browser-flake",
-        "rev": "77024f4557204bb4d526893d42db2e6f50727fab",
-        "type": "github"
-      },
-      "original": {
-        "owner": "youwen5",
-        "repo": "zen-browser-flake",
-        "type": "github"
-      }
-    },
-    "zenix": {
-      "inputs": {
-        "flake-parts": [
-          "flake-parts"
-        ],
         "home-manager": [
           "home-manager"
         ],
         "nixpkgs": [
-          "nixpkgs"
-        ],
-        "zen-browser": "zen-browser"
+          "nixpkgs-unstable"
+        ]
       },
       "locked": {
-        "lastModified": 1764603872,
-        "narHash": "sha256-D5kgWw85OltLV+QbPa7Q10xOn55KaOheqoc2575N3mw=",
-        "owner": "anders130",
-        "repo": "zenix",
-        "rev": "f791c0ae5a657d6676f7fd273f54000eb142c127",
+        "lastModified": 1776663782,
+        "narHash": "sha256-qzBBuxZbn7vPD9ZDl3xmCBGa6qEc8Q//76Cbx4W0tE4=",
+        "owner": "0xc000022070",
+        "repo": "zen-browser-flake",
+        "rev": "b93be06dc91630bf0ced69c54d0e1e05e56ae460",
         "type": "github"
       },
       "original": {
-        "owner": "anders130",
-        "repo": "zenix",
+        "owner": "0xc000022070",
+        "repo": "zen-browser-flake",
         "type": "github"
       }
     }

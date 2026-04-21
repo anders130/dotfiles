@@ -5,13 +5,6 @@
         # essentials
         nixpkgs.url = "nixpkgs/nixos-25.11";
         nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
-        nur = {
-            url = "github:nix-community/NUR";
-            inputs = {
-                nixpkgs.follows = "nixpkgs-unstable";
-                flake-parts.follows = "flake-parts";
-            };
-        };
         home-manager = {
             url = "github:nix-community/home-manager?ref=release-25.11";
             inputs.nixpkgs.follows = "nixpkgs";
@@ -34,7 +27,6 @@
             inputs = {
                 nixpkgs.follows = "nixpkgs";
                 systems.follows = "systems";
-                nur.follows = "nur";
                 flake-parts.follows = "flake-parts";
             };
         };
@@ -61,13 +53,16 @@
                 git-hooks.follows = "pre-commit-hooks";
             };
         };
-        zenix = {
-            url = "github:anders130/zenix";
+        zen-browser = {
+            url = "github:0xc000022070/zen-browser-flake";
             inputs = {
-                nixpkgs.follows = "nixpkgs";
+                nixpkgs.follows = "nixpkgs-unstable";
                 home-manager.follows = "home-manager";
-                flake-parts.follows = "flake-parts";
             };
+        };
+        firefox-addons = {
+            url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
+            inputs.nixpkgs.follows = "nixpkgs";
         };
         nixcord = {
             url = "github:kaylorben/nixcord";

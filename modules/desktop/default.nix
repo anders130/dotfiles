@@ -61,7 +61,7 @@ in {
                     type = types.listOf types.str;
                 };
         in {
-            browser = mkOpt ["zen"] "Default browser to use";
+            browser = mkOpt ["zen-beta"] "Default browser to use";
             terminal = mkOpt ["kitty"] "Default terminal to use";
             editor = mkOpt ["nvim"] "Default editor to use";
             fileManager = mkOpt ["nautilus" "--new-window"] "Default file manager to use";

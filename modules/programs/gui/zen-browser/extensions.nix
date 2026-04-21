@@ -6,7 +6,6 @@
 }: let
     inherit (builtins) attrNames concatStringsSep isAttrs isList readFile toJSON;
     inherit (lib) flatten mapAttrsToList mkOption types;
-    inherit (pkgs.nur.repos.rycee) firefox-addons;
 
     sqlForExtension = _: ext: let
         prepare = v:
@@ -55,7 +54,7 @@
                 exit 1
             fi
 
-            profile_dir="$HOME/.zen/$profile_name"
+            profile_dir="$HOME/.config/zen/$profile_name"
             db_file="$profile_dir/storage-sync-v2.sqlite"
 
             if [[ ! -f $db_file ]]; then
@@ -83,7 +82,7 @@ in {
         description = "Declarative way to set firefox extension settings";
         default = {
             vimium = {
-                inherit (firefox-addons.vimium.passthru) addonId;
+                inherit (pkgs.firefox-addons.vimium.passthru) addonId;
                 default.settingsVersion = "2.1.2";
                 settings = {
                     searchUrl = "https://search.inetol.net/search?q=";
@@ -142,7 +141,7 @@ in {
                 };
             };
             darkreader = {
-                inherit (firefox-addons.darkreader.passthru) addonId;
+                inherit (pkgs.firefox-addons.darkreader.passthru) addonId;
                 default = {};
                 settings = {
                     theme = with config.lib.stylix.colors; {
@@ -161,7 +160,7 @@ in {
             packages = [package];
             activation.setExtensionSettings = lib.hm.dag.entryAfter ["writeBoundary"] ''
                 ${
-                    config.hm.programs.zenix.profiles
+                    config.hm.programs.zen-browser.profiles
                     |> attrNames
                     |> map (profileName: ''${lib.getExe package} ${profileName}'')
                     |> concatStringsSep "\n"

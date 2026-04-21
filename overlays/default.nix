@@ -14,11 +14,7 @@
             else to;
     };
 in {
-    flake.overlays.default = composeManyExtensions ((attrValues myOverlays)
-    ++ (with inputs; [
-        nur.overlays.default
-        zenix.overlays.default
-    ]));
+    flake.overlays.default = composeManyExtensions (attrValues myOverlays);
     perSystem = {system, ...}: {
         _module.args.pkgs = import inputs.nixpkgs {
             inherit system;
