@@ -27,7 +27,6 @@ in {
         programs = {
             gui = {
                 discord.enable = mkDefault true;
-                firefox.enable = mkDefault true;
                 kitty.enable = mkDefault true;
                 nautilus = {
                     enable = mkDefault true;
@@ -35,6 +34,7 @@ in {
                 };
                 youtube-music.enable = mkDefault true;
                 commonTools.enable = mkDefault true;
+                zen-browser.enable = mkDefault true;
             };
             plymouth.enable = mkDefault true;
         };

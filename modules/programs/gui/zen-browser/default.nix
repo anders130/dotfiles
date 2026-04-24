@@ -86,5 +86,14 @@
         wayland.windowManager.hyprland.settings.windowrule = [
             "no_screen_share true, match:title ^(Extension: \\(Bitwarden Password Manager\\) - Bitwarden — Zen Browser)$"
         ];
+        xdg.desktopEntries.zenWork = {
+            name = "Zen Work";
+            genericName = "Web Browser";
+            exec = "zen-beta -P work";
+            icon = "zen-browser";
+            terminal = false;
+            categories = ["Application" "Network" "WebBrowser"];
+            mimeType = ["text/html" "text/xml"];
+        };
     };
 }

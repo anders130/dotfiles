@@ -3,7 +3,7 @@ inputs: final: prev: let
 in {
     teams-for-linux = teams-for-linux.overrideAttrs (oldAttrs: let
         xdgOpenWrapper = final.writeShellScriptBin "xdg-open" ''
-            exec firefox -P work "$@"
+            exec zen-beta -P work "$@"
         '';
         teamsWrapper = final.writeShellScriptBin "teams-for-linux-with-browser" ''
             PATH=${xdgOpenWrapper}/bin:$PATH exec ${teams-for-linux}/bin/teams-for-linux "$@"

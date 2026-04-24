@@ -45,7 +45,6 @@
         programs = {
             cli.nix.nix-daemon.enableLimit = true;
             gui = {
-                zen-browser.enable = true;
                 qutebrowser.enable = true;
                 zapzap.enable = true;
                 element-desktop.enable = true;
