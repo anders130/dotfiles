@@ -1,15 +1,15 @@
 diff --git a/modules/bar/components/StatusIcons.qml b/modules/bar/components/StatusIcons.qml
-index 455e04ef..ac3ac1ec 100644
+index 900e5574..26a793c4 100644
 --- a/modules/bar/components/StatusIcons.qml
 +++ b/modules/bar/components/StatusIcons.qml
-@@ -6,6 +6,7 @@ import Quickshell
- import Quickshell.Bluetooth
+@@ -7,6 +7,7 @@ import Quickshell.Bluetooth
  import Quickshell.Services.UPower
+ import Caelestia.Config
  import qs.components
 +import qs.components.controls
  import qs.services
- import qs.config
  import qs.utils
+ 
 @@ -15,6 +16,7 @@ StyledRect {
  
      property color colour: Colours.palette.m3secondary
@@ -17,7 +17,7 @@ index 455e04ef..ac3ac1ec 100644
 +    property bool isHeadphonesIcon: false
  
      color: Colours.tPalette.m3surfaceContainer
-     radius: Appearance.rounding.full
+     radius: Tokens.rounding.full
 @@ -108,10 +110,23 @@ StyledRect {
              name: "audio"
              active: Config.bar.status.showAudio
@@ -47,7 +47,7 @@ index 455e04ef..ac3ac1ec 100644
          }
  
 diff --git a/services/Audio.qml b/services/Audio.qml
-index e2d936a0..75046568 100644
+index 6268b92e..b8fde2c9 100644
 --- a/services/Audio.qml
 +++ b/services/Audio.qml
 @@ -13,6 +13,10 @@ Singleton {

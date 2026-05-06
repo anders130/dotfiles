@@ -116,21 +116,20 @@
 
         # gui
         hyprland = {
-            url = "github:hyprwm/hyprland/v0.54.2";
+            url = "github:hyprwm/hyprland/v0.54.3";
             inputs = {
                 systems.follows = "systems";
                 pre-commit-hooks.follows = "";
             };
         };
         hyprsplit = {
-            url = "github:shezdy/hyprsplit/v0.54.2";
+            url = "github:shezdy/hyprsplit/v0.54.3";
             inputs.hyprland.follows = "hyprland";
         };
         my-shell = {
             url = "github:anders130/my-shell";
             inputs.nixpkgs.follows = "nixpkgs";
         };
-        nixpkgs-caelestia.url = "nixpkgs/2fad6eac6077f03fe109c4d4eb171cf96791faa4";
         caelestia-cli = {
             url = "github:caelestia-dots/cli";
             inputs.caelestia-shell.follows = "caelestia-shell";
@@ -138,7 +137,6 @@
         caelestia-shell = {
             url = "github:caelestia-dots/shell";
             inputs.caelestia-cli.follows = "caelestia-cli";
-            inputs.nixpkgs.follows = "nixpkgs-caelestia";
         };
 
         # host specific
