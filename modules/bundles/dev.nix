@@ -7,6 +7,7 @@
 in {
     modules.programs.cli = {
         claude.enable = mkDefault true;
+        github-copilot-cli.enable = mkDefault true;
         git.enable = mkDefault true;
         nvix = {
             enable = mkDefault true;

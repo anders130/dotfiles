@@ -11,6 +11,7 @@ in {
         comma
         devenv
         gemini-cli
+        github-copilot-cli
         # hyprlock
         nextcloud-client
         nh
