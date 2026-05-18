@@ -5,6 +5,7 @@
         flake-file.url = "github:denful/flake-file";
         flake-parts.url = "github:hercules-ci/flake-parts";
         nix-lib.url = "github:anders130/nix-lib";
+        treefmt-nix.url = "github:anders130/treefmt-nix";
 
         # essentials
         nixpkgs.url = "nixpkgs/nixos-25.11";

@@ -1402,6 +1402,7 @@
         "statix": "statix",
         "stylix": "stylix",
         "systems": "systems",
+        "treefmt-nix": "treefmt-nix",
         "winapps": "winapps",
         "zen-browser": "zen-browser"
       }
@@ -1605,6 +1606,26 @@
       "original": {
         "owner": "tinted-theming",
         "repo": "base16-zed",
+        "type": "github"
+      }
+    },
+    "treefmt-nix": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1779102585,
+        "narHash": "sha256-LhGqOA+ZQM/xrGJvW43zb4ozpnmMAgBJ4qIKmJvMBjI=",
+        "owner": "anders130",
+        "repo": "treefmt-nix",
+        "rev": "4503867a9f3399a6f1ce8993da987f0c782b1409",
+        "type": "github"
+      },
+      "original": {
+        "owner": "anders130",
+        "repo": "treefmt-nix",
         "type": "github"
       }
     },
