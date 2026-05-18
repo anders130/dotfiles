@@ -21,7 +21,6 @@
             };
         };
         flake-parts.url = "github:hercules-ci/flake-parts";
-        systems.url = "github:nix-systems/default-linux";
         stylix = {
             url = "github:danth/stylix/release-25.11";
             inputs = {
@@ -167,59 +166,13 @@
             inputs.systems.follows = "systems";
         };
         flake-compat.url = "github:edolstra/flake-compat";
+        systems.url = "github:nix-systems/default-linux";
     };
 
     outputs = inputs:
-        inputs.flake-parts.lib.mkFlake {inherit inputs;} {
-            systems = import inputs.systems;
-            imports = [
-                ./overlays
-                ./pkgs
-                ./templates
-                inputs.pre-commit-hooks.flakeModule
-            ];
-            flake = {
-                lib = inputs.haumea.lib.load {
-                    src = ./lib;
-                    inputs = {
-                        inherit (inputs.nixpkgs) lib;
-                    };
-                };
-                nixosConfigurations = inputs.modulix.lib.mkHosts {
-                    inherit inputs;
-                    flakePath = "/home/jesse/.dotfiles";
-                    modulesPath = ./modules;
-                    specialArgs = {
-                        hashedPassword = null;
-                        hostName = "nixos";
-                        isThinClient = false;
-                        username = "jesse";
-                    };
-                    helpers = inputs.home-manager.lib // inputs.self.lib;
-                    sharedConfig = {
-                        modules.bundles.shared.enable = true;
-                    };
-                };
-            };
-            perSystem = {
-                config,
-                system,
-                ...
-            }: {
-                pre-commit.settings.hooks = {
-                    shellcheck = {
-                        enable = true;
-                        excludes = ["\\.envrc"];
-                    };
-                    # nix
-                    # alejandra.enable = true;
-                    statix = {
-                        enable = true;
-                        package = inputs.statix.packages.${system}.statix;
-                    };
-                    ripsecrets.enable = true;
-                };
-                devShells.default = config.pre-commit.devShell;
-            };
+        inputs.nix-lib.lib.mkFlakeFromTree {
+            inherit inputs;
+            root = ./parts;
+            ignore = [];
         };
 }
