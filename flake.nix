@@ -48,7 +48,7 @@
                 systems.follows = "systems";
                 flake-parts.follows = "flake-parts";
                 nix-lib.follows = "nix-lib";
-                git-hooks.follows = "pre-commit-hooks";
+                git-hooks.follows = "git-hooks";
             };
         };
         zen-browser = {
@@ -93,7 +93,7 @@
                 systems.follows = "systems";
             };
         };
-        pre-commit-hooks = {
+        git-hooks = {
             url = "github:cachix/git-hooks.nix";
             inputs = {
                 flake-compat.follows = "flake-compat";
