@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 input=$(cat)
 
 C_RESET='\033[0m'
