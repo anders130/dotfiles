@@ -8,7 +8,10 @@
   inputs = {
     caelestia-cli = {
       url = "github:caelestia-dots/cli";
-      inputs.caelestia-shell.follows = "caelestia-shell";
+      inputs = {
+        caelestia-shell.follows = "caelestia-shell";
+        nixpkgs.follows = "caelestia-shell/nixpkgs";
+      };
     };
     caelestia-shell = {
       url = "github:caelestia-dots/shell";
@@ -35,7 +38,11 @@
     };
     flake-compat.url = "github:edolstra/flake-compat";
     flake-file.url = "github:denful/flake-file";
-    flake-parts.url = "github:hercules-ci/flake-parts";
+    flake-follows.url = "github:anders130/flake-follows";
+    flake-parts = {
+      url = "github:hercules-ci/flake-parts";
+      inputs.nixpkgs-lib.follows = "nixpkgs";
+    };
     flake-utils = {
       url = "github:numtide/flake-utils";
       inputs.systems.follows = "systems";
@@ -97,7 +104,7 @@
       url = "github:anders130/nix-lib";
       inputs = {
         flake-parts.follows = "flake-parts";
-        nixpkgs-lib.follows = "nixpkgs";
+        nixpkgs-lib.follows = "nixpkgs-lib";
       };
     };
     nixcord = {
@@ -116,6 +123,7 @@
       };
     };
     nixpkgs.url = "nixpkgs/nixos-25.11";
+    nixpkgs-lib.follows = "nixpkgs";
     nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
     nvix = {
       url = "github:anders130/nvix";
