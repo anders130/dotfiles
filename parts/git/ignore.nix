@@ -10,11 +10,7 @@ in {
         apply = naturalSort;
     };
     config = {
-        gitignore = [
-            "result"
-            ".direnv"
-            ".env"
-        ];
+        gitignore = ["result"];
         perSystem = {writeLines, ...}: {
             files.files = [
                 {
