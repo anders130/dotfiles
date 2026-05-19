@@ -1,8 +1,4 @@
-modules/ags/tsconfig.json
-modules/ags/types
-
-result
-
-.pre-commit-config.yaml
 .direnv
 .env
+.pre-commit-config.yaml
+result

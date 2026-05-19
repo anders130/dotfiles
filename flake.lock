@@ -268,6 +268,22 @@
         "type": "github"
       }
     },
+    "files": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1778677964,
+        "narHash": "sha256-5CBChRuRALkalrd3bOTZnOETDp0bS1VvYIVnLI7VHgc=",
+        "owner": "mightyiam",
+        "repo": "files",
+        "rev": "79173d7b566bd504c9cb8db409991335765e6700",
+        "type": "github"
+      },
+      "original": {
+        "owner": "mightyiam",
+        "repo": "files",
+        "type": "github"
+      }
+    },
     "firefox-addons": {
       "inputs": {
         "nixpkgs": [
@@ -1372,6 +1388,7 @@
         "catppuccin-qutebrowser": "catppuccin-qutebrowser",
         "clock-mate": "clock-mate",
         "disko": "disko",
+        "files": "files",
         "firefox-addons": "firefox-addons",
         "flake-compat": "flake-compat",
         "flake-file": "flake-file",
