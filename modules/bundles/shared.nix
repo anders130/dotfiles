@@ -1,5 +1,6 @@
 {
     config,
+    inputs,
     internalName,
     lib,
     pkgs,
@@ -7,6 +8,11 @@
 }: let
     inherit (lib) mkDefault;
 in {
+    imports = with inputs.self.modules.nixos; [
+        default
+        jesse
+    ];
+
     environment = {
         systemPackages = [(pkgs.local.rebuild.override {nix = config.nix.package;})];
         variables.NIX_FLAKE_DEFAULT_HOST = internalName;
@@ -25,12 +31,9 @@ in {
         utils = {
             sops.enable = mkDefault true;
             stylix.enable = mkDefault true;
-            home-manager.enable = mkDefault true;
             keyboard.enable = mkDefault true;
             locale.enable = mkDefault true;
-            networking.enable = mkDefault true;
             nixpkgs.enable = mkDefault true;
-            users.enable = mkDefault true;
         };
     };
 }

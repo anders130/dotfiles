@@ -1,7 +1,0 @@
-{
-    imports = [
-        ../overlays
-        ../pkgs
-        ../templates
-    ];
-}
