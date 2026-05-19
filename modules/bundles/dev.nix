@@ -10,6 +10,9 @@ in {
         git
         tmux
     ];
+    hm.imports = [
+        inputs.self.modules.homeManager.direnv
+    ];
     modules.programs.cli = {
         claude.enable = mkDefault true;
         github-copilot-cli.enable = mkDefault true;
