@@ -3,7 +3,6 @@
     flake-file.description = "My NixOS Configuration";
     flake-file.inputs = {
         flake-file.url = "github:denful/flake-file";
-        flake-parts.url = "github:hercules-ci/flake-parts";
         nix-lib.url = "github:anders130/nix-lib";
         treefmt-nix.url = "github:anders130/treefmt-nix";
         wrapper-modules.url = "github:BirdeeHub/nix-wrapper-modules";
@@ -11,7 +10,6 @@
         # essentials
         nixpkgs.url = "nixpkgs/nixos-25.11";
         nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
-        home-manager.url = "github:nix-community/home-manager?ref=release-25.11";
         haumea.url = "github:nix-community/haumea/v0.2.2";
         modulix.url = "github:anders130/modulix";
         stylix.url = "github:danth/stylix/release-25.11";

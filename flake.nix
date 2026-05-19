@@ -63,7 +63,7 @@
             inputs.nixpkgs.follows = "nixpkgs";
         };
         home-manager = {
-            url = "github:nix-community/home-manager?ref=release-25.11";
+            url = "github:nix-community/home-manager/release-25.11";
             inputs.nixpkgs.follows = "nixpkgs";
         };
         hyprland = {
