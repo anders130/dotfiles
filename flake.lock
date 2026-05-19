@@ -386,7 +386,7 @@
     "flake-parts": {
       "inputs": {
         "nixpkgs-lib": [
-          "nixpkgs"
+          "nixpkgs-lib"
         ]
       },
       "locked": {
@@ -1421,6 +1421,7 @@
         "systems": "systems",
         "treefmt-nix": "treefmt-nix",
         "winapps": "winapps",
+        "wrapper-modules": "wrapper-modules",
         "zen-browser": "zen-browser"
       }
     },
@@ -1670,6 +1671,26 @@
       "original": {
         "owner": "winapps-org",
         "repo": "winapps",
+        "type": "github"
+      }
+    },
+    "wrapper-modules": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1779174798,
+        "narHash": "sha256-tRkqndaReCnrznA1Uho+2RLqzceGyyM/Ppud3Eur5k4=",
+        "owner": "BirdeeHub",
+        "repo": "nix-wrapper-modules",
+        "rev": "d155000fe30face179e81198efa4bf7d2de3919c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "BirdeeHub",
+        "repo": "nix-wrapper-modules",
         "type": "github"
       }
     },

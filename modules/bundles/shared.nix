@@ -15,7 +15,6 @@ in {
     modules = {
         programs.cli = {
             fish.enable = mkDefault true;
-            git.enable = mkDefault true;
             btop.enable = mkDefault true;
             direnv.enable = mkDefault true;
             nh.enable = mkDefault true;

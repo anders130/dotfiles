@@ -1,14 +1,16 @@
 {
+    inputs,
     lib,
     pkgs,
     ...
 }: let
     inherit (lib) mkDefault;
+    inherit (pkgs.stdenv.hostPlatform) system;
 in {
+    hm.home.packages = [inputs.self.packages.${system}.git];
     modules.programs.cli = {
         claude.enable = mkDefault true;
         github-copilot-cli.enable = mkDefault true;
-        git.enable = mkDefault true;
         nvix = {
             enable = mkDefault true;
             type = mkDefault "full";

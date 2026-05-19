@@ -6,6 +6,7 @@
         flake-parts.url = "github:hercules-ci/flake-parts";
         nix-lib.url = "github:anders130/nix-lib";
         treefmt-nix.url = "github:anders130/treefmt-nix";
+        wrapper-modules.url = "github:BirdeeHub/nix-wrapper-modules";
 
         # essentials
         nixpkgs.url = "nixpkgs/nixos-25.11";
