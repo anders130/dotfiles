@@ -5,9 +5,11 @@
     ...
 }: let
     inherit (lib) mkDefault;
-    inherit (pkgs.stdenv.hostPlatform) system;
 in {
-    hm.home.packages = [inputs.self.packages.${system}.git];
+    hm.home.packages = with inputs.self.packages.${pkgs.stdenv.hostPlatform.system}; [
+        git
+        tmux
+    ];
     modules.programs.cli = {
         claude.enable = mkDefault true;
         github-copilot-cli.enable = mkDefault true;
@@ -15,7 +17,6 @@ in {
             enable = mkDefault true;
             type = mkDefault "full";
         };
-        tmux.enable = mkDefault true;
         commonTools.enable = mkDefault true;
     };
     environment = {
