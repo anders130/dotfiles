@@ -3,6 +3,9 @@
     config,
     ...
 }: {
+    flake.modules.homeManager.git = {
+        home.shellAliases.g = "git";
+    };
     perSystem = {
         pkgs,
         lib,
@@ -10,7 +13,6 @@
     }: {
         packages.git = inputs.wrapper-modules.wrappers.git.wrap {
             inherit pkgs;
-            aliases = ["g"];
             runtimePkgs = [pkgs.delta];
             settings = {
                 user = {

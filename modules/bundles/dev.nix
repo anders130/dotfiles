@@ -10,8 +10,9 @@ in {
         git
         tmux
     ];
-    hm.imports = [
-        inputs.self.modules.homeManager.direnv
+    hm.imports = with inputs.self.modules.homeManager; [
+        direnv
+        git
     ];
     modules.programs.cli = {
         claude.enable = mkDefault true;
