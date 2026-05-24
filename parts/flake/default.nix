@@ -54,7 +54,6 @@
             url = "github:shezdy/hyprsplit/v0.54.3";
             inputs.hyprland.follows = "hyprland";
         };
-        my-shell.url = "github:anders130/my-shell";
         caelestia-cli = {
             url = "github:caelestia-dots/cli";
             inputs = {

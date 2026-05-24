@@ -45,8 +45,6 @@
                 "SUPER, B, exec, ${asString defaultPrograms.browser}"
                 "SUPER, Q, exec, qutebrowser"
                 "SUPER ALT, C, exec, hyprpicker -a" # color picker
-                # mute/unmute
-                " , code:121, exec, swayosd-client --output-volume mute-toggle"
                 # workspaces
             ]
             ++ (

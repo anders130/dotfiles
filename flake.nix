@@ -96,10 +96,6 @@
                 nixpkgs.follows = "nixpkgs";
             };
         };
-        my-shell = {
-            url = "github:anders130/my-shell";
-            inputs.nixpkgs.follows = "nixpkgs";
-        };
         nix-index-database = {
             url = "github:nix-community/nix-index-database";
             inputs.nixpkgs.follows = "nixpkgs";
