@@ -370,11 +370,11 @@
     },
     "flake-follows": {
       "locked": {
-        "lastModified": 1779314468,
-        "narHash": "sha256-GjQ04cIDwI+TzTcegyt5rJJQGgV8SXaToyM231epMDw=",
+        "lastModified": 1779629523,
+        "narHash": "sha256-hBt1LJd7rPYp1bbZFNzv/KFRThqSKhaZV5zoOjMdOQk=",
         "owner": "anders130",
         "repo": "flake-follows",
-        "rev": "b0f7dd80eb8d20698c387e4ea9283439ea4fc91e",
+        "rev": "0041f13f6e50b7934094cda5d803558794137bfd",
         "type": "github"
       },
       "original": {
