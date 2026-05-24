@@ -14,9 +14,6 @@ in {
         github-copilot-cli
         nextcloud-client
         nh
-        pihole
-        pihole-ftl
-        pihole-web
         proton-ge-bin
         ;
 }
