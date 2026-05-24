@@ -66,10 +66,8 @@
                 "chromium-browser"
             ])
             (mkRuleFor "opacity ${blur_opacity}" "class" [
-                "firefox"
                 "zen.*|org\.qutebrowser\.qutebrowser"
             ])
-            "match:class firefox, match:initial_title Library, opacity ${default_opacity}"
 
             "match:initial_title Picture-in-Picture, float true, size 1280 720"
             "match:title 'termfilechooser', float true, center true, size 70%"
