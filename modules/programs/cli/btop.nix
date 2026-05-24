@@ -6,7 +6,6 @@
     hm.programs.btop = {
         enable = true;
         package = pkgs.btop.override {
-            cudaSupport = config.modules.hardware.nvidia.enable;
             rocmSupport = config.modules.hardware.amdgpu.enable;
         };
         settings = {
