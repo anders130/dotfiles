@@ -64,7 +64,6 @@
                         "/Videos" = mkFolder "Videos";
                     };
                 };
-                anki.enable = true;
                 obs.enable = true;
                 winapps.enable = true;
                 kdeconnect.enable = true;
