@@ -12,6 +12,7 @@
         # deduplicate
         flake-utils.url = "github:numtide/flake-utils";
         flake-compat.url = "github:edolstra/flake-compat";
+        import-tree.url = "github:denful/import-tree";
         systems.url = "github:nix-systems/default-linux";
         nixpkgs-lib.follows = "nixpkgs";
     };

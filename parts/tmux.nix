@@ -53,6 +53,7 @@
                     bind % split-window -h -c "#{pane_current_path}"
                     bind S command-prompt -p "New Session:" "new-session -s '%%'"
                     bind K confirm kill-session
+                    bind o display-popup -E -w 60% -h 70% -b rounded -S "fg=#8aadf4" "project"
 
                     set -g status-position top
                 '';

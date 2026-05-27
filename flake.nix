@@ -81,6 +81,7 @@
             url = "github:anders130/hytale-launcher-nix";
             inputs.nixpkgs.follows = "nixpkgs-unstable";
         };
+        import-tree.url = "github:denful/import-tree";
         lanzaboote = {
             url = "github:nix-community/lanzaboote";
             inputs.nixpkgs.follows = "nixpkgs";
@@ -104,6 +105,7 @@
             url = "github:anders130/nix-lib";
             inputs = {
                 flake-parts.follows = "flake-parts";
+                import-tree.follows = "import-tree";
                 nixpkgs-lib.follows = "nixpkgs-lib";
             };
         };
@@ -132,6 +134,14 @@
                 git-hooks.follows = "git-hooks";
                 nix-lib.follows = "nix-lib";
                 systems.follows = "systems";
+            };
+        };
+        project = {
+            url = "github:anders130/project";
+            inputs = {
+                flake-parts.follows = "flake-parts";
+                import-tree.follows = "import-tree";
+                nixpkgs.follows = "nixpkgs";
             };
         };
         sops-nix = {
