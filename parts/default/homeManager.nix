@@ -1,6 +1,10 @@
-{inputs, ...}: {
+{
+    inputs,
+    release,
+    ...
+}: {
     flake-file.inputs.home-manager = {
-        url = "github:nix-community/home-manager/release-25.11";
+        url = "github:nix-community/home-manager/release-${release}";
     };
     flake.modules.nixos.default = {
         imports = [inputs.home-manager.nixosModules.home-manager];

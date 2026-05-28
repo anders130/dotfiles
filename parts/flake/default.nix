@@ -1,5 +1,12 @@
-{inputs, ...}: {
+{
+    inputs,
+    release,
+    ...
+}: {
     imports = [inputs.flake-file.flakeModules.default];
+
+    _module.args.release = "25.11";
+
     flake-file.description = "My NixOS Configuration";
     flake-file.inputs = {
         flake-file.url = "github:denful/flake-file";
@@ -8,11 +15,11 @@
         wrapper-modules.url = "github:BirdeeHub/nix-wrapper-modules";
 
         # essentials
-        nixpkgs.url = "nixpkgs/nixos-25.11";
+        nixpkgs.url = "nixpkgs/nixos-${release}";
         nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
         haumea.url = "github:nix-community/haumea/v0.2.2";
         modulix.url = "github:anders130/modulix";
-        stylix.url = "github:danth/stylix/release-25.11";
+        stylix.url = "github:danth/stylix/release-${release}";
         sops-nix.url = "github:Mic92/sops-nix";
 
         # programs
