@@ -6,7 +6,7 @@
 }: let
     inherit (lib) mkDefault;
 in {
-    hm = {
+    hm = {config, ...}: {
         home.packages = with inputs.self.packages.${pkgs.stdenv.hostPlatform.system}; [
             git
             tmux
@@ -16,7 +16,27 @@ in {
             git
             inputs.project.homeManagerModules.default
         ];
-        programs.project.enable = mkDefault true;
+        programs.project = {
+            enable = mkDefault true;
+            palette = with config.lib.stylix.colors.withHashtag; [
+                base00
+                base08
+                base0B
+                base0A
+                base0D
+                base0E
+                base0C
+                base05
+                base03
+                base09
+                base01
+                base02
+                base0F
+                base06
+                base07
+                base04
+            ];
+        };
     };
     modules.programs.cli = {
         claude.enable = mkDefault true;

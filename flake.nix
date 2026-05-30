@@ -141,7 +141,7 @@
             inputs = {
                 flake-parts.follows = "flake-parts";
                 import-tree.follows = "import-tree";
-                nixpkgs.follows = "nixpkgs";
+                nixpkgs.follows = "nixpkgs-unstable";
             };
         };
         sops-nix = {

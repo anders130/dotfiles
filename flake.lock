@@ -1362,15 +1362,15 @@
         ],
         "laio-cli": "laio-cli",
         "nixpkgs": [
-          "nixpkgs"
+          "nixpkgs-unstable"
         ]
       },
       "locked": {
-        "lastModified": 1779916947,
-        "narHash": "sha256-EDDWn+GJQ3qMXL55vHXb8YDfP/qV7KJESouEixcHnc4=",
+        "lastModified": 1780132516,
+        "narHash": "sha256-lJIw4m9U1tATUIhkcoK6xhDC16m0UHDtZH7hH6udZ6I=",
         "owner": "anders130",
         "repo": "project",
-        "rev": "a1c15a3e56f5baa699c33adc2579ce64f89c55f6",
+        "rev": "aed53005b6c6ea81f616ed6b7f51be0720fbe011",
         "type": "github"
       },
       "original": {

@@ -23,7 +23,10 @@
         sops-nix.url = "github:Mic92/sops-nix";
 
         # programs
-        project.url = "github:anders130/project";
+        project = {
+            url = "github:anders130/project";
+            inputs.nixpkgs.follows = "nixpkgs-unstable";
+        };
         nvix = {
             url = "github:anders130/nvix";
             inputs.nix-lib.follows = "nix-lib";
