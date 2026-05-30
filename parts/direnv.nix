@@ -1,19 +1,12 @@
-{
+{lib, ...}: {
     gitignore = [
         ".direnv"
         ".env"
     ];
-    perSystem = {writeLines, ...}: {
-        files.files = [
-            {
-                path = ".envrc";
-                drv = writeLines ".envrc" [
-                    "dotenv_if_exists"
-                    "use flake"
-                ];
-            }
-        ];
-    };
+    perSystem.files.file.".envrc".text = lib.concatLines [
+        "dotenv_if_exists"
+        "use flake"
+    ];
     flake.modules.homeManager.direnv = {
         programs.direnv = {
             enable = true;
