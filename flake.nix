@@ -25,7 +25,7 @@
             url = "github:clock-mate/extension";
             inputs = {
                 flake-utils.follows = "flake-utils";
-                nixpkgs.follows = "nixpkgs-unstable";
+                nixpkgs.follows = "nixpkgs";
             };
         };
         disko = {
@@ -55,7 +55,7 @@
             url = "github:cachix/git-hooks.nix";
             inputs = {
                 flake-compat.follows = "flake-compat";
-                nixpkgs.follows = "nixpkgs-unstable";
+                nixpkgs.follows = "nixpkgs";
             };
         };
         haumea = {
@@ -63,7 +63,7 @@
             inputs.nixpkgs.follows = "nixpkgs";
         };
         home-manager = {
-            url = "github:nix-community/home-manager/release-26.05";
+            url = "github:nix-community/home-manager";
             inputs.nixpkgs.follows = "nixpkgs";
         };
         hyprland = {
@@ -79,7 +79,7 @@
         };
         hytale-launcher = {
             url = "github:anders130/hytale-launcher-nix";
-            inputs.nixpkgs.follows = "nixpkgs-unstable";
+            inputs.nixpkgs.follows = "nixpkgs";
         };
         import-tree.url = "github:denful/import-tree";
         lanzaboote = {
@@ -124,9 +124,8 @@
                 nixpkgs.follows = "nixpkgs";
             };
         };
-        nixpkgs.url = "nixpkgs/nixos-26.05";
+        nixpkgs.url = "nixpkgs/nixos-unstable";
         nixpkgs-lib.follows = "nixpkgs";
-        nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
         nvix = {
             url = "github:anders130/nvix";
             inputs = {
@@ -141,7 +140,7 @@
             inputs = {
                 flake-parts.follows = "flake-parts";
                 import-tree.follows = "import-tree";
-                nixpkgs.follows = "nixpkgs-unstable";
+                nixpkgs.follows = "nixpkgs";
             };
         };
         sops-nix = {
@@ -152,7 +151,7 @@
             url = "github:oppiliappan/statix";
             inputs = {
                 flake-parts.follows = "flake-parts";
-                nixpkgs.follows = "nixpkgs-unstable";
+                nixpkgs.follows = "nixpkgs";
                 systems.follows = "systems";
             };
         };
@@ -185,7 +184,7 @@
             url = "github:0xc000022070/zen-browser-flake";
             inputs = {
                 home-manager.follows = "home-manager";
-                nixpkgs.follows = "nixpkgs-unstable";
+                nixpkgs.follows = "nixpkgs";
             };
         };
     };

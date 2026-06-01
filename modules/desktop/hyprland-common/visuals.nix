@@ -60,13 +60,13 @@
             # override transparency for specific apps
             (mkRuleFor "opaque true" "class" [
                 "totem"
-                "com\.github\.rafostar\.Clapper"
-                "org\.pwmt.zathura"
+                "com.github.rafostar.Clapper"
+                "org.pwmt.zathura"
                 "chrome-localhost__-Default"
                 "chromium-browser"
             ])
             (mkRuleFor "opacity ${blur_opacity}" "class" [
-                "zen.*|org\.qutebrowser\.qutebrowser"
+                "zen.*|org.qutebrowser.qutebrowser"
             ])
 
             "match:initial_title Picture-in-Picture, float true, size 1280 720"

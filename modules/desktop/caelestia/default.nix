@@ -34,9 +34,9 @@
                 "ignore_alpha 0.57, match:namespace caelestia-drawers"
             ];
             windowrule = [
-                "opaque true, match:class swappy|org\.quickshell"
+                "opaque true, match:class swappy|org.quickshell"
                 "center true, match:float true, match:xwayland false"
-                "float true, match:class org\.quickshell|org\.pulseaudio"
+                "float true, match:class org.quickshell|org.pulseaudio"
             ];
             cursor.hotspot_padding = 1;
         };

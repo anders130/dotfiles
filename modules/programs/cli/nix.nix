@@ -27,7 +27,6 @@
             registry = {
                 custom.flake = inputs.self;
                 nixpkgs.flake = inputs.nixpkgs;
-                unstable.flake = inputs.nixpkgs-unstable;
             };
 
             settings = rec {

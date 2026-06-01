@@ -10,16 +10,21 @@
     config = cfg: let
         ifDesktop = lib.mkForce cfg.desktop.enable;
     in {
-        hm.gtk = {
-            enable = ifDesktop;
-            iconTheme = {
-                package = pkgs.adwaita-icon-theme;
-                name = "Adwaita";
+        hm = {
+            gtk = {
+                enable = ifDesktop;
+                iconTheme = {
+                    package = pkgs.adwaita-icon-theme;
+                    name = "Adwaita";
+                };
+                gtk4.theme = config.hm.gtk.theme;
             };
-            gtk4.theme = config.hm.gtk.theme;
+            stylix.enableReleaseChecks = false;
+            qt.enable = ifDesktop;
         };
         stylix = {
             enable = true;
+            enableReleaseChecks = false;
             base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-macchiato.yaml";
             cursor = lib.mkIf cfg.desktop.enable {
                 name = "catppuccin-macchiato-dark-cursors";
@@ -35,10 +40,10 @@
             };
             polarity = "dark";
 
-            targets.console.enable = false; # deactivate tty styling
+            targets.console.enable = false;
+            targets.kmscon.enable = false;
         };
         # only enable qt for desktop
         qt.enable = ifDesktop;
-        hm.qt.enable = ifDesktop;
     };
 }

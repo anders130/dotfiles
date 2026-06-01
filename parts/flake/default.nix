@@ -1,11 +1,5 @@
-{
-    inputs,
-    release,
-    ...
-}: {
+{inputs, ...}: {
     imports = [inputs.flake-file.flakeModules.default];
-
-    _module.args.release = "26.05";
 
     flake-file.description = "My NixOS Configuration";
     flake-file.inputs = {
@@ -15,8 +9,7 @@
         wrapper-modules.url = "github:BirdeeHub/nix-wrapper-modules";
 
         # essentials
-        nixpkgs.url = "nixpkgs/nixos-${release}";
-        nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
+        nixpkgs.url = "nixpkgs/nixos-unstable";
         haumea.url = "github:nix-community/haumea/v0.2.2";
         modulix.url = "github:anders130/modulix";
         stylix.url = "github:danth/stylix";
@@ -25,7 +18,7 @@
         # programs
         project = {
             url = "github:anders130/project";
-            inputs.nixpkgs.follows = "nixpkgs-unstable";
+            inputs.nixpkgs.follows = "nixpkgs";
         };
         nvix = {
             url = "github:anders130/nvix";
@@ -33,14 +26,14 @@
         };
         zen-browser = {
             url = "github:0xc000022070/zen-browser-flake";
-            inputs.nixpkgs.follows = "nixpkgs-unstable";
+            inputs.nixpkgs.follows = "nixpkgs";
         };
         firefox-addons.url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
         nixcord.url = "github:kaylorben/nixcord";
         nix-index-database.url = "github:nix-community/nix-index-database";
         clock-mate = {
             url = "github:clock-mate/extension";
-            inputs.nixpkgs.follows = "nixpkgs-unstable";
+            inputs.nixpkgs.follows = "nixpkgs";
         };
         catppuccin-qutebrowser = {
             url = "github:catppuccin/qutebrowser";
@@ -48,12 +41,12 @@
         };
         statix = {
             url = "github:oppiliappan/statix";
-            inputs.nixpkgs.follows = "nixpkgs-unstable";
+            inputs.nixpkgs.follows = "nixpkgs";
         };
         winapps.url = "github:winapps-org/winapps";
         hytale-launcher = {
             url = "github:anders130/hytale-launcher-nix";
-            inputs.nixpkgs.follows = "nixpkgs-unstable";
+            inputs.nixpkgs.follows = "nixpkgs";
         };
 
         # gui
