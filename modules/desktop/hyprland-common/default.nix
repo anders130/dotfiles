@@ -47,6 +47,7 @@
                 source = "./extra.conf";
             };
             systemd.variables = ["--all"];
+            configType = "hyprlang";
         };
         xdg.configFile = {
             "hypr/extra.conf" = lib.mkSymlink ./hyprland.conf;

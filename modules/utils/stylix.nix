@@ -1,4 +1,5 @@
 {
+    config,
     inputs,
     lib,
     pkgs,
@@ -15,6 +16,7 @@
                 package = pkgs.adwaita-icon-theme;
                 name = "Adwaita";
             };
+            gtk4.theme = config.hm.gtk.theme;
         };
         stylix = {
             enable = true;

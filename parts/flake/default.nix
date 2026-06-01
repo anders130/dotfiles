@@ -5,7 +5,7 @@
 }: {
     imports = [inputs.flake-file.flakeModules.default];
 
-    _module.args.release = "25.11";
+    _module.args.release = "26.05";
 
     flake-file.description = "My NixOS Configuration";
     flake-file.inputs = {
@@ -19,7 +19,7 @@
         nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
         haumea.url = "github:nix-community/haumea/v0.2.2";
         modulix.url = "github:anders130/modulix";
-        stylix.url = "github:danth/stylix/release-${release}";
+        stylix.url = "github:danth/stylix";
         sops-nix.url = "github:Mic92/sops-nix";
 
         # programs

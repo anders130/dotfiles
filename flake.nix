@@ -63,7 +63,7 @@
             inputs.nixpkgs.follows = "nixpkgs";
         };
         home-manager = {
-            url = "github:nix-community/home-manager/release-25.11";
+            url = "github:nix-community/home-manager/release-26.05";
             inputs.nixpkgs.follows = "nixpkgs";
         };
         hyprland = {
@@ -124,7 +124,7 @@
                 nixpkgs.follows = "nixpkgs";
             };
         };
-        nixpkgs.url = "nixpkgs/nixos-25.11";
+        nixpkgs.url = "nixpkgs/nixos-26.05";
         nixpkgs-lib.follows = "nixpkgs";
         nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
         nvix = {
@@ -157,7 +157,7 @@
             };
         };
         stylix = {
-            url = "github:danth/stylix/release-25.11";
+            url = "github:danth/stylix";
             inputs = {
                 flake-parts.follows = "flake-parts";
                 nixpkgs.follows = "nixpkgs";

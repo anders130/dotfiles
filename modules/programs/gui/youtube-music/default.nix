@@ -46,7 +46,7 @@
         __internal__.migrations.version = "3.3.6";
     };
 in {
-    environment.systemPackages = [pkgs.youtube-music];
+    environment.systemPackages = [pkgs.pear-desktop];
 
     hm.home.activation.youtube-music-config = pkgs.lib.mkAfter ''
         config_dir="$HOME/.config/YouTube Music"

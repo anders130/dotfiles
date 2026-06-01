@@ -9,21 +9,27 @@
         global_desktopSettings_closeToTray = true;
         global_desktopSettings_startToTray = true;
     };
+    # package = pkgs.bitwarden-desktop.override {
+    #     electron_39 = pkgs.electron_41;
+    # };
 in {
-    environment.systemPackages = [pkgs.bitwarden-desktop];
-    hm.wayland.windowManager.hyprland.settings.windowrule = [
-        "no_screen_share true, match:class Bitwarden"
-    ];
-    hm.home.activation.setBitwardenSettings = lib.hm.dag.entryAfter ["writeBoundary"]
-    #bash
-    ''
-        config_file="$HOME/.config/Bitwarden/data.json"
+    nixpkgs.config.permittedInsecurePackages = ["electron-39.8.10"];
+    hm = {
+        home.packages = [pkgs.bitwarden-desktop];
+        wayland.windowManager.hyprland.settings.windowrule = [
+            "no_screen_share true, match:class Bitwarden"
+        ];
+        home.activation.setBitwardenSettings = lib.hm.dag.entryAfter ["writeBoundary"]
+        #bash
+        ''
+            config_file="$HOME/.config/Bitwarden/data.json"
 
-        if [[ ! -f "$config_file" ]]; then
-            echo "Bitwarden config not found, skipping..."
-        else
-            tmp=$(mktemp)
-            ${lib.getExe pkgs.jq} '. * ${builtins.toJSON settings}' "$config_file" > "$tmp" && mv "$tmp" "$config_file"
-        fi
-    '';
+            if [[ ! -f "$config_file" ]]; then
+                echo "Bitwarden config not found, skipping..."
+            else
+                tmp=$(mktemp)
+                ${lib.getExe pkgs.jq} '. * ${builtins.toJSON settings}' "$config_file" > "$tmp" && mv "$tmp" "$config_file"
+            fi
+        '';
+    };
 }

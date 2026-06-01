@@ -14,7 +14,6 @@
         };
         programs.zen-browser = {
             enable = true;
-            nativeMessagingHosts = [pkgs.vdhcoapp];
             setAsDefaultBrowser = true;
             languagePacks = ["en-US" "de-DE"];
             policies = {

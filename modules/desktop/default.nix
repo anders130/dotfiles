@@ -98,5 +98,7 @@ in {
 
         # for secret and session management
         services.gnome.gnome-keyring.enable = true;
+
+        hm.xdg.userDirs.setSessionVariables = false;
     };
 }

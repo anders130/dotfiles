@@ -14,6 +14,6 @@
 
         # other games
         space-cadet-pinball
-        superTuxKart
+        supertuxkart
     ];
 }
