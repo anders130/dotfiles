@@ -1,6 +1,7 @@
 {
     config,
     flakePath,
+    inputs,
     lib,
     pkgs,
     username,
@@ -9,6 +10,7 @@
     containerBackend = "docker";
     windowsDir = "/var/lib/windows";
 in {
+    nixpkgs.overlays = [(_: prev: {inherit (inputs.winapps.packages.${prev.stdenv.hostPlatform.system}) winapps winapps-launcher;})];
     environment.systemPackages = with pkgs; [
         winapps
         winapps-launcher
