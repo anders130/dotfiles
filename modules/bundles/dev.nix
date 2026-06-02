@@ -16,6 +16,7 @@ in {
             git
             inputs.project.homeManagerModules.default
             claude
+            github-copilot-cli
         ];
         programs.project = {
             enable = mkDefault true;
@@ -40,7 +41,6 @@ in {
         };
     };
     modules.programs.cli = {
-        github-copilot-cli.enable = mkDefault true;
         nvix = {
             enable = mkDefault true;
             type = mkDefault "full";
