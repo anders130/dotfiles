@@ -15,6 +15,7 @@ in {
             direnv
             git
             inputs.project.homeManagerModules.default
+            claude
         ];
         programs.project = {
             enable = mkDefault true;
@@ -39,7 +40,6 @@ in {
         };
     };
     modules.programs.cli = {
-        claude.enable = mkDefault true;
         github-copilot-cli.enable = mkDefault true;
         nvix = {
             enable = mkDefault true;
