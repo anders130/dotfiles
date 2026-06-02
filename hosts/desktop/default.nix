@@ -1,13 +1,16 @@
 {
+    inputs,
     pkgs,
     username,
     ...
 }: {
+    imports = [
+        inputs.self.modules.nixos.gaming
+    ];
     modules = {
         bundles = {
             dev.enable = true;
             desktop.enable = true;
-            gaming.enable = true;
         };
         desktop = {
             enable = true;
