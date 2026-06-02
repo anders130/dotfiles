@@ -1,6 +1,11 @@
-{lib, ...}: let
+{
+    inputs,
+    lib,
+    ...
+}: let
     inherit (lib) mkDefault;
 in {
+    hm.imports = [inputs.self.modules.homeManager.kitty];
     modules = {
         desktop = {
             enable = mkDefault true;
@@ -27,7 +32,6 @@ in {
         programs = {
             gui = {
                 discord.enable = mkDefault true;
-                kitty.enable = mkDefault true;
                 nautilus = {
                     enable = mkDefault true;
                     terminal = mkDefault "kitty";
