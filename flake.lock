@@ -1417,7 +1417,6 @@
         "nvix": "nvix",
         "project": "project",
         "sops-nix": "sops-nix",
-        "statix": "statix",
         "stylix": "stylix",
         "systems": "systems",
         "treefmt-nix": "treefmt-nix",
@@ -1531,32 +1530,6 @@
         "owner": "nixos",
         "ref": "release-25.11",
         "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
-    "statix": {
-      "inputs": {
-        "flake-parts": [
-          "flake-parts"
-        ],
-        "nixpkgs": [
-          "nixpkgs"
-        ],
-        "systems": [
-          "systems"
-        ]
-      },
-      "locked": {
-        "lastModified": 1760596293,
-        "narHash": "sha256-duH6Il124g+CdYX+HCqOGnpJxyxOCgWYcrcK0CBnA2M=",
-        "owner": "oppiliappan",
-        "repo": "statix",
-        "rev": "e9df54ce918457f151d2e71993edeca1a7af0132",
-        "type": "github"
-      },
-      "original": {
-        "owner": "oppiliappan",
-        "repo": "statix",
         "type": "github"
       }
     },

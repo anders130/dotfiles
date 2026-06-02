@@ -5,20 +5,13 @@
         inputs.nixpkgs.follows = "nixpkgs";
     };
     imports = [inputs.git-hooks.flakeModule];
-    perSystem = {
-        config,
-        system,
-        ...
-    }: {
+    perSystem = {config, ...}: {
         pre-commit.settings.hooks = {
             shellcheck = {
                 enable = true;
                 excludes = ["\\.envrc"];
             };
-            statix = {
-                enable = true;
-                package = inputs.statix.packages.${system}.statix;
-            };
+            statix.enable = true;
             ripsecrets.enable = true;
         };
         devShells.default = config.pre-commit.devShell;

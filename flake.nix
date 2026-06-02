@@ -147,14 +147,6 @@
             url = "github:Mic92/sops-nix";
             inputs.nixpkgs.follows = "nixpkgs";
         };
-        statix = {
-            url = "github:oppiliappan/statix";
-            inputs = {
-                flake-parts.follows = "flake-parts";
-                nixpkgs.follows = "nixpkgs";
-                systems.follows = "systems";
-            };
-        };
         stylix = {
             url = "github:danth/stylix";
             inputs = {

@@ -39,10 +39,6 @@
             url = "github:catppuccin/qutebrowser";
             flake = false;
         };
-        statix = {
-            url = "github:oppiliappan/statix";
-            inputs.nixpkgs.follows = "nixpkgs";
-        };
         winapps.url = "github:winapps-org/winapps";
         hytale-launcher = {
             url = "github:anders130/hytale-launcher-nix";
