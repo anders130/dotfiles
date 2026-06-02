@@ -5,7 +5,10 @@
 }: let
     inherit (lib) mkDefault;
 in {
-    hm.imports = [inputs.self.modules.homeManager.kitty];
+    hm.imports = with inputs.self.modules.homeManager; [
+        kitty
+        youtube-music
+    ];
     modules = {
         desktop = {
             enable = mkDefault true;
@@ -36,7 +39,6 @@ in {
                     enable = mkDefault true;
                     terminal = mkDefault "kitty";
                 };
-                youtube-music.enable = mkDefault true;
                 commonTools.enable = mkDefault true;
                 zen-browser.enable = mkDefault true;
             };
