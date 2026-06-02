@@ -1,15 +1,14 @@
 {
     inputs,
-    lib,
     pkgs,
     ...
 }: {
     imports = [
         inputs.self.modules.nixos.steam
     ];
-    modules.programs.gui = {
-        prismlauncher.enable = lib.mkDefault true;
-    };
+    hm.imports = [
+        inputs.self.modules.homeManager.minecraft
+    ];
 
     environment.systemPackages = with pkgs; [
         lutris
