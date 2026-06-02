@@ -1,4 +1,5 @@
 {
+    inputs,
     lib,
     pkgs,
     ...
@@ -9,9 +10,10 @@
     };
 
     config = cfg: {
-        hm.home.packages = [pkgs.inputs.nvix.${cfg.type}];
+        nixpkgs.overlays = [(_: prev: {nvix = inputs.nvix.packages.${prev.stdenv.hostPlatform.system};})];
+        hm.home.packages = [pkgs.nvix.${cfg.type}];
         environment = {
-            systemPackages = [pkgs.inputs.nvix.base];
+            systemPackages = [pkgs.nvix.base];
 
             shellAliases = {
                 nvix = "nvim";

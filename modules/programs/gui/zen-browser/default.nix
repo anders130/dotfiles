@@ -5,7 +5,10 @@
     pkgs,
     ...
 }: {
-    nixpkgs.overlays = [inputs.firefox-addons.outputs.overlays.default];
+    nixpkgs.overlays = [
+        inputs.firefox-addons.outputs.overlays.default
+        (_: prev: {firefox-addons = prev.firefox-addons // {clock-mate = inputs.clock-mate.packages.${prev.stdenv.hostPlatform.system}.default;};})
+    ];
     hm = {
         imports = [inputs.zen-browser.homeModules.beta];
         stylix.targets.zen-browser = {
@@ -76,7 +79,7 @@
                         extensions.packages =
                             default.extensions.packages
                             ++ [
-                                pkgs.inputs.clock-mate.default
+                                pkgs.firefox-addons.clock-mate
                             ];
                     }
                 ];
