@@ -67,7 +67,7 @@
                             disabled = true;
                         }
                     ];
-                    keyboardShortcutsVersion = lib.mkDefault 18;
+                    keyboardShortcutsVersion = lib.mkDefault 19;
                     userChrome = import ./_userChrome.nix config.lib.stylix.colors;
                     userContent = import ./_userContent.nix config.lib.stylix.colors;
                 };
