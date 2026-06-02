@@ -67,15 +67,18 @@
             inputs.nixpkgs.follows = "nixpkgs";
         };
         hyprland = {
-            url = "github:hyprwm/hyprland/v0.54.3";
+            url = "github:hyprwm/hyprland/v0.55.2";
             inputs = {
                 pre-commit-hooks.follows = "";
                 systems.follows = "systems";
             };
         };
         hyprsplit = {
-            url = "github:shezdy/hyprsplit/v0.54.3";
-            inputs.hyprland.follows = "hyprland";
+            url = "github:shezdy/hyprsplit";
+            inputs = {
+                hyprland.follows = "hyprland";
+                nixpkgs.follows = "nixpkgs";
+            };
         };
         hytale-launcher = {
             url = "github:anders130/hytale-launcher-nix";

@@ -70,7 +70,7 @@
             ])
 
             "match:initial_title Picture-in-Picture, float true, size 1280 720"
-            "match:title 'termfilechooser', float true, center true, size 70%"
+            "match:title 'termfilechooser', float true, center true, size 70% 70%"
         ];
     };
 }
