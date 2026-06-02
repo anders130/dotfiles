@@ -159,7 +159,6 @@
 
     environment.systemPackages = with pkgs; [
         plex-desktop
-        hytale-launcher
         (pkgs.local.send-media.override {
             sshAddress = "admin@192.168.178.6";
         })

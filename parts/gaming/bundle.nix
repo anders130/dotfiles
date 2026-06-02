@@ -7,7 +7,10 @@ in {
             home-manager.sharedModules = [modules.homeManager.gaming];
         };
         homeManager.gaming = {pkgs, ...}: {
-            imports = [modules.homeManager.minecraft];
+            imports = with modules.homeManager; [
+                minecraft
+                hytale
+            ];
             home.packages = with pkgs; [
                 lutris
                 r2modman

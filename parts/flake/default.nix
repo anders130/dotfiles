@@ -40,10 +40,6 @@
             flake = false;
         };
         winapps.url = "github:winapps-org/winapps";
-        hytale-launcher = {
-            url = "github:anders130/hytale-launcher-nix";
-            inputs.nixpkgs.follows = "nixpkgs";
-        };
 
         # gui
         hyprland = {
