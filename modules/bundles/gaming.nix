@@ -1,11 +1,14 @@
 {
+    inputs,
     lib,
     pkgs,
     ...
 }: {
+    imports = [
+        inputs.self.modules.nixos.steam
+    ];
     modules.programs.gui = {
         prismlauncher.enable = lib.mkDefault true;
-        steam.enable = lib.mkDefault true;
     };
 
     environment.systemPackages = with pkgs; [
