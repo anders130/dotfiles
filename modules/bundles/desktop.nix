@@ -17,6 +17,7 @@ in {
         youtube-music
         signal
         qutebrowser
+        element
     ];
     modules = {
         desktop = {

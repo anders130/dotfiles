@@ -50,9 +50,6 @@
 
         programs = {
             cli.nix.nix-daemon.enableLimit = true;
-            gui = {
-                element-desktop.enable = true;
-            };
         };
         hardware = {
             amdgpu.enable = true;
