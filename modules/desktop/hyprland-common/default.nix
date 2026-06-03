@@ -43,17 +43,11 @@
                 # switches to browser when link is opened
                 misc.focus_on_activate = true;
             };
-            extraConfig = lib.toHyprlang {
-                source = "./extra.conf";
-            };
             systemd.variables = ["--all"];
             configType = "hyprlang";
         };
-        xdg.configFile = {
-            "hypr/extra.conf" = lib.mkSymlink ./hyprland.conf;
-            "hypr/xdph.conf".text = lib.toHyprlang {
-                screencopy.allow_token_by_default = true;
-            };
+        xdg.configFile."hypr/xdph.conf".text = lib.toHyprlang {
+            screencopy.allow_token_by_default = true;
         };
     };
 }
