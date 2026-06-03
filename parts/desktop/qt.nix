@@ -1,14 +1,17 @@
-{pkgs, ...}: let
-    accent = "blue";
-    variant = "macchiato";
-
-    catppuccinKvantum = pkgs.catppuccin-kvantum.override {
-        inherit accent variant;
+{
+    flake.modules.nixos.desktop = {
+        qt.enable = true;
     };
+    flake.modules.homeManager.desktop = {pkgs, ...}: let
+        accent = "blue";
+        variant = "macchiato";
 
-    qtThemeName = "catppuccin-${variant}-${accent}";
-in {
-    hm = {
+        catppuccinKvantum = pkgs.catppuccin-kvantum.override {
+            inherit accent variant;
+        };
+
+        qtThemeName = "catppuccin-${variant}-${accent}";
+    in {
         home.packages = [catppuccinKvantum];
         qt = {
             enable = true;

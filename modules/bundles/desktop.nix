@@ -51,8 +51,5 @@ in {
             printing.enable = mkDefault true;
             audio.enable = mkDefault true;
         };
-        utils = {
-            qt.enable = mkDefault true;
-        };
     };
 }

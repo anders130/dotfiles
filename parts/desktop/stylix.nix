@@ -15,7 +15,6 @@
             };
             polarity = "dark";
         };
-        qt.enable = true;
         home-manager.sharedModules = [inputs.self.modules.homeManager.desktop];
     };
     flake.modules.homeManager.desktop = {
@@ -31,6 +30,5 @@
             };
             gtk4.theme = config.gtk.theme;
         };
-        qt.enable = true;
     };
 }
