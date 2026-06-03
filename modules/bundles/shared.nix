@@ -11,6 +11,7 @@ in {
     imports = with inputs.self.modules.nixos; [
         default
         jesse
+        sops
     ];
 
     environment = {
@@ -29,7 +30,6 @@ in {
             nvix.enable = mkDefault true;
         };
         utils = {
-            sops.enable = mkDefault true;
             stylix.enable = mkDefault true;
             keyboard.enable = mkDefault true;
             locale.enable = mkDefault true;

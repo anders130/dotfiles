@@ -17,6 +17,7 @@ in {
             inputs.project.homeManagerModules.default
             claude
             github-copilot-cli
+            sops
         ];
         programs.project = {
             enable = mkDefault true;

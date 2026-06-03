@@ -13,7 +13,6 @@
         haumea.url = "github:nix-community/haumea/v0.2.2";
         modulix.url = "github:anders130/modulix";
         stylix.url = "github:danth/stylix";
-        sops-nix.url = "github:Mic92/sops-nix";
 
         # programs
         project = {
