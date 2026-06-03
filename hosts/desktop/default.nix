@@ -4,8 +4,9 @@
     username,
     ...
 }: {
-    imports = [
-        inputs.self.modules.nixos.gaming
+    imports = with inputs.self.modules.nixos; [
+        gaming
+        kdeconnect
     ];
     modules = {
         bundles = {
@@ -52,7 +53,6 @@
                 element-desktop.enable = true;
                 obs.enable = true;
                 winapps.enable = true;
-                kdeconnect.enable = true;
             };
         };
         hardware = {
