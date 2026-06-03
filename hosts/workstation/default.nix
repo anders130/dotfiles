@@ -22,9 +22,6 @@
                 shell.showNetwork = true;
             };
         };
-        programs.gui = {
-            nwg-displays.enable = true;
-        };
         hardware = {
             amdgpu.enable = true;
             displaylink.enable = true;
@@ -34,7 +31,7 @@
     hardware.bluetooth.enable = true;
 
     hm = {
-        imports = [inputs.self.modules.homeManager.nextcloud];
+        imports = with inputs.self.modules.homeManager; [nextcloud nwg-displays];
         programs.nextcloud = {
             enable = true;
             instance-url = "https://cloud.gollub.dev";
