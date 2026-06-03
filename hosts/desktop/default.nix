@@ -8,6 +8,7 @@
         gaming
         kdeconnect
         obs
+        winapps
     ];
     modules = {
         bundles = {
@@ -51,7 +52,6 @@
             cli.nix.nix-daemon.enableLimit = true;
             gui = {
                 element-desktop.enable = true;
-                winapps.enable = true;
             };
         };
         hardware = {

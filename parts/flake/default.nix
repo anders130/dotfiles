@@ -28,8 +28,6 @@
             url = "github:clock-mate/extension";
             inputs.nixpkgs.follows = "nixpkgs";
         };
-        winapps.url = "github:winapps-org/winapps";
-
         # gui
         hyprland = {
             url = "github:hyprwm/hyprland/v0.55.2";
