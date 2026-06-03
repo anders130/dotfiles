@@ -15,6 +15,7 @@ in {
     hm.imports = with inputs.self.modules.homeManager; [
         kitty
         youtube-music
+        signal
     ];
     modules = {
         desktop = {

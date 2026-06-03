@@ -32,7 +32,4 @@ in {
 
     programs.noisetorch.enable = mkDefault true;
 
-    modules.programs.gui = {
-        signal-desktop.enable = mkDefault true;
-    };
 }
