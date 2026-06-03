@@ -16,6 +16,7 @@ in {
         kitty
         youtube-music
         signal
+        qutebrowser
     ];
     modules = {
         desktop = {

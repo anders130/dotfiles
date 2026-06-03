@@ -28,10 +28,6 @@
             url = "github:clock-mate/extension";
             inputs.nixpkgs.follows = "nixpkgs";
         };
-        catppuccin-qutebrowser = {
-            url = "github:catppuccin/qutebrowser";
-            flake = false;
-        };
         winapps.url = "github:winapps-org/winapps";
 
         # gui

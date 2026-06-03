@@ -50,7 +50,6 @@
         programs = {
             cli.nix.nix-daemon.enableLimit = true;
             gui = {
-                qutebrowser.enable = true;
                 element-desktop.enable = true;
                 winapps.enable = true;
             };
