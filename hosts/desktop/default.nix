@@ -119,6 +119,7 @@
             ui.enable = true;
         };
         tailscale.enable = true;
+        ratbagd.enable = true;
     };
 
     boot = {
@@ -159,6 +160,7 @@
 
     environment.systemPackages = with pkgs; [
         plex-desktop
+        piper
         (pkgs.local.send-media.override {
             sshAddress = "admin@192.168.178.6";
         })
