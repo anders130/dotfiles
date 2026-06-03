@@ -9,6 +9,7 @@ in {
         discord
         zen-browser
         desktop
+        nautilus
     ];
     hm.imports = with inputs.self.modules.homeManager; [
         kitty
@@ -39,11 +40,7 @@ in {
         };
         programs = {
             gui = {
-                nautilus = {
-                    enable = mkDefault true;
-                    terminal = mkDefault "kitty";
-                };
-                commonTools.enable = mkDefault true;
+commonTools.enable = mkDefault true;
             };
             plymouth.enable = mkDefault true;
         };
