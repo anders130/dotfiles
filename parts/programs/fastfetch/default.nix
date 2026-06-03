@@ -1,6 +1,6 @@
-{lib, ...}: {
-    hm = {
-        xdg.configFile."fastfetch/short.jsonc" = lib.mkSymlink ./short.jsonc;
+{
+    flake.modules.homeManager.fastfetch = {
+        xdg.configFile."fastfetch/short.jsonc".source = ./short.jsonc;
         programs.fastfetch = {
             enable = true;
             settings = {
