@@ -7,6 +7,7 @@
     imports = with inputs.self.modules.nixos; [
         gaming
         kdeconnect
+        obs
     ];
     modules = {
         bundles = {
@@ -51,7 +52,6 @@
             gui = {
                 qutebrowser.enable = true;
                 element-desktop.enable = true;
-                obs.enable = true;
                 winapps.enable = true;
             };
         };
