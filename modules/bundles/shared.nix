@@ -33,7 +33,6 @@ in {
             stylix.enable = mkDefault true;
             keyboard.enable = mkDefault true;
             locale.enable = mkDefault true;
-            nixpkgs.enable = mkDefault true;
         };
     };
 }
