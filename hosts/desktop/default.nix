@@ -49,24 +49,7 @@
             cli.nix.nix-daemon.enableLimit = true;
             gui = {
                 qutebrowser.enable = true;
-                zapzap.enable = true;
                 element-desktop.enable = true;
-                nextcloud-client = {
-                    enable = true;
-                    instance-url = "https://cloud.gollub.dev";
-                    user = "jesse";
-                    folder-sync = let
-                        mkFolder = f: {
-                            localPath = "/home/${username}/Nextcloud/${f}";
-                            ignoreHiddenFiles = false;
-                        };
-                    in {
-                        "/Documents" = mkFolder "Documents";
-                        "/Photos" = mkFolder "Photos";
-                        "/Music" = mkFolder "Music";
-                        "/Videos" = mkFolder "Videos";
-                    };
-                };
                 obs.enable = true;
                 winapps.enable = true;
                 kdeconnect.enable = true;
@@ -104,6 +87,26 @@
                     };
                     profile = "off";
                 };
+            };
+        };
+    };
+
+    hm = {
+        imports = with inputs.self.modules.homeManager; [nextcloud zapzap];
+        programs.nextcloud = {
+            enable = true;
+            instance-url = "https://cloud.gollub.dev";
+            user = "jesse";
+            folder-sync = let
+                mkFolder = f: {
+                    localPath = "/home/${username}/${f}";
+                    ignoreHiddenFiles = false;
+                };
+            in {
+                "/Documents" = mkFolder "Documents";
+                "/Photos" = mkFolder "Photos";
+                "/Music" = mkFolder "Music";
+                "/Videos" = mkFolder "Videos";
             };
         };
     };

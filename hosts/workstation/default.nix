@@ -1,4 +1,5 @@
 {
+    inputs,
     lib,
     pkgs,
     username,
@@ -24,21 +25,6 @@
         programs.gui = {
             nwg-displays.enable = true;
             qutebrowser.enable = true;
-            nextcloud-client = {
-                enable = true;
-                instance-url = "https://cloud.gollub.dev";
-                user = "jesse";
-                folder-sync = {
-                    "/" = {
-                        localPath = "/home/${username}/Nextcloud";
-                        ignoreHiddenFiles = false;
-                    };
-                    "/Photos/Wallpapers" = {
-                        localPath = "/home/${username}/Pictures/Wallpapers";
-                        ignoreHiddenFiles = false;
-                    };
-                };
-            };
         };
         hardware = {
             amdgpu.enable = true;
@@ -49,6 +35,22 @@
     hardware.bluetooth.enable = true;
 
     hm = {
+        imports = [inputs.self.modules.homeManager.nextcloud];
+        programs.nextcloud = {
+            enable = true;
+            instance-url = "https://cloud.gollub.dev";
+            user = "jesse";
+            folder-sync = {
+                "/" = {
+                    localPath = "/home/${username}/Nextcloud";
+                    ignoreHiddenFiles = false;
+                };
+                "/Photos/Wallpapers" = {
+                    localPath = "/home/${username}/Pictures/Wallpapers";
+                    ignoreHiddenFiles = false;
+                };
+            };
+        };
         wayland.windowManager.hyprland.extraConfig = lib.mkAfter ''
             source = ./override.conf
         '';
