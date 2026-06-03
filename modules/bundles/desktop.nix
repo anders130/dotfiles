@@ -5,7 +5,10 @@
 }: let
     inherit (lib) mkDefault;
 in {
-    imports = [inputs.self.modules.nixos.zen-browser];
+    imports = with inputs.self.modules.nixos; [
+        discord
+        zen-browser
+    ];
     hm.imports = with inputs.self.modules.homeManager; [
         kitty
         youtube-music
@@ -35,7 +38,6 @@ in {
         };
         programs = {
             gui = {
-                discord.enable = mkDefault true;
                 nautilus = {
                     enable = mkDefault true;
                     terminal = mkDefault "kitty";
