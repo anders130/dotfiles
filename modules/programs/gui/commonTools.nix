@@ -33,7 +33,6 @@ in {
     programs.noisetorch.enable = mkDefault true;
 
     modules.programs.gui = {
-        bitwarden.enable = mkDefault true;
         signal-desktop.enable = mkDefault true;
     };
 }

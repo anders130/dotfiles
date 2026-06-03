@@ -10,6 +10,7 @@ in {
         zen-browser
         desktop
         nautilus
+        bitwarden
     ];
     hm.imports = with inputs.self.modules.homeManager; [
         kitty
