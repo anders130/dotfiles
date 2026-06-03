@@ -5,6 +5,7 @@
 }: let
     inherit (lib) mkDefault;
 in {
+    imports = [inputs.self.modules.nixos.zen-browser];
     hm.imports = with inputs.self.modules.homeManager; [
         kitty
         youtube-music
@@ -40,7 +41,6 @@ in {
                     terminal = mkDefault "kitty";
                 };
                 commonTools.enable = mkDefault true;
-                zen-browser.enable = mkDefault true;
             };
             plymouth.enable = mkDefault true;
         };

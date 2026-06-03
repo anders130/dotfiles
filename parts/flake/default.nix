@@ -24,11 +24,6 @@
             url = "github:anders130/nvix";
             inputs.nix-lib.follows = "nix-lib";
         };
-        zen-browser = {
-            url = "github:0xc000022070/zen-browser-flake";
-            inputs.nixpkgs.follows = "nixpkgs";
-        };
-        firefox-addons.url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
         nixcord.url = "github:kaylorben/nixcord";
         nix-index-database.url = "github:nix-community/nix-index-database";
         clock-mate = {
