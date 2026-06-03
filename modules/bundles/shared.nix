@@ -29,8 +29,5 @@ in {
             ssh.enable = mkDefault true;
             nvix.enable = mkDefault true;
         };
-        utils = {
-            stylix.enable = mkDefault true;
-        };
     };
 }

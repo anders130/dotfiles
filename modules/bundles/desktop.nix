@@ -8,6 +8,7 @@ in {
     imports = with inputs.self.modules.nixos; [
         discord
         zen-browser
+        desktop
     ];
     hm.imports = with inputs.self.modules.homeManager; [
         kitty
@@ -51,10 +52,6 @@ in {
             audio.enable = mkDefault true;
         };
         utils = {
-            stylix = {
-                enable = mkDefault true;
-                desktop.enable = mkDefault true;
-            };
             qt.enable = mkDefault true;
         };
     };

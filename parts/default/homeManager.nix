@@ -6,6 +6,7 @@
             useGlobalPkgs = true;
             useUserPackages = true;
             backupFileExtension = "hm-backup";
+            sharedModules = [inputs.self.modules.homeManager.default];
         };
     };
 }
