@@ -31,7 +31,6 @@ in {
         };
         utils = {
             stylix.enable = mkDefault true;
-            keyboard.enable = mkDefault true;
             locale.enable = mkDefault true;
         };
     };

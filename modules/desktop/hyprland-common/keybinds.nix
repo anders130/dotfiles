@@ -1,6 +1,6 @@
 {config, ...}: {
     hm.wayland.windowManager.hyprland.settings = {
-        input = with config.modules.utils.keyboard; {
+        input = with config.hm.home.keyboard; {
             kb_layout = layout;
             kb_variant = variant;
             kb_model = "";
@@ -70,4 +70,3 @@
         ];
     };
 }
-
