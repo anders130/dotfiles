@@ -40,21 +40,6 @@
                     position = "3440x0";
                 };
             };
-        };
-    };
-
-    modules = {
-        bundles = {
-            dev.enable = true;
-            desktop.enable = true;
-        };
-
-        programs = {
-            cli.nix.nix-daemon.enableLimit = true;
-        };
-        hardware = {
-            amdgpu.enable = true;
-            openrgb.enable = true;
             audio.devices = {
                 "Headset" = {
                     match = {
@@ -85,6 +70,21 @@
                     profile = "off";
                 };
             };
+        };
+    };
+
+    modules = {
+        bundles = {
+            dev.enable = true;
+            desktop.enable = true;
+        };
+
+        programs = {
+            cli.nix.nix-daemon.enableLimit = true;
+        };
+        hardware = {
+            amdgpu.enable = true;
+            openrgb.enable = true;
         };
     };
 
