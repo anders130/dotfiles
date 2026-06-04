@@ -1,6 +1,10 @@
 inputs:
 inputs.nix-lib.lib.mkFlakeFromTree {
     inherit inputs;
-    root = ./parts;
-    ignore = [];
+    root = ./.;
+    ignore = [
+        "flake.nix"
+        "outputs.nix"
+        "templates"
+    ];
 }
