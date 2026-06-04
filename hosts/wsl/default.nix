@@ -8,7 +8,6 @@
     flake.nixosConfigurations = config.flake.lib.mkNixos "x86_64-linux" "wsl";
     flake.modules.nixos.wsl = {pkgs, ...}: {
         system.stateVersion = "23.11";
-        hm.home.stateVersion = "23.11";
 
         imports = [
             inputs.nixos-wsl.nixosModules.wsl

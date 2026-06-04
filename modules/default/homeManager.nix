@@ -9,4 +9,11 @@
             sharedModules = [inputs.self.modules.homeManager.default];
         };
     };
+    flake.modules.homeManager.default = {
+        lib,
+        osConfig,
+        ...
+    }: {
+        home.stateVersion = lib.mkDefault osConfig.system.stateVersion;
+    };
 }

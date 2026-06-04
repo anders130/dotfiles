@@ -6,7 +6,6 @@
     flake.nixosConfigurations = config.flake.lib.mkNixos "x86_64-linux" "jesse-desktop";
     flake.modules.nixos.jesse-desktop = {pkgs, ...}: {
         system.stateVersion = "24.05";
-        hm.home.stateVersion = "24.05";
 
         networking.hostName = "jesse-desktop";
 
