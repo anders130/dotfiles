@@ -5,7 +5,6 @@
 }: {
     flake.lib.mkUser = username: isAdmin: {
         nixos.${username} = {
-            imports = [(lib.mkAliasOptionModule ["hm"] ["home-manager" "users" username])];
             users.users.${username} = {
                 isNormalUser = true;
                 home = "/home/${username}";
