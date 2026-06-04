@@ -11,6 +11,8 @@
         obs
         winapps
         caelestia
+        amdgpu
+        openrgb
     ];
     my = {
         caelestia.shell.showAudio = true;
@@ -75,17 +77,7 @@
         };
     };
 
-    modules = {
-        bundles = {
-            dev.enable = true;
-        };
-
-
-        hardware = {
-            amdgpu.enable = true;
-            openrgb.enable = true;
-        };
-    };
+    modules.bundles.dev.enable = true;
 
     hm = {
         imports = with inputs.self.modules.homeManager; [nextcloud zapzap];

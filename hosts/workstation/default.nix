@@ -5,7 +5,7 @@
     username,
     ...
 }: {
-    imports = with inputs.self.modules.nixos; [desktop caelestia];
+    imports = with inputs.self.modules.nixos; [desktop caelestia amdgpu displaylink];
     my = {
         caelestia.shell.showNetwork = true;
         hyprland.autologinUser = "jesse";
@@ -16,15 +16,7 @@
         };
     };
 
-    modules = {
-        bundles = {
-            dev.enable = true;
-        };
-        hardware = {
-            amdgpu.enable = true;
-            displaylink.enable = true;
-        };
-    };
+    modules.bundles.dev.enable = true;
 
     hardware.bluetooth.enable = true;
 
