@@ -40,7 +40,7 @@
             source = ./override.conf
         '';
         xdg = {
-            configFile."hypr/override.conf" = lib.mkSymlink ./hyprland.conf;
+            configFile."hypr/override.conf".source = ./hyprland.conf;
             desktopEntries.zenForWork = {
                 name = "Zen for Work";
                 genericName = "Web Browser";
