@@ -5,6 +5,7 @@
             discord
             nautilus
             zen-browser
+            teams
         ];
         home-manager.sharedModules = with inputs.self.modules.homeManager; [
             element

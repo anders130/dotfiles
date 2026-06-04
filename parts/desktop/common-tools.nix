@@ -2,7 +2,6 @@
     flake.modules.nixos.desktop = {pkgs, ...}: {
         services.xserver.excludePackages = [pkgs.xterm];
         programs.noisetorch.enable = true;
-        # for secret and session management
         services.gnome.gnome-keyring.enable = true;
     };
     flake.modules.homeManager.desktop = {pkgs, ...}: {
@@ -22,9 +21,6 @@
 
             fluent-gtk-theme
             orchis-theme
-
-            # work
-            teams-for-linux
         ];
         home.shellAliases.decibels = "org.gnome.Decibels";
         xdg.userDirs.setSessionVariables = false;
