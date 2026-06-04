@@ -42,8 +42,5 @@ in {
         programs = {
             plymouth.enable = mkDefault true;
         };
-        hardware = {
-            printing.enable = mkDefault true;
-        };
     };
 }
