@@ -57,7 +57,7 @@
         systemd.tmpfiles.rules = [
             "d ${windowsDir} 0755 root root - -"
         ];
-        users.users.${username}.extraGroups = [containerBackend];
+        users.groups.${containerBackend}.members = config.users.normalUsers;
         sops = {
             secrets.windows-password.sopsFile = ./secrets.yaml;
             templates = {

@@ -1,5 +1,9 @@
 {
-    flake.modules.nixos.jesse-desktop = {pkgs, ...}: {
+    flake.modules.nixos.jesse-desktop = {
+        config,
+        pkgs,
+        ...
+    }: {
         # mouse
         services.ratbagd.enable = true;
         environment.systemPackages = [pkgs.piper];
@@ -54,5 +58,6 @@
             };
         };
         hardware.i2c.enable = true; # for brightness ctrl
+        users.groups.i2c.members = config.users.normalUsers;
     };
 }
