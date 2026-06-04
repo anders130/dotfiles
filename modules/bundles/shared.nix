@@ -14,7 +14,7 @@ in {
         sops
         ssh
     ];
-    hm.imports = [inputs.self.modules.homeManager.cli];
+    hm.imports = with inputs.self.modules.homeManager; [cli nix-index];
 
     environment = {
         systemPackages = [(pkgs.local.rebuild.override {nix = config.nix.package;})];
@@ -26,7 +26,6 @@ in {
             fish.enable = mkDefault true;
             btop.enable = mkDefault true;
             nh.enable = mkDefault true;
-            nix-index.enable = mkDefault true;
             nix.enable = mkDefault true;
             nvix.enable = mkDefault true;
         };

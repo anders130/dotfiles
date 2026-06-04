@@ -23,7 +23,6 @@
             inputs.nix-lib.follows = "nix-lib";
         };
         nixcord.url = "github:kaylorben/nixcord";
-        nix-index-database.url = "github:nix-community/nix-index-database";
         clock-mate = {
             url = "github:clock-mate/extension";
             inputs.nixpkgs.follows = "nixpkgs";
