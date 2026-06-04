@@ -8,10 +8,7 @@
     inherit (lib) mkSymlink;
 in {
     imports = [inputs.self.modules.nixos.starship];
-    hm.imports = with inputs.self.modules.homeManager; [fastfetch atuin starship];
-    modules.programs.cli = {
-        yazi.enable = true;
-    };
+    hm.imports = with inputs.self.modules.homeManager; [fastfetch atuin starship yazi];
 
     environment = {
         shells = [pkgs.fish];
