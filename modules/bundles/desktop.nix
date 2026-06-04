@@ -1,10 +1,4 @@
-{
-    inputs,
-    lib,
-    ...
-}: let
-    inherit (lib) mkDefault;
-in {
+{inputs, ...}: {
     imports = with inputs.self.modules.nixos; [
         discord
         zen-browser
@@ -38,9 +32,5 @@ in {
             isApp = false;
         }
     ];
-    modules = {
-        programs = {
-            plymouth.enable = mkDefault true;
-        };
-    };
+
 }
