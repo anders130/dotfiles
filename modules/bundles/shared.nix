@@ -12,7 +12,9 @@ in {
         default
         jesse
         sops
+        ssh
     ];
+    hm.imports = [inputs.self.modules.homeManager.cli];
 
     environment = {
         systemPackages = [(pkgs.local.rebuild.override {nix = config.nix.package;})];
@@ -26,7 +28,6 @@ in {
             nh.enable = mkDefault true;
             nix-index.enable = mkDefault true;
             nix.enable = mkDefault true;
-            ssh.enable = mkDefault true;
             nvix.enable = mkDefault true;
         };
     };
