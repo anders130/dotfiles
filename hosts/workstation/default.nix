@@ -5,7 +5,7 @@
     username,
     ...
 }: {
-    imports = [inputs.self.modules.nixos.caelestia];
+    imports = with inputs.self.modules.nixos; [desktop caelestia];
     my = {
         caelestia.shell.showNetwork = true;
         hyprland.autologinUser = "jesse";
@@ -19,7 +19,6 @@
     modules = {
         bundles = {
             dev.enable = true;
-            desktop.enable = true;
         };
         hardware = {
             amdgpu.enable = true;

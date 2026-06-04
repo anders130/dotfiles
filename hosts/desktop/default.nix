@@ -5,6 +5,7 @@
     ...
 }: {
     imports = with inputs.self.modules.nixos; [
+        desktop
         gaming
         kdeconnect
         obs
@@ -76,7 +77,6 @@
     modules = {
         bundles = {
             dev.enable = true;
-            desktop.enable = true;
         };
 
         programs = {
