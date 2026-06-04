@@ -46,7 +46,6 @@ in {
             enable = mkDefault true;
             type = mkDefault "full";
         };
-        commonTools.enable = mkDefault true;
     };
     environment = {
         systemPackages = with pkgs; [

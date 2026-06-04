@@ -43,9 +43,6 @@ in {
             ];
         };
         programs = {
-            gui = {
-commonTools.enable = mkDefault true;
-            };
             plymouth.enable = mkDefault true;
         };
         hardware = {
