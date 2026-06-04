@@ -6,6 +6,7 @@
 }: let
     inherit (lib) mkDefault;
 in {
+    my.nvix.type = "full";
     hm = {config, ...}: {
         home.packages = with inputs.self.packages.${pkgs.stdenv.hostPlatform.system}; [
             git
@@ -39,12 +40,6 @@ in {
                 base07
                 base04
             ];
-        };
-    };
-    modules.programs.cli = {
-        nvix = {
-            enable = mkDefault true;
-            type = mkDefault "full";
         };
     };
     environment = {

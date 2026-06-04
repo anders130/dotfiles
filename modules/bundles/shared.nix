@@ -15,6 +15,7 @@ in {
         ssh
         nix
         nh
+        nvix
     ];
     hm.imports = with inputs.self.modules.homeManager; [cli nix-index btop];
 
@@ -26,7 +27,6 @@ in {
     modules = {
         programs.cli = {
             fish.enable = mkDefault true;
-            nvix.enable = mkDefault true;
         };
     };
 }

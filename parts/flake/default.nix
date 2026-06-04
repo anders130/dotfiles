@@ -18,10 +18,6 @@
             url = "github:anders130/project";
             inputs.nixpkgs.follows = "nixpkgs";
         };
-        nvix = {
-            url = "github:anders130/nvix";
-            inputs.nix-lib.follows = "nix-lib";
-        };
 
         # host specific
         disko.url = "github:nix-community/disko";
