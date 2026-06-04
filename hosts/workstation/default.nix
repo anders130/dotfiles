@@ -6,20 +6,20 @@
     ...
 }: {
     imports = [inputs.self.modules.nixos.caelestia];
-    my.caelestia.shell.showNetwork = true;
-    my.hyprland.autologinUser = "jesse";
+    my = {
+        caelestia.shell.showNetwork = true;
+        hyprland.autologinUser = "jesse";
+        desktop.monitors.eDP-1 = {
+            isMain = true;
+            resolution = "1920x1200";
+            refreshRate = 60;
+        };
+    };
+
     modules = {
         bundles = {
             dev.enable = true;
             desktop.enable = true;
-        };
-        desktop = {
-            enable = true;
-            monitors.eDP-1 = {
-                isMain = true;
-                resolution = "1920x1200";
-                refreshRate = 60;
-            };
         };
         hardware = {
             amdgpu.enable = true;

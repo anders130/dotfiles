@@ -11,15 +11,10 @@
         winapps
         caelestia
     ];
-    my.caelestia.shell.showAudio = true;
-    my.hyprland.autologinUser = "jesse";
-    modules = {
-        bundles = {
-            dev.enable = true;
-            desktop.enable = true;
-        };
+    my = {
+        caelestia.shell.showAudio = true;
+        hyprland.autologinUser = "jesse";
         desktop = {
-            enable = true;
             autostart = [
                 "sleep 2 && zapzap --hideStart"
                 {
@@ -45,6 +40,13 @@
                     position = "3440x0";
                 };
             };
+        };
+    };
+
+    modules = {
+        bundles = {
+            dev.enable = true;
+            desktop.enable = true;
         };
 
         programs = {

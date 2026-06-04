@@ -26,10 +26,6 @@
                     default = false;
                 };
             };
-            autostart = mkOption {
-                type = types.listOf types.anything;
-                default = [];
-            };
         };
         imports = [inputs.caelestia-shell.homeManagerModules.default];
         config.programs.caelestia = {

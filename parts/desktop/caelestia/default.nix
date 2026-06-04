@@ -32,7 +32,6 @@
                     showBluetooth = config.hardware.bluetooth.enable;
                     showBattery = config.services.upower.enable && config.services.power-profiles-daemon.enable;
                 };
-                my.caelestia.autostart = config.modules.desktop.autostart;
             }
         ];
     };
