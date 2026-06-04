@@ -1,6 +1,43 @@
-{inputs, username, ...}: {
-    imports = [inputs.self.modules.nixos.hyprland];
-    hm = {
+{inputs, ...}: {
+    flake-file.inputs = {
+        caelestia-cli = {
+            url = "github:caelestia-dots/cli";
+            inputs = {
+                caelestia-shell.follows = "caelestia-shell";
+                nixpkgs.follows = "caelestia-shell/nixpkgs";
+            };
+        };
+        caelestia-shell = {
+            url = "github:caelestia-dots/shell";
+            inputs.caelestia-cli.follows = "caelestia-cli";
+        };
+    };
+    flake-follows.exclude = ["caelestia-shell.nixpkgs"];
+    flake.modules.nixos.caelestia = {
+        config,
+        lib,
+        ...
+    }: {
+        imports = [inputs.self.modules.nixos.hyprland];
+        options.my.caelestia.shell = {
+            showNetwork = lib.mkEnableOption "Show network status in caelestia bar";
+            showAudio = lib.mkEnableOption "Show audio switcher in caelestia bar";
+        };
+        config.home-manager.sharedModules = [
+            inputs.self.modules.homeManager.caelestia
+            {
+                my.caelestia.status = {
+                    showNetwork = config.my.caelestia.shell.showNetwork;
+                    showAudio = config.my.caelestia.shell.showAudio;
+                    showBluetooth = config.hardware.bluetooth.enable;
+                    showBattery = config.services.upower.enable && config.services.power-profiles-daemon.enable;
+                };
+                my.caelestia.autostart = config.modules.desktop.autostart;
+            }
+        ];
+    };
+
+    flake.modules.homeManager.caelestia = {
         wayland.windowManager.hyprland.settings = {
             general = {
                 gaps_in = 5;
@@ -43,5 +80,4 @@
         # TODO: remove this once home-manager module supports this
         systemd.user.services.caelestia.Service.Environment = ["QT_QPA_PLATFORMTHEME=gtk3"];
     };
-    users.users.${username}.extraGroups = ["i2c"]; # needed for making the brightness slider work
 }

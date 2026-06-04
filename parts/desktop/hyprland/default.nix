@@ -3,6 +3,7 @@
         url = "github:hyprwm/hyprland/v0.55.2";
         inputs.pre-commit-hooks.follows = "";
     };
+    flake-follows.exclude = ["hyprland.nixpkgs"];
     flake.modules.nixos.hyprland = {pkgs, ...}: {
         programs.hyprland = {
             enable = true;

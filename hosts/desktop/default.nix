@@ -9,7 +9,10 @@
         kdeconnect
         obs
         winapps
+        caelestia
     ];
+    my.caelestia.shell.showAudio = true;
+    my.hyprland.autologinUser = "jesse";
     modules = {
         bundles = {
             dev.enable = true;
@@ -41,10 +44,6 @@
                     refreshRate = 180;
                     position = "3440x0";
                 };
-            };
-            caelestia = {
-                enable = true;
-                shell.showAudio = true;
             };
         };
 

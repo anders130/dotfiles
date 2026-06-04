@@ -28,18 +28,6 @@
             url = "github:clock-mate/extension";
             inputs.nixpkgs.follows = "nixpkgs";
         };
-        # gui
-        caelestia-cli = {
-            url = "github:caelestia-dots/cli";
-            inputs = {
-                caelestia-shell.follows = "caelestia-shell";
-                nixpkgs.follows = "caelestia-shell/nixpkgs";
-            };
-        };
-        caelestia-shell = {
-            url = "github:caelestia-dots/shell";
-            inputs.caelestia-cli.follows = "caelestia-cli";
-        };
 
         # host specific
         disko.url = "github:nix-community/disko";

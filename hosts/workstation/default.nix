@@ -5,6 +5,9 @@
     username,
     ...
 }: {
+    imports = [inputs.self.modules.nixos.caelestia];
+    my.caelestia.shell.showNetwork = true;
+    my.hyprland.autologinUser = "jesse";
     modules = {
         bundles = {
             dev.enable = true;
@@ -16,10 +19,6 @@
                 isMain = true;
                 resolution = "1920x1200";
                 refreshRate = 60;
-            };
-            caelestia = {
-                enable = true;
-                shell.showNetwork = true;
             };
         };
         hardware = {

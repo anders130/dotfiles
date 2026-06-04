@@ -4,7 +4,7 @@
     ...
 }: let
     inherit (lib) mapAttrsToList mkOption types;
-    inherit (builtins) attrNames filter head length listToAttrs;
+    inherit (builtins) filter head length;
 
     mkMonitorKernelParam = port: c: "video=${port}:${c.resolution}@${toString c.refreshRate}Hz";
     mkHyprlandMonitor = port: c: "${port}, ${c.resolution}@${toString c.refreshRate}, ${c.position}, ${toString c.scale}";
@@ -54,47 +54,11 @@ in {
             default = getMainMonitorName config.modules.desktop.monitors;
             description = "Name of the main monitor";
         };
-        defaultPrograms = let
-            mkOpt = default: description:
-                mkOption {
-                    inherit description default;
-                    type = types.listOf types.str;
-                };
-        in {
-            browser = mkOpt ["zen-beta"] "Default browser to use";
-            terminal = mkOpt ["kitty"] "Default terminal to use";
-            editor = mkOpt ["nvim"] "Default editor to use";
-            fileManager = mkOpt ["nautilus" "--new-window"] "Default file manager to use";
-            imageViewer = mkOpt ["loupe"] "Default image viewer to use";
-            videoPlayer = mkOpt ["clapper"] "Default video player to use";
-            musicPlayer = mkOpt ["decibels"] "Default music player to use";
-        };
     };
 
     config = cfg: {
         boot.kernelParams = mapAttrsToList mkMonitorKernelParam cfg.monitors;
         hm.wayland.windowManager.hyprland.settings.monitor = mapAttrsToList mkHyprlandMonitor cfg.monitors;
-
-        xdg.mime.defaultApplications = let
-            mkMimes = mimes:
-                mimes
-                |> attrNames
-                |> map (mime: {
-                    name = mime;
-                    value = "${head mimes.${mime}}.desktop";
-                })
-                |> listToAttrs;
-            inherit (cfg.defaultPrograms) browser imageViewer videoPlayer musicPlayer editor;
-        in
-            mkMimes {
-                "application/pdf" = browser;
-                "x-scheme-handler/http" = browser;
-                "x-scheme-handler/https" = browser;
-                "image/*" = imageViewer;
-                "video/*" = videoPlayer;
-                "audio/*" = musicPlayer;
-                "text/*" = editor;
-            };
 
         # for secret and session management
         services.gnome.gnome-keyring.enable = true;

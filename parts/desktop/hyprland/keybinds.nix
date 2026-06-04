@@ -1,26 +1,6 @@
 {
-    flake.modules.homeManager.hyprland = {
-        config,
-        lib,
-        ...
-    }: let
-        inherit (lib) mkOption types;
-    in {
-        options.my.hyprland.defaultPrograms = {
-            browser = mkOption {
-                type = types.listOf types.str;
-                default = ["zen-beta"];
-            };
-            terminal = mkOption {
-                type = types.listOf types.str;
-                default = ["kitty"];
-            };
-            fileManager = mkOption {
-                type = types.listOf types.str;
-                default = ["nautilus" "--new-window"];
-            };
-        };
-        config.wayland.windowManager.hyprland.settings = {
+    flake.modules.homeManager.hyprland = {config, ...}: {
+        wayland.windowManager.hyprland.settings = {
             input = with config.home.keyboard; {
                 kb_layout = layout;
                 kb_variant = variant;
@@ -36,7 +16,7 @@
                 sensitivity = 0;
             };
             bind = let
-                inherit (config.my.hyprland.defaultPrograms) terminal fileManager browser;
+                inherit (config.my.desktop.defaultPrograms) terminal fileManager browser;
                 asString = builtins.concatStringsSep " ";
             in
                 [
