@@ -13,7 +13,10 @@
             };
         };
     };
-    flake.modules.homeManager.default = {
-        stylix.enableReleaseChecks = false;
+    flake.modules.homeManager.default = {lib, ...}: {
+        stylix = {
+            enableReleaseChecks = false;
+            targets.gtk.enable = lib.mkDefault false;
+        };
     };
 }
