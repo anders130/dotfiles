@@ -13,6 +13,7 @@ in {
         jesse
         sops
         ssh
+        nix
     ];
     hm.imports = with inputs.self.modules.homeManager; [cli nix-index];
 
@@ -26,7 +27,6 @@ in {
             fish.enable = mkDefault true;
             btop.enable = mkDefault true;
             nh.enable = mkDefault true;
-            nix.enable = mkDefault true;
             nvix.enable = mkDefault true;
         };
     };

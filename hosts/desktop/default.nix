@@ -15,6 +15,7 @@
     my = {
         caelestia.shell.showAudio = true;
         hyprland.autologinUser = "jesse";
+        nix.daemon.enableLimit = true;
         desktop = {
             autostart = [
                 "sleep 2 && zapzap --hideStart"
@@ -79,9 +80,7 @@
             dev.enable = true;
         };
 
-        programs = {
-            cli.nix.nix-daemon.enableLimit = true;
-        };
+
         hardware = {
             amdgpu.enable = true;
             openrgb.enable = true;
