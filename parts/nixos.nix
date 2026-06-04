@@ -7,7 +7,6 @@
     flake.nixosConfigurations = inputs.modulix.lib.mkHosts {
         inherit inputs;
         flakePath = "/home/jesse/.dotfiles";
-        modulesPath = ../modules;
         specialArgs = {
             hashedPassword = null;
             hostName = "nixos";
@@ -21,7 +20,7 @@
                 inputs = {inherit (inputs.nixpkgs) lib;};
             });
         sharedConfig = {
-            modules.bundles.shared.enable = true;
+            imports = [inputs.self.modules.nixos.default];
         };
     };
 }

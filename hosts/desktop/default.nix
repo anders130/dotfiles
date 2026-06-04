@@ -13,6 +13,7 @@
         caelestia
         amdgpu
         openrgb
+        dev
     ];
     my = {
         caelestia.shell.showAudio = true;
@@ -77,7 +78,6 @@
         };
     };
 
-    modules.bundles.dev.enable = true;
 
     hm = {
         imports = with inputs.self.modules.homeManager; [nextcloud zapzap];

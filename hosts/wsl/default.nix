@@ -1,9 +1,10 @@
 {
+    inputs,
     pkgs,
     username,
     ...
 }: {
-    modules.bundles.dev.enable = true;
+    imports = [inputs.self.modules.nixos.dev];
 
     wsl = {
         enable = true;
