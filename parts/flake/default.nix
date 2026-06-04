@@ -22,11 +22,6 @@
             url = "github:anders130/nvix";
             inputs.nix-lib.follows = "nix-lib";
         };
-        nixcord.url = "github:kaylorben/nixcord";
-        clock-mate = {
-            url = "github:clock-mate/extension";
-            inputs.nixpkgs.follows = "nixpkgs";
-        };
 
         # host specific
         disko.url = "github:nix-community/disko";
