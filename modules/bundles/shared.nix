@@ -2,12 +2,9 @@
     config,
     inputs,
     internalName,
-    lib,
     pkgs,
     ...
-}: let
-    inherit (lib) mkDefault;
-in {
+}: {
     imports = with inputs.self.modules.nixos; [
         default
         jesse
@@ -16,17 +13,12 @@ in {
         nix
         nh
         nvix
+        fish
     ];
     hm.imports = with inputs.self.modules.homeManager; [cli nix-index btop];
 
     environment = {
         systemPackages = [(pkgs.local.rebuild.override {nix = config.nix.package;})];
         variables.NIX_FLAKE_DEFAULT_HOST = internalName;
-    };
-
-    modules = {
-        programs.cli = {
-            fish.enable = mkDefault true;
-        };
     };
 }
