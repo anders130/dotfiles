@@ -1,7 +1,6 @@
 {inputs, ...}: {
     imports = [
         ../overlays
-        ../pkgs
         ../templates
     ];
     flake.nixosConfigurations = inputs.modulix.lib.mkHosts {

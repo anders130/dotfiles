@@ -153,7 +153,7 @@
     environment.systemPackages = with pkgs; [
         plex-desktop
         piper
-        (pkgs.local.send-media.override {
+        (inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.send-media.override {
             sshAddress = "admin@192.168.178.6";
         })
     ];
