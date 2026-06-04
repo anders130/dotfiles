@@ -7,9 +7,9 @@
 }: let
     inherit (lib) mkSymlink;
 in {
-    hm.imports = with inputs.self.modules.homeManager; [fastfetch atuin];
+    imports = [inputs.self.modules.nixos.starship];
+    hm.imports = with inputs.self.modules.homeManager; [fastfetch atuin starship];
     modules.programs.cli = {
-        starship.enable = true;
         yazi.enable = true;
     };
 
