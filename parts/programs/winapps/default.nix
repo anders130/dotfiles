@@ -3,9 +3,9 @@
     flake.modules.nixos.winapps = {
         config,
         pkgs,
-        username,
         ...
     }: let
+        username = "jesse";
         containerBackend = "docker";
         windowsDir = "/var/lib/windows";
     in {

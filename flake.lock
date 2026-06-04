@@ -524,27 +524,6 @@
         "type": "github"
       }
     },
-    "haumea": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1685133229,
-        "narHash": "sha256-FePm/Gi9PBSNwiDFq3N+DWdfxFq0UKsVVTJS3cQPn94=",
-        "owner": "nix-community",
-        "repo": "haumea",
-        "rev": "34dd58385092a23018748b50f9b23de6266dffc2",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-community",
-        "ref": "v0.2.2",
-        "repo": "haumea",
-        "type": "github"
-      }
-    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -1016,29 +995,6 @@
         "type": "github"
       }
     },
-    "modulix": {
-      "inputs": {
-        "haumea": [
-          "haumea"
-        ],
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1762267291,
-        "narHash": "sha256-jnzNR4iRE/o+hpr3sdODwPRkLLkR4IBNgqhdjCdWD/g=",
-        "owner": "anders130",
-        "repo": "modulix",
-        "rev": "92b33c0bfb5179657e9965e5ae102d145277f69f",
-        "type": "github"
-      },
-      "original": {
-        "owner": "anders130",
-        "repo": "modulix",
-        "type": "github"
-      }
-    },
     "nix-filter": {
       "locked": {
         "lastModified": 1731533336,
@@ -1399,7 +1355,6 @@
         "flake-parts": "flake-parts",
         "flake-utils": "flake-utils",
         "git-hooks": "git-hooks",
-        "haumea": "haumea",
         "home-manager": "home-manager",
         "hyprland": "hyprland",
         "hyprsplit": "hyprsplit",
@@ -1407,7 +1362,6 @@
         "import-tree": "import-tree",
         "lanzaboote": "lanzaboote",
         "lsfg-vk-flake": "lsfg-vk-flake",
-        "modulix": "modulix",
         "nix-index-database": "nix-index-database",
         "nix-lib": "nix-lib",
         "nixcord": "nixcord",

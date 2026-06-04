@@ -81,12 +81,10 @@
     flake.modules.nixos.default = {
         config,
         pkgs,
-        internalName,
         ...
     }: {
-        environment = {
-            systemPackages = [(inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.rebuild.override {nix = config.nix.package;})];
-            variables.NIX_FLAKE_DEFAULT_HOST = internalName;
-        };
+        environment.systemPackages = [
+            (inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.rebuild.override {nix = config.nix.package;})
+        ];
     };
 }

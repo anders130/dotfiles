@@ -27,5 +27,6 @@
             ];
             shellAliases.ask = "gemini";
         };
+        services.tailscale.enable = true;
     };
 }

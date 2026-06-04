@@ -1,8 +1,9 @@
 {inputs, ...}: {
-    flake.modules.nixos.virt-manager = {username, ...}: {
+    flake.modules.nixos.virt-manager = {config, ...}: {
         programs.virt-manager.enable = true;
         virtualisation.libvirtd.enable = true;
-        users.users.${username}.extraGroups = ["libvirtd" "tss"];
+        users.groups.libvirtd.members = config.users.normalUsers;
+        users.groups.tss.members = config.users.normalUsers;
         security.tpm2 = {
             enable = true;
             pkcs11.enable = true;

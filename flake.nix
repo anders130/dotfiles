@@ -58,10 +58,6 @@
                 nixpkgs.follows = "nixpkgs";
             };
         };
-        haumea = {
-            url = "github:nix-community/haumea/v0.2.2";
-            inputs.nixpkgs.follows = "nixpkgs";
-        };
         home-manager = {
             url = "github:nix-community/home-manager";
             inputs.nixpkgs.follows = "nixpkgs";
@@ -92,13 +88,6 @@
         lsfg-vk-flake = {
             url = "github:pabloaul/lsfg-vk-flake/main";
             inputs.nixpkgs.follows = "nixpkgs";
-        };
-        modulix = {
-            url = "github:anders130/modulix";
-            inputs = {
-                haumea.follows = "haumea";
-                nixpkgs.follows = "nixpkgs";
-            };
         };
         nix-index-database = {
             url = "github:nix-community/nix-index-database";
