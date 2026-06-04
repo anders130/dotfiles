@@ -89,6 +89,7 @@
 
     hm = {
         imports = with inputs.self.modules.homeManager; [nextcloud zapzap];
+        my.btop.rocmSupport = true;
         programs.nextcloud = {
             enable = true;
             instance-url = "https://cloud.gollub.dev";

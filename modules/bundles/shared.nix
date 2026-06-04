@@ -16,7 +16,7 @@ in {
         nix
         nh
     ];
-    hm.imports = with inputs.self.modules.homeManager; [cli nix-index];
+    hm.imports = with inputs.self.modules.homeManager; [cli nix-index btop];
 
     environment = {
         systemPackages = [(pkgs.local.rebuild.override {nix = config.nix.package;})];
@@ -26,7 +26,6 @@ in {
     modules = {
         programs.cli = {
             fish.enable = mkDefault true;
-            btop.enable = mkDefault true;
             nvix.enable = mkDefault true;
         };
     };
