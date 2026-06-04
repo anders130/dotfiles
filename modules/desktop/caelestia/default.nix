@@ -1,5 +1,5 @@
-{username, ...}: {
-    modules.desktop.hyprland-common.enable = true;
+{inputs, username, ...}: {
+    imports = [inputs.self.modules.nixos.hyprland];
     hm = {
         wayland.windowManager.hyprland.settings = {
             general = {

@@ -29,14 +29,6 @@
             inputs.nixpkgs.follows = "nixpkgs";
         };
         # gui
-        hyprland = {
-            url = "github:hyprwm/hyprland/v0.55.2";
-            inputs.pre-commit-hooks.follows = "";
-        };
-        hyprsplit = {
-            url = "github:shezdy/hyprsplit";
-            inputs.hyprland.follows = "hyprland";
-        };
         caelestia-cli = {
             url = "github:caelestia-dots/cli";
             inputs = {
