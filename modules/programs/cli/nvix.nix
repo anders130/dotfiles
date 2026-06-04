@@ -1,5 +1,6 @@
 {inputs, ...}: {
     flake-file.inputs.nvix.url = "github:anders130/nvix";
+    flake-follows.exclude = ["nvix.nixpkgs"];
     flake.modules.nixos.nvix = {
         config,
         lib,

@@ -1,6 +1,5 @@
 {inputs, ...}: {
     imports = [inputs.flake-follows.flakeModules.flake-follows];
-    flake-follows.exclude = ["nvix.nixpkgs"];
     flake-file.inputs = {
         flake-follows.url = "github:anders130/flake-follows";
         # deduplicate
