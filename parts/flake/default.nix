@@ -13,12 +13,6 @@
         haumea.url = "github:nix-community/haumea/v0.2.2";
         modulix.url = "github:anders130/modulix";
 
-        # programs
-        project = {
-            url = "github:anders130/project";
-            inputs.nixpkgs.follows = "nixpkgs";
-        };
-
         # host specific
         disko.url = "github:nix-community/disko";
         nixos-wsl.url = "github:nix-community/NixOS-WSL";
