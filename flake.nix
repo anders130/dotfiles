@@ -28,6 +28,7 @@
                 nixpkgs.follows = "nixpkgs";
             };
         };
+        den.url = "github:denful/den";
         disko = {
             url = "github:nix-community/disko";
             inputs.nixpkgs.follows = "nixpkgs";

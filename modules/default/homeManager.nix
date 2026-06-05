@@ -1,19 +1,26 @@
-{inputs, ...}: {
+{
+    den,
+    dots,
+    ...
+}: {
     flake-file.inputs.home-manager.url = "github:nix-community/home-manager";
-    flake.modules.nixos.default = {
-        imports = [inputs.home-manager.nixosModules.home-manager];
-        home-manager = {
+    dots.home-manager = {
+        includes = [den.batteries.host-aspects];
+        nixos.home-manager = {
             useGlobalPkgs = true;
             useUserPackages = true;
             backupFileExtension = "hm-backup";
-            sharedModules = [inputs.self.modules.homeManager.default];
+        };
+        homeManager = {
+            lib,
+            osConfig,
+            ...
+        }: {
+            home.stateVersion = lib.mkDefault osConfig.system.stateVersion;
         };
     };
-    flake.modules.homeManager.default = {
-        lib,
-        osConfig,
-        ...
-    }: {
-        home.stateVersion = lib.mkDefault osConfig.system.stateVersion;
+    den = {
+        schema.user.classes = ["homeManager"];
+        default.includes = [dots.home-manager];
     };
 }

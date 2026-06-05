@@ -1,24 +1,19 @@
 {
-    flake.modules.nixos.hyprland = {
-        config,
-        lib,
-        pkgs,
-        ...
-    }: {
-        options.my.hyprland.autologinUser = lib.mkOption {
-            type = lib.types.str;
-            default = "";
-        };
-        config = lib.mkIf (config.my.hyprland.autologinUser != "") {
-            programs.fish.loginShellInit = ''
-                if not set -q HYPRLAND_INSTANCE_SIGNATURE
-                    exec start-hyprland
-                end
-            '';
-            systemd.services."getty@tty1" = {
-                overrideStrategy = "asDropin";
-                serviceConfig.ExecStart = ["" "@${pkgs.util-linux}/sbin/agetty agetty --login-program ${config.services.getty.loginProgram} --noclear --autologin ${config.my.hyprland.autologinUser} %I $TERM"];
+    # per-host capability: launch hyprland on tty login (pair with
+    # den.batteries.tty-autologin for kiosk-style boot).
+    den.schema.host = {lib, ...}: {
+        options.hyprland.ttyAutostart = lib.mkEnableOption "launch hyprland on tty login";
+    };
+
+    # parametric on host; tolerant read so consumers without the schema default off
+    dots.desktop.provides.hyprland = {host, ...}: {
+        nixos = {lib, ...}:
+            lib.mkIf (host.hyprland.ttyAutostart or false) {
+                programs.fish.loginShellInit = ''
+                    if not set -q HYPRLAND_INSTANCE_SIGNATURE
+                        exec start-hyprland
+                    end
+                '';
             };
-        };
     };
 }

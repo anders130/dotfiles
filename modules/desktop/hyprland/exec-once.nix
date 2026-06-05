@@ -1,5 +1,9 @@
 {
-    flake.modules.homeManager.hyprland = {config, ...}: let
+    dots.desktop.provides.hyprland.homeManager = {
+        config,
+        osConfig,
+        ...
+    }: let
         mkCmd = cmd:
             if builtins.typeOf cmd == "string"
             then "app2unit -- ${cmd}"
@@ -19,6 +23,6 @@
             }${inner}";
     in {
         wayland.windowManager.hyprland.settings.exec-once =
-            map mkCmd config.my.desktop.autostart;
+            map mkCmd osConfig.my.desktop.autostart;
     };
 }

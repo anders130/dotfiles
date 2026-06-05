@@ -1,5 +1,5 @@
 {inputs, ...}: {
-    flake.modules.nixos.workstation = {
+    den.aspects.workstation.nixos = {
         imports = [inputs.disko.nixosModules.disko];
         fileSystems."/home".neededForBoot = true; # needed for sops secrets getting created on boot
         disko.devices.disk.nixos = {

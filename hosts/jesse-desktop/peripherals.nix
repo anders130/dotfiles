@@ -1,5 +1,5 @@
 {
-    flake.modules.nixos.jesse-desktop = {
+    den.aspects.jesse-desktop.nixos = {
         config,
         pkgs,
         ...

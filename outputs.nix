@@ -1,10 +1,4 @@
 inputs:
-inputs.nix-lib.lib.mkFlakeFromTree {
-    inherit inputs;
-    root = ./.;
-    ignore = [
-        "flake.nix"
-        "outputs.nix"
-        "templates"
-    ];
-}
+inputs.flake-parts.lib.mkFlake {inherit inputs;} (
+    inputs.import-tree [./modules ./hosts]
+)

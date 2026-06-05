@@ -1,5 +1,5 @@
 {
-    flake.modules.nixos.displaylink = {
+    den.aspects.displaylink.nixos = {
         config,
         lib,
         pkgs,

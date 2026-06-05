@@ -1,5 +1,5 @@
 {inputs, ...}: {
-    flake.modules.nixos.workstation = {
+    den.aspects.workstation.nixos = {
         lib,
         pkgs,
         ...

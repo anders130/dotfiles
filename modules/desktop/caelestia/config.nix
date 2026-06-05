@@ -1,5 +1,5 @@
 {inputs, ...}: {
-    flake.modules.homeManager.caelestia = {
+    dots.desktop.provides.caelestia.homeManager = {
         config,
         lib,
         pkgs,
@@ -7,6 +7,7 @@
     }: let
         inherit (lib) mkOption types;
     in {
+        imports = [inputs.caelestia-shell.homeManagerModules.default];
         options.my.caelestia = {
             status = {
                 showNetwork = mkOption {
@@ -27,7 +28,6 @@
                 };
             };
         };
-        imports = [inputs.caelestia-shell.homeManagerModules.default];
         config.programs.caelestia = {
             enable = true;
             package = pkgs.caelestia-shell;

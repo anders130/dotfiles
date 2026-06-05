@@ -1,5 +1,5 @@
 {
-    flake.modules.nixos.openrgb = {
+    den.aspects.openrgb.nixos = {
         config,
         lib,
         ...

@@ -3,7 +3,7 @@
         url = "github:shezdy/hyprsplit";
         inputs.hyprland.follows = "hyprland";
     };
-    flake.modules.homeManager.hyprland = {pkgs, ...}: {
+    dots.desktop.provides.hyprland.homeManager = {pkgs, ...}: {
         wayland.windowManager.hyprland = {
             plugins = [pkgs.hyprlandPlugins.hyprsplit];
             extraConfig = ''

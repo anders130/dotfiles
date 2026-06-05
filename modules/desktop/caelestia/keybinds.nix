@@ -1,23 +1,23 @@
 {
-    flake.modules.homeManager.caelestia = {
+    dots.desktop.provides.caelestia.homeManager = {lib, ...}: {
+        my.hyprland.binds = lib.mapAttrs (_: lib.mkDefault) {
+            "SUPER, SPACE" = "global, caelestia:launcher";
+            "SUPER, BACKSPACE" = "global, caelestia:lock"; # lock screen
+            "SUPER SHIFT, S" = "global, caelestia:screenshot";
+            "CTRL SUPER, R" = "exec, caelestia record";
+            "ALT SUPER, R" = "exec, caelestia record -r";
+            "SUPER, N" = "exec, caelestia shell drawers toggle sidebar";
+        };
         wayland.windowManager.hyprland.settings = {
-            bind = [
-                "SUPER, SPACE, global, caelestia:launcher"
-                "SUPER, BACKSPACE, global, caelestia:lock" # lock screen
-                "SUPER+SHIFT, S, global, caelestia:screenshot"
-                "CTRL+SUPER, R, exec, caelestia record"
-                "ALT+SUPER, R, exec, caelestia record -r"
-                "SUPER, N, exec, caelestia shell drawers toggle sidebar"
-            ];
             bindr = [
-                "CTRL+SUPER+SHIFT, R, exec, systemctl --user restart caelestia.service"
+                "CTRL SUPER SHIFT, R, exec, systemctl --user restart caelestia.service"
             ];
             bindl = [
                 ", XF86MonBrightnessUp, global, caelestia:brightnessUp"
                 ", XF86MonBrightnessDown, global, caelestia:brightnessDown"
                 # restore lock
-                "CTRL+SUPER, BACKSPACE, exec, caelestia shell -d"
-                "CTRL+SUPER, BACKSPACE, global, caelestia:lock"
+                "CTRL SUPER, BACKSPACE, exec, caelestia shell -d"
+                "CTRL SUPER, BACKSPACE, global, caelestia:lock"
             ];
             bindle = [
                 ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"

@@ -1,5 +1,5 @@
 {
-    flake.modules.nixos.workstation = {
+    den.aspects.workstation.nixos = {
         config,
         lib,
         ...

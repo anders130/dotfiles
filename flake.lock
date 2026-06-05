@@ -226,6 +226,21 @@
         "type": "github"
       }
     },
+    "den": {
+      "locked": {
+        "lastModified": 1780630151,
+        "narHash": "sha256-9QM8/WafzPRVLRFNSPiPLMkVxj0gNZvxSL4SjIX0Ejk=",
+        "owner": "denful",
+        "repo": "den",
+        "rev": "33bbc9e755da0c96bfd51fd447e60ca82037f4ae",
+        "type": "github"
+      },
+      "original": {
+        "owner": "denful",
+        "repo": "den",
+        "type": "github"
+      }
+    },
     "disko": {
       "inputs": {
         "nixpkgs": [
@@ -1346,6 +1361,7 @@
         "caelestia-shell": "caelestia-shell",
         "catppuccin-qutebrowser": "catppuccin-qutebrowser",
         "clock-mate": "clock-mate",
+        "den": "den",
         "disko": "disko",
         "files": "files",
         "firefox-addons": "firefox-addons",

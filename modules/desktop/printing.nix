@@ -1,5 +1,5 @@
 {
-    flake.modules.nixos.desktop = {
+    den.aspects.desktop.nixos = {
         config,
         pkgs,
         ...

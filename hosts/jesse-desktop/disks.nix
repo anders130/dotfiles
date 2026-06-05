@@ -1,5 +1,5 @@
 {inputs, ...}: {
-    flake.modules.nixos.jesse-desktop = {
+    den.aspects.jesse-desktop.nixos = {
         imports = [inputs.disko.nixosModules.disko];
         disko.devices.disk = {
             nixos = {

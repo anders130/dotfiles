@@ -1,5 +1,5 @@
 {
-    flake.modules.nixos.jesse-desktop = {lib, ...}: let
+    den.aspects.jesse-desktop.nixos = {lib, ...}: let
         username = "jesse";
     in {
         boot.supportedFilesystems = [

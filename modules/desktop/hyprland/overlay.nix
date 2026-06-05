@@ -1,12 +1,10 @@
-{inputs, ...}: {
-    flake.modules.nixos.hyprland = {
+{
+    dots.desktop.provides.hyprland.nixos = {inputs', ...}: {
         nixpkgs.overlays = [
-            (final: prev: let
-                inherit (prev.stdenv.hostPlatform) system;
-            in {
-                inherit (inputs.hyprland.packages.${system}) hyprland;
+            (_: _: {
+                inherit (inputs'.hyprland.packages) hyprland;
                 hyprlandPlugins = {
-                    inherit (inputs.hyprsplit.packages.${system}) hyprsplit;
+                    inherit (inputs'.hyprsplit.packages) hyprsplit;
                 };
             })
         ];

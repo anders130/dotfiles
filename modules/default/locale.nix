@@ -1,5 +1,5 @@
 {
-    flake.modules.nixos.default = {
+    den.default.nixos = {
         time.timeZone = "Europe/Berlin";
         i18n = {
             defaultLocale = "en_US.UTF-8";

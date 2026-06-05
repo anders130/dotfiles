@@ -1,5 +1,5 @@
 {
-    flake.modules.homeManager.hyprland = {
+    dots.desktop.provides.hyprland.homeManager = {
         wayland.windowManager.hyprland.settings = {
             general = {
                 border_size = 3;

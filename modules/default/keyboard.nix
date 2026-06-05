@@ -1,5 +1,5 @@
-{
-    flake.modules.nixos.default = {
+{dots, ...}: {
+    dots.keyboard.nixos = {
         config,
         lib,
         ...
@@ -24,4 +24,5 @@
             console.keyMap = head allLayouts;
         };
     };
+    den.default.includes = [dots.keyboard];
 }

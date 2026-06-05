@@ -1,5 +1,5 @@
 {
-    flake.modules.homeManager.minecraft = {
+    dots.gaming.provides.minecraft.homeManager = {
         lib,
         pkgs,
         ...

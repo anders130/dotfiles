@@ -1,5 +1,8 @@
 {
-    flake.modules.homeManager.desktop = {
+    # WM-agnostic: the default-programs option + xdg mime associations.
+    # window managers (hyprland, future niri) include dots.desktop and bind
+    # these programs themselves.
+    dots.desktop.provides.default-programs.homeManager = {
         config,
         lib,
         ...

@@ -1,4 +1,4 @@
-{inputs, ...}: {
+{
     perSystem = {pkgs, ...}: {
         packages.rebuild = pkgs.callPackage ({
             lib,
@@ -78,13 +78,20 @@
                 };
             }) {};
     };
-    flake.modules.nixos.default = {
+    den.default.nixos = {
         config,
-        pkgs,
+        self',
         ...
     }: {
         environment.systemPackages = [
-            (inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.rebuild.override {nix = config.nix.package;})
+            (self'.packages.rebuild.override {nix = config.nix.package;})
         ];
     };
+
+    den.schema.host.includes = [
+        ({host, ...}: {
+            name = "nix-flake-default-host";
+            nixos.environment.sessionVariables.NIX_FLAKE_DEFAULT_HOST = host.name;
+        })
+    ];
 }

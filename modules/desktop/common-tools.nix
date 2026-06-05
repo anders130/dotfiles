@@ -1,10 +1,10 @@
 {
-    flake.modules.nixos.desktop = {pkgs, ...}: {
+    den.aspects.desktop.nixos = {pkgs, ...}: {
         services.xserver.excludePackages = [pkgs.xterm];
         programs.noisetorch.enable = true;
         services.gnome.gnome-keyring.enable = true;
     };
-    flake.modules.homeManager.desktop = {pkgs, ...}: {
+    den.aspects.desktop.homeManager = {pkgs, ...}: {
         home.packages = with pkgs; [
             obsidian
             insomnia # postman-alternative

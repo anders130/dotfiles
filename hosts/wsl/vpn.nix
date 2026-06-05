@@ -1,5 +1,5 @@
 {
-    flake.modules.nixos.wsl = {pkgs, ...}: {
+    den.aspects.wsl.nixos = {pkgs, ...}: {
         environment.systemPackages = [pkgs.wsl-vpnkit];
         environment.shellAliases = {
             vpn-start = "sudo systemctl start wsl-vpnkit";

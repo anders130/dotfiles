@@ -1,5 +1,5 @@
 {
-    flake.modules.nixos.workstation = {config, ...}: {
+    den.aspects.workstation.nixos = {config, ...}: {
         sops.secrets.wg-quick-wg0 = {
             sopsFile = ./wg0.conf;
             format = "binary";

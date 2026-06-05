@@ -1,5 +1,5 @@
 {
-    flake.modules.nixos.steam = {pkgs, ...}: {
+    dots.gaming.provides.steam.nixos = {pkgs, ...}: {
         programs.steam = {
             enable = true;
             remotePlay.openFirewall = true;

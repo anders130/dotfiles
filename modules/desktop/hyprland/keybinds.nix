@@ -1,70 +1,71 @@
 {
-    flake.modules.homeManager.hyprland = {config, ...}: {
-        wayland.windowManager.hyprland.settings = {
-            input = with config.home.keyboard; {
-                kb_layout = layout;
-                kb_variant = variant;
-                kb_model = "";
-                kb_options = options;
-                kb_rules = "";
-                numlock_by_default = true;
-                repeat_delay = 250;
-                repeat_rate = 25;
-                follow_mouse = 1;
-                mouse_refocus = 0;
-                touchpad.natural_scroll = true;
-                sensitivity = 0;
+    dots.desktop.provides.hyprland.homeManager = {
+        config,
+        lib,
+        ...
+    }: {
+        # keyed by "MODS, KEY" -> "dispatcher, args" so consumers override or
+        # extend individual binds instead of appending a conflicting list.
+        # set a key to null to remove a preset bind.
+        options.my.hyprland.binds = lib.mkOption {
+            type = lib.types.attrsOf (lib.types.nullOr lib.types.str);
+            default = {};
+        };
+
+        config = {
+            wayland.windowManager.hyprland.settings = {
+                input = with config.home.keyboard; {
+                    kb_layout = layout;
+                    kb_variant = variant;
+                    kb_model = "";
+                    kb_options = options;
+                    kb_rules = "";
+                    numlock_by_default = true;
+                    repeat_delay = 250;
+                    repeat_rate = 25;
+                    follow_mouse = 1;
+                    mouse_refocus = 0;
+                    touchpad.natural_scroll = true;
+                    sensitivity = 0;
+                };
+                bind = lib.mapAttrsToList (combo: action: "${combo}, ${action}") (
+                    lib.filterAttrs (_: action: action != null) config.my.hyprland.binds
+                );
+                bindm = [
+                    # Move/resize windows with mainMod + LMB/RMB and dragging
+                    "SUPER, mouse:272, movewindow"
+                    "SUPER, mouse:273, resizewindow"
+                ];
             };
-            bind = let
-                inherit (config.my.desktop.defaultPrograms) terminal fileManager browser;
-                asString = builtins.concatStringsSep " ";
-            in
-                [
-                    # essential keybinds
-                    "SUPER, C, killactive"
-                    "SUPER, V, togglefloating"
-                    "SUPER, F, fullscreen"
-                    "SUPER, S, layoutmsg, togglesplit"
-                    "SUPER, P, pin"
-                    # move focus with vim-like keybinds
-                    "SUPER, h, movefocus, l"
-                    "SUPER, j, movefocus, d"
-                    "SUPER, k, movefocus, u"
-                    "SUPER, l, movefocus, r"
-                    # move clients with vim-like keybinds
-                    "SUPER SHIFT, h, movewindow, l"
-                    "SUPER SHIFT, j, movewindow, d"
-                    "SUPER SHIFT, k, movewindow, u"
-                    "SUPER SHIFT, l, movewindow, r"
-                    # programs
-                    "SUPER, return, exec, ${asString terminal}"
-                    "SUPER, E, exec, ${asString fileManager}"
-                    "SUPER, B, exec, ${asString browser}"
-                    "SUPER, Q, exec, qutebrowser"
-                    "SUPER ALT, C, exec, hyprpicker -a"
-                    "SUPER ALT, C, exec, hyprpicker -a" # color picker
-                ]
-                ++ (
-                    # workspaces
+
+            # default binds (mkDefault so consumers can override per-key).
+            # only generic tiling-WM mechanics + workspaces; opinionated choices
+            # (which key launches what, movement style, personal apps, autostart)
+            # are left to the consumer / my own desktop layer.
+            my.hyprland.binds = let
+                workspaces =
                     builtins.genList (x: toString (x + 1)) 9
                     |> map (i: [
-                        "SUPER, ${i}, split:workspace, ${i}"
-                        "SUPER Shift, ${i}, split:movetoworkspace, ${i}"
+                        {
+                            name = "SUPER, ${i}";
+                            value = "split:workspace, ${i}";
+                        }
+                        {
+                            name = "SUPER Shift, ${i}";
+                            value = "split:movetoworkspace, ${i}";
+                        }
                     ])
                     |> builtins.concatLists
-                )
-                ++ [
-                    # special workspaces
-                    "SUPER, D, togglespecialworkspace, magic"
-                    "SUPER SHIFT, D, movetoworkspace, special:magic"
-                    "SUPER, G, togglespecialworkspace, other"
-                    "SUPER SHIFT, G, movetoworkspace, special:other"
-                ];
-            bindm = [
-                # Move/resize windows with mainMod + LMB/RMB and dragging
-                "SUPER, mouse:272, movewindow"
-                "SUPER, mouse:273, resizewindow"
-            ];
+                    |> builtins.listToAttrs;
+            in
+                lib.mapAttrs (_: lib.mkDefault) ({
+                    "SUPER, C" = "killactive";
+                    "SUPER, V" = "togglefloating";
+                    "SUPER, F" = "fullscreen";
+                    "SUPER, S" = "layoutmsg, togglesplit";
+                    "SUPER, P" = "pin";
+                }
+                // workspaces);
         };
     };
 }

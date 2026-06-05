@@ -1,5 +1,5 @@
 {
-    flake.modules.nixos.amdgpu = {lib, ...}: {
+    den.aspects.amdgpu.nixos = {lib, ...}: {
         hardware.graphics = {
             enable = lib.mkDefault true;
             enable32Bit = lib.mkDefault true;

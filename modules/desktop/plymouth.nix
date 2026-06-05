@@ -1,5 +1,5 @@
 {
-    flake.modules.nixos.desktop = {pkgs, ...}: {
+    den.aspects.desktop.nixos = {pkgs, ...}: {
         stylix.targets.plymouth.enable = false;
         nixpkgs.overlays = let
             overlay = _: prev: {

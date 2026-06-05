@@ -1,5 +1,5 @@
 {
-    flake.modules.nixos.jesse-desktop = {pkgs, ...}: {
+    den.aspects.jesse-desktop.nixos = {pkgs, ...}: {
         boot = {
             binfmt.emulatedSystems = ["aarch64-linux"];
             loader = {

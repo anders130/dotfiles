@@ -1,5 +1,5 @@
 {
-    flake.modules.nixos.hyprland = {pkgs, ...}: {
+    dots.desktop.provides.hyprland.nixos = {pkgs, ...}: {
         systemd.user.services.polkit-gnome-authentication-agent-1 = {
             description = "polkit-gnome-authentication-agent-1";
             wantedBy = ["graphical-session.target"];

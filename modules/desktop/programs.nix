@@ -1,20 +1,25 @@
-{inputs, ...}: {
-    flake.modules.nixos.desktop = {...}: {
-        imports = with inputs.self.modules.nixos; [
-            bitwarden
-            discord
-            nautilus
-            zen-browser
-            teams
-        ];
-        home-manager.sharedModules = with inputs.self.modules.homeManager; [
-            element
-            kitty
-            qutebrowser
-            signal
-            youtube-music
-        ];
-        my.desktop.autostart = [
+{
+    den,
+    dots,
+    ...
+}: {
+    den.aspects.desktop = {
+        # explicit dep: defaultPrograms (binds) + autostart/firstLoginHook options
+        includes =
+            [dots.desktop.provides.default-programs]
+            ++ (with den.aspects; [
+                bitwarden
+                discord
+                nautilus
+                zen-browser
+                teams
+                element
+                kitty
+                qutebrowser
+                signal
+                youtube-music
+            ]);
+        nixos.my.desktop.autostart = [
             "signal-desktop --start-in-tray"
             {
                 delay = 1.0;

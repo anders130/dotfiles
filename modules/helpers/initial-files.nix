@@ -1,5 +1,5 @@
 {
-    flake.modules.homeManager.initial-files = {
+    den.aspects.initial-files.homeManager = {
         config,
         lib,
         ...

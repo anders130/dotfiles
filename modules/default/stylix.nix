@@ -1,6 +1,6 @@
 {inputs, ...}: {
     flake-file.inputs.stylix.url = "github:danth/stylix";
-    flake.modules.nixos.default = {pkgs, ...}: {
+    den.default.nixos = {pkgs, ...}: {
         imports = [inputs.stylix.nixosModules.stylix];
         stylix = {
             enable = true;
@@ -13,7 +13,7 @@
             };
         };
     };
-    flake.modules.homeManager.default = {lib, ...}: {
+    den.default.homeManager = {lib, ...}: {
         stylix = {
             enableReleaseChecks = false;
             targets.gtk.enable = lib.mkDefault false;

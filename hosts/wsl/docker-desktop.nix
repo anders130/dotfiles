@@ -1,5 +1,5 @@
 {
-    flake.modules.nixos.wsl = {
+    den.aspects.wsl.nixos = {
         config,
         lib,
         pkgs,
