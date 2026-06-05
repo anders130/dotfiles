@@ -10,20 +10,62 @@
 
         mkScale = prefix: color: let
             steps = [
-                {n = "100"; v = mk c.base00;}
-                {n = "200"; v = mk c.base00;}
-                {n = "300"; v = mk c.base01;}
-                {n = "400"; v = mk c.base02;}
-                {n = "500"; v = mk c.base03;}
-                {n = "600"; v = mk c.base04;}
-                {n = "700"; v = mk c.base04;}
-                {n = "800"; v = mk c.base04;}
-                {n = "900"; v = mk color;}
-                {n = "1000"; v = mk color;}
-                {n = "1100"; v = mk color;}
-                {n = "1200"; v = mk color;}
-                {n = "1300"; v = mk color;}
-                {n = "1400"; v = mk color;}
+                {
+                    n = "100";
+                    v = mk c.base00;
+                }
+                {
+                    n = "200";
+                    v = mk c.base00;
+                }
+                {
+                    n = "300";
+                    v = mk c.base01;
+                }
+                {
+                    n = "400";
+                    v = mk c.base02;
+                }
+                {
+                    n = "500";
+                    v = mk c.base03;
+                }
+                {
+                    n = "600";
+                    v = mk c.base04;
+                }
+                {
+                    n = "700";
+                    v = mk c.base04;
+                }
+                {
+                    n = "800";
+                    v = mk c.base04;
+                }
+                {
+                    n = "900";
+                    v = mk color;
+                }
+                {
+                    n = "1000";
+                    v = mk color;
+                }
+                {
+                    n = "1100";
+                    v = mk color;
+                }
+                {
+                    n = "1200";
+                    v = mk color;
+                }
+                {
+                    n = "1300";
+                    v = mk color;
+                }
+                {
+                    n = "1400";
+                    v = mk color;
+                }
             ];
         in
             lib.listToAttrs (map (s: {

@@ -1,8 +1,4 @@
-{
-    inputs,
-    lib,
-    ...
-}: let
+{inputs, ...}: let
     treefmtConfig = {
         projectRootFile = "flake.nix";
         programs.alejandra = {
@@ -29,8 +25,6 @@ in {
             pass_filenames = false;
             package = config.formatter;
         };
-        treefmt = lib.recursiveUpdate treefmtConfig {
-            programs.alejandra.includes = ["parts/*.nix" "parts/**/*.nix"];
-        };
+        treefmt = treefmtConfig;
     };
 }
