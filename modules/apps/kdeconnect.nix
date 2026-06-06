@@ -1,9 +1,20 @@
 {
-    den.aspects.kdeconnect.nixos = {pkgs, ...}: {
-        programs.kdeconnect = {
-            enable = true;
-            package = pkgs.kdePackages.kdeconnect-kde;
+    den.aspects.kdeconnect = {
+        homeManager = {pkgs, ...}: {
+            services.kdeconnect = {
+                enable = true;
+                package = pkgs.kdePackages.kdeconnect-kde;
+                indicator = true;
+            };
         };
-        my.desktop.autostart = ["kdeconnect-indicator"];
+        nixos.networking.firewall = rec {
+            allowedTCPPortRanges = [
+                {
+                    from = 1714;
+                    to = 1764;
+                }
+            ];
+            allowedUDPPortRanges = allowedTCPPortRanges;
+        };
     };
 }
