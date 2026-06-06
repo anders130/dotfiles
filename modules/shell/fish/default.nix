@@ -35,7 +35,6 @@
                 "fish/extraConfig.fish".source = ./config.fish;
                 "fish/custom_functions".source = ./functions;
                 "fish/themes/fish.theme".source = ./fish.theme;
-                "fish/conf.d/direnv_hook.fish".source = ./direnv_hook.fish;
             };
         };
     };
