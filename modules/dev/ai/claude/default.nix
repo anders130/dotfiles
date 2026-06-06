@@ -32,9 +32,10 @@
             };
         };
         config = {
-            # base profile; other aspects (e.g. work) add their own via the port
-            my.programs.claude.profiles.personal = ".claude-personal";
-            my.programs.claude.settings.includeCoAuthoredBy = false;
+            my.programs.claude = {
+                profiles.personal = ".claude-personal";
+                settings.includeCoAuthoredBy = false;
+            };
             home = {
                 shellAliases = let
                     claude = "${pkgs.claude-code}/bin/claude";
