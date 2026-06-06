@@ -6,23 +6,12 @@
     flake-file.inputs = {
         zen-browser.url = "github:0xc000022070/zen-browser-flake";
         firefox-addons.url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
-        clock-mate.url = "github:clock-mate/extension";
     };
 
     den.aspects.zen-browser = {
         includes = [den.aspects.browser];
-        nixos = {inputs', ...}: {
-            nixpkgs.overlays = [
-                inputs.firefox-addons.outputs.overlays.default
-                (_: prev: {firefox-addons = prev.firefox-addons // {clock-mate = inputs'.clock-mate.packages.default;};})
-            ];
-        };
+        nixos.nixpkgs.overlays = [inputs.firefox-addons.outputs.overlays.default];
         homeManager = {
-            config,
-            lib,
-            pkgs,
-            ...
-        }: {
             imports = [inputs.zen-browser.homeModules.beta];
             stylix.targets.zen-browser = {
                 enableCss = false;
@@ -49,53 +38,6 @@
                         Cryptomining = true;
                         Fingerprinting = true;
                     };
-                };
-                profiles = rec {
-                    default = {
-                        extensions.packages = with pkgs.firefox-addons; [
-                            bitwarden
-                            darkreader
-                            github-file-icons
-                            istilldontcareaboutcookies
-                            return-youtube-dislikes
-                            stylus
-                            ublock-origin
-                            video-downloadhelper
-                            vimium
-                            wappalyzer
-                        ];
-                        settings = {
-                            "browser.translations.neverTranslateLanguages" = "de,en";
-                            "signon.showAutoCompleteFooter" = false; # turn off integrated password manager
-                            "widget.use-xdg-desktop-portal.file-picker" = 1;
-                            "browser.tabs.allow_transparent_browser" = true;
-
-                            # stylix
-                            "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
-                        };
-                        keyboardShortcuts = [
-                            {
-                                # interferes with bitwarden autofill ctrl+shift+l
-                                id = "key_inspector";
-                                disabled = true;
-                            }
-                        ];
-                        keyboardShortcutsVersion = lib.mkDefault 19;
-                        userChrome = import ./_userChrome.nix config.lib.stylix.colors;
-                        userContent = import ./_userContent.nix config.lib.stylix.colors;
-                    };
-                    work = lib.mkMerge [
-                        default
-                        {
-                            id = 1;
-                            isDefault = false;
-                            extensions.packages =
-                                default.extensions.packages
-                                ++ [
-                                    pkgs.firefox-addons.clock-mate
-                                ];
-                        }
-                    ];
                 };
             };
             wayland.windowManager.hyprland.settings.windowrule = [
