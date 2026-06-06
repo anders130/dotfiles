@@ -5,14 +5,20 @@
         pkgs,
         ...
     }: let
-        waitForShell = pkgs.writeShellScript "wait-for-caelestia-shell" ''
+        marker = "$XDG_RUNTIME_DIR/caelestia-first-lock-done";
+        waitForShell = ''
             while ! hyprctl layers | grep 'namespace: caelestia-background' | grep -qv 'pid: -1'; do
                 sleep 0.1
             done
         '';
+        lockOnStart = pkgs.writeShellScript "caelestia-lock-on-start" ''
+            ${waitForShell}
+            sleep 0.4
+            hyprctl dispatch global caelestia:lock
+            touch "${marker}"
+        '';
         waitForFirstLogin = pkgs.writeShellScript "wait-for-first-login" ''
-            while [ ! -f /tmp/hyprland/first_lock_done ]; do sleep 0.1; done
-            rm -f /tmp/hyprland/first_lock_done
+            while [ ! -f "${marker}" ]; do sleep 0.1; done
             while true; do
                 output=$(caelestia shell lock isLocked) && [ "$output" = "false" ] && break
                 sleep 0.5
@@ -26,9 +32,7 @@
         };
         config = lib.mkIf config.my.caelestia.lockOnStart {
             my.desktop.firstLoginHook = waitForFirstLogin;
-            wayland.windowManager.hyprland.settings.exec-once = [
-                "${waitForShell} && sleep 0.4 && hyprctl dispatch global caelestia:lock && mkdir -p /tmp/hyprland && touch /tmp/hyprland/first_lock_done"
-            ];
+            wayland.windowManager.hyprland.settings.exec-once = ["${lockOnStart}"];
         };
     };
 }
