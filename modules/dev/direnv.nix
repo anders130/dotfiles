@@ -6,6 +6,7 @@
     perSystem.files.file.".envrc".text = lib.concatLines [
         "dotenv_if_exists"
         "use flake"
+        "export NH_FLAKE=$PWD"
     ];
     den.aspects.direnv.homeManager = {
         config,

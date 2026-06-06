@@ -49,6 +49,7 @@
                 };
                 extraOptions = lib.concatMapStrings (u: "!include /home/${u}/.nix.conf\n") config.users.normalUsers;
             };
+            programs.nh.enable = true;
             systemd = mkIf config.my.nix.daemon.enableLimit {
                 slices."nix-daemon".sliceConfig = {
                     ManagedOOMMemoryPressure = "kill";

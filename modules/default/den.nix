@@ -7,7 +7,6 @@
         sops
         ssh
         nix
-        nh
         nvix
         fish
         nix-index
