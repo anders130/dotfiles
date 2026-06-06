@@ -1,6 +1,4 @@
 {
-    # global aspect (den.default) — stays a my.* option (parametric host reads
-    # only work for host-included aspects, not den.default-global ones).
     den.aspects.btop.homeManager = {
         config,
         lib,

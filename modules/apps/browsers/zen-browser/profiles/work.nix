@@ -1,7 +1,6 @@
 {den, ...}: {
     flake-file.inputs.clock-mate.url = "github:clock-mate/extension";
     den.aspects.zen-browser.provides.work = {
-        # the work profile is built by base zen-browser from my.zen.profiles
         includes = [den.aspects.zen-browser];
         homeManager = {
             inputs',

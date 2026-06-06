@@ -1,8 +1,6 @@
 {den, ...}: {
     den.aspects.jesse = {
-        # admin user: adds wheel + networkmanager groups
         includes = [den.batteries.primary-user];
-
         homeManager = {
             home.keyboard = {
                 layout = "us";
