@@ -22,10 +22,7 @@
             };
             profiles = mkOption {
                 type = types.attrsOf types.str;
-                default = {
-                    personal = ".claude-personal";
-                    work = ".claude-work";
-                };
+                default = {};
                 description = "Claude profile name to config directory (relative to ~) mappings";
             };
             settings = mkOption {
@@ -35,6 +32,8 @@
             };
         };
         config = {
+            # base profile; other aspects (e.g. work) add their own via the port
+            my.programs.claude.profiles.personal = ".claude-personal";
             my.programs.claude.settings.includeCoAuthoredBy = false;
             home = {
                 shellAliases = let
