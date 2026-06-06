@@ -6,7 +6,6 @@
         nixpkgs.url = "nixpkgs/nixos-unstable";
         flake-file.url = "github:denful/flake-file";
         nix-lib.url = "github:anders130/nix-lib";
-        treefmt-nix.url = "github:anders130/treefmt-nix";
 
         # host specific
         disko.url = "github:nix-community/disko";
