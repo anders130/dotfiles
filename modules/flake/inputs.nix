@@ -11,4 +11,18 @@
         disko.url = "github:nix-community/disko";
         lanzaboote.url = "github:nix-community/lanzaboote";
     };
+
+    perSystem = {
+        config,
+        lib,
+        ...
+    }: {
+        pre-commit.settings.hooks.write-flake = {
+            enable = true;
+            name = "write-flake";
+            entry = lib.getExe config.packages.write-flake;
+            always_run = true;
+            pass_filenames = false;
+        };
+    };
 }
