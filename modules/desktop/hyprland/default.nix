@@ -10,7 +10,7 @@
     flake-follows.exclude = ["hyprland.nixpkgs"];
 
     dots.desktop.provides.hyprland = {
-        includes = [dots.desktop.provides.default-programs];
+        includes = with dots.desktop.provides; [mime autostart];
         nixos = {pkgs, ...}: {
             programs.hyprland = {
                 enable = true;
@@ -53,7 +53,6 @@
                         initial_workspace_tracking = 0;
                     };
                     exec-once = [
-                        "gnome-keyring-daemon --start --components=secrets,pkcs11,ssh"
                         "hyprctl setcursor ${config.stylix.cursor.package.name} ${toString config.stylix.cursor.size}"
                     ];
                 };

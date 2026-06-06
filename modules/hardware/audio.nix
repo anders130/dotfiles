@@ -1,5 +1,5 @@
 {
-    den.aspects.desktop.nixos = {
+    den.aspects.audio.nixos = {
         config,
         lib,
         pkgs,
@@ -19,7 +19,7 @@
             splitString
             types
             ;
-        cfg = config.my.desktop.audio;
+        cfg = config.my.audio;
         devicesList = mapAttrsToList (name: device: {
             inherit name;
             inherit (device) type match profile;
@@ -59,7 +59,7 @@
         alsaDevices = filter (d: d.type == "alsa") devicesList;
         bluezDevices = filter (d: d.type == "bluez5") devicesList;
     in {
-        options.my.desktop.audio = {
+        options.my.audio = {
             devices = mkOption {
                 type = types.attrsOf (types.submodule {
                     options = {

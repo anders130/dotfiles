@@ -8,7 +8,7 @@
         services.ratbagd.enable = true;
         environment.systemPackages = [pkgs.piper];
         # audio
-        my.desktop.audio.devices = {
+        my.audio.devices = {
             "Headset" = {
                 match = {
                     "device.api" = "alsa";

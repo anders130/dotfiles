@@ -1,8 +1,6 @@
 {
-    # my personal hyprland binds, applied only to my hosts (via the desktop
-    # aspect) — kept out of the shared dots.desktop.provides.hyprland preset.
     den.aspects.desktop.homeManager = {config, ...}: let
-        inherit (config.my.desktop.defaultPrograms) terminal fileManager browser;
+        inherit (config.my.desktop.mime) terminal fileManager browser;
         asString = builtins.concatStringsSep " ";
     in {
         my.hyprland.binds = {

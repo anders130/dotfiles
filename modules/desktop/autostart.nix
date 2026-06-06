@@ -1,8 +1,5 @@
 {
-    # WM-agnostic autostart contract: the autostart list + firstLoginHook
-    # options. WMs include dots.desktop.provides.default-programs and consume
-    # them; the desktop layer sets them.
-    dots.desktop.provides.default-programs = {
+    dots.desktop.provides.autostart = {
         nixos = {lib, ...}: let
             inherit (lib) mkOption types;
         in {
@@ -35,7 +32,6 @@
                 description = "List of commands to execute on startup";
             };
         };
-
         homeManager = {lib, ...}: {
             options.my.desktop.firstLoginHook = lib.mkOption {
                 type = lib.types.nullOr lib.types.package;
@@ -43,19 +39,5 @@
                 description = "Script that exits 0 when the first login has completed";
             };
         };
-    };
-
-    # personal: xrandr autostart helper (uses my.desktop.mainMonitor)
-    den.aspects.desktop.nixos = {
-        config,
-        pkgs,
-        ...
-    }: {
-        environment.systemPackages = [
-            (pkgs.writeShellScriptBin "autostart" ''
-                # hardware stuff
-                xrandr --output ${config.my.desktop.mainMonitor} --primary
-            '')
-        ];
     };
 }

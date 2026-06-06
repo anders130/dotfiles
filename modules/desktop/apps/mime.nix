@@ -1,8 +1,5 @@
 {
-    # WM-agnostic: the default-programs option + xdg mime associations.
-    # window managers (hyprland, future niri) include dots.desktop and bind
-    # these programs themselves.
-    dots.desktop.provides.default-programs.homeManager = {
+    dots.desktop.provides.mime.homeManager = {
         config,
         lib,
         ...
@@ -13,9 +10,9 @@
                 type = types.listOf types.str;
                 inherit default;
             };
-        prog = name: "${builtins.head config.my.desktop.defaultPrograms.${name}}.desktop";
+        prog = name: "${builtins.head config.my.desktop.mime.${name}}.desktop";
     in {
-        options.my.desktop.defaultPrograms = {
+        options.my.desktop.mime = {
             browser = mkProg ["zen-beta"];
             terminal = mkProg ["kitty"];
             editor = mkProg ["nvim"];

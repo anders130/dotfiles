@@ -1,5 +1,5 @@
 {
-    den.aspects.desktop = {
+    dots.desktop.provides.monitors = {
         nixos = {
             config,
             lib,

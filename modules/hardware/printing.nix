@@ -1,5 +1,5 @@
 {
-    den.aspects.desktop.nixos = {
+    den.aspects.printing.nixos = {
         config,
         pkgs,
         ...

@@ -35,9 +35,9 @@
                 appearance.font.family.clock = "DejaVu Sans";
                 general = {
                     apps = {
-                        terminal = config.my.desktop.defaultPrograms.terminal;
-                        playback = config.my.desktop.defaultPrograms.videoPlayer;
-                        explorer = config.my.desktop.defaultPrograms.fileManager;
+                        terminal = config.my.desktop.mime.terminal;
+                        playback = config.my.desktop.mime.videoPlayer;
+                        explorer = config.my.desktop.mime.fileManager;
                     };
                     idle.timeouts = []; # disable idle
                 };

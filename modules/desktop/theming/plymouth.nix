@@ -1,5 +1,5 @@
 {
-    den.aspects.desktop.nixos = {pkgs, ...}: {
+    den.aspects.theming.nixos = {pkgs, ...}: {
         stylix.targets.plymouth.enable = false;
         nixpkgs.overlays = let
             overlay = _: prev: {
@@ -29,8 +29,7 @@
                 "rd.systemd.show_status=auto"
             ];
             # Hide the OS choice for bootloaders.
-            # It's still possible to open the bootloader list by pressing any key
-            # It will just not appear on screen unless a key is pressed
+            # still possible to open bootloader list by pressing any key
             loader.timeout = 0;
         };
     };

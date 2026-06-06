@@ -1,5 +1,5 @@
 {
-    den.aspects.desktop = {
+    den.aspects.theming = {
         nixos = {pkgs, ...}: {
             stylix = {
                 cursor = {

@@ -25,7 +25,7 @@
             obs
             virt-manager
             nextcloud
-            nwg-displays
+            dots.desktop.provides.nwg-displays
 
             (den.batteries.tty-autologin "jesse")
         ];
