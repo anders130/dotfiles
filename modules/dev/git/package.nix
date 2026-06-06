@@ -3,8 +3,9 @@
     config,
     ...
 }: {
-    den.aspects.git.homeManager = {
+    den.aspects.git.homeManager = {self', ...}: {
         home.shellAliases.g = "git";
+        home.packages = [self'.packages.git];
     };
     perSystem = {
         pkgs,

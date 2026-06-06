@@ -22,8 +22,5 @@
             };
             services.tailscale.enable = true;
         };
-        homeManager = {self', ...}: {
-            home.packages = [self'.packages.git];
-        };
     };
 }
