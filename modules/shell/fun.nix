@@ -1,19 +1,7 @@
 {
-    den.aspects.cli.homeManager = {pkgs, ...}: {
+    den.aspects.fun.homeManager = {pkgs, ...}: {
         home = {
             packages = with pkgs; [
-                broot # better tree
-                cachix # nix cache manager
-                curl
-                ffmpeg # video downloader
-                fzf # fuzzy finder
-                librespeed-cli # speedtest-cli
-                nmap # network scanner
-                unzip
-                wget
-                zip
-
-                # fun stuff
                 asciiquarium-transparent # ascii art aquarium
                 cbonsai
                 cowsay

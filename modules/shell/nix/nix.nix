@@ -1,7 +1,4 @@
 {inputs, ...}: {
-    # global aspect (den.default) — can't be parametric on host (would emit in
-    # every scope and double-route), so daemon limits stay a my.* option that
-    # hosts set in their nixos config.
     den.aspects.nix.nixos = {
         config,
         lib,

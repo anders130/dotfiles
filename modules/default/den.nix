@@ -10,7 +10,6 @@
         nh
         nvix
         fish
-        cli
         nix-index
         btop
     ];
