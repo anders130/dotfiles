@@ -4,15 +4,17 @@
     ...
 }: {
     flake-file.inputs.project.url = "github:anders130/project";
+
+    flake.wrappers.tmux = {lib, ...}: {
+        configAfter = lib.mkAfter ''
+            bind o display-popup -E -w 60% -h 70% -b rounded -S "fg=#8aadf4" "project"
+        '';
+    };
+
     den.aspects.project = {
         includes = [den.aspects.tmux];
         homeManager = {config, ...}: {
             imports = [inputs.project.homeManagerModules.default];
-            my.tmux.extraConfig =
-                #tmux
-                ''
-                    bind o display-popup -E -w 60% -h 70% -b rounded -S "fg=#8aadf4" "project"
-                '';
             programs.project = {
                 enable = true;
                 palette = with config.lib.stylix.colors.withHashtag; [

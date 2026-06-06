@@ -7,7 +7,6 @@
         flake-file.url = "github:denful/flake-file";
         nix-lib.url = "github:anders130/nix-lib";
         treefmt-nix.url = "github:anders130/treefmt-nix";
-        wrapper-modules.url = "github:BirdeeHub/nix-wrapper-modules";
 
         # host specific
         disko.url = "github:nix-community/disko";
