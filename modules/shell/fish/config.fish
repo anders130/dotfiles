@@ -12,20 +12,6 @@ set fish_cursor_replace_one underscore
 bind \cp _atuin_bind_up
 bind -M insert \cp _atuin_bind_up
 
-function ls
-    if test -f .hidden
-        set hidden_args (cat .hidden | xargs -I{} echo --ignore-glob={})
-    end
-
-    # only hide hidden files if the current command is ls
-    switch (basename (status current-command))
-        case 'ls'
-            command lsd $hidden_args $argv
-        case '*'
-            command lsd $argv
-    end
-end
-
 set -gx EDITOR nvim
 
 # colorize man pages with bat

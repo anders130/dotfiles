@@ -9,7 +9,6 @@
         ];
         nixos = {pkgs, ...}: {
             environment.systemPackages = with pkgs; [
-                lsd
                 nix-output-monitor
                 yt-dlp
                 zoxide
@@ -30,10 +29,7 @@
                 zip
             ];
             programs.bat.enable = true;
-            home.shellAliases = {
-                ls = "lsd";
-                cat = "bat";
-            };
+            home.shellAliases.cat = "bat";
         };
     };
 }
