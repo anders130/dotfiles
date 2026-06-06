@@ -4,7 +4,6 @@
     ...
 }: {
     den.aspects.desktop = {
-        # explicit dep: defaultPrograms (binds) + autostart/firstLoginHook options
         includes =
             [dots.desktop.provides.default-programs]
             ++ (with den.aspects; [
@@ -12,9 +11,9 @@
                 discord
                 nautilus
                 zen-browser
-                teams
                 element
                 kitty
+                nvix
                 qutebrowser
                 signal
                 youtube-music
@@ -38,5 +37,6 @@
                 isApp = false;
             }
         ];
+        nixos.my.nautilus.terminal = "kitty";
     };
 }

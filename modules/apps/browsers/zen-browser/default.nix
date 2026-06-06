@@ -11,11 +11,11 @@
     den.aspects.zen-browser = {
         includes = [den.aspects.browser];
         nixos.nixpkgs.overlays = [inputs.firefox-addons.outputs.overlays.default];
-        homeManager = {
+        homeManager = {config, ...}: {
             imports = [inputs.zen-browser.homeModules.beta];
             stylix.targets.zen-browser = {
                 enableCss = false;
-                profileNames = ["default" "work"];
+                profileNames = builtins.attrNames config.my.zen.profiles;
             };
             programs.zen-browser = {
                 enable = true;
@@ -43,15 +43,6 @@
             wayland.windowManager.hyprland.settings.windowrule = [
                 "no_screen_share true, match:title ^(Extension: \\(Bitwarden Password Manager\\) - Bitwarden — Zen Browser)$"
             ];
-            xdg.desktopEntries.zenWork = {
-                name = "Zen Work";
-                genericName = "Web Browser";
-                exec = "zen-beta -P work";
-                icon = "zen-browser";
-                terminal = false;
-                categories = ["Application" "Network" "WebBrowser"];
-                mimeType = ["text/html" "text/xml"];
-            };
         };
     };
 }

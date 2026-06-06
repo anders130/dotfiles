@@ -25,9 +25,6 @@
         includes = [dots.desktop.provides.hyprland];
         homeManager = {osConfig, ...}: {
             my.caelestia.status = {
-                # tolerant reads: the den.schema.host declaration is in the
-                # producer flake and doesn't travel the namespace, so consumers
-                # that don't declare it fall back to false.
                 showNetwork = host.caelestia.showNetwork or false;
                 showAudio = host.caelestia.showAudio or false;
                 showBluetooth = osConfig.hardware.bluetooth.enable;

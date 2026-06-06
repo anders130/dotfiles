@@ -13,6 +13,9 @@
             dots.desktop.provides.caelestia
             desktop
 
+            dev
+            work
+
             amdgpu
             displaylink
             openrgb
@@ -21,7 +24,6 @@
             winapps
             obs
             virt-manager
-            dev
             nextcloud
             nwg-displays
 

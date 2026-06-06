@@ -4,42 +4,65 @@
         lib,
         pkgs,
         ...
-    }: {
-        options.my.zen.profiles = lib.mkOption {
-            type = lib.types.listOf lib.types.str;
-            default = ["default" "work"];
-            description = "Zen profiles the shared base applies to.";
+    }: let
+        inherit (lib) mkOption types mapAttrs optionalAttrs;
+        baseExtensions = with pkgs.firefox-addons; [
+            bitwarden
+            darkreader
+            github-file-icons
+            istilldontcareaboutcookies
+            return-youtube-dislikes
+            stylus
+            ublock-origin
+            video-downloadhelper
+            vimium
+            wappalyzer
+        ];
+    in {
+        options.my.zen.profiles = mkOption {
+            description = "Zen profiles to create, keyed by profile name.";
+            default = {};
+            type = types.attrsOf (types.submodule {
+                options = {
+                    id = mkOption {
+                        type = types.nullOr types.int;
+                        default = null;
+                        description = "Profile id (omit for the default profile).";
+                    };
+                    extraExtensions = mkOption {
+                        type = types.listOf types.package;
+                        default = [];
+                        description = "Profile-specific addons on top of the shared base.";
+                    };
+                };
+            });
         };
-        config.programs.zen-browser.profiles = lib.genAttrs config.my.zen.profiles (_: {
-            extensions.packages = with pkgs.firefox-addons; [
-                bitwarden
-                darkreader
-                github-file-icons
-                istilldontcareaboutcookies
-                return-youtube-dislikes
-                stylus
-                ublock-origin
-                video-downloadhelper
-                vimium
-                wappalyzer
-            ];
-            settings = {
-                "browser.translations.neverTranslateLanguages" = "de,en";
-                "signon.showAutoCompleteFooter" = false; # turn off integrated password manager
-                "widget.use-xdg-desktop-portal.file-picker" = 1;
-                "browser.tabs.allow_transparent_browser" = true;
-
-                # stylix
-                "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
-            };
-            keyboardShortcuts = [
+        config.my.zen.profiles.default = {};
+        config.programs.zen-browser.profiles = mapAttrs (
+            name: p:
                 {
-                    # interferes with bitwarden autofill ctrl+shift+l
-                    id = "key_inspector";
-                    disabled = true;
+                    isDefault = name == "default";
+                    extensions.packages = baseExtensions ++ p.extraExtensions;
+                    settings = {
+                        "browser.translations.neverTranslateLanguages" = "de,en";
+                        "signon.showAutoCompleteFooter" = false; # turn off integrated password manager
+                        "widget.use-xdg-desktop-portal.file-picker" = 1;
+                        "browser.tabs.allow_transparent_browser" = true;
+
+                        # stylix
+                        "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
+                    };
+                    keyboardShortcuts = [
+                        {
+                            # interferes with bitwarden autofill ctrl+shift+l
+                            id = "key_inspector";
+                            disabled = true;
+                        }
+                    ];
+                    keyboardShortcutsVersion = lib.mkDefault 19;
                 }
-            ];
-            keyboardShortcutsVersion = lib.mkDefault 19;
-        });
+                // optionalAttrs (p.id != null) {inherit (p) id;}
+        )
+        config.my.zen.profiles;
     };
 }

@@ -13,13 +13,15 @@
             dots.desktop.provides.caelestia
             desktop
 
+            dev
+            work
+
             openrgb
 
             kdeconnect
             winapps
             obs
             virt-manager
-            dev
             zapzap
             nextcloud
 

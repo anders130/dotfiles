@@ -1,11 +1,20 @@
-{inputs, ...}: {
+{
     den.aspects.teams = {
         nixos = {
-            nixpkgs.overlays = [
+            config,
+            lib,
+            ...
+        }: {
+            options.my.teams.browser = lib.mkOption {
+                type = lib.types.nullOr lib.types.str;
+                default = null;
+                description = "Command teams opens links with.";
+            };
+            config.nixpkgs.overlays = lib.mkIf (config.my.teams.browser != null) [
                 (final: prev: {
                     teams-for-linux = prev.teams-for-linux.overrideAttrs (oldAttrs: let
                         xdgOpenWrapper = final.writeShellScriptBin "xdg-open" ''
-                            exec zen-beta -P work "$@"
+                            exec ${config.my.teams.browser} "$@"
                         '';
                         teamsWrapper = final.writeShellScriptBin "teams-for-linux-with-browser" ''
                             PATH=${xdgOpenWrapper}/bin:$PATH exec ${prev.teams-for-linux}/bin/teams-for-linux "$@"

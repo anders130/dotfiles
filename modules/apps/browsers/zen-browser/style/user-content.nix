@@ -4,7 +4,7 @@
         lib,
         ...
     }: {
-        programs.zen-browser.profiles = lib.genAttrs config.my.zen.profiles (_: {
+        programs.zen-browser.profiles = lib.genAttrs (builtins.attrNames config.my.zen.profiles) (_: {
             userContent = with config.lib.stylix.colors;
             #css
                 ''
