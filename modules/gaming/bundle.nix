@@ -4,11 +4,11 @@
             steam
             minecraft
             hytale
+            lethal-company
         ];
         homeManager = {pkgs, ...}: {
             home.packages = with pkgs; [
                 lutris
-                r2modman
 
                 # other games
                 space-cadet-pinball
