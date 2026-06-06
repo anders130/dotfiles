@@ -9,70 +9,24 @@
         mk = v: "#${v}";
 
         mkScale = prefix: color: let
-            steps = [
-                {
-                    n = "100";
-                    v = mk c.base00;
-                }
-                {
-                    n = "200";
-                    v = mk c.base00;
-                }
-                {
-                    n = "300";
-                    v = mk c.base01;
-                }
-                {
-                    n = "400";
-                    v = mk c.base02;
-                }
-                {
-                    n = "500";
-                    v = mk c.base03;
-                }
-                {
-                    n = "600";
-                    v = mk c.base04;
-                }
-                {
-                    n = "700";
-                    v = mk c.base04;
-                }
-                {
-                    n = "800";
-                    v = mk c.base04;
-                }
-                {
-                    n = "900";
-                    v = mk color;
-                }
-                {
-                    n = "1000";
-                    v = mk color;
-                }
-                {
-                    n = "1100";
-                    v = mk color;
-                }
-                {
-                    n = "1200";
-                    v = mk color;
-                }
-                {
-                    n = "1300";
-                    v = mk color;
-                }
-                {
-                    n = "1400";
-                    v = mk color;
-                }
-            ];
+            steps = {
+                "100" = mk c.base00;
+                "200" = mk c.base00;
+                "300" = mk c.base01;
+                "400" = mk c.base02;
+                "500" = mk c.base03;
+                "600" = mk c.base04;
+                "700" = mk c.base04;
+                "800" = mk c.base04;
+                "900" = mk color;
+                "1000" = mk color;
+                "1100" = mk color;
+                "1200" = mk color;
+                "1300" = mk color;
+                "1400" = mk color;
+            };
         in
-            lib.listToAttrs (map (s: {
-                name = "${prefix}-${s.n}";
-                value = s.v;
-            })
-            steps);
+            lib.mapAttrs' (n: v: lib.nameValuePair "${prefix}-${n}" v) steps;
 
         grayScale = {
             "--cpd-color-gray-100" = mk c.base00;
