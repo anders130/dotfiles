@@ -6,7 +6,8 @@
         ...
     }: let
         inherit (builtins) attrNames concatStringsSep isAttrs isList readFile toJSON;
-        inherit (lib) flatten mapAttrsToList mkOption types;
+        inherit (lib) flatten mapAttrsToList mkOption replaceStrings types;
+        cfg = config.my.browser;
 
         sqlForExtension = _: ext: let
             prepare = v:
@@ -86,23 +87,13 @@
                     inherit (pkgs.firefox-addons.vimium.passthru) addonId;
                     default.settingsVersion = "2.1.2";
                     settings = {
-                        searchUrl = "https://search.inetol.net/search?q=";
-                        searchEngines = ''
-                            w: https://www.wikipedia.org/w/index.php?title=Special:Search&search=%s Wikipedia
-                            g: https://www.google.com/search?q=%s Google
-                            y: https://youtube.com/results?search_query=%s YouTube
-                            gm: https://www.google.com/maps?q=%s Google maps
-                            d: https://duckduckgo.com/?q=%s DuckDuckGo
-                            az: https://www.amazon.com/s/?field-keywords=%s
-                            sxng: https://search.inetol.net/search?q=%s SearXNG
-                            # nix stuff
-                            n: https://search.nixos.org/packages?query=%s Nixpkgs
-                            mn: https://mynixos.com/search?q=%s MyNixOS
-                            gh: https://github.com/search?type=code&q=%s GitHub
-                            nh: https://www.nixhub.io/search?q=%s Nixhub.io
-                            nw: https://wiki.nixos.org/w/index.php?search=%s wiki.nixos.org
-                            ng: https://noogle.dev/q?term=%s noogle
-                        '';
+                        # default search: vimium appends the query, so drop the %s
+                        searchUrl = replaceStrings ["%s"] [""] cfg.searchEngines.${cfg.defaultSearchEngine}.url;
+                        # vimium format: `key: url description`, %s kept as-is
+                        searchEngines =
+                            cfg.searchEngines
+                            |> mapAttrsToList (key: e: "${key}: ${e.url} ${e.name}")
+                            |> concatStringsSep "\n";
                         keyMappings = ''
                             unmap J
                             unmap K
