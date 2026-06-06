@@ -16,8 +16,6 @@
             dev
             work
 
-            openrgb
-
             kdeconnect
             winapps
             obs

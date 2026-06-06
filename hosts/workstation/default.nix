@@ -18,7 +18,6 @@
 
             amdgpu
             displaylink
-            openrgb
 
             kdeconnect
             winapps
