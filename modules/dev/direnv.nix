@@ -3,11 +3,14 @@
         ".direnv"
         ".env"
     ];
-    perSystem.files.file.".envrc".text = lib.concatLines [
-        "dotenv_if_exists"
-        "use flake"
-        "export NH_FLAKE=$PWD"
-    ];
+    perSystem = {
+        files.file.".envrc".text = lib.concatLines [
+            "dotenv_if_exists"
+            "use flake"
+            "export NH_FLAKE=$PWD"
+        ];
+        pre-commit.settings.hooks.shellcheck.excludes = ["\\.envrc"];
+    };
     den.aspects.direnv.homeManager = {
         config,
         lib,

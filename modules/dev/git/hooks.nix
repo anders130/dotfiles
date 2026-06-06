@@ -7,10 +7,7 @@
     imports = [inputs.git-hooks.flakeModule];
     perSystem = {config, ...}: {
         pre-commit.settings.hooks = {
-            shellcheck = {
-                enable = true;
-                excludes = ["\\.envrc"];
-            };
+            shellcheck.enable = true;
             statix.enable = true;
             ripsecrets.enable = true;
         };
