@@ -11,5 +11,3 @@ set fish_cursor_replace_one underscore
 # ctrl+p to go to previous command
 bind \cp _atuin_bind_up
 bind -M insert \cp _atuin_bind_up
-
-set -gx EDITOR nvim

@@ -24,7 +24,7 @@
                         vi = "nvim";
                         v = "nvim";
                     };
-                    variables.EDITOR = "nvim";
+                    sessionVariables.EDITOR = "nvim";
                 };
             };
         };
