@@ -1,27 +1,39 @@
-{inputs, ...}: {
+{
+    den,
+    inputs,
+    ...
+}: {
     flake-file.inputs.project.url = "github:anders130/project";
-    den.aspects.project.homeManager = {config, ...}: {
-        imports = [inputs.project.homeManagerModules.default];
-        programs.project = {
-            enable = true;
-            palette = with config.lib.stylix.colors.withHashtag; [
-                base00
-                base08
-                base0B
-                base0A
-                base0D
-                base0E
-                base0C
-                base05
-                base03
-                base09
-                base01
-                base02
-                base0F
-                base06
-                base07
-                base04
-            ];
+    den.aspects.project = {
+        includes = [den.aspects.tmux];
+        homeManager = {config, ...}: {
+            imports = [inputs.project.homeManagerModules.default];
+            my.tmux.extraConfig =
+                #tmux
+                ''
+                    bind o display-popup -E -w 60% -h 70% -b rounded -S "fg=#8aadf4" "project"
+                '';
+            programs.project = {
+                enable = true;
+                palette = with config.lib.stylix.colors.withHashtag; [
+                    base00
+                    base08
+                    base0B
+                    base0A
+                    base0D
+                    base0E
+                    base0C
+                    base05
+                    base03
+                    base09
+                    base01
+                    base02
+                    base0F
+                    base06
+                    base07
+                    base04
+                ];
+            };
         };
     };
 }

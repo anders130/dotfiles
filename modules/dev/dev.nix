@@ -23,10 +23,7 @@
             services.tailscale.enable = true;
         };
         homeManager = {self', ...}: {
-            home.packages = with self'.packages; [
-                git
-                tmux
-            ];
+            home.packages = [self'.packages.git];
         };
     };
 }
