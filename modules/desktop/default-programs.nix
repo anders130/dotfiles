@@ -24,6 +24,7 @@
             videoPlayer = mkProg ["clapper"];
             musicPlayer = mkProg ["decibels"];
         };
+        config.xdg.mimeApps.enable = true;
         config.xdg.mimeApps.defaultApplications = {
             "application/pdf" = prog "browser";
             "x-scheme-handler/http" = prog "browser";
