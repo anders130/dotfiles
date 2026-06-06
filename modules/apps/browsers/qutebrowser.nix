@@ -44,6 +44,10 @@
                 };
             };
             xdg.configFile."qutebrowser/catppuccin".source = inputs.catppuccin-qutebrowser;
+            my.desktop.windowRules.qutebrowser = {
+                match = "org.qutebrowser.qutebrowser";
+                opacity = "blur";
+            };
         };
     };
 }

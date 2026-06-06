@@ -14,9 +14,13 @@
                 default_dir=$HOME/Downloads
             '';
             # float + center the picker window
-            wayland.windowManager.hyprland.settings.windowrule = [
-                "match:title 'termfilechooser', float true, center true, size 70% 70%"
-            ];
+            my.desktop.windowRules.termfilechooser = {
+                matchType = "title";
+                match = "'termfilechooser'";
+                float = true;
+                center = true;
+                size = "70% 70%";
+            };
         };
     };
 }

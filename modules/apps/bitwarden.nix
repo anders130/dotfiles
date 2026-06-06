@@ -14,9 +14,10 @@
             };
         in {
             home.packages = [pkgs.bitwarden-desktop];
-            wayland.windowManager.hyprland.settings.windowrule = [
-                "no_screen_share true, match:class Bitwarden"
-            ];
+            my.desktop.windowRules.bitwarden = {
+                match = "Bitwarden";
+                noScreenShare = true;
+            };
             home.activation.setBitwardenSettings = lib.hm.dag.entryAfter ["writeBoundary"] ''
                 config_file="$HOME/.config/Bitwarden/data.json"
                 if [[ ! -f "$config_file" ]]; then

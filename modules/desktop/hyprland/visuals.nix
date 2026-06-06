@@ -1,5 +1,10 @@
-{
+{dots, ...}: {
+    dots.desktop.provides.hyprland.includes = [dots.desktop.provides.window-rules];
     dots.desktop.provides.hyprland.homeManager = {
+        config,
+        lib,
+        ...
+    }: {
         wayland.windowManager.hyprland.settings = {
             general = {
                 border_size = 3;
@@ -51,26 +56,22 @@
                 default_opacity = "0.85 0.84";
                 # for windows that set their own opacity
                 blur_opacity = "0.99999997";
-                mkRuleFor = attrs: match_type: matches:
-                    matches
-                    |> builtins.concatStringsSep "|"
-                    |> (c: "match:${match_type} ${c}, ${attrs}");
-            in [
-                # make everything transparent
-                "match:class .*, opacity ${default_opacity}"
-                # override transparency for specific apps
-                (mkRuleFor "opaque true" "class" [
-                    "totem"
-                    "com.github.rafostar.Clapper"
-                    "org.pwmt.zathura"
-                    "chrome-localhost__-Default"
-                    "chromium-browser"
-                ])
-                (mkRuleFor "opacity ${blur_opacity}" "class" [
-                    "zen.*|org.qutebrowser.qutebrowser"
-                ])
-                "match:initial_title Picture-in-Picture, float true, size 1280 720"
-            ];
+                mkAttrs = r:
+                    lib.concatStringsSep ", " (
+                        lib.optional (r.opacity == "opaque") "opaque true"
+                        ++ lib.optional (r.opacity == "blur") "opacity ${blur_opacity}"
+                        ++ lib.optional r.float "float true"
+                        ++ lib.optional r.center "center true"
+                        ++ lib.optional r.noScreenShare "no_screen_share true"
+                        ++ lib.optional (r.size != null) "size ${r.size}"
+                    );
+                mkRule = r: "match:${r.matchType} ${r.match}, ${mkAttrs r}";
+            in
+                [
+                    # make everything transparent; per-app rules come from the port
+                    "match:class .*, opacity ${default_opacity}"
+                ]
+                ++ map mkRule (lib.attrValues config.my.desktop.windowRules);
         };
     };
 }

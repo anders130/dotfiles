@@ -26,6 +26,11 @@
             ];
             home.shellAliases.decibels = "org.gnome.Decibels";
             xdg.userDirs.setSessionVariables = false;
+
+            my.desktop.windowRules.clapper = {
+                match = "com.github.rafostar.Clapper";
+                opacity = "opaque";
+            };
         };
     };
 }

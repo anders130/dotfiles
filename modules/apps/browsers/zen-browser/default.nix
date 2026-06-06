@@ -40,9 +40,23 @@
                     };
                 };
             };
-            wayland.windowManager.hyprland.settings.windowrule = [
-                "no_screen_share true, match:title ^(Extension: \\(Bitwarden Password Manager\\) - Bitwarden — Zen Browser)$"
-            ];
+            my.desktop.windowRules = {
+                zen = {
+                    match = "zen.*";
+                    opacity = "blur";
+                };
+                bitwarden-extension = {
+                    matchType = "title";
+                    match = ''^(Extension: \(Bitwarden Password Manager\) - Bitwarden — Zen Browser)$'';
+                    noScreenShare = true;
+                };
+                picture-in-picture = {
+                    matchType = "initial_title";
+                    match = "Picture-in-Picture";
+                    float = true;
+                    size = "1280 720";
+                };
+            };
         };
     };
 }
