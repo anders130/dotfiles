@@ -13,7 +13,3 @@ bind \cp _atuin_bind_up
 bind -M insert \cp _atuin_bind_up
 
 set -gx EDITOR nvim
-
-# colorize man pages with bat
-set -x MANPAGER "sh -c 'col -bx | bat -l man -p'"
-set -x MANROFFOPT "-c"
