@@ -14,21 +14,19 @@
                     };
                     sizes.terminal = 14;
                 };
+                icons = {
+                    enable = true;
+                    package = pkgs.papirus-icon-theme;
+                    dark = "Papirus-Dark";
+                    light = "Papirus-Light";
+                };
                 polarity = "dark";
             };
         };
-        homeManager = {
-            config,
-            pkgs,
-            ...
-        }: {
+        homeManager = {config, ...}: {
             stylix.targets.gtk.enable = true;
             gtk = {
                 enable = true;
-                iconTheme = {
-                    package = pkgs.adwaita-icon-theme;
-                    name = "Adwaita";
-                };
                 gtk4.theme = config.gtk.theme;
             };
         };
