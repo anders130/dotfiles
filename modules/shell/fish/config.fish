@@ -12,35 +12,6 @@ set fish_cursor_replace_one underscore
 bind \cp _atuin_bind_up
 bind -M insert \cp _atuin_bind_up
 
-# alias nix commands to nom
-function nix
-    set -l unfree 0
-    set -l args
-
-    for arg in $argv
-        if test "$arg" = "--unfree"
-            set unfree 1
-        else
-            set args $args $arg
-        end
-    end
-
-    if test $unfree -eq 1
-        env NIXPKGS_ALLOW_UNFREE=1 nix $args --impure
-    else
-        if begin test "$args[1]" = "build";
-                or test "$args[1]" = "shell";
-                or test "$args[1]" = "develop";
-            end
-            nom $args
-        else if test "$args[1]" = "search"
-            nh $args
-        else
-            command nix $args
-        end
-    end
-end
-
 function ls
     if test -f .hidden
         set hidden_args (cat .hidden | xargs -I{} echo --ignore-glob={})
