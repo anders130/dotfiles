@@ -47,15 +47,28 @@
             };
         };
         configFile.content = ''
-            [includeIf "gitdir:~/Projects/Work/"]
-                path = ~/Projects/Work/.gitconfig
-            [includeIf "gitdir:~/Projects/HSB/"]
-                path = ~/Projects/HSB/.gitconfig
+            [include]
+                path = ~/.config/git/local.conf
         '';
     };
 
-    den.aspects.git.homeManager = {self', ...}: {
-        home.shellAliases.g = "git";
-        home.packages = [self'.packages.git];
+    den.aspects.git.homeManager = {
+        self',
+        lib,
+        config,
+        ...
+    }: {
+        options.my.git.extraConfig = lib.mkOption {
+            type = lib.types.lines;
+            default = "";
+            description = "Extra git configuration, written to ~/.config/git/local.conf (included by the git wrapper).";
+        };
+        config = {
+            home.shellAliases.g = "git";
+            home.packages = [self'.packages.git];
+            xdg.configFile."git/local.conf" = lib.mkIf (config.my.git.extraConfig != "") {
+                text = config.my.git.extraConfig;
+            };
+        };
     };
 }
