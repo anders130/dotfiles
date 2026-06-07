@@ -4,12 +4,16 @@
         config,
         lib,
         ...
-    }: {
+    }: let
+        # base16 colors (no leading #), from the global style scheme
+        inherit (config.lib.stylix) colors;
+    in {
         wayland.windowManager.hyprland.settings = {
             general = {
                 border_size = 3;
-                "col.active_border" = "rgba(8aadf4ee)";
-                "col.inactive_border" = "rgba(494d64aa)";
+                # base0D (blue) at ~93% alpha, base02 (surface1) at ~67%
+                "col.active_border" = "rgba(${colors.base0D}ee)";
+                "col.inactive_border" = "rgba(${colors.base02}aa)";
             };
             decoration = {
                 blur = {
