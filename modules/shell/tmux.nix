@@ -71,7 +71,7 @@ in {
                 set -g status-right "#[fg=${c.base00},bg=#{?client_prefix,${c.base08},${c.base0B}}] #[fg=${c.base05},bg=${c.base01}] #S "
 
                 # selection / copy mode
-                setw -g mode-style "fg=${c.base0F},bg=${c.base02}"
+                setw -g mode-style "fg=#f5bde6,bg=${c.base02}"
                 set -g clock-mode-colour "${c.base0D}"
 
                 # messages + command prompt
