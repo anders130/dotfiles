@@ -1,5 +1,21 @@
-{inputs, ...}: {
-    flake.wrappers.fastfetch = {...}: {
+{inputs, ...}: let
+    display = {
+        key.width = 8;
+        separator = "   ";
+        size.binaryPrefix = "si";
+    };
+    ramModule = {
+        format = "{/1}{-}{/}{/2}{-}{/}{} / {}";
+        key = " RAM";
+        keyColor = "blue";
+        type = "memory";
+    };
+in {
+    flake.wrappers.fastfetch = {
+        pkgs,
+        lib,
+        ...
+    }: {
         imports = [inputs.wrapper-modules.wrapperModules.fastfetch];
         settings = {
             logo = {
@@ -7,11 +23,7 @@
                 preserveAspectRatio = true;
                 source = ./logo.png;
             };
-            display = {
-                key.width = 8;
-                separator = "   ";
-                size.binaryPrefix = "si";
-            };
+            inherit display;
             modules = [
                 {
                     format = "{3}";
@@ -47,12 +59,7 @@
                     keyColor = "yellow";
                     type = "gpu";
                 }
-                {
-                    format = "{/1}{-}{/}{/2}{-}{/}{} / {}";
-                    key = " RAM";
-                    keyColor = "blue";
-                    type = "memory";
-                }
+                ramModule
                 "break"
                 {
                     compactType = "scaled";
@@ -85,10 +92,28 @@
                 }
             ];
         };
+
+        wrapperVariants.fastfetch-short = {
+            exePath = "bin/fastfetch";
+            flags."--config" = lib.mkForce (
+                pkgs.writeText "fastfetch-short.json" (builtins.toJSON {
+                    logo.type = "none";
+                    inherit display;
+                    modules = [
+                        "title"
+                        {
+                            key = "󰅐 UP";
+                            keyColor = "green";
+                            type = "uptime";
+                        }
+                        ramModule
+                    ];
+                })
+            );
+        };
     };
 
     den.aspects.fastfetch.homeManager = {self', ...}: {
         home.packages = [self'.packages.fastfetch];
-        xdg.configFile."fastfetch/short.jsonc".source = ./short.jsonc;
     };
 }
