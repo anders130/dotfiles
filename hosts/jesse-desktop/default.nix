@@ -12,6 +12,7 @@
         includes = with den.aspects; [
             dots.desktop.provides.caelestia
             desktop
+            termfilechooser
 
             dev
             work
