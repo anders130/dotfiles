@@ -49,7 +49,7 @@
                     name = "SearXNG";
                 };
                 n = {
-                    url = "https://search.nixos.org/packages?query=%s";
+                    url = "https://search.nixos.org/packages?channel=unstable&query=%s";
                     name = "Nixpkgs";
                 };
                 mn = {
