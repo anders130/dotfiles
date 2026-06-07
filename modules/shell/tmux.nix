@@ -1,5 +1,17 @@
-{inputs, ...}: {
-    flake.wrappers.tmux = {pkgs, ...}: {
+{
+    inputs,
+    config,
+    ...
+}: let
+    inherit (config.flake.lib) style;
+in {
+    flake.wrappers.tmux = {
+        pkgs,
+        lib,
+        ...
+    }: let
+        c = (style.colors pkgs lib).withHashtag;
+    in {
         imports = [inputs.wrapper-modules.wrapperModules.tmux];
 
         # behaviour
@@ -20,24 +32,12 @@
 
         plugins = with pkgs.tmuxPlugins; [
             vim-tmux-navigator
-            catppuccin
         ];
 
         configBefore =
             #tmux
             ''
                 set-option -g default-shell $SHELL
-
-                # catppuccin
-                set -g @catppuccin_flavor "macchiato"
-                set -g status-right-length 100
-                set -g status-left-length 100
-                set -g status-left ""
-                set -g status-right ""
-                set -ag status-right "#{E:@catppuccin_status_session}"
-                set -g @catppuccin_window_status_style "basic"
-                set -g @catppuccin_window_text "#{b:pane_current_command}"
-                set -g @catppuccin_window_current_text "#{b:pane_current_command}"
 
                 # keybindings
                 bind C-Space last-window
@@ -52,14 +52,35 @@
                 bind % split-window -h -c "#{pane_current_path}"
                 bind S command-prompt -p "New Session:" "new-session -s '%%'"
                 bind K confirm kill-session
-
-                set -g status-position top
             '';
         configAfter =
             #tmux
             ''
-                set -g status-style bg=default
-                setw -g mode-style "fg=#f5bde6,bg=#494d64"
+                set -g status-position top
+                set -g status-justify left
+                set -g status-style "bg=default,fg=${c.base05}"
+                set -g status-left ""
+                set -g status-left-length 100
+                set -g status-right-length 100
+
+                # windows: " <index> " block + " <command> " block; current accented
+                set -g window-status-format "#[fg=${c.base00},bg=${c.base04}] #I #[fg=${c.base05},bg=${c.base01}]#{b:pane_current_command} "
+                set -g window-status-current-format "#[fg=${c.base00},bg=${c.base0E}] #I #[fg=${c.base05},bg=${c.base02}]#{b:pane_current_command} "
+
+                # right: session name; accent turns red while the prefix is held
+                set -g status-right "#[fg=${c.base00},bg=#{?client_prefix,${c.base08},${c.base0B}}] #[fg=${c.base05},bg=${c.base01}] #S "
+
+                # selection / copy mode
+                setw -g mode-style "fg=${c.base0F},bg=${c.base02}"
+                set -g clock-mode-colour "${c.base0D}"
+
+                # messages + command prompt
+                set -g message-style "fg=${c.base0C},bg=${c.base03}"
+                set -g message-command-style "fg=${c.base0C},bg=${c.base03}"
+
+                # pane borders
+                set -g pane-border-style "fg=${c.base02}"
+                set -g pane-active-border-style "fg=${c.base0D}"
             '';
     };
 

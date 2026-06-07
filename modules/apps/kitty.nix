@@ -15,9 +15,7 @@ in {
         lib,
         ...
     }: let
-        base16 = inputs.stylix.inputs.base16.lib {inherit pkgs lib;};
-        scheme = base16.mkSchemeAttrs "${pkgs.base16-schemes}/share/themes/${style.scheme}.yaml";
-        theme = scheme {
+        theme = style.colors pkgs lib {
             template = builtins.readFile "${inputs.tinted-terminal}/templates/kitty-base16.mustache";
             extension = ".conf";
         };
