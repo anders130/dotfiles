@@ -15,12 +15,16 @@
     perSystem = {
         config,
         lib,
+        pkgs,
         ...
     }: {
         pre-commit.settings.hooks.write-flake = {
             enable = true;
             name = "write-flake";
-            entry = lib.getExe config.packages.write-flake;
+            entry = "${pkgs.writeShellScript "write-flake-hook" ''
+                command -v nix > /dev/null 2>&1 || exit 0
+                exec ${lib.getExe config.packages.write-flake} "$@"
+            ''}";
             always_run = true;
             pass_filenames = false;
         };
