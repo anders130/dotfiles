@@ -1,9 +1,11 @@
-{
+{config, ...}: let
+    inherit (config.flake.lib) style;
+in {
     den.aspects.theming.nixos.stylix.targets.qt.enable = false;
 
     den.aspects.theming.homeManager = {pkgs, ...}: let
-        accent = "blue";
-        variant = "macchiato";
+        inherit (style) accent;
+        variant = style.flavour;
 
         catppuccinKvantum = pkgs.catppuccin-kvantum.override {
             inherit accent variant;

@@ -1,8 +1,11 @@
 {
     den,
     inputs,
+    config,
     ...
-}: {
+}: let
+    inherit (config.flake.lib) style;
+in {
     flake-file.inputs.catppuccin-qutebrowser = {
         url = "github:catppuccin/qutebrowser";
         flake = false;
@@ -26,7 +29,7 @@
                     // lib.mapAttrs (_: e: quteUrl e.url) cfg.searchEngines;
                 extraConfig = ''
                     import catppuccin
-                    catppuccin.setup(c, 'macchiato', True)
+                    catppuccin.setup(c, '${style.flavour}', True)
 
                     # hide stuff
                     config.bind('xs', 'config-cycle statusbar.show always never')
