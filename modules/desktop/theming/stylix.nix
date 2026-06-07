@@ -1,4 +1,6 @@
-{
+{config, ...}: let
+    inherit (config.flake.lib) style;
+in {
     den.aspects.theming = {
         nixos = {pkgs, ...}: {
             stylix = {
@@ -9,10 +11,10 @@
                 };
                 fonts = {
                     monospace = {
-                        package = pkgs.nerd-fonts.caskaydia-cove;
-                        name = "CaskaydiaCove NF"; # important, because the mono version has tiny symbols
+                        inherit (style.monospace) name;
+                        package = style.monospace.package pkgs;
                     };
-                    sizes.terminal = 14;
+                    sizes.terminal = style.terminalSize;
                 };
                 icons = {
                     enable = true;
@@ -20,7 +22,6 @@
                     dark = "Papirus-Dark";
                     light = "Papirus-Light";
                 };
-                polarity = "dark";
             };
         };
         homeManager = {config, ...}: {
