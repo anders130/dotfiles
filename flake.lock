@@ -1391,6 +1391,7 @@
         "sops-nix": "sops-nix",
         "stylix": "stylix",
         "systems": "systems",
+        "tinted-terminal": "tinted-terminal",
         "treefmt-nix": "treefmt-nix",
         "winapps": "winapps",
         "wrapper-modules": "wrapper-modules",
@@ -1586,6 +1587,22 @@
       "original": {
         "owner": "tinted-theming",
         "repo": "schemes",
+        "type": "github"
+      }
+    },
+    "tinted-terminal": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1778178605,
+        "narHash": "sha256-QPelEGlBLkEMU5ptwJTRpeR7DDv2ew//FZj5orl49DA=",
+        "owner": "tinted-theming",
+        "repo": "tinted-terminal",
+        "rev": "47a01b2a2da323d0c912b2143fa10700ebef9dee",
+        "type": "github"
+      },
+      "original": {
+        "owner": "tinted-theming",
+        "repo": "tinted-terminal",
         "type": "github"
       }
     },

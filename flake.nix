@@ -149,6 +149,10 @@
             };
         };
         systems.url = "github:nix-systems/default-linux";
+        tinted-terminal = {
+            url = "github:tinted-theming/tinted-terminal";
+            flake = false;
+        };
         treefmt-nix = {
             url = "github:anders130/treefmt-nix";
             inputs.nixpkgs.follows = "nixpkgs";
