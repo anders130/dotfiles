@@ -1,10 +1,11 @@
-{
-    den.aspects.browser.homeManager = {lib, ...}: let
+{dots, ...}: {
+    dots.apps.provides.browser.homeManager = {lib, ...}: let
         inherit (lib) mkOption types;
     in {
         options.my.browser = {
             searchEngines = mkOption {
                 description = "Search engines keyed by shortcut; url uses %s for the query.";
+                default = {};
                 type = types.attrsOf (types.submodule {
                     options = {
                         url = mkOption {type = types.str;};
@@ -17,10 +18,14 @@
             };
             defaultSearchEngine = mkOption {
                 type = types.str;
+                default = "";
                 description = "Shortcut of the engine used for bare queries.";
             };
         };
-        config.my.browser = {
+    };
+    den.aspects.browser = {
+        includes = [dots.apps.provides.browser];
+        homeManager.my.browser = {
             defaultSearchEngine = "d";
             searchEngines = {
                 w = {

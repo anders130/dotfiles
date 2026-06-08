@@ -17,12 +17,9 @@
                 printing
 
                 bitwarden
+                browser # personal search engines
                 discord
-                nautilus
-                zen-browser
                 element
-                kitty
-                nvix
                 qutebrowser
                 signal
                 youtube-music

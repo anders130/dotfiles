@@ -1,7 +1,7 @@
 {
     flake-file.inputs.nvix.url = "github:anders130/nvix";
     flake-follows.exclude = ["nvix.nixpkgs"];
-    den.aspects.nvix = {
+    dots.shell.provides.nvix = {
         nixos = {
             lib,
             pkgs,

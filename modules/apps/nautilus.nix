@@ -1,5 +1,5 @@
 {
-    den.aspects.nautilus = {
+    dots.apps.provides.nautilus = {
         nixos = {
             config,
             lib,

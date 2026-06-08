@@ -1,7 +1,7 @@
-{den, ...}: {
+{dots, ...}: {
     flake-file.inputs.clock-mate.url = "github:clock-mate/extension";
-    den.aspects.zen-browser.provides.work = {
-        includes = [den.aspects.zen-browser];
+    den.aspects.zen-work = {
+        includes = [dots.apps.provides.zen-browser];
         homeManager = {
             inputs',
             pkgs,

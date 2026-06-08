@@ -25,7 +25,9 @@ in {
                 enable = true;
                 enableDefaultBindings = true;
                 searchEngines =
-                    {DEFAULT = quteUrl cfg.searchEngines.${cfg.defaultSearchEngine}.url;}
+                    (lib.optionalAttrs (cfg.searchEngines ? ${cfg.defaultSearchEngine}) {
+                        DEFAULT = quteUrl cfg.searchEngines.${cfg.defaultSearchEngine}.url;
+                    })
                     // lib.mapAttrs (_: e: quteUrl e.url) cfg.searchEngines;
                 extraConfig = ''
                     import catppuccin

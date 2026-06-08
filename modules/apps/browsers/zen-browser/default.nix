@@ -1,5 +1,5 @@
 {
-    den,
+    dots,
     inputs,
     ...
 }: {
@@ -8,8 +8,11 @@
         firefox-addons.url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
     };
 
-    den.aspects.zen-browser = {
-        includes = [den.aspects.browser];
+    dots.apps.provides.zen-browser = {
+        includes = with dots; [
+            apps.provides.browser
+            desktop.provides.window-rules
+        ];
         nixos.nixpkgs.overlays = [inputs.firefox-addons.outputs.overlays.default];
         homeManager = {config, ...}: {
             imports = [inputs.zen-browser.homeModules.beta];

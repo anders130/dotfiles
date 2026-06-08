@@ -1,5 +1,5 @@
 {
-    den.aspects.zen-browser.homeManager = {
+    dots.apps.provides.zen-browser.homeManager = {
         config,
         lib,
         ...

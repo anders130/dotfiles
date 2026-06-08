@@ -52,7 +52,7 @@ in {
         '';
     };
 
-    den.aspects.kitty.homeManager = {self', ...}: {
+    dots.apps.provides.kitty.homeManager = {self', ...}: {
         home.packages = [self'.packages.kitty];
     };
 }

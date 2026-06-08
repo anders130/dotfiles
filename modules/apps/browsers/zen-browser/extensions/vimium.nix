@@ -1,5 +1,5 @@
 {
-    den.aspects.zen-browser.homeManager = {
+    dots.apps.provides.zen-browser.homeManager = {
         config,
         lib,
         pkgs,
@@ -13,8 +13,11 @@
             inherit (pkgs.firefox-addons.vimium.passthru) addonId;
             default.settingsVersion = "2.1.2";
             settings = {
-                # default search: vimium appends the query, so drop the %s
-                searchUrl = replaceStrings ["%s"] [""] cfg.searchEngines.${cfg.defaultSearchEngine}.url;
+                # default search: vimium appends the query, so drop the %s.
+                searchUrl =
+                    if cfg.searchEngines ? ${cfg.defaultSearchEngine}
+                    then replaceStrings ["%s"] [""] cfg.searchEngines.${cfg.defaultSearchEngine}.url
+                    else "";
                 searchEngines =
                     cfg.searchEngines
                     |> mapAttrsToList (key: e: "${key}: ${e.url} ${e.name}")

@@ -1,7 +1,7 @@
 {den, ...}: {
     den.aspects.work = {
         includes = with den.aspects; [
-            zen-browser.provides.work
+            zen-work
             claude
             git
             teams
