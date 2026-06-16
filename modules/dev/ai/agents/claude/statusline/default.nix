@@ -1,5 +1,5 @@
 {
-    den.aspects.claude.homeManager = {
+    den.aspects.ai.provides.agents.claude.homeManager = {
         config,
         pkgs,
         lib,

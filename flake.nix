@@ -6,6 +6,10 @@
     outputs = inputs: import ./outputs.nix inputs;
 
     inputs = {
+        antigravity = {
+            url = "github:sickn33/antigravity-awesome-skills";
+            flake = false;
+        };
         caelestia-cli = {
             url = "github:caelestia-dots/cli";
             inputs = {
@@ -19,6 +23,10 @@
         };
         catppuccin-qutebrowser = {
             url = "github:catppuccin/qutebrowser";
+            flake = false;
+        };
+        caveman = {
+            url = "github:JuliusBrussee/caveman";
             flake = false;
         };
         clock-mate = {
@@ -86,6 +94,15 @@
             url = "github:nix-community/lanzaboote";
             inputs.nixpkgs.follows = "nixpkgs";
         };
+        llm-agents = {
+            url = "github:numtide/llm-agents.nix";
+            inputs = {
+                flake-parts.follows = "flake-parts";
+                nixpkgs.follows = "nixpkgs";
+                systems.follows = "systems";
+                treefmt-nix.follows = "treefmt-nix";
+            };
+        };
         lsfg-vk-flake = {
             url = "github:pabloaul/lsfg-vk-flake/main";
             inputs.nixpkgs.follows = "nixpkgs";
@@ -140,6 +157,10 @@
             url = "github:Mic92/sops-nix";
             inputs.nixpkgs.follows = "nixpkgs";
         };
+        spec-kit-extensions = {
+            url = "github:RbBtSn0w/spec-kit-extensions";
+            flake = false;
+        };
         stylix = {
             url = "github:danth/stylix";
             inputs = {
@@ -147,6 +168,10 @@
                 nixpkgs.follows = "nixpkgs";
                 systems.follows = "systems";
             };
+        };
+        superpowers = {
+            url = "github:obra/superpowers";
+            flake = false;
         };
         systems.url = "github:nix-systems/default-linux";
         tinted-terminal = {

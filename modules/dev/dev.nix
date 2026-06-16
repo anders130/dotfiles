@@ -1,25 +1,22 @@
 {den, ...}: {
     den.aspects.dev = {
         includes = with den.aspects; [
+            ai.provides.agents.claude
+            ai.provides.agents.gemini
+            ai.provides.tools.spec-kit
             direnv
             git
             project
-            claude
-            github-copilot-cli
             sops
         ];
         nixos = {pkgs, ...}: {
             my.nvix.type = "full";
-            environment = {
-                systemPackages = with pkgs; [
-                    tokei
-                    nix-melt
-                    gemini-cli
-                    statix
-                    devenv
-                ];
-                shellAliases.ask = "gemini";
-            };
+            environment.systemPackages = with pkgs; [
+                tokei
+                nix-melt
+                statix
+                devenv
+            ];
             services.tailscale.enable = true;
         };
     };
