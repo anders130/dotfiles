@@ -9,7 +9,9 @@
                             ddcutil
                         ];
                     }).overrideAttrs (oldAttrs: {
-                        patches = lib.optionals (host.caelestia.showAudio or false) [./patches/audio-switcher.patch];
+                        patches =
+                            [./patches/volume-over-100.patch]
+                            ++ lib.optionals (host.caelestia.showAudio or false) [./patches/audio-switcher.patch];
                         postInstall =
                             (oldAttrs.postInstall or "")
                             + ''

@@ -1,0 +1,144 @@
+diff --git a/components/controls/FilledSlider.qml b/components/controls/FilledSlider.qml
+index 5dd8b641..b78e2539 100644
+--- a/components/controls/FilledSlider.qml
++++ b/components/controls/FilledSlider.qml
+@@ -28,6 +28,25 @@ Slider {
+             color: Colours.palette.m3secondary
+             radius: parent.radius
+         }
++
++        StyledRect {
++            id: fullMark
++
++            readonly property real markY: (root.availableHeight - implicitHeight) * (1 - (1 - root.from) / (root.to - root.from))
++
++            visible: root.to - root.from > 1
++
++            anchors.left: parent.left
++            anchors.right: parent.right
++            anchors.leftMargin: 4
++            anchors.rightMargin: 4
++            y: markY
++
++            implicitHeight: 1.5
++
++            radius: Tokens.rounding.full
++            color: markY >= root.handle.y ? Colours.layer(Colours.palette.m3surfaceContainer, 2) : Colours.palette.m3secondary
++        }
+     }
+ 
+     handle: Item {
+diff --git a/components/controls/StyledSlider.qml b/components/controls/StyledSlider.qml
+index e2597e62..f25f9d65 100644
+--- a/components/controls/StyledSlider.qml
++++ b/components/controls/StyledSlider.qml
+@@ -99,6 +99,23 @@ Slider {
+             sourceComponent: root.wavy ? waveComp : lineComp
+         }
+ 
++        StyledRect {
++            id: fullMark
++
++            readonly property real markX: (parent.width - handle.implicitWidth - handle.anchors.leftMargin) * ((1 - root.from) / (root.to - root.from))
++
++            visible: root.to - root.from > 1
++
++            anchors.verticalCenter: parent.verticalCenter
++            x: markX - implicitWidth / 2
++
++            implicitWidth: 1.5
++            implicitHeight: root.height - 4
++
++            radius: Tokens.rounding.full
++            color: markX < root.filledWidth ? root.bgColour : root.fgColour
++        }
++
+         Component {
+             id: lineComp
+ 
+@@ -174,10 +191,10 @@ Slider {
+         onPositionChanged: e => {
+             dragMovement = (e.x - pressStartX) / width;
+             if (root.interactionOnMove)
+-                root.interaction(posBinding.value);
++                root.interaction(root.from + posBinding.value * (root.to - root.from));
+         }
+         onReleased: e => {
+-            root.interaction(posBinding.value);
++            root.interaction(root.from + posBinding.value * (root.to - root.from));
+             widthBehavior.enabled = true;
+             dragMovement = 0;
+         }
+diff --git a/modules/bar/popouts/Audio.qml b/modules/bar/popouts/Audio.qml
+index 18983428..5d00ba9b 100644
+--- a/modules/bar/popouts/Audio.qml
++++ b/modules/bar/popouts/Audio.qml
+@@ -93,6 +93,7 @@ Item {
+                 anchors.right: parent.right
+                 implicitHeight: parent.implicitHeight
+ 
++                to: GlobalConfig.services.maxVolume
+                 value: Audio.volume
+                 onInteraction: value => Audio.setVolume(value)
+             }
+diff --git a/modules/nexus/common/SliderRow.qml b/modules/nexus/common/SliderRow.qml
+index 21cbe545..1c2d8766 100644
+--- a/modules/nexus/common/SliderRow.qml
++++ b/modules/nexus/common/SliderRow.qml
+@@ -15,6 +15,7 @@ ConnectedRect {
+     property alias label: label.text
+     property alias valueLabel: valueLabel.text
+     property real value
++    property real max: 1
+ 
+     signal moved(value: real)
+ 
+@@ -63,7 +64,7 @@ ConnectedRect {
+                 function onWheel(event: WheelEvent): void {
+                     const step = GlobalConfig.services.audioIncrement;
+                     if (event.angleDelta.y > 0)
+-                        root.moved(Math.min(1, root.value + step));
++                        root.moved(Math.min(root.max, root.value + step));
+                     else if (event.angleDelta.y < 0)
+                         root.moved(Math.max(0, root.value - step));
+                 }
+@@ -78,6 +79,7 @@ ConnectedRect {
+                     implicitHeight: parent.implicitHeight
+ 
+                     radius: Tokens.rounding.small
++                    to: root.max
+                     value: root.value
+                     enabled: root.enabled
+                     onInteraction: v => root.moved(v)
+diff --git a/modules/nexus/pages/AudioPage.qml b/modules/nexus/pages/AudioPage.qml
+index 8ae3f9cc..b16c9708 100644
+--- a/modules/nexus/pages/AudioPage.qml
++++ b/modules/nexus/pages/AudioPage.qml
+@@ -27,6 +27,7 @@ PageBase {
+             label: qsTr("Output")
+             valueLabel: Math.round(value * 100) + "%"
+             value: Audio.volume
++            max: GlobalConfig.services.maxVolume
+             enabled: !Audio.muted
+             onMoved: v => Audio.setVolume(v)
+         }
+@@ -56,6 +57,7 @@ PageBase {
+             label: qsTr("Input")
+             valueLabel: Math.round(value * 100) + "%"
+             value: Audio.sourceVolume
++            max: GlobalConfig.services.maxVolume
+             enabled: !Audio.sourceMuted
+             onMoved: v => Audio.setSourceVolume(v)
+         }
+diff --git a/modules/nexus/pages/audio/AppVolumes.qml b/modules/nexus/pages/audio/AppVolumes.qml
+index 8f36a4ca..cbb0dba9 100644
+--- a/modules/nexus/pages/audio/AppVolumes.qml
++++ b/modules/nexus/pages/audio/AppVolumes.qml
+@@ -62,6 +62,7 @@ PageBase {
+                 label: Audio.getStreamName(stream.modelData)
+                 valueLabel: Math.round(value * 100) + "%"
+                 value: stream.modelData?.audio?.volume ?? 0
++                max: GlobalConfig.services.maxVolume
+                 enabled: !stream.modelData?.audio?.muted
+                 onMoved: v => Audio.setStreamVolume(stream.modelData, v)
+             }

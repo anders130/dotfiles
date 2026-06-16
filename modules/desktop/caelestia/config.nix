@@ -83,7 +83,10 @@
                     ];
                 };
                 notifs.actionOnClick = true;
-                services.defaultPlayer = "YT Music";
+                services = {
+                    defaultPlayer = "YT Music";
+                    maxVolume = 1.5;
+                };
                 session.vimKeybinds = true;
             };
             cli = {
