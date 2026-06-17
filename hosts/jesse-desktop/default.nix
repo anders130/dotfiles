@@ -16,6 +16,7 @@
 
             dev
             work
+            dots.gaming
 
             kdeconnect
             winapps

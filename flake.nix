@@ -103,10 +103,6 @@
                 treefmt-nix.follows = "treefmt-nix";
             };
         };
-        lsfg-vk-flake = {
-            url = "github:pabloaul/lsfg-vk-flake/main";
-            inputs.nixpkgs.follows = "nixpkgs";
-        };
         nix-index-database = {
             url = "github:nix-community/nix-index-database";
             inputs.nixpkgs.follows = "nixpkgs";

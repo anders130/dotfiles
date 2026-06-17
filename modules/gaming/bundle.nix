@@ -5,6 +5,7 @@
             minecraft
             hytale
             lethal-company
+            lsfg-vk
         ];
         homeManager = {pkgs, ...}: {
             home.packages = with pkgs; [
