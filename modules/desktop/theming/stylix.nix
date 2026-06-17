@@ -24,12 +24,9 @@ in {
                 };
             };
         };
-        homeManager = {config, ...}: {
+        homeManager = {
             stylix.targets.gtk.enable = true;
-            gtk = {
-                enable = true;
-                gtk4.theme = config.gtk.theme;
-            };
+            gtk.enable = true;
         };
     };
 }

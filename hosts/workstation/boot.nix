@@ -6,7 +6,6 @@
     }: {
         imports = [inputs.lanzaboote.nixosModules.lanzaboote];
         boot = {
-            bootspec.enable = true;
             initrd.systemd.enable = true;
             loader.systemd-boot.enable = lib.mkForce false;
             lanzaboote = {
