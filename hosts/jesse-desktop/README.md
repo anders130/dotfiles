@@ -1,43 +1,46 @@
-# Desktop
+# jesse-desktop
 
 This is the configuration of my main computer.
 
 ## Installation
 
-To install NixOS on this machine, follow these steps:
+Boot a NixOS live USB and clone this repo:
 
-1. **Boot into a live-usb**
+```bash
+git clone https://github.com/anders130/dotfiles
+cd dotfiles
+```
 
-   You can download an image from [nixos.org](https://nixos.org/download.html#nixos-usb).
+Partition (**erases the disks below**) and install:
 
-2. **Clone this repository**
+| Disk  | Size | Format | Mount |
+| ----- | ---- | ------ | ----- |
+| data  | 100% | btrfs  | -     |
+| games | 100% | ext4   | -     |
+| nixos | 512M | vfat   | /boot |
+| nixos | 100% | ext4   | /     |
 
-   ```bash
-   nix-shell -p git --run "git clone https://github.com/anders130/dotfiles.git .dotfiles"
-   cd .dotfiles
-   ```
+```bash
+sudo nix run github:nix-community/disko -- --mode disko --flake .#jesse-desktop
+nixos-install --flake .#jesse-desktop
+```
 
-3. **Adjust the disk configuration**
+## WinApps
 
-   Update the `disk-config.nix` file to match your system's drives. Use `lsblk` to identify the available disks.
+Start the Windows VM:
 
-4. **Apply the disk configuration**
+```bash
+systemctl start WinApps
+```
 
-   ```bash
-   sudo nix --experimental-features "nix-command flakes" run github:nix-community/disko -- --mode disko --flake .#desktop
-   ```
+Open the noVNC web interface at <http://localhost:8006>, then wait for the download to finish and Windows to install (may take a while).
 
-5. **Verify disk setup**
+Set up the `.desktop` files winapps creates:
 
-   Ensure that the partitions are correctly mounted:
+```bash
+winapps-setup
+```
 
-   ```bash
-   mount | grep /mnt
-   ```
-
-6. **Install NixOS**
-
-   ```bash
-   nixos-install --flake .#desktop
-   reboot
-   ```
+1. Select `Install`
+2. Select `System`
+3. Select `Automatic`

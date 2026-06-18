@@ -1,5 +1,23 @@
 {
     perSystem = {pkgs, ...}: {
+        rootReadme.usage = [
+            {
+                title = "Rebuilding";
+                content = ''
+                    Rebuild the current host (taken from `$NIX_FLAKE_DEFAULT_HOST`):
+
+                    ```fish
+                    rebuild
+                    ```
+
+                    A different subcommand or extra arguments work too:
+
+                    ```fish
+                    rebuild boot --impure
+                    ```
+                '';
+            }
+        ];
         packages.rebuild = pkgs.callPackage ({
             lib,
             nix,

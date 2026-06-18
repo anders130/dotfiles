@@ -9,6 +9,7 @@
         hyprland.ttyAutostart = true;
     };
     den.aspects.workstation = {
+        readme.intro = "This is the configuration for my work laptop.";
         includes = with den.aspects; [
             dots.desktop.provides.caelestia
             desktop
@@ -18,9 +19,9 @@
 
             amdgpu
             displaylink
+            fprint
 
             kdeconnect
-            winapps
             obs
             virt-manager
             nextcloud
@@ -43,7 +44,6 @@
             hardware.bluetooth.enable = true;
 
             services = {
-                fprintd.enable = true;
                 power-profiles-daemon.enable = true;
                 upower.enable = true;
             };

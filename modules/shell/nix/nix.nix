@@ -1,4 +1,17 @@
 {inputs, ...}: {
+    perSystem.rootReadme.usage = [
+        {
+            title = "Flake update tokens";
+            content = ''
+                To avoid GitHub rate limits when updating flake inputs, add a token to `~/.nix.conf` (included automatically when present):
+
+                ```conf
+                access-tokens = github.com=ghp_***
+                ```
+            '';
+        }
+    ];
+
     den.aspects.nix.nixos = {
         config,
         lib,

@@ -1,49 +1,45 @@
 # My [NixOS](https://nixos.org/) Configuration
 
-## About
+Built with [Nix flakes](https://wiki.nixos.org/wiki/Flakes) and the [den](https://github.com/denful/den) framework.
 
-This repository contains all my NixOS configurations. It uses [Nix flakes](https://wiki.nixos.org/wiki/Flakes) to manage the configurations. <br>
-To create the hosts and modules I use the nix-library [modulix](https://github.com/anders130/modulix).
+- [./hosts](./hosts): Host configurations.
+- [./modules](./modules): Modules shared between hosts.
+- [./templates](./templates): Templates for flake-based projects.
 
-- [./hosts](./hosts): Contains the configurations for my different hosts.
-- [./modules](./modules): Contains the modules for my different hosts.
-- [./overlays](./overlays): Contains overlays for various packages that I use.
-- [./pkgs](./pkgs): Contains package definitions for some packages that are/were not in nixpkgs.
-- [./templates](./templates): Contains templates for some flake-based projects.
+## Hosts
+
+- [jesse-desktop](./hosts/jesse-desktop)
+- [workstation](./hosts/workstation)
+- [wsl](./hosts/wsl)
 
 ## Usage
 
-To rebuild this configuration simply use this command:
+### Unfree packages
 
-```fish
-rebuild
-```
-
-It will assume your host configuration name with the `$NIX_FLAKE_DEFAULT_HOST` environment variable.
-If you want, you can choose a different rebuild subcommand, you can even specify additional arguments:
-
-```fish
-rebuild boot --impure
-```
-
----
-
-If you encounter rate limiting while updating flake inputs, you can add your github token via `~/.config/nix/nix.conf`:
-
-```conf
-access-tokens = github.com=ghp_***
-```
-
----
-
-To temporarily try out packages that are unfree, you can use the `--unfree` flag in the `nix` command:
+Run an unfree package without permanently allowing it:
 
 ```fish
 nix run nixpkgs#unfreePackage --unfree
 ```
 
-To create a new token, go to [github.com/settings/tokens](https://github.com/settings/tokens) and click on `Generate new token`.
+### Flake update tokens
 
-## Installation
+To avoid GitHub rate limits when updating flake inputs, add a token to `~/.nix.conf` (included automatically when present):
 
-You can find installation guides for each host in the directory of the host (e. g. [./hosts/desktop](./hosts/desktop)).
+```conf
+access-tokens = github.com=ghp_***
+```
+
+### Rebuilding
+
+Rebuild the current host (taken from `$NIX_FLAKE_DEFAULT_HOST`):
+
+```fish
+rebuild
+```
+
+A different subcommand or extra arguments work too:
+
+```fish
+rebuild boot --impure
+```

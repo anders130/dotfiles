@@ -1,44 +1,46 @@
-{inputs, ...}: {
-    den.aspects.workstation.nixos = {
-        imports = [inputs.disko.nixosModules.disko];
-        fileSystems."/home".neededForBoot = true; # needed for sops secrets getting created on boot
-        disko.devices.disk.nixos = {
-            type = "disk";
-            device = "/dev/nvme0n1";
-            content = {
-                type = "gpt";
-                partitions = {
-                    # EFI System Partition
-                    ESP = {
-                        type = "EF00";
-                        size = "512M";
-                        content = {
-                            type = "filesystem";
-                            format = "vfat";
-                            mountpoint = "/boot";
-                        };
-                    };
-                    luks = {
-                        size = "100%";
-                        content = {
-                            type = "luks";
-                            name = "encrypted-root";
-                            askPassword = true; # set password when running disko
-                            settings.allowDiscards = true; # recommended for SSDs
+{den, ...}: {
+    den.aspects.workstation = {
+        includes = [den.aspects.disko];
+        nixos = {
+            fileSystems."/home".neededForBoot = true; # needed for sops secrets getting created on boot
+            disko.devices.disk.nixos = {
+                type = "disk";
+                device = "/dev/nvme0n1";
+                content = {
+                    type = "gpt";
+                    partitions = {
+                        # EFI System Partition
+                        ESP = {
+                            type = "EF00";
+                            size = "512M";
                             content = {
-                                type = "btrfs";
-                                extraArgs = ["-f"]; # force overwrite of existing key
-                                subvolumes = {
-                                    "/main" = {
-                                        mountpoint = "/";
-                                        swap.".swaptfile".size = "8G";
-                                    };
-                                    "/home" = {
-                                        mountpoint = "/home";
-                                    };
-                                    "/nix" = {
-                                        mountpoint = "/nix";
-                                        mountOptions = ["noatime"]; # don't save latest access time
+                                type = "filesystem";
+                                format = "vfat";
+                                mountpoint = "/boot";
+                            };
+                        };
+                        luks = {
+                            size = "100%";
+                            content = {
+                                type = "luks";
+                                name = "encrypted-root";
+                                askPassword = true; # set password when running disko
+                                settings.allowDiscards = true; # recommended for SSDs
+                                content = {
+                                    type = "btrfs";
+                                    extraArgs = ["-f"]; # force overwrite of existing key
+                                    subvolumes = {
+                                        "/main" = {
+                                            mountpoint = "/";
+                                            swap.".swaptfile".size = "8G";
+                                        };
+                                        "/home" = {
+                                            mountpoint = "/home";
+                                        };
+                                        "/nix" = {
+                                            mountpoint = "/nix";
+                                            mountOptions = ["noatime"]; # don't save latest access time
+                                        };
                                     };
                                 };
                             };

@@ -1,77 +1,48 @@
-# Workstation
+# workstation
 
 This is the configuration for my work laptop.
 
 ## Installation
 
-To install NixOS on this machine, follow these steps:
+Boot a NixOS live USB and clone this repo:
 
-1. **Boot into a live-usb**
+```bash
+git clone https://github.com/anders130/dotfiles
+cd dotfiles
+```
 
-   You can download an image from [nixos.org](https://nixos.org/download.html#nixos-usb).
+### DisplayLink driver
 
-2. **Clone this repository**
+This configuration enables the DisplayLink module. The driver is unfree and must be fetched into the store before installing:
 
-   ```bash
-   nix-shell -p git --run "git clone https://github.com/anders130/dotfiles.git .dotfiles"
-   cd .dotfiles
-   ```
+```bash
+nix-prefetch-url --name displaylink-620.zip https://www.synaptics.com/sites/default/files/exe_files/2025-09/DisplayLink%20USB%20Graphics%20Software%20for%20Ubuntu6.2-EXE.zip
+```
 
-3. **Adjust the disk configuration**
+Partition (**erases the disks below**) and install:
 
-   Update the `disk-config.nix` file to match your system's drives. Use `lsblk` to identify the available disks.
+| Disk  | Size | Format | Mount |
+| ----- | ---- | ------ | ----- |
+| nixos | 512M | vfat   | /boot |
+| nixos | 100% | -      | -     |
 
-4. **Apply the disk configuration**
-
-   ```bash
-   sudo nix --experimental-features "nix-command flakes" run github:nix-community/disko -- --mode disko --flake .#workstation
-   ```
-
-5. **Verify disk setup**
-
-   Ensure that the partitions are correctly mounted:
-
-   ```bash
-   mount | grep /mnt
-   ```
-
-6. **Install NixOS**
-
-   Because this configuration has the displaylink module enabled, you need to add the displaylink drivers to the nix store:
-
-   ```bash
-   nix-prefetch-url --name displaylink-610.zip https://www.synaptics.com/sites/default/files/exe_files/2024-10/DisplayLink%20USB%20Graphics%20Software%20for%20Ubuntu6.1-EXE.zip
-   ```
-
-   Now you can install the configuration and reboot:
-
-   ```bash
-   nixos-install --flake .#workstation
-   reboot
-   ```
+```bash
+sudo nix run github:nix-community/disko -- --mode disko --flake .#workstation
+nixos-install --flake .#workstation
+```
 
 ## Setup Secure-Boot
 
-To enable Secure Boot, you’ll need to set a **BIOS password** and disable **key protection**. You can do this by entering the BIOS (usually by pressing `F2` during boot) and following the on-screen instructions.
-
-### Steps to set up Secure-Boot
+Set a **BIOS password** and disable **key protection** in the BIOS (usually `F2` during boot).
 
 1. **Create secure boot keys**
 
    ```bash
    sudo nix run nixpkgs#sbctl create-keys
-   ```
-
-   After this, verify that the keys are created successfully:
-
-   ```bash
    sudo nix run nixpkgs#sbctl verify
    ```
 
-2. **Enable Secure-Boot in the BIOS**
-
-   Enter BIOS, enable **Secure-Boot** and check the box **clear keys on next boot**.
-   Then restart the computer.
+2. **Enable Secure-Boot in the BIOS** — enable **Secure-Boot** and check **clear keys on next boot**, then restart.
 
 3. **Enroll Secure-Boot keys**
 
@@ -79,9 +50,7 @@ To enable Secure Boot, you’ll need to set a **BIOS password** and disable **ke
    sudo nix run nixpkgs#sbctl enroll-keys -- --microsoft
    ```
 
-4. **Verify Secure-Boot Status**
-
-   After a reboot you can verify the keys:
+4. **Verify** after a reboot
 
    ```bash
    bootctl status
@@ -89,22 +58,10 @@ To enable Secure Boot, you’ll need to set a **BIOS password** and disable **ke
 
 ## Setup Fingerprint Reader
 
-To see, if the fingerprint reader is detected, run:
+Check the reader is detected, then enroll and verify:
 
 ```bash
 fprintd-list <username>
-```
-
-If the fingerprint reader is detected, you can enroll your fingerprints:
-
-```bash
 fprintd-enroll
-```
-
-To verify the enrollment, run:
-
-```bash
 fprintd-verify
 ```
-
-This will show if the fingerprint is enrolled and if it is working.

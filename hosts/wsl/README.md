@@ -1,58 +1,45 @@
+# wsl
+
 # :warning: Disclaimer
+
 **I no longer use WSL and therefore can't guarrantee that this host works correctly.**
-
----
-
-# WSL
-
-This is the configuration for my WSL (Windows Subsystem for Linux) setup.
 
 ## Installation
 
-1. **Install and update WSL**
+Set up WSL from Windows (reboot Windows after the first step):
 
-   If WSL is not already installed, install it and upate to the latest version:
+1. **Install and update WSL**
 
    ```powershell
    wsl --install --no-distribution
    wsl --update
    ```
 
-   Reboot windows for good measure.
-
-2. **Download and install NixOS-WSL**
-
-   Download the [latest NixOS-WSL installer](https://github.com/nix-community/NixOS-WSL) and import it into WSL:
+2. **Import NixOS-WSL** — download the [latest installer](https://github.com/nix-community/NixOS-WSL)
 
    ```powershell
    wsl --import NixOS .\NixOS\ .\nixos-wsl.tar.gz --version 2
    ```
 
-3. **Start a NixOS Session**
+3. **Start a NixOS session**
 
    ```powershell
    wsl -d NixOS
    ```
 
-4. **Clone the repository**
+Then clone this repo and rebuild:
 
-   Inside the new NixOS environment, clone this repository into your home directory:
+```bash
+git clone https://github.com/anders130/dotfiles
+cd dotfiles
+```
 
-   ```bash
-   cd /home/<username>
-   nix-shell -p git --run "git clone https://github.com/anders130/dotfiles.git .dotfiles"
-   ```
+```bash
+sudo nixos-rebuild switch --flake .#wsl
+```
 
-5. **Rebuild the System**
+Finally restart WSL from Windows:
 
-   ```bash
-   sudo nixos-rebuild switch --flake ~/.dotfiles#wsl
-   ```
-
-6. **Restart WSL**
-
-   Finally, shut down and restart WSL for the changes to take effect:
-
-   ```powershell
-   wsl --shutdown
-   ```
+```powershell
+wsl --shutdown
+```

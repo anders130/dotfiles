@@ -9,6 +9,7 @@
         hyprland.ttyAutostart = true;
     };
     den.aspects.jesse-desktop = {
+        readme.intro = "This is the configuration of my main computer.";
         includes = with den.aspects; [
             dots.desktop.provides.caelestia
             desktop

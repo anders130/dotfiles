@@ -1,7 +1,7 @@
-{inputs, ...}: {
-    den.aspects.jesse-desktop.nixos = {
-        imports = [inputs.disko.nixosModules.disko];
-        disko.devices.disk = {
+{den, ...}: {
+    den.aspects.jesse-desktop = {
+        includes = [den.aspects.disko];
+        nixos.disko.devices.disk = {
             nixos = {
                 type = "disk";
                 device = "/dev/disk/by-id/nvme-eui.0025385811b170f2";

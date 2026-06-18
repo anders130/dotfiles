@@ -1,4 +1,17 @@
 {
+    perSystem.rootReadme.usage = [
+        {
+            title = "Unfree packages";
+            content = ''
+                Run an unfree package without permanently allowing it:
+
+                ```fish
+                nix run nixpkgs#unfreePackage --unfree
+                ```
+            '';
+        }
+    ];
+
     den.aspects.nix.homeManager = {
         config,
         lib,
