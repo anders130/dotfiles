@@ -1,9 +1,27 @@
-{den, ...}: {
+{
     den.aspects.youtube-music = {
-        includes = [den.aspects.initial-files];
+        nixos.nixpkgs.overlays = [
+            (_: prev: {
+                pear-desktop = prev.pear-desktop.overrideAttrs (_: {
+                    desktopItems = [
+                        (prev.makeDesktopItem {
+                            name = "youtube-music";
+                            desktopName = "YT Music";
+                            exec = "pear-desktop %U";
+                            icon = "${prev.pear-desktop}/share/icons/hicolor/256x256/apps/pear-desktop.png";
+                            startupWMClass = "com.github.th_ch.youtube_music";
+                            genericName = "Music Player";
+                            keywords = ["music" "YouTube" "YT Music" "pear-desktop"];
+                            categories = ["Audio" "AudioVideo" "Player"];
+                        })
+                    ];
+                });
+            })
+        ];
         homeManager = {
             config,
             pkgs,
+            lib,
             ...
         }: let
             settings = {
@@ -36,9 +54,6 @@
                     startingPage = "";
                     overrideUserAgent = false;
                     usePodcastParticipantAsArtist = false;
-                    themes = [
-                        (toString ./theme.css)
-                    ];
                 };
                 plugins = {
                     notifications = {};
@@ -50,12 +65,14 @@
                         preferredProvider = "YTMusic";
                     };
                 };
-                __internal__.migrations.version = "3.3.6";
+                __internal__.migrations.version = "3.11.0";
             };
+            configFile = pkgs.writeText "youtube-music-config.json" (builtins.toJSON settings);
         in {
             home.packages = [pkgs.pear-desktop];
-            modules.initial-files.file."${config.home.homeDirectory}/.config/YouTube Music/config.json".text =
-                builtins.toJSON settings;
+            home.activation.youtube-music-config = lib.hm.dag.entryAfter ["writeBoundary"] ''
+                install -Dm644 ${configFile} "${config.home.homeDirectory}/.config/YouTube Music/config.json"
+            '';
         };
     };
 }
