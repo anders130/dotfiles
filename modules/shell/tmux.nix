@@ -51,7 +51,7 @@ in {
                 bind '"' split-window -v -c "#{pane_current_path}"
                 bind % split-window -h -c "#{pane_current_path}"
                 bind S command-prompt -p "New Session:" "new-session -s '%%'"
-                bind K confirm kill-session
+                bind K confirm-before -p "kill #S? (y/n)" "run-shell 'tmux switch-client -l 2>/dev/null; tmux kill-session -t \"#{session_name}\"'"
             '';
         configAfter =
             #tmux
