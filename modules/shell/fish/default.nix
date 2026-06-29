@@ -11,7 +11,6 @@
                 interactiveShellInit = ''
                     fish_config theme choose "fish"
                     source $HOME/.config/fish/extraConfig.fish
-                    source ${pkgs.fish}/share/fish/completions/git.fish
                     fastfetch-short
                 '';
             };
