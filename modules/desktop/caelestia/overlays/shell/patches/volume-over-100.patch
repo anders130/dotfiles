@@ -29,7 +29,7 @@ index 5dd8b641..b78e2539 100644
  
      handle: Item {
 diff --git a/components/controls/StyledSlider.qml b/components/controls/StyledSlider.qml
-index e2597e62..f25f9d65 100644
+index aaf95caf..5f8a83f4 100644
 --- a/components/controls/StyledSlider.qml
 +++ b/components/controls/StyledSlider.qml
 @@ -99,6 +99,23 @@ Slider {
@@ -56,7 +56,7 @@ index e2597e62..f25f9d65 100644
          Component {
              id: lineComp
  
-@@ -174,10 +191,10 @@ Slider {
+@@ -174,12 +191,12 @@ Slider {
          onPositionChanged: e => {
              dragMovement = (e.x - pressStartX) / width;
              if (root.interactionOnMove)
@@ -64,8 +64,10 @@ index e2597e62..f25f9d65 100644
 +                root.interaction(root.from + posBinding.value * (root.to - root.from));
          }
          onReleased: e => {
--            root.interaction(posBinding.value);
-+            root.interaction(root.from + posBinding.value * (root.to - root.from));
+             const clickPos = e.x / width;
+             const finalPos = mouse.dragMovement !== 0 ? posBinding.value : CUtils.clamp(clickPos, 0, 1);
+-            root.interaction(finalPos);
++            root.interaction(root.from + finalPos * (root.to - root.from));
              widthBehavior.enabled = true;
              dragMovement = 0;
          }
@@ -82,7 +84,7 @@ index 18983428..5d00ba9b 100644
                  onInteraction: value => Audio.setVolume(value)
              }
 diff --git a/modules/nexus/common/SliderRow.qml b/modules/nexus/common/SliderRow.qml
-index 21cbe545..1c2d8766 100644
+index e4cdf239..c0f0725a 100644
 --- a/modules/nexus/common/SliderRow.qml
 +++ b/modules/nexus/common/SliderRow.qml
 @@ -15,6 +15,7 @@ ConnectedRect {
@@ -93,7 +95,7 @@ index 21cbe545..1c2d8766 100644
  
      signal moved(value: real)
  
-@@ -63,7 +64,7 @@ ConnectedRect {
+@@ -64,7 +65,7 @@ ConnectedRect {
                  function onWheel(event: WheelEvent): void {
                      const step = GlobalConfig.services.audioIncrement;
                      if (event.angleDelta.y > 0)
@@ -102,7 +104,7 @@ index 21cbe545..1c2d8766 100644
                      else if (event.angleDelta.y < 0)
                          root.moved(Math.max(0, root.value - step));
                  }
-@@ -78,6 +79,7 @@ ConnectedRect {
+@@ -79,6 +80,7 @@ ConnectedRect {
                      implicitHeight: parent.implicitHeight
  
                      radius: Tokens.rounding.small
@@ -111,10 +113,10 @@ index 21cbe545..1c2d8766 100644
                      enabled: root.enabled
                      onInteraction: v => root.moved(v)
 diff --git a/modules/nexus/pages/AudioPage.qml b/modules/nexus/pages/AudioPage.qml
-index 8ae3f9cc..b16c9708 100644
+index 09918df0..ede4e5f6 100644
 --- a/modules/nexus/pages/AudioPage.qml
 +++ b/modules/nexus/pages/AudioPage.qml
-@@ -27,6 +27,7 @@ PageBase {
+@@ -26,6 +26,7 @@ PageBase {
              label: qsTr("Output")
              valueLabel: Math.round(value * 100) + "%"
              value: Audio.volume
@@ -122,7 +124,7 @@ index 8ae3f9cc..b16c9708 100644
              enabled: !Audio.muted
              onMoved: v => Audio.setVolume(v)
          }
-@@ -56,6 +57,7 @@ PageBase {
+@@ -53,6 +54,7 @@ PageBase {
              label: qsTr("Input")
              valueLabel: Math.round(value * 100) + "%"
              value: Audio.sourceVolume
