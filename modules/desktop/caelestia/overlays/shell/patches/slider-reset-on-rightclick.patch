@@ -1,0 +1,165 @@
+diff --git a/components/controls/FilledSlider.qml b/components/controls/FilledSlider.qml
+index b78e2539..ae23917a 100644
+--- a/components/controls/FilledSlider.qml
++++ b/components/controls/FilledSlider.qml
+@@ -115,8 +115,16 @@ Slider {
+         }
+     }
+ 
++    signal reset()
++
+     onPressedChanged: handle.moving = pressed
+ 
++    MouseArea {
++        anchors.fill: parent
++        acceptedButtons: Qt.RightButton
++        onClicked: root.reset()
++    }
++
+     onValueChanged: {
+         if (!initialized) {
+             initialized = true;
+diff --git a/components/controls/StyledSlider.qml b/components/controls/StyledSlider.qml
+index 5f8a83f4..34e85509 100644
+--- a/components/controls/StyledSlider.qml
++++ b/components/controls/StyledSlider.qml
+@@ -26,6 +26,7 @@ Slider {
+     property real filledWidth
+ 
+     signal interaction(v: real)
++    signal reset()
+ 
+     Component.onCompleted: filledWidth = Qt.binding(() => (width - handle.implicitWidth - handle.anchors.leftMargin) * pos)
+ 
+@@ -166,7 +167,7 @@ Slider {
+         target: root
+         property: "pos"
+         value: CUtils.clamp(mouse.pressStartPos + mouse.dragMovement, 0, 1)
+-        when: mouse.pressed
++        when: mouse.pressed && !mouse.rightPressed
+     }
+ 
+     MouseArea {
+@@ -175,25 +176,38 @@ Slider {
+         property real pressStartX
+         property real pressStartPos
+         property real dragMovement
++        property bool rightPressed: false
+ 
+         anchors.left: parent.left
+         anchors.right: parent.right
+         anchors.verticalCenter: parent.verticalCenter
+ 
++        acceptedButtons: Qt.LeftButton | Qt.RightButton
+         preventStealing: true
+         implicitHeight: handle.implicitHeight
+ 
+         onPressed: e => {
++            if (e.button === Qt.RightButton) {
++                rightPressed = true;
++                root.reset();
++                return;
++            }
+             widthBehavior.enabled = false;
+             pressStartX = e.x;
+             pressStartPos = root.visualPosition;
+         }
+         onPositionChanged: e => {
++            if (mouse.rightPressed)
++                return;
+             dragMovement = (e.x - pressStartX) / width;
+             if (root.interactionOnMove)
+                 root.interaction(root.from + posBinding.value * (root.to - root.from));
+         }
+         onReleased: e => {
++            if (e.button === Qt.RightButton) {
++                rightPressed = false;
++                return;
++            }
+             const clickPos = e.x / width;
+             const finalPos = mouse.dragMovement !== 0 ? posBinding.value : CUtils.clamp(clickPos, 0, 1);
+             root.interaction(root.from + finalPos * (root.to - root.from));
+diff --git a/modules/bar/popouts/Audio.qml b/modules/bar/popouts/Audio.qml
+index 5d00ba9b..db716db4 100644
+--- a/modules/bar/popouts/Audio.qml
++++ b/modules/bar/popouts/Audio.qml
+@@ -96,6 +96,7 @@ Item {
+                 to: GlobalConfig.services.maxVolume
+                 value: Audio.volume
+                 onInteraction: value => Audio.setVolume(value)
++                onReset: Audio.setVolume(1)
+             }
+         }
+ 
+diff --git a/modules/nexus/common/SliderRow.qml b/modules/nexus/common/SliderRow.qml
+index c0f0725a..5e7f7179 100644
+--- a/modules/nexus/common/SliderRow.qml
++++ b/modules/nexus/common/SliderRow.qml
+@@ -18,6 +18,7 @@ ConnectedRect {
+     property real max: 1
+ 
+     signal moved(value: real)
++    signal reset()
+ 
+     Layout.fillWidth: true
+     implicitHeight: rowLayout.implicitHeight + rowLayout.anchors.margins + rowLayout.anchors.topMargin
+@@ -84,6 +85,7 @@ ConnectedRect {
+                     value: root.value
+                     enabled: root.enabled
+                     onInteraction: v => root.moved(v)
++                    onReset: root.reset()
+                 }
+             }
+         }
+diff --git a/modules/nexus/pages/AudioPage.qml b/modules/nexus/pages/AudioPage.qml
+index ede4e5f6..ac9022d4 100644
+--- a/modules/nexus/pages/AudioPage.qml
++++ b/modules/nexus/pages/AudioPage.qml
+@@ -29,6 +29,7 @@ PageBase {
+             max: GlobalConfig.services.maxVolume
+             enabled: !Audio.muted
+             onMoved: v => Audio.setVolume(v)
++            onReset: Audio.setVolume(1)
+         }
+ 
+         ToggleRow {
+@@ -57,6 +58,7 @@ PageBase {
+             max: GlobalConfig.services.maxVolume
+             enabled: !Audio.sourceMuted
+             onMoved: v => Audio.setSourceVolume(v)
++            onReset: Audio.setSourceVolume(1)
+         }
+ 
+         ToggleRow {
+diff --git a/modules/nexus/pages/audio/AppVolumes.qml b/modules/nexus/pages/audio/AppVolumes.qml
+index cbb0dba9..bd36a81e 100644
+--- a/modules/nexus/pages/audio/AppVolumes.qml
++++ b/modules/nexus/pages/audio/AppVolumes.qml
+@@ -65,6 +65,7 @@ PageBase {
+                 max: GlobalConfig.services.maxVolume
+                 enabled: !stream.modelData?.audio?.muted
+                 onMoved: v => Audio.setStreamVolume(stream.modelData, v)
++                onReset: Audio.setStreamVolume(stream.modelData, 1)
+             }
+         }
+     }
+diff --git a/modules/osd/Content.qml b/modules/osd/Content.qml
+index 1aac8558..f31c7799 100644
+--- a/modules/osd/Content.qml
++++ b/modules/osd/Content.qml
+@@ -50,6 +50,7 @@ Item {
+                 value: root.volume
+                 to: GlobalConfig.services.maxVolume
+                 onMoved: Audio.setVolume(value)
++                onReset: Audio.setVolume(1)
+             }
+         }
+ 
+@@ -75,6 +76,7 @@ Item {
+                     value: root.sourceVolume
+                     to: GlobalConfig.services.maxVolume
+                     onMoved: Audio.setSourceVolume(value)
++                    onReset: Audio.setSourceVolume(1)
+                 }
+             }
+         }

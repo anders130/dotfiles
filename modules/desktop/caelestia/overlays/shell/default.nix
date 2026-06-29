@@ -10,7 +10,10 @@
                         ];
                     }).overrideAttrs (oldAttrs: {
                         patches =
-                            [./patches/volume-over-100.patch]
+                            [
+                                ./patches/volume-over-100.patch
+                                ./patches/slider-reset-on-rightclick.patch
+                            ]
                             ++ lib.optionals (host.caelestia.showAudio or false) [./patches/audio-switcher.patch];
                         postInstall =
                             (oldAttrs.postInstall or "")
