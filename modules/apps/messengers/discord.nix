@@ -1,7 +1,12 @@
-{inputs, ...}: {
+{
+    inputs,
+    den,
+    ...
+}: {
     flake-file.inputs.nixcord.url = "github:kaylorben/nixcord";
 
     den.aspects.discord = {
+        includes = [(den.batteries.insecure ["pnpm-10.29.2"])];
         nixos.nixpkgs.overlays = [
             (_: prev: {
                 vesktop = prev.vesktop.overrideAttrs (_: {

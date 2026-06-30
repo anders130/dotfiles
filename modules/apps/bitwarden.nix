@@ -10,7 +10,7 @@
                 global_desktopSettings_browserIntegrationEnabled = true;
                 global_desktopSettings_trayEnabled = true;
                 global_desktopSettings_closeToTray = true;
-                global_desktopSettings_startToTray = true;
+                global_desktopSettings_openAtLogin = false;
             };
         in {
             home.packages = [pkgs.bitwarden-desktop];
