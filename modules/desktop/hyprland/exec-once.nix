@@ -1,9 +1,20 @@
 {
     dots.desktop.provides.hyprland.homeManager = {
-        config,
         osConfig,
+        pkgs,
+        lib,
         ...
     }: let
+        # polls the login keyring's Locked property (read-only, never triggers a prompt)
+        awaitKeyring = pkgs.writeShellScript "await-keyring-unlock" ''
+            busctl=${lib.getExe' pkgs.systemd "busctl"}
+            sleep=${lib.getExe' pkgs.coreutils "sleep"}
+            while [ "$("$busctl" --user get-property org.freedesktop.secrets \
+                /org/freedesktop/secrets/collection/login \
+                org.freedesktop.Secret.Collection Locked 2>/dev/null)" != "b false" ]; do
+                "$sleep" 1
+            done
+        '';
         mkCmd = cmd:
             if builtins.typeOf cmd == "string"
             then "app2unit -- ${cmd}"
@@ -12,10 +23,8 @@
                     if cmd.isApp
                     then "app2unit -- ${cmd.command}"
                     else cmd.command;
-                inner =
-                    if cmd.afterFirstLogin && config.my.desktop.firstLoginHook != null
-                    then "${config.my.desktop.firstLoginHook} && ${appCmd}"
-                    else appCmd;
+                gates = lib.optional cmd.afterKeyringUnlock "${awaitKeyring}";
+                inner = lib.concatStringsSep " && " (gates ++ [appCmd]);
             in "${
                 if cmd.delay > 0.0
                 then "sleep ${toString cmd.delay} && "

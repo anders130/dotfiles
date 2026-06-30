@@ -42,7 +42,7 @@
                     "sleep 2 && zapzap --hideStart"
                     {
                         command = "bitwarden";
-                        afterFirstLogin = true;
+                        afterKeyringUnlock = true;
                     }
                 ];
             };

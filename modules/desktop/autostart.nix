@@ -21,22 +21,16 @@
                                 default = true;
                                 description = "Whether the command should be executed with uwsm app";
                             };
-                            afterFirstLogin = mkOption {
+                            afterKeyringUnlock = mkOption {
                                 type = types.bool;
                                 default = false;
+                                description = "Wait until the login keyring is unlocked before executing";
                             };
                         };
                     })
                 ]);
                 default = [];
                 description = "List of commands to execute on startup";
-            };
-        };
-        homeManager = {lib, ...}: {
-            options.my.desktop.firstLoginHook = lib.mkOption {
-                type = lib.types.nullOr lib.types.package;
-                default = null;
-                description = "Script that exits 0 when the first login has completed";
             };
         };
     };

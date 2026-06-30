@@ -31,18 +31,25 @@
             ...
         }: {
             my.desktop.autostart = [
-                "signal-desktop --start-in-tray"
+                {
+                    command = "signal-desktop --start-in-tray";
+                    afterKeyringUnlock = true;
+                }
                 {
                     delay = 1.0;
                     command = "noisetorch -i";
                 }
                 {
-                    delay = 3.0;
                     command = "vesktop --start-minimized";
+                    afterKeyringUnlock = true;
                 }
                 {
                     command = "nextcloud --background";
-                    afterFirstLogin = true;
+                    afterKeyringUnlock = true;
+                }
+                {
+                    command = "bitwarden";
+                    afterKeyringUnlock = true;
                 }
                 {
                     command = "ssh-add-all-keys";
