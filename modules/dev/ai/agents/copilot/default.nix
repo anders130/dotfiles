@@ -7,7 +7,7 @@
             pkgs,
             ...
         }: let
-            inherit (lib) mapAttrs mkIf optionalAttrs;
+            inherit (lib) mapAttrs mkIf mkOption optionalAttrs types;
 
             toCopilot = s:
                 if s.type == "stdio"
@@ -18,13 +18,20 @@
                 else {inherit (s) type url;} // optionalAttrs (s.headers != {}) {inherit (s) headers;};
             servers = mapAttrs (_: toCopilot) (config.my.ai.resolvedMcpServers.github-copilot.work or {});
         in {
-            home = {
-                packages = [pkgs.llm-agents.copilot-cli];
-                file.".copilot/mcp-config.json" = mkIf (servers != {}) {
-                    text = builtins.toJSON {mcpServers = servers;};
-                };
+            options.my.programs.copilot.package = mkOption {
+                type = types.package;
+                default = pkgs.llm-agents.copilot-cli;
+                description = "copilot-cli package to install (overridable for theming).";
             };
-            my.ai.agents.github-copilot.work.dir = ".agents";
+            config = {
+                home = {
+                    packages = [config.my.programs.copilot.package];
+                    file.".copilot/mcp-config.json" = mkIf (servers != {}) {
+                        text = builtins.toJSON {mcpServers = servers;};
+                    };
+                };
+                my.ai.agents.github-copilot.work.dir = ".agents";
+            };
         };
     };
 }
