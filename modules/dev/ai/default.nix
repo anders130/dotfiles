@@ -4,6 +4,8 @@
         skills.superpowers
         skills.antigravity
         tools.spec-kit
+        mcp.nixos
+        mcp.github
     ];
     den.aspects.ai.homeManager = {
         config,
