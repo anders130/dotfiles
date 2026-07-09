@@ -4,18 +4,24 @@
         nixos.disko.devices.disk = {
             nixos = {
                 type = "disk";
-                device = "/dev/disk/by-id/nvme-eui.0025385811b170f2";
+                device = "/dev/disk/by-id/nvme-eui.002538a36141b41e";
                 content = {
                     type = "gpt";
                     partitions = {
-                        # EFI System Partition
                         ESP = {
                             type = "EF00";
-                            size = "512M";
+                            size = "2G";
                             content = {
                                 type = "filesystem";
                                 format = "vfat";
                                 mountpoint = "/boot";
+                            };
+                        };
+                        swap = {
+                            size = "64G";
+                            content = {
+                                type = "swap";
+                                resumeDevice = true;
                             };
                         };
                         root = {
@@ -31,28 +37,17 @@
             };
             data = {
                 type = "disk";
-                device = "/dev/disk/by-id/ata-SanDisk_SSD_PLUS_1000GB_210204448305";
+                device = "/dev/disk/by-id/nvme-Samsung_SSD_970_EVO_Plus_2TB_S4J4NX0R849941A";
                 content = {
                     type = "gpt";
-                    partitions.root = {
-                        size = "100%";
-                        content = {
-                            type = "filesystem";
-                            format = "btrfs";
-                        };
-                    };
-                };
-            };
-            games = {
-                type = "disk";
-                device = "/dev/disk/by-id/nvme-CT2000P3SSD8_2247E68A613E";
-                content = {
-                    type = "gpt";
-                    partitions.root = {
+                    partitions.data = {
                         size = "100%";
                         content = {
                             type = "filesystem";
                             format = "ext4";
+                            extraArgs = ["-L" "Data"];
+                            mountpoint = "/mnt/data";
+                            mountOptions = ["defaults" "nofail" "x-gvfs-show"];
                         };
                     };
                 };

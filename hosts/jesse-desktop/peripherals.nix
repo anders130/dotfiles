@@ -19,9 +19,15 @@
             "Speakers" = {
                 match = {
                     "device.api" = "alsa";
-                    "device.name" = "alsa_card.pci-0000_31_00.4";
+                    "device.name" = "alsa_card.usb-Generic_USB_Audio-00";
                 };
-                profile = "output:analog-stereo";
+                profile = "HiFi+output:HiFi__Speaker__sink";
+                disabledNodes = [
+                    "output:HiFi__Headphones__sink"
+                    "output:HiFi__SPDIF__sink"
+                    "input:HiFi__Mic__source"
+                    "input:HiFi__Line__source"
+                ];
             };
             "Webcam" = {
                 match = {
@@ -30,10 +36,17 @@
                 };
                 profile = "off";
             };
-            "Monitor" = {
+            "GPU HDMI" = {
                 match = {
                     "device.api" = "alsa";
-                    "device.bus-path" = "pci-0000:2f:00.1";
+                    "device.name" = "alsa_card.pci-0000_08_00.1";
+                };
+                profile = "off";
+            };
+            "GPU HDMI 2" = {
+                match = {
+                    "device.api" = "alsa";
+                    "device.name" = "alsa_card.pci-0000_48_00.1";
                 };
                 profile = "off";
             };

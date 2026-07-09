@@ -5,7 +5,7 @@
         pkgs,
         ...
     }: let
-        inherit (builtins) elemAt filter;
+        inherit (builtins) elemAt filter head;
         inherit
             (lib)
             concatMap
@@ -22,13 +22,13 @@
         cfg = config.my.audio;
         devicesList = mapAttrsToList (name: device: {
             inherit name;
-            inherit (device) type match profile;
+            inherit (device) type match profile disabledNodes;
         })
         cfg.devices;
         mkDeviceRule = d: {
             matches = [d.match];
             actions.update-props = {
-                "device.profile" = d.profile;
+                "device.profile" = head (splitString "+" d.profile);
                 "device.nick" = d.name;
                 "device.description" = d.name;
             };
@@ -50,12 +50,20 @@
                 else [(mkRule "output" part) (mkRule "input" part)];
         in
             concatMap parsePart (splitString "+" d.profile);
+        mkDisableNodeRule = d: nodeSpec: let
+            cardId = removePrefix "alsa_card." d.match."device.name";
+            parts = splitString ":" nodeSpec;
+        in {
+            matches = [{"node.name" = "alsa_${elemAt parts 0}.${cardId}.${elemAt parts 1}";}];
+            actions.update-props."node.disabled" = true;
+        };
         hasNodeName = d: d.profile != "off" && d.match ? "device.name";
         mkRules = devices: let
             deviceRules = map mkDeviceRule devices;
             nodeRules = concatMap mkNodeRules (filter hasNodeName devices);
+            disableRules = concatMap (d: map (mkDisableNodeRule d) d.disabledNodes) (filter (d: d.match ? "device.name") devices);
         in
-            deviceRules ++ nodeRules;
+            deviceRules ++ nodeRules ++ disableRules;
         alsaDevices = filter (d: d.type == "alsa") devicesList;
         bluezDevices = filter (d: d.type == "bluez5") devicesList;
     in {
@@ -74,7 +82,12 @@
                         };
                         profile = mkOption {
                             type = types.str;
-                            description = "Profile to apply to the device.";
+                            description = "Profile to apply to the device. Use '+direction:suffix' to also rename a specific node.";
+                        };
+                        disabledNodes = mkOption {
+                            type = types.listOf types.str;
+                            default = [];
+                            description = "Node suffixes to disable, in 'direction:suffix' form (e.g. 'output:HiFi__SPDIF__sink').";
                         };
                     };
                 });

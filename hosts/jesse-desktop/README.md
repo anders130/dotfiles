@@ -13,12 +13,12 @@ cd dotfiles
 
 Partition (**erases the disks below**) and install:
 
-| Disk  | Size | Format | Mount |
-| ----- | ---- | ------ | ----- |
-| data  | 100% | btrfs  | -     |
-| games | 100% | ext4   | -     |
-| nixos | 512M | vfat   | /boot |
-| nixos | 100% | ext4   | /     |
+| Disk  | Size | Format | Mount     |
+| ----- | ---- | ------ | --------- |
+| data  | 100% | ext4   | /mnt/data |
+| nixos | 2G   | vfat   | /boot     |
+| nixos | 100% | ext4   | /         |
+| nixos | 64G  | -      | -         |
 
 ```bash
 sudo nix run github:nix-community/disko -- --mode disko --flake .#jesse-desktop

@@ -34,7 +34,7 @@
             self',
             ...
         }: {
-            system.stateVersion = "24.05";
+            system.stateVersion = "26.11";
 
             my = {
                 nix.daemon.enableLimit = true;
@@ -76,7 +76,7 @@
                     };
                 in {
                     "/Documents" = mkFolder "Documents";
-                    "/Photos" = mkFolder "Photos";
+                    "/Photos" = mkFolder "Pictures";
                     "/Music" = mkFolder "Music";
                     "/Videos" = mkFolder "Videos";
                 };

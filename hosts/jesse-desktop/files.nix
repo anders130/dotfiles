@@ -1,7 +1,5 @@
 {
-    den.aspects.jesse-desktop.nixos = {lib, ...}: let
-        username = "jesse";
-    in {
+    den.aspects.jesse-desktop.nixos = {
         boot.supportedFilesystems = [
             "ext4"
             "btrfs"
@@ -15,38 +13,12 @@
                 "rw" # read-write
                 "x-gvfs-show" # nautilus can see this drive
             ];
-            bindMount = drive: name: {
-                name = "/home/${username}/${name}";
-                value = {
-                    device = "${drive}/${name}";
-                    fsType = "none";
-                    options = [
-                        "bind"
-                        "x-gvfs-hide"
-                    ];
-                };
+        in {
+            "/mnt/games" = {
+                device = "/dev/disk/by-uuid/33b4f5fb-1bdc-4f36-aa00-c5f04daeff67";
+                fsType = "ext4";
+                options = mountOptions ++ ["defaults" "exec"];
             };
-        in
-            lib.mkMerge [
-                {
-                    "/mnt/data" = {
-                        device = "/dev/disk/by-uuid/94beffa0-c53a-49d6-94e5-7be7092befb9";
-                        fsType = "btrfs";
-                        options = mountOptions;
-                    };
-                    "/mnt/games" = {
-                        device = "/dev/disk/by-uuid/33b4f5fb-1bdc-4f36-aa00-c5f04daeff67";
-                        fsType = "ext4";
-                        options = mountOptions ++ ["defaults" "exec"];
-                    };
-                }
-                (builtins.listToAttrs (map (bindMount "/mnt/data") [
-                    "Documents"
-                    "Downloads"
-                    "Music"
-                    "Pictures"
-                    "Videos"
-                ]))
-            ];
+        };
     };
 }

@@ -7,7 +7,10 @@
                 efi.canTouchEfiVariables = true;
             };
             kernelPackages = pkgs.linuxPackages_latest;
-            kernelParams = ["amdgpu.dcdebugmask=0x10"];
+            kernelParams = [
+                "amdgpu.dcdebugmask=0x10"
+                "amd_pstate=active" # proper CPPC power management for Zen 5 (9950X3D)
+            ];
         };
         # slows down boot time
         systemd.services.NetworkManager-wait-online.enable = false;
