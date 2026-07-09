@@ -2,11 +2,13 @@
     den.aspects.openrgb.nixos = {
         config,
         lib,
+        pkgs,
         ...
     }: {
         services.hardware.openrgb = {
             enable = true;
             motherboard = "amd";
+            package = pkgs.openrgb-with-all-plugins;
         };
         systemd.user.services.openrgb = {
             description = "OpenRGB";

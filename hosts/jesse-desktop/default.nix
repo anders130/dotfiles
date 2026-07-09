@@ -26,6 +26,7 @@
             zapzap
             nextcloud
 
+            openrgb
             (den.batteries.tty-autologin "jesse")
         ];
 
