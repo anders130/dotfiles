@@ -18,10 +18,15 @@ in {
         homeManager = {
             inputs',
             pkgs,
+            self',
             ...
         }: {
             home.packages = [
                 (inputs'.project.packages.default.override {
+                    multiplexer = {
+                        env = "tmux";
+                        pkg = self'.packages.tmux;
+                    };
                     palette = with (style.colors pkgs lib).withHashtag; [
                         base00
                         base08
