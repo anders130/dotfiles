@@ -43,7 +43,7 @@
                     hideMenu = true;
                     hideMenuWarned = true;
                     startAtLogin = false;
-                    disableHardwareAcceleration = false;
+                    disableHardwareAcceleration = true;
                     removeUpgradeButton = false;
                     restartOnConfigChanges = false;
                     trayClickPlayPause = false;
