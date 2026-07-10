@@ -48,8 +48,6 @@
                 ];
             };
 
-            hardware.bluetooth.enable = true;
-
             nix.settings.download-speed = 6250; # limit download speed to 50 Mbps
 
             environment.systemPackages = with pkgs; [

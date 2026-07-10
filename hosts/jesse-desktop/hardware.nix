@@ -8,13 +8,11 @@
         }: {
             boot = {
                 initrd.availableKernelModules = [
-                    "ahci"
                     "nvme"
-                    "sd_mod"
-                    "usb_storage"
-                    "usbhid"
+                    "ahci"
                     "xhci_pci"
                     "thunderbolt"
+                    "usbhid"
                 ];
                 kernelModules = ["kvm-amd"];
             };
