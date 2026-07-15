@@ -6,7 +6,7 @@
         nixos = {lib, ...}:
             lib.mkIf (host.hyprland.ttyAutostart or false) {
                 programs.fish.loginShellInit = ''
-                    if not set -q HYPRLAND_INSTANCE_SIGNATURE
+                    if not set -q HYPRLAND_INSTANCE_SIGNATURE; and test (tty) = /dev/tty1
                         while not test -e /dev/dri/renderD128
                             sleep 0.1
                         end

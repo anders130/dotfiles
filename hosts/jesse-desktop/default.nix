@@ -37,6 +37,8 @@
         }: {
             system.stateVersion = "26.11";
 
+            services.openssh.enable = true;
+
             my = {
                 nix.daemon.enableLimit = true;
                 desktop.autostart = [
