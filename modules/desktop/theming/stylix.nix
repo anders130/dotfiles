@@ -31,6 +31,7 @@ in {
         homeManager = {
             stylix.targets.gtk.enable = true;
             gtk.enable = true;
+            home.pointerCursor.enable = true;
         };
     };
 }
