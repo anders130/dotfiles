@@ -18,6 +18,7 @@
             dev
             work
             dots.gaming
+            bottles
 
             kdeconnect
             winapps

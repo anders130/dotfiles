@@ -15,7 +15,6 @@
 
                 snapshot # camera
                 gnome-calculator
-                bottles # windows programs
 
                 fluent-gtk-theme
                 orchis-theme
