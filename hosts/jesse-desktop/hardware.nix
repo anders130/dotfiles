@@ -7,13 +7,14 @@
             ...
         }: {
             boot = {
-                initrd.availableKernelModules = [
-                    "nvme"
-                    "ahci"
-                    "xhci_pci"
-                    "thunderbolt"
-                    "usbhid"
-                ];
+                initrd = {
+                    includeDefaultModules = false;
+                    availableKernelModules = [
+                        "nvme"
+                        "ahci"
+                        "thunderbolt"
+                    ];
+                };
                 kernelModules = ["kvm-amd"];
             };
 

@@ -1,5 +1,9 @@
 {
-    den.aspects.theming.nixos = {pkgs, ...}: {
+    den.aspects.theming.nixos = {
+        pkgs,
+        lib,
+        ...
+    }: {
         stylix.targets.plymouth.enable = false;
         nixpkgs.overlays = let
             overlay = _: prev: {
@@ -28,9 +32,9 @@
                 "udev.log_priority=3"
                 "rd.systemd.show_status=auto"
             ];
-            # Hide the OS choice for bootloaders.
+            # Hide the OS choice for bootloaders by default
             # still possible to open bootloader list by pressing any key
-            loader.timeout = 0;
+            loader.timeout = lib.mkDefault 0;
         };
     };
 }

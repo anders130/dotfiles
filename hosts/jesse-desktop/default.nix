@@ -6,7 +6,10 @@
     den.hosts.x86_64-linux.jesse-desktop = {
         users.jesse = {};
         caelestia.showAudio = true;
-        hyprland.ttyAutostart = true;
+        hyprland = {
+            ttyAutostart = true;
+            primaryGpuPci = "0000:08:00.0"; # dGPU
+        };
     };
     den.aspects.jesse-desktop = {
         readme.intro = "This is the configuration of my main computer.";

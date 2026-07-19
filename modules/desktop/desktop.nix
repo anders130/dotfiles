@@ -41,7 +41,6 @@
                 }
                 {
                     command = "vesktop --start-minimized";
-                    afterKeyringUnlock = true;
                 }
                 {
                     command = "nextcloud --background";
