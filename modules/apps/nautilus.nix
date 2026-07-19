@@ -38,10 +38,11 @@
                 };
             };
         };
-        homeManager = {
+        homeManager = {config, ...}: {
             xdg.userDirs = {
                 enable = true;
                 setSessionVariables = false;
+                desktop = config.home.homeDirectory; # stop making a Desktop directory
             };
         };
     };
