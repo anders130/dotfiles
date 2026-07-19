@@ -11,6 +11,7 @@
                     }).overrideAttrs (oldAttrs: {
                         patches =
                             [
+                                ./patches/fix-silence-config-save-failed-toast.patch
                                 ./patches/volume-over-100.patch
                                 ./patches/slider-reset-on-rightclick.patch
                             ]

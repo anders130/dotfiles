@@ -3,9 +3,11 @@
         config,
         lib,
         pkgs,
+        osConfig,
         ...
     }: let
         inherit (lib) mkOption types;
+        secondaryMonitors = lib.filterAttrs (_: m: !m.isMain) osConfig.my.desktop.monitors;
     in {
         imports = [inputs.caelestia-shell.homeManagerModules.default];
         options.my.caelestia = {
@@ -28,11 +30,16 @@
                 };
             };
         };
+        config.xdg.configFile = lib.mapAttrs' (name: _:
+            lib.nameValuePair "caelestia/monitors/${name}/shell.json" {
+                text = builtins.toJSON {lock.enabled = false;};
+            })
+        secondaryMonitors;
         config.programs.caelestia = {
             enable = true;
             package = pkgs.caelestia-shell;
             settings = {
-                appearance.font.family.clock = "DejaVu Sans";
+                appearance.font.clock = "DejaVu Sans";
                 general = {
                     apps = {
                         terminal = config.my.desktop.mime.terminal;
