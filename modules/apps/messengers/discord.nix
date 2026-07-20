@@ -27,6 +27,7 @@
         ];
         homeManager = {config, ...}: {
             imports = [inputs.nixcord.homeModules.nixcord];
+            stylix.targets.nixcord.enable = false;
             programs.nixcord = {
                 enable = true;
                 config = {
