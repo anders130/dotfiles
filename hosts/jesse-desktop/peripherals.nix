@@ -39,25 +39,20 @@
             "GPU HDMI" = {
                 match = {
                     "device.api" = "alsa";
-                    "device.name" = "alsa_card.pci-0000_08_00.1";
+                    "device.name" = "alsa_card.pci-0000_03_00.1";
                 };
                 profile = "off";
             };
             "GPU HDMI 2" = {
                 match = {
                     "device.api" = "alsa";
-                    "device.name" = "alsa_card.pci-0000_48_00.1";
+                    "device.name" = "alsa_card.pci-0000_49_00.1";
                 };
                 profile = "off";
             };
         };
         # monitors
         my.desktop.monitors = {
-            DP-3 = {
-                resolution = "2560x1440";
-                refreshRate = 180;
-                position = "-2560x0";
-            };
             DP-1 = {
                 isMain = true;
                 resolution = "3440x1440";
@@ -65,6 +60,11 @@
                 position = "0x0";
             };
             DP-2 = {
+                resolution = "2560x1440";
+                refreshRate = 180;
+                position = "-2560x0";
+            };
+            DP-3 = {
                 resolution = "2560x1440";
                 refreshRate = 180;
                 position = "3440x0";

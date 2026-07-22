@@ -8,7 +8,7 @@
         caelestia.showAudio = true;
         hyprland = {
             ttyAutostart = true;
-            primaryGpuPci = "0000:08:00.0"; # dGPU
+            primaryGpuPci = "0000:03:00.0"; # dGPU
         };
     };
     den.aspects.jesse-desktop = {
