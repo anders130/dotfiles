@@ -33,6 +33,7 @@
         config.xdg.configFile = lib.mapAttrs' (name: _:
             lib.nameValuePair "caelestia/monitors/${name}/shell.json" {
                 text = builtins.toJSON {lock.enabled = false;};
+                force = true;
             })
         secondaryMonitors;
         config.programs.caelestia = {
