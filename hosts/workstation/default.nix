@@ -49,11 +49,7 @@
             };
         };
 
-        homeManager = {
-            config,
-            lib,
-            ...
-        }: {
+        homeManager = {config, ...}: {
             programs.nextcloud = {
                 enable = true;
                 instance-url = "https://cloud.gollub.dev";
@@ -69,10 +65,10 @@
                     };
                 };
             };
-            wayland.windowManager.hyprland.extraConfig = lib.mkAfter ''
-                source = ./override.conf
-            '';
-            xdg.configFile."hypr/override.conf".source = ./hyprland.conf;
+            my.hyprland = {
+                animations.enable = false;
+                transparency.enable = false;
+            };
         };
     };
 }

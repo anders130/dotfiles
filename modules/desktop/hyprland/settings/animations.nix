@@ -1,6 +1,10 @@
 {
-    dots.desktop.provides.hyprland.homeManager = {lib, ...}: let
-        inherit (lib) mapAttrsToList optionalAttrs;
+    dots.desktop.provides.hyprland.homeManager = {
+        config,
+        lib,
+        ...
+    }: let
+        inherit (lib) mkOption mapAttrsToList optionalAttrs;
         mkCurve = name: points: {
             _args = [
                 name
@@ -17,7 +21,13 @@
             }
             // optionalAttrs (style != null) {inherit style;};
     in {
-        wayland.windowManager.hyprland.settings = {
+        options.my.hyprland.animations.enable = mkOption {
+            type = lib.types.bool;
+            default = true;
+            description = "Master switch for Hyprland animations.";
+        };
+        config.wayland.windowManager.hyprland.settings = {
+            config.animations.enabled = config.my.hyprland.animations.enable;
             curve = mapAttrsToList mkCurve
             {
                 wind = [[0.05 0.9] [0.1 1.05]];
