@@ -4,10 +4,13 @@ in {
     den.aspects.theming = {
         nixos = {pkgs, ...}: {
             stylix = {
-                # Theming gtksourceview overrides it, which cascades into a full
-                # inkscape recompile every update (inkscape depends on it, and the
-                # cursor package pulls inkscape into the system closure).
-                targets.gtksourceview.enable = false;
+                targets = {
+                    # Theming gtksourceview overrides it, which cascades into a full
+                    # inkscape recompile every update (inkscape depends on it, and the
+                    # cursor package pulls inkscape into the system closure).
+                    gtksourceview.enable = false;
+                    regreet.enable = false;
+                };
                 cursor = {
                     name = "catppuccin-macchiato-dark-cursors";
                     package = pkgs.catppuccin-cursors.macchiatoDark;
