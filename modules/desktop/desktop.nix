@@ -9,6 +9,7 @@
                 mime
                 autostart
                 monitors
+                hidden-apps
             ])
             ++ (with den.aspects; [
                 theming
