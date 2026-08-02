@@ -1,23 +1,19 @@
-{
+{den, ...}: {
     den.aspects.youtube-music = {
-        nixos.nixpkgs.overlays = [
-            (_: prev: {
-                pear-desktop = prev.pear-desktop.overrideAttrs (_: {
-                    desktopItems = [
-                        (prev.makeDesktopItem {
-                            name = "youtube-music";
-                            desktopName = "YT Music";
-                            exec = "pear-desktop %U";
-                            icon = "${prev.pear-desktop}/share/icons/hicolor/256x256/apps/pear-desktop.png";
-                            startupWMClass = "com.github.th_ch.youtube_music";
-                            genericName = "Music Player";
-                            keywords = ["music" "YouTube" "YT Music" "pear-desktop"];
-                            categories = ["Audio" "AudioVideo" "Player"];
-                        })
-                    ];
-                });
-            })
-        ];
+        includes = [den.aspects.desktop-entries];
+        nixos = {
+            my.desktop-entries.pear-desktop = {
+                package = "pear-desktop";
+                name = "youtube-music";
+                desktopName = "YT Music";
+                exec = "pear-desktop %U";
+                icon = prev: "${prev.pear-desktop}/share/icons/hicolor/256x256/apps/pear-desktop.png";
+                startupWMClass = "com.github.th_ch.youtube_music";
+                genericName = "Music Player";
+                keywords = ["music" "YouTube" "YT Music" "pear-desktop"];
+                categories = ["Audio" "AudioVideo" "Player"];
+            };
+        };
         homeManager = {
             config,
             pkgs,

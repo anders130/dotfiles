@@ -6,25 +6,20 @@
     flake-file.inputs.nixcord.url = "github:kaylorben/nixcord";
 
     den.aspects.discord = {
-        includes = [(den.batteries.insecure ["pnpm-10.29.2"])];
-        nixos.nixpkgs.overlays = [
-            (_: prev: {
-                vesktop = prev.vesktop.overrideAttrs (_: {
-                    desktopItems = [
-                        (prev.makeDesktopItem {
-                            name = "discord";
-                            desktopName = "Discord";
-                            exec = "vesktop %U";
-                            icon = "${prev.discord}/share/icons/hicolor/256x256/apps/discord.png";
-                            startupWMClass = "vesktop";
-                            genericName = "Internet Messenger";
-                            keywords = ["discord" "vencord" "vesktop"];
-                            categories = ["Network" "InstantMessaging" "Chat"];
-                        })
-                    ];
-                });
-            })
-        ];
+        includes = [(den.batteries.insecure ["pnpm-10.29.2"]) den.aspects.desktop-entries];
+        nixos = {pkgs, ...}: {
+            my.desktop-entries.vesktop = {
+                package = "vesktop";
+                name = "discord";
+                desktopName = "Discord";
+                exec = "vesktop %U";
+                icon = "${pkgs.discord}/share/icons/hicolor/256x256/apps/discord.png";
+                startupWMClass = "vesktop";
+                genericName = "Internet Messenger";
+                keywords = ["discord" "vencord" "vesktop"];
+                categories = ["Network" "InstantMessaging" "Chat"];
+            };
+        };
         homeManager = {config, ...}: {
             imports = [inputs.nixcord.homeModules.nixcord];
             stylix.targets.nixcord.enable = false;
