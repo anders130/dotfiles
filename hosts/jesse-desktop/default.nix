@@ -47,10 +47,6 @@
                 nix.daemon.enableLimit = true;
                 desktop.autostart = [
                     "sleep 2 && zapzap --hideStart"
-                    {
-                        command = "bitwarden";
-                        afterKeyringUnlock = true;
-                    }
                 ];
             };
 
