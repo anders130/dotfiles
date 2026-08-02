@@ -1,15 +1,9 @@
 {dots, ...}: {
     dots.desktop.provides.nwg-displays = {
         includes = [dots.desktop.provides.hyprland];
-        homeManager = {
-            lib,
-            pkgs,
-            ...
-        }: {
+        homeManager = {pkgs, ...}: {
+            # TODO: lua: require("monitors")
             home.packages = [pkgs.nwg-displays];
-            wayland.windowManager.hyprland.extraConfig = lib.mkAfter ''
-                source = ./monitors.conf
-            '';
         };
     };
 }

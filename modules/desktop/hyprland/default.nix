@@ -4,7 +4,7 @@
     ...
 }: {
     flake-file.inputs.hyprland = {
-        url = "github:hyprwm/hyprland/v0.55.2";
+        url = "github:hyprwm/hyprland/v0.56.1";
         inputs.pre-commit-hooks.follows = "";
     };
     flake-follows.exclude = ["hyprland.nixpkgs"];
@@ -49,11 +49,7 @@
             };
         };
 
-        homeManager = {
-            config,
-            lib,
-            ...
-        }: {
+        homeManager = {lib, ...}: {
             imports = [inputs.hyprland.homeManagerModules.default];
             stylix.targets.hyprland.enable = false;
             wayland.windowManager.hyprland = {
@@ -61,32 +57,10 @@
                 xwayland.enable = true;
                 package = null;
                 portalPackage = null;
-                settings = {
-                    general = {
-                        layout = "dwindle";
-                        allow_tearing = false;
-                    };
-                    dwindle.preserve_split = true;
-                    ecosystem.no_update_news = true;
-                    env =
-                        lib.optional (primaryGpuPci != "")
-                        "AQ_DRM_DEVICES,/dev/dri/hypr-primary";
-                    misc = {
-                        focus_on_activate = true;
-                        initial_workspace_tracking = 0;
-                    };
-                    exec-once = [
-                        "hyprctl setcursor ${config.stylix.cursor.package.name} ${toString config.stylix.cursor.size}"
-                    ];
-                };
                 systemd.variables = ["--all"];
-                configType = "hyprlang";
+                configType = "lua";
+                settings.env = lib.optional (primaryGpuPci != "") {_args = ["AQ_DRM_DEVICES" "/dev/dri/hypr-primary"];};
             };
-            xdg.configFile."hypr/xdph.conf".text = ''
-                screencopy {
-                    allow_token_by_default = true
-                }
-            '';
         };
     };
 }

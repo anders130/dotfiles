@@ -15,9 +15,6 @@
 
                 snapshot # camera
                 gnome-calculator
-
-                fluent-gtk-theme
-                orchis-theme
             ];
             xdg.userDirs.setSessionVariables = false;
         };

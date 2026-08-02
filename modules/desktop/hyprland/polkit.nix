@@ -15,7 +15,7 @@
                 };
             };
         };
-        homeManager.wayland.windowManager.hyprland.settings.exec-once = [
+        homeManager.my.hyprland.execOnce = [
             "gnome-keyring-daemon --start --components=secrets,pkcs11,ssh"
         ];
     };

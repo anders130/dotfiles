@@ -5,11 +5,11 @@
             lib,
             ...
         }: let
-            inherit (lib) mapAttrsToList mkOption types;
+            inherit (lib) mapAttrsToList mkOption types attrsToList;
             inherit (builtins) filter head length;
             mkMonitorKernelParam = port: c: "video=${port}:${c.resolution}@${toString c.refreshRate}Hz";
             getMainMonitorName = monitors: let
-                mainMonitors = filter (m: m.value.isMain) (lib.attrsToList monitors);
+                mainMonitors = filter (m: m.value.isMain) (attrsToList monitors);
             in
                 if length mainMonitors == 0
                 then "DP-1"
@@ -63,10 +63,16 @@
             lib,
             ...
         }: let
-            mkHyprlandMonitor = port: c: "${port}, ${c.resolution}@${toString c.refreshRate}, ${c.position}, ${toString c.scale}";
+            inherit (lib) mapAttrsToList;
+            mkHyprlandMonitor = port: c: {
+                inherit (c) position;
+                output = port;
+                mode = "${c.resolution}@${toString c.refreshRate}";
+                scale = toString c.scale;
+            };
         in {
             wayland.windowManager.hyprland.settings.monitor =
-                lib.mapAttrsToList mkHyprlandMonitor osConfig.my.desktop.monitors;
+                mapAttrsToList mkHyprlandMonitor osConfig.my.desktop.monitors;
         };
     };
 }

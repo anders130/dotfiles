@@ -72,7 +72,7 @@
             inputs.nixpkgs.follows = "nixpkgs";
         };
         hyprland = {
-            url = "github:hyprwm/hyprland/v0.55.2";
+            url = "github:hyprwm/hyprland/v0.56.1";
             inputs = {
                 pre-commit-hooks.follows = "";
                 systems.follows = "systems";
@@ -118,9 +118,9 @@
         nixcord = {
             url = "github:kaylorben/nixcord";
             inputs = {
-                flake-compat.follows = "flake-compat";
                 flake-parts.follows = "flake-parts";
                 nixpkgs.follows = "nixpkgs";
+                treefmt-nix.follows = "treefmt-nix";
             };
         };
         nixos-wsl = {
