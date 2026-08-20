@@ -71,10 +71,10 @@ index aaf95caf..5f8a83f4 100644
              widthBehavior.enabled = true;
              dragMovement = 0;
          }
-diff --git a/modules/bar/popouts/Audio.qml b/modules/bar/popouts/Audio.qml
+diff --git a/modules/bar/popouts/AudioPopout.qml b/modules/bar/popouts/AudioPopout.qml
 index 18983428..5d00ba9b 100644
---- a/modules/bar/popouts/Audio.qml
-+++ b/modules/bar/popouts/Audio.qml
+--- a/modules/bar/popouts/AudioPopout.qml
++++ b/modules/bar/popouts/AudioPopout.qml
 @@ -93,6 +93,7 @@ Item {
                  anchors.right: parent.right
                  implicitHeight: parent.implicitHeight
@@ -113,10 +113,10 @@ index e4cdf239..c0f0725a 100644
                      enabled: root.enabled
                      onInteraction: v => root.moved(v)
 diff --git a/modules/nexus/pages/AudioPage.qml b/modules/nexus/pages/AudioPage.qml
-index 09918df0..ede4e5f6 100644
+index 887588f1..dbe18fb2 100644
 --- a/modules/nexus/pages/AudioPage.qml
 +++ b/modules/nexus/pages/AudioPage.qml
-@@ -26,6 +26,7 @@ PageBase {
+@@ -25,6 +25,7 @@ PageBase {
              label: qsTr("Output")
              valueLabel: Math.round(value * 100) + "%"
              value: Audio.volume
@@ -124,7 +124,7 @@ index 09918df0..ede4e5f6 100644
              enabled: !Audio.muted
              onMoved: v => Audio.setVolume(v)
          }
-@@ -53,6 +54,7 @@ PageBase {
+@@ -52,6 +53,7 @@ PageBase {
              label: qsTr("Input")
              valueLabel: Math.round(value * 100) + "%"
              value: Audio.sourceVolume

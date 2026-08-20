@@ -1,71 +1,66 @@
 diff --git a/modules/bar/components/StatusIcons.qml b/modules/bar/components/StatusIcons.qml
-index 900e5574..26a793c4 100644
+index 90ad09b5..c778625b 100644
 --- a/modules/bar/components/StatusIcons.qml
 +++ b/modules/bar/components/StatusIcons.qml
-@@ -7,6 +7,7 @@ import Quickshell.Bluetooth
- import Quickshell.Services.UPower
+@@ -5,6 +5,7 @@ import QtQuick.Layouts
+ import Quickshell
  import Caelestia.Config
  import qs.components
 +import qs.components.controls
  import qs.services
  import qs.utils
+ import qs.modules.bar.components.status
+@@ -81,12 +82,24 @@ StyledRect {
+                     delegate: EntryWrapper {
+                         margin: Tokens.spacing.extraSmall / 2
  
-@@ -15,6 +16,7 @@ StyledRect {
- 
-     property color colour: Colours.palette.m3secondary
-     readonly property alias items: iconColumn
-+    property bool isHeadphonesIcon: false
- 
-     color: Colours.tPalette.m3surfaceContainer
-     radius: Tokens.rounding.full
-@@ -108,10 +110,23 @@ StyledRect {
-             name: "audio"
-             active: Config.bar.status.showAudio
- 
--            sourceComponent: MaterialIcon {
--                animate: true
--                text: Icons.getVolumeIcon(Audio.volume, Audio.muted)
--                color: root.colour
-+            sourceComponent: CustomMouseArea {
-+                id: audioArea
+-                        MaterialIcon {
+-                            animate: true
+-                            text: Icons.getVolumeIcon(Audio.volume, Audio.muted)
+-                            color: root.colour
+-                            fontStyle: Tokens.font.icon.medium
+-                            fill: 1
++                        CustomMouseArea {
++                            implicitWidth: audioIcon.implicitWidth
++                            implicitHeight: audioIcon.implicitHeight
 +
-+                implicitWidth: icon.implicitWidth
-+                implicitHeight: icon.implicitHeight
++                            hoverEnabled: false
 +
-+                hoverEnabled: false
++                            onClicked: Audio.toggleAudioPort()
 +
-+                onClicked: Audio.toggleAudioPort()
++                            MaterialIcon {
++                                id: audioIcon
 +
-+                MaterialIcon {
-+                    id: icon
-+                    anchors.centerIn: parent
-+                    animate: true
-+                    text: Audio.isHeadphonesIcon ? "headphones" : "speaker"
-+                    color: root.colour
-+                }
-             }
-         }
- 
++                                anchors.centerIn: parent
++                                animate: true
++                                text: Audio.isHeadphonesIcon ? "headphones" : "speaker"
++                                color: root.colour
++                                fontStyle: Tokens.font.icon.medium
++                                fill: 1
++                            }
+                         }
+                     }
+                 }
 diff --git a/services/Audio.qml b/services/Audio.qml
-index 6268b92e..b8fde2c9 100644
+index e45951e7..cf80bc36 100644
 --- a/services/Audio.qml
 +++ b/services/Audio.qml
-@@ -13,6 +13,10 @@ Singleton {
+@@ -13,6 +13,11 @@ Singleton {
  
      property string previousSinkName: ""
      property string previousSourceName: ""
++    readonly property string sinkName: sink?.description || sink?.name || ""
 +    readonly property bool isHeadphonesIcon: {
-+        const name = (sink?.description || sink?.name || "").toLowerCase();
++        const name = sinkName.toLowerCase();
 +        return name.includes("headphone") || name.includes("headset");
 +    }
  
      property list<PwNode> sinks: []
      property list<PwNode> sources: []
-@@ -77,6 +81,27 @@ Singleton {
+@@ -77,6 +82,26 @@ Singleton {
          setAudioSink(sinks[nextIndex]);
      }
  
-+
 +    function toggleAudioPort(): void {
 +        if (sinks.length < 2)
 +            return;
@@ -89,11 +84,3 @@ index 6268b92e..b8fde2c9 100644
      function setStreamVolume(stream: PwNode, newVolume: real): void {
          if (stream?.ready && stream?.audio) {
              stream.audio.muted = false;
-@@ -105,6 +130,7 @@ Singleton {
-         return stream.properties["application.name"] || stream.description || stream.name || qsTr("Unknown Application");
-     }
- 
-+
-     onSinkChanged: {
-         if (!sink?.ready)
-             return;

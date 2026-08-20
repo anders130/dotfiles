@@ -69,11 +69,38 @@
                         "clock"
                         "statusIcons"
                     ];
-                    status = {
+                    statusIcons = let
                         inherit (config.my.caelestia.status) showNetwork showAudio showBluetooth showBattery;
-                        showKbLayout = false;
-                        showLockStatus = false;
-                    };
+                    in [
+                        {
+                            id = "lockStatus";
+                            enabled = false;
+                        }
+                        {
+                            id = "audio";
+                            enabled = showAudio;
+                        }
+                        {
+                            id = "microphone";
+                            enabled = false;
+                        }
+                        {
+                            id = "kbLayout";
+                            enabled = false;
+                        }
+                        {
+                            id = "network";
+                            enabled = showNetwork;
+                        }
+                        {
+                            id = "bluetooth";
+                            enabled = showBluetooth;
+                        }
+                        {
+                            id = "battery";
+                            enabled = showBattery;
+                        }
+                    ];
                 };
                 launcher = {
                     inherit (config.my.desktop) hiddenApps;

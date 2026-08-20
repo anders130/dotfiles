@@ -1,12 +1,12 @@
 diff --git a/components/controls/FilledSlider.qml b/components/controls/FilledSlider.qml
-index b78e2539..ae23917a 100644
+index b78e2539..91e3f17c 100644
 --- a/components/controls/FilledSlider.qml
 +++ b/components/controls/FilledSlider.qml
 @@ -115,8 +115,16 @@ Slider {
          }
      }
  
-+    signal reset()
++    signal reset
 +
      onPressedChanged: handle.moving = pressed
  
@@ -20,14 +20,14 @@ index b78e2539..ae23917a 100644
          if (!initialized) {
              initialized = true;
 diff --git a/components/controls/StyledSlider.qml b/components/controls/StyledSlider.qml
-index 5f8a83f4..34e85509 100644
+index 5f8a83f4..677420c5 100644
 --- a/components/controls/StyledSlider.qml
 +++ b/components/controls/StyledSlider.qml
 @@ -26,6 +26,7 @@ Slider {
      property real filledWidth
  
      signal interaction(v: real)
-+    signal reset()
++    signal reset
  
      Component.onCompleted: filledWidth = Qt.binding(() => (width - handle.implicitWidth - handle.anchors.leftMargin) * pos)
  
@@ -79,10 +79,10 @@ index 5f8a83f4..34e85509 100644
              const clickPos = e.x / width;
              const finalPos = mouse.dragMovement !== 0 ? posBinding.value : CUtils.clamp(clickPos, 0, 1);
              root.interaction(root.from + finalPos * (root.to - root.from));
-diff --git a/modules/bar/popouts/Audio.qml b/modules/bar/popouts/Audio.qml
+diff --git a/modules/bar/popouts/AudioPopout.qml b/modules/bar/popouts/AudioPopout.qml
 index 5d00ba9b..db716db4 100644
---- a/modules/bar/popouts/Audio.qml
-+++ b/modules/bar/popouts/Audio.qml
+--- a/modules/bar/popouts/AudioPopout.qml
++++ b/modules/bar/popouts/AudioPopout.qml
 @@ -96,6 +96,7 @@ Item {
                  to: GlobalConfig.services.maxVolume
                  value: Audio.volume
@@ -92,14 +92,14 @@ index 5d00ba9b..db716db4 100644
          }
  
 diff --git a/modules/nexus/common/SliderRow.qml b/modules/nexus/common/SliderRow.qml
-index c0f0725a..5e7f7179 100644
+index c0f0725a..72735659 100644
 --- a/modules/nexus/common/SliderRow.qml
 +++ b/modules/nexus/common/SliderRow.qml
 @@ -18,6 +18,7 @@ ConnectedRect {
      property real max: 1
  
      signal moved(value: real)
-+    signal reset()
++    signal reset
  
      Layout.fillWidth: true
      implicitHeight: rowLayout.implicitHeight + rowLayout.anchors.margins + rowLayout.anchors.topMargin
@@ -112,10 +112,10 @@ index c0f0725a..5e7f7179 100644
              }
          }
 diff --git a/modules/nexus/pages/AudioPage.qml b/modules/nexus/pages/AudioPage.qml
-index ede4e5f6..ac9022d4 100644
+index dbe18fb2..cd804d10 100644
 --- a/modules/nexus/pages/AudioPage.qml
 +++ b/modules/nexus/pages/AudioPage.qml
-@@ -29,6 +29,7 @@ PageBase {
+@@ -28,6 +28,7 @@ PageBase {
              max: GlobalConfig.services.maxVolume
              enabled: !Audio.muted
              onMoved: v => Audio.setVolume(v)
@@ -123,7 +123,7 @@ index ede4e5f6..ac9022d4 100644
          }
  
          ToggleRow {
-@@ -57,6 +58,7 @@ PageBase {
+@@ -56,6 +57,7 @@ PageBase {
              max: GlobalConfig.services.maxVolume
              enabled: !Audio.sourceMuted
              onMoved: v => Audio.setSourceVolume(v)
@@ -144,7 +144,7 @@ index cbb0dba9..bd36a81e 100644
          }
      }
 diff --git a/modules/osd/Content.qml b/modules/osd/Content.qml
-index 1aac8558..f31c7799 100644
+index 52c1fc57..a3920bb7 100644
 --- a/modules/osd/Content.qml
 +++ b/modules/osd/Content.qml
 @@ -50,6 +50,7 @@ Item {
