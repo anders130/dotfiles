@@ -4,7 +4,7 @@
     ...
 }: {
     flake-file.inputs.hyprland = {
-        url = "github:hyprwm/hyprland/v0.56.1";
+        url = "github:hyprwm/hyprland/v0.56.2";
         inputs.pre-commit-hooks.follows = "";
     };
     flake-follows.exclude = ["hyprland.nixpkgs"];
