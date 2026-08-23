@@ -59,7 +59,7 @@
                             disabled = true;
                         }
                     ];
-                    keyboardShortcutsVersion = lib.mkDefault 19;
+                    keyboardShortcutsVersion = lib.mkDefault 20;
                 }
                 // optionalAttrs (p.id != null) {inherit (p) id;}
         )
