@@ -4,6 +4,7 @@
             ai.provides.agents.claude
             ai.provides.agents.gemini
             ai.provides.tools.spec-kit
+            android
             direnv
             git
             project
