@@ -32,8 +32,11 @@
                 showBluetooth = osConfig.hardware.bluetooth.enable;
                 showBattery = osConfig.services.upower.enable && osConfig.services.power-profiles-daemon.enable;
             };
-            # TODO: remove this once home-manager module supports this
-            systemd.user.services.caelestia.Service.Environment = ["QT_QPA_PLATFORMTHEME=gtk3"];
+            systemd.user.services.caelestia.Service = {
+                # TODO: remove this once home-manager module supports this
+                Environment = ["QT_QPA_PLATFORMTHEME=gtk3"];
+                KillMode = "process";
+            };
         };
     };
 }

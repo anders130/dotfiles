@@ -1,30 +1,23 @@
-From 5a60863c607ceee990cf04187baf95460fc9e547 Mon Sep 17 00:00:00 2001
-From: anders130 <93037023+anders130@users.noreply.github.com>
-Date: Sun, 19 Jul 2026 12:45:55 +0200
-Subject: [PATCH] fix: silence config save failed toast
+Config files are read-only on Nix by design; the save-failed toast was
+just noise. Upstream moved this handling from QML
+(modules/ConfigToasts.qml, which no longer exists) into C++
+(rootnodes.cpp), so silence it there instead.
 
-Config files are read-only on Nix by design; the save-failed toast
-was just noise for both the main shell config and per-monitor
-configs.
----
- modules/ConfigToasts.qml | 4 ----
- 1 file changed, 4 deletions(-)
-
-diff --git a/modules/ConfigToasts.qml b/modules/ConfigToasts.qml
-index 81463b8d..940c696f 100644
---- a/modules/ConfigToasts.qml
-+++ b/modules/ConfigToasts.qml
-@@ -14,10 +14,6 @@ Scope {
-             Toaster.toast(qsTr("Failed to parse config%1").arg(screen ? " for " + screen : ""), error, "settings_alert", Toast.Warning);
-         }
+--- a/plugin/src/Caelestia/Config/rootnodes.cpp
++++ b/plugin/src/Caelestia/Config/rootnodes.cpp
+@@ -48,12 +48,9 @@
+ }
  
--        function onSaveFailed(error: string, screen: string): void {
--            Toaster.toast(qsTr("Failed to save config%1").arg(screen ? " for " + screen : ""), error, "settings_alert", Toast.Error);
--        }
+ void saveFailed(ConfigKind kind, const QString& error, const QString& screen) {
+-    if (kind != ConfigKind::Shell)
+-        return;
 -
-         function onUnknownOption(key: string, screen: string): void {
-             Toaster.toast(qsTr("Unknown option in%1 config").arg(screen ? " " + screen : ""), key, "question_mark", Toast.Warning);
-         }
--- 
-2.54.0
-
+-    // TODO: tr when translations added
+-    const auto title = forScreen(u"Failed to save config"_s, u"Failed to save config for %1"_s, screen);
+-    Toaster::instance()->toast(title, error, u"settings_alert"_s, Toast::Type::Error);
++    Q_UNUSED(kind);
++    Q_UNUSED(error);
++    Q_UNUSED(screen);
+ }
+ 
+ } // namespace detail

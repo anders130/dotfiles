@@ -1,5 +1,6 @@
-{
+{dots, ...}: {
     den.aspects.android = {
+        includes = [dots.desktop.provides.window-rules];
         nixos = {config, ...}: {
             users.groups.kvm.members = config.users.normalUsers;
         };
