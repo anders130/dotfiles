@@ -1,21 +1,10 @@
-{
-    dots,
-    inputs,
-    ...
-}: {
-    flake-file.inputs.hyprland = {
-        url = "github:hyprwm/hyprland/v0.56.2";
-        inputs.pre-commit-hooks.follows = "";
-    };
-    flake-follows.exclude = ["hyprland.nixpkgs"];
-
+{dots, ...}: {
     den.schema.host = {lib, ...}: {
         options.hyprland.primaryGpuPci = lib.mkOption {
             type = lib.types.str;
             default = "";
         };
     };
-
     dots.desktop.provides.hyprland = {host, ...}: let
         primaryGpuPci = host.hyprland.primaryGpuPci or "";
     in {
@@ -50,7 +39,6 @@
         };
 
         homeManager = {lib, ...}: {
-            imports = [inputs.hyprland.homeManagerModules.default];
             stylix.targets.hyprland.enable = false;
             wayland.windowManager.hyprland = {
                 enable = true;

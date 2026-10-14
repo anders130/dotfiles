@@ -1,8 +1,7 @@
 {
-    flake-file.inputs.hyprsplit = {
-        url = "github:shezdy/hyprsplit";
-        inputs.hyprland.follows = "hyprland";
-    };
+    flake-file.inputs.hyprsplit.url = "github:shezdy/hyprsplit";
+    flake-follows.exclude = ["hyprsplit.nixpkgs"];
+
     dots.desktop.provides.hyprland.homeManager = {
         config,
         inputs',

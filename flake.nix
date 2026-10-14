@@ -71,20 +71,7 @@
             url = "github:nix-community/home-manager";
             inputs.nixpkgs.follows = "nixpkgs";
         };
-        hyprland = {
-            url = "github:hyprwm/hyprland/v0.56.2";
-            inputs = {
-                pre-commit-hooks.follows = "";
-                systems.follows = "systems";
-            };
-        };
-        hyprsplit = {
-            url = "github:shezdy/hyprsplit";
-            inputs = {
-                hyprland.follows = "hyprland";
-                nixpkgs.follows = "nixpkgs";
-            };
-        };
+        hyprsplit.url = "github:shezdy/hyprsplit";
         hytale-launcher = {
             url = "github:anders130/hytale-launcher-nix";
             inputs.nixpkgs.follows = "nixpkgs";
@@ -92,7 +79,10 @@
         import-tree.url = "github:denful/import-tree";
         lanzaboote = {
             url = "github:nix-community/lanzaboote";
-            inputs.nixpkgs.follows = "nixpkgs";
+            inputs = {
+                nixpkgs.follows = "nixpkgs";
+                pre-commit.follows = "git-hooks";
+            };
         };
         llm-agents = {
             url = "github:numtide/llm-agents.nix";

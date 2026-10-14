@@ -1,5 +1,8 @@
 {inputs, ...}: {
-    flake-file.inputs.lanzaboote.url = "github:nix-community/lanzaboote";
+    flake-file.inputs.lanzaboote = {
+        url = "github:nix-community/lanzaboote";
+        inputs.pre-commit.follows = "git-hooks";
+    };
     den.aspects.lanzaboote = {
         nixos.imports = [inputs.lanzaboote.nixosModules.lanzaboote];
         readme.sections = [
