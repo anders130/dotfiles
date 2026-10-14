@@ -5,19 +5,16 @@ just noise. Upstream moved this handling from QML
 
 --- a/plugin/src/Caelestia/Config/rootnodes.cpp
 +++ b/plugin/src/Caelestia/Config/rootnodes.cpp
-@@ -48,12 +48,9 @@
- }
- 
+@@ -53,9 +53,5 @@
  void saveFailed(ConfigKind kind, const QString& error, const QString& screen) {
 -    if (kind != ConfigKind::Shell)
 -        return;
 -
--    // TODO: tr when translations added
--    const auto title = forScreen(u"Failed to save config"_s, u"Failed to save config for %1"_s, screen);
+-    const auto title =
+-        // TRANSLATORS: %1 = a monitor name
+-        screen.isEmpty() ? mark(u"Failed to save config"_s) : mark(u"Failed to save config for %1"_s, { screen });
 -    Toaster::instance()->toast(title, error, u"settings_alert"_s, Toast::Type::Error);
 +    Q_UNUSED(kind);
 +    Q_UNUSED(error);
 +    Q_UNUSED(screen);
  }
- 
- } // namespace detail

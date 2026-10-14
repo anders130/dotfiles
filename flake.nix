@@ -1,4 +1,4 @@
-# DO-NOT-EDIT. This file was auto-generated using github:vic/flake-file.
+# DO-NOT-EDIT. This file was auto-generated using github:denful/flake-file.
 # Use `nix run .#write-flake` to regenerate it.
 {
     description = "My NixOS Configuration";
@@ -118,7 +118,7 @@
         nixcord = {
             url = "github:kaylorben/nixcord";
             inputs = {
-                flake-parts.follows = "flake-parts";
+                home-manager.follows = "home-manager";
                 nixpkgs.follows = "nixpkgs";
                 treefmt-nix.follows = "treefmt-nix";
             };
