@@ -17,7 +17,7 @@
         homeManager = {config, ...}: {
             imports = [inputs.zen-browser.homeModules.beta];
             stylix.targets.zen-browser = {
-                enableCss = false;
+                enableCss = true;
                 profileNames = builtins.attrNames config.my.zen.profiles;
             };
             programs.zen-browser = {

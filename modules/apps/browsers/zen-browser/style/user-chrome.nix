@@ -8,11 +8,6 @@
             userChrome = with config.lib.stylix.colors;
             #css
                 ''
-                    /* fix tab textcolor */
-                    zen-workspace {
-                      --toolbox-textcolor: #${base05-hex} !important;
-                    }
-
                     /* clarify unloaded tabs */
                     .tabbrowser-tab[pending="true"] {
                       opacity: 0.5 !important;
@@ -37,154 +32,23 @@
                       opacity: 0.8 !important;
                     }
 
-                    /* history/bookmarks header bg */
-                    #sidebar-box {
-                      background-color: #${base00-hex} !important;
+                    /* active tab text: zen renamed --tab-selected-textcolor to --tab-text-color-selected */
+                    .tabbrowser-tab[selected] {
+                      --tab-text-color-selected: #${base05-hex} !important;
                     }
 
-                    /* stylix */
-                    :root {
-                      --zen-colors-primary: #${base02-hex} !important;
+                    /* zen-theme.css outranks a plain :root override of these in unsynced/private windows */
+                    :root[zen-unsynced-window='true'],
+                    :root[zen-private-window='true'] {
                       --zen-primary-color: #${base0D-hex} !important;
-                      --zen-colors-secondary: #${base02-hex} !important;
-                      --zen-colors-tertiary: #${base01-hex} !important;
-                      --zen-colors-border: #${base0D-hex} !important;
-                      --toolbarbutton-icon-fill: #${base0D-hex} !important;
-                      --lwt-text-color: #${base05-hex} !important;
-                      --toolbar-field-color: #${base05-hex} !important;
-                      --tab-selected-textcolor: #${base05-hex} !important;
-                      --toolbar-field-focus-color: #${base05-hex} !important;
-                      --toolbar-color: #${base05-hex} !important;
-                      --newtab-text-primary-color: #${base05-hex} !important;
-                      --arrowpanel-color: #${base05-hex} !important;
-                      --arrowpanel-background: #${base00-hex} !important;
-                      --sidebar-text-color: #${base05-hex} !important;
-                      --lwt-sidebar-text-color: #${base05-hex} !important;
-                      --lwt-sidebar-background-color: #${base00-hex} !important;
-                      --toolbar-bgcolor: #${base02-hex} !important;
-                      --newtab-background-color: #${base00-hex} !important;
-                      --zen-themed-toolbar-bg: #${base00-hex} !important;
-                      --zen-main-browser-background: #${base00-hex} !important;
-                      --toolbox-bgcolor-inactive: #${base01-hex} !important;
-                      --zen-themed-toolbar-bg-transparent: #${base01-hex} !important;
+                      --toolbox-textcolor: #${base05-hex} !important;
                     }
 
-                    #permissions-granted-icon {
+                    /* new tab button text + icon fill (excluded from the normal .toolbarbutton-1 rule) */
+                    #tabs-newtab-button,
+                    #vertical-tabs-newtab-button {
                       color: #${base05-hex} !important;
-                    }
-
-                    #historySwipeAnimationPreviousArrow,#historySwipeAnimationNextArrow {
-                      --swipe-nav-icon-primary-color: #${base0D-hex} !important;
-                      --swipe-nav-icon-accent-color: #${base00-hex} !important;
-                    }
-
-                    .sidebar-placesTree {
-                      background-color: #${base00-hex} !important;
-                    }
-
-                    #zen-workspaces-button {
-                      background-color: #${base00-hex} !important;
-                    }
-
-                    .urlbar-background {
-                      background-color: #${base02-hex} !important;
-                    }
-
-                    .content-shortcuts {
-                      background-color: #${base00-hex} !important;
-                      border-color: #${base0D-hex} !important;
-                    }
-
-                    .urlbarView-url {
-                      color: #${base0D-hex} !important;
-                    }
-
-                    #urlbar-input::selection {
-                      background-color: #${base0D-hex} !important;
-                      color: #${base00-hex} !important;
-                    }
-
-                    #zenEditBookmarkPanelFaviconContainer {
-                      background: #${base00-hex} !important;
-                    }
-
-                    #zen-media-controls-toolbar {
-                      & #zen-media-progress-bar {
-                        &::-moz-range-track {
-                          background: #${base02-hex} !important;
-                        }
-                      }
-                    }
-
-                    toolbar .toolbarbutton-1 {
-                      &:not([disabled]) {
-                        &:is([open], [checked])
-                          > :is(
-                            .toolbarbutton-icon,
-                            .toolbarbutton-text,
-                            .toolbarbutton-badge-stack
-                          ) {
-                          fill: #${base00-hex};
-                        }
-                      }
-                    }
-
-                    .identity-color-blue {
-                      --identity-tab-color: #${base0D-hex} !important;
-                      --identity-icon-color: #${base0D-hex} !important;
-                    }
-
-                    .identity-color-turquoise {
-                      --identity-tab-color: #${base0C-hex} !important;
-                      --identity-icon-color: #${base0C-hex} !important;
-                    }
-
-                    .identity-color-green {
-                      --identity-tab-color: #${base0B-hex} !important;
-                      --identity-icon-color: #${base0B-hex} !important;
-                    }
-
-                    .identity-color-yellow {
-                      --identity-tab-color: #${base0A-hex} !important;
-                      --identity-icon-color: #${base0A-hex} !important;
-                    }
-
-                    .identity-color-orange {
-                      --identity-tab-color: #${base09-hex} !important;
-                      --identity-icon-color: #${base09-hex} !important;
-                    }
-
-                    .identity-color-red {
-                      --identity-tab-color: #${base08-hex} !important;
-                      --identity-icon-color: #${base08-hex} !important;
-                    }
-
-                    .identity-color-pink {
-                      --identity-tab-color: #${base0E-hex} !important;
-                      --identity-icon-color: #${base0E-hex} !important;
-                    }
-
-                    .identity-color-purple {
-                      --identity-tab-color: #${base0F-hex} !important;
-                      --identity-icon-color: #${base0F-hex} !important;
-                    }
-
-                    #zen-toolbar-background {
-                      --zen-main-browser-background-toolbar: #${base00-hex} !important;
-                    }
-
-                    #commonDialog {
-                      background-color: #${base00-hex} !important;
-                    }
-
-                    #zen-browser-background {
-                      --zen-main-browser-background: #${base00-hex} !important;
-                    }
-
-                    menu,
-                    menuitem,
-                    menupopup {
-                      color: #${base05-hex} !important;
+                      --toolbarbutton-icon-fill: #${base05-hex} !important;
                     }
                 '';
         });
