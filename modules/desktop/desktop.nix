@@ -42,6 +42,7 @@
                 }
                 {
                     command = "vesktop --start-minimized";
+                    afterTray = true;
                 }
                 {
                     command = "nextcloud --background";

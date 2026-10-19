@@ -26,6 +26,11 @@
                                 default = false;
                                 description = "Wait until the login keyring is unlocked before executing";
                             };
+                            afterTray = mkOption {
+                                type = types.bool;
+                                default = false;
+                                description = "Wait until the systray's StatusNotifierWatcher is registered before executing";
+                            };
                         };
                     })
                 ]);

@@ -18,12 +18,21 @@
                 "$sleep" 1
             done
         '';
+        awaitTray = pkgs.writeShellScript "await-tray-ready" ''
+            busctl=${getExe' pkgs.systemd "busctl"}
+            sleep=${getExe' pkgs.coreutils "sleep"}
+            while ! "$busctl" --user list 2>/dev/null | grep -q org.kde.StatusNotifierWatcher; do
+                "$sleep" 0.2
+            done
+        '';
         mkCmd = cmd:
             if typeOf cmd == "string"
             then cmd
             else let
                 appCmd = cmd.command;
-                gates = optional cmd.afterKeyringUnlock "${awaitKeyring}";
+                gates =
+                    optional cmd.afterKeyringUnlock "${awaitKeyring}"
+                    ++ optional cmd.afterTray "${awaitTray}";
                 inner = concatStringsSep " && " (gates ++ [appCmd]);
             in "${
                 if cmd.delay > 0.0
