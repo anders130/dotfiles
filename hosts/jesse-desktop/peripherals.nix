@@ -51,6 +51,17 @@
                 profile = "off";
             };
         };
+        systemd.user.services.unmute-usb-speakers = {
+            description = "Force-unmute the USB Speakers card after wireplumber starts";
+            script = ''
+                amixer -c Audio sset 'PCM',0 unmute
+                amixer -c Audio sset 'PCM',1 unmute
+                amixer -c Audio sset 'PCM',2 unmute
+            '';
+            path = [pkgs.alsa-utils];
+            after = ["wireplumber.service" "pipewire.service"];
+            wantedBy = ["default.target"];
+        };
         # monitors
         my.desktop.monitors = {
             DP-1 = {
