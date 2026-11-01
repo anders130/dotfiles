@@ -14,6 +14,7 @@
                 # other games
                 space-cadet-pinball
                 supertuxkart
+                vintagestory
             ];
         };
     };
